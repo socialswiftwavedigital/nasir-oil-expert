@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -148,6 +148,16 @@
 
     @media(max-width:900px){ .pd-layout{grid-template-columns:1fr;} .pd-gallery{position:static;} }
     @media(max-width:768px){ .pd-section{padding:40px 20px 60px;} .reviews-section{padding:40px 20px;} .related-section{padding:40px 20px 60px;} .reviews-grid{grid-template-columns:1fr;} .benefit-list,.ingr-grid{grid-template-columns:1fr;} .pd-trust{grid-template-columns:1fr 1fr;} }
+
+    /* Always keep navbar solid on product pages */
+    #navbar { background:rgba(255,255,255,0.97) !important; backdrop-filter:blur(20px) !important; box-shadow:0 2px 24px rgba(0,0,0,0.08) !important; border-bottom:1px solid rgba(0,0,0,0.06) !important; padding:12px 60px !important; }
+    #navbar .nav-logo-text { color:var(--text-dark) !important; }
+    #navbar .nav-logo-text span { color:var(--gold-dark) !important; }
+    #navbar .nav-links a { color:var(--text-mid) !important; }
+    #navbar .nav-links a:hover, #navbar .nav-links a.active { color:var(--gold-dark) !important; }
+    #navbar .cart-icon-btn { color:var(--text-dark) !important; }
+    @media(max-width:1024px){ #navbar { padding:12px 32px !important; } }
+    @media(max-width:768px){ #navbar { padding:12px 20px !important; } }
   </style>
 </head>
 <body>
@@ -380,7 +390,10 @@
         <p class="product-desc">Luxurious rose extract for strength, shine and fragrance.</p>
         <div class="product-footer">
           <div class="product-price"><span>Rs</span>900</div>
-          <button class="btn-cart" data-name="Black Rose Hair Oil" data-price="900" data-img="images/img3.avif">🛒 Add to Cart</button>
+          <div class="product-btn-group">
+            <a href="black-rose-oil.html" class="btn-details">View Details</a>
+            <button class="btn-cart" data-name="Black Rose Hair Oil" data-price="900" data-img="images/img3.avif">🛒 Add to Cart</button>
+          </div>
         </div>
       </div>
     </div>
@@ -395,7 +408,10 @@
         <p class="product-desc">Gentle sulfate-free cleanse with natural botanicals.</p>
         <div class="product-footer">
           <div class="product-price"><span>Rs</span>600</div>
-          <button class="btn-cart" data-name="Herbal Hair Shampoo" data-price="600" data-img="images/img1.avif">🛒 Add to Cart</button>
+          <div class="product-btn-group">
+            <a href="herbal-shampoo.html" class="btn-details">View Details</a>
+            <button class="btn-cart" data-name="Herbal Hair Shampoo" data-price="600" data-img="images/img1.avif">🛒 Add to Cart</button>
+          </div>
         </div>
       </div>
     </div>
@@ -419,7 +435,7 @@
       <div class="footer-col"><h4>Products</h4><ul><li><a href="golden-oil.html">Golden Hair Oil</a></li><li><a href="black-rose-oil.html">Black Rose Oil</a></li><li><a href="herbal-shampoo.html">Herbal Shampoo</a></li></ul></div>
       <div class="footer-col"><h4>Contact</h4><a href="mailto:nasiroilexpert@gmail.com" class="contact-item"><span class="icon">📧</span>nasiroilexpert@gmail.com</a><a href="tel:+923335222865" class="contact-item"><span class="icon">📞</span>0333-5222865</a><a href="https://wa.me/923335222865" class="contact-item" target="_blank"><span class="icon">💬</span>WhatsApp Order</a><div class="contact-item"><span class="icon">📍</span>Pakistan, Nationwide</div></div>
     </div>
-    <div class="footer-bottom"><p>© 2026 Nasir Oil Expert. All rights reserved.</p><p>Made with ❤️ for natural beauty</p></div>
+    <div class="footer-bottom"><p>© 2026 Nasir Oil Expert. All rights reserved.</p></div>
   </div>
 </footer>
 
