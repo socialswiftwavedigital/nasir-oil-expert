@@ -64,7 +64,7 @@ h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 700; lin
 }
 .section-subtitle {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   color: var(--text-light);
   max-width: 560px;
   margin: 0 auto;
@@ -403,7 +403,7 @@ h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 700; lin
 .hero-heading .highlight { color: var(--gold); display: block; }
 .hero-desc {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.93rem;
+  font-size: 1.05rem;
   color: rgba(255,255,255,0.65);
   line-height: 1.8;
   margin-bottom: 40px;
@@ -617,7 +617,7 @@ h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 700; lin
   flex-shrink: 0;
 }
 .feat-info h4 { font-size: 0.85rem; font-weight: 700; color: var(--text-dark); margin-bottom: 2px; }
-.feat-info p { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; color: var(--text-light); line-height: 1.5; }
+.feat-info p { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; color: var(--text-light); line-height: 1.5; }
 
 /* ===== PRODUCTS SECTION ===== */
 .products-section { background: var(--bg-light); padding: 100px 60px; }
@@ -704,7 +704,7 @@ h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 700; lin
 .product-name { font-size: 1.3rem; color: var(--text-dark); margin-bottom: 6px; }
 .product-desc {
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.76rem;
+  font-size: 0.92rem;
   color: var(--text-light);
   line-height: 1.7;
   margin-bottom: 14px;
@@ -803,7 +803,7 @@ h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 700; lin
   box-shadow: 0 12px 32px rgba(201,168,76,0.25);
 }
 .process-item h3 { font-size: 1.1rem; color: var(--text-dark); margin-bottom: 8px; }
-.process-item p { font-family: 'Montserrat', sans-serif; font-size: 0.76rem; color: var(--text-light); line-height: 1.7; }
+.process-item p { font-family: 'Montserrat', sans-serif; font-size: 0.92rem; color: var(--text-light); line-height: 1.7; }
 
 /* ===== INGREDIENTS ===== */
 .ingredients-section { background: var(--white); padding: 100px 60px; }
@@ -830,7 +830,7 @@ h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 700; lin
 .ingredient-item:hover { border-color: var(--gold); background: var(--cream); transform: translateX(6px); }
 .ingredient-icon { font-size: 1.5rem; }
 .ingredient-info h4 { font-size: 0.92rem; color: var(--text-dark); font-weight: 700; margin-bottom: 2px; }
-.ingredient-info p { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; color: var(--text-light); }
+.ingredient-info p { font-family: 'Montserrat', sans-serif; font-size: 0.85rem; color: var(--text-light); }
 .ingredients-visual {
   display: grid;
   grid-template-columns: 1fr 1fr;

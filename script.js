@@ -203,7 +203,7 @@ function addToCart(name, price, img) {
   }
   saveCart(cart);
   updateCartBadge();
-  showToast(name + ' cart mein add ho gaya!');
+  showToast(name + ' added to your cart!');
 }
 
 /* Wire up all .btn-cart buttons */
@@ -228,9 +228,9 @@ function renderCartPage() {
     container.innerHTML = `
       <div class="cart-empty">
         <div class="cart-empty-icon">🛒</div>
-        <h3>Aapka Cart Khali Hai</h3>
-        <p>Abhi koi product cart mein nahi hai. Hamare products browse karein.</p>
-        <a href="products.html" class="btn-primary" style="display:inline-flex;margin:0 auto;">Products Dekhein <span class="arrow">→</span></a>
+        <h3>Your Cart is Empty</h3>
+        <p>No items in your cart yet. Browse our products to get started.</p>
+        <a href="products.html" class="btn-primary" style="display:inline-flex;margin:0 auto;">Browse Products <span class="arrow">→</span></a>
       </div>`;
     document.getElementById('cartSummaryWrap').style.display = 'none';
     return;
