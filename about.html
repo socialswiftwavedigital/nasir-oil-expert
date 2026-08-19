@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — Nasir Oil Expert</title>
+  <meta name="description" content="Learn about Nasir Oil Expert — our story, mission, and commitment to pure, authentic natural hair oils." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      max-width: 1200px;
+      margin: 56px auto 0;
+    }
+    .value-card {
+      padding: 40px 32px;
+      background: var(--white);
+      border-radius: var(--radius);
+      border-bottom: 3px solid transparent;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.4s ease;
+      text-align: center;
+    }
+    .value-card:hover {
+      border-bottom-color: var(--gold);
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+    }
+    .value-icon {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cream-dark), var(--cream));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.9rem;
+      margin: 0 auto 20px;
+      transition: all 0.4s ease;
+    }
+    .value-card:hover .value-icon {
+      background: linear-gradient(135deg, var(--green-light), var(--green-mid));
+    }
+    .value-card h3 {
+      font-size: 1.2rem;
+      color: var(--green-deep);
+      margin-bottom: 12px;
+    }
+    .value-card p {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+    .team-section {
+      background: var(--cream);
+      padding: 100px 60px;
+    }
+    .mission-section {
+      background: var(--green-deep);
+      padding: 100px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .mission-section::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(201,168,76,0.08), transparent 70%);
+    }
+    .mission-quote {
+      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+      font-style: italic;
+      color: var(--white);
+      max-width: 800px;
+      margin: 0 auto 32px;
+      line-height: 1.4;
+      position: relative;
+      z-index: 1;
+    }
+    .mission-quote span { color: var(--gold); }
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 60px auto 0;
+      padding: 0 20px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--gold), var(--gold), transparent);
+      transform: translateX(-50%);
+    }
+    .timeline-item {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 48px;
+      align-items: flex-start;
+    }
+    .timeline-item:nth-child(even) { flex-direction: row-reverse; }
+    .timeline-item:nth-child(even) .timeline-content { text-align: right; }
+    .timeline-content {
+      flex: 1;
+      padding: 24px;
+      background: var(--white);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-sm);
+    }
+    .timeline-year {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .timeline-content h4 {
+      font-size: 1rem;
+      color: var(--green-deep);
+      margin-bottom: 8px;
+    }
+    .timeline-content p {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+    .timeline-dot {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+      margin-top: 28px;
+      box-shadow: 0 0 0 4px rgba(201,168,76,0.2);
+    }
+    @media (max-width: 1024px) {
+      .values-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .values-grid { grid-template-columns: 1fr; }
+      .mission-section { padding: 72px 24px; }
+      .team-section { padding: 72px 24px; }
+      .timeline::before { left: 16px; }
+      .timeline-item, .timeline-item:nth-child(even) { flex-direction: row; }
+      .timeline-item:nth-child(even) .timeline-content { text-align: left; }
+      .timeline-dot { flex-shrink: 0; margin-left: -8px; }
+      .timeline-content { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="preloader-inner">
+    <div class="preloader-logo">NASIR OIL EXPERT</div>
+    <div class="preloader-bar"><div class="preloader-fill"></div></div>
+  </div>
+</div>
+
+<!-- CURSOR -->
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar scrolled" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo.png" alt="Nasir Oil Expert Logo" class="nav-logo-img" style="border-radius:50%;width:46px;height:46px;object-fit:cover;border:2px solid var(--gold);">
+    <div class="nav-logo-text" style="color:var(--green-deep);">Nasir Oil Expert<span>Pure &amp; Authentic Oils</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="products.html" class="nav-cta">Shop Now</a>
+  <div class="nav-hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav">
+  <div class="mobile-nav-close">✕</div>
+  <a href="index.html">Home</a>
+  <a href="products.html">Products</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero" style="padding-top:80px;">
+  <div class="hero-particles"></div>
+  <div class="page-hero-content">
+    <div class="section-label" style="justify-content:center;margin-bottom:16px;">Our Story</div>
+    <h1>About Nasir Oil Expert</h1>
+    <div class="breadcrumb"><a href="index.html">Home</a> / About</div>
+  </div>
+</section>
+
+<!-- STORY SECTION -->
+<div class="about-strip" style="padding:100px 60px;">
+  <div class="about-inner" style="max-width:1200px;margin:0 auto;">
+    <div class="about-img-wrap reveal-left">
+      <img src="images/logo.png" alt="Nasir Oil Expert Products" style="width:100%;height:500px;object-fit:contain;border-radius:20px;">
+      <div class="about-badge-float">
+        <div class="num" data-target="10" data-suffix="+">0+</div>
+        <div class="txt">Years of<br>Excellence</div>
+      </div>
+    </div>
+    <div class="reveal-right">
+      <div class="section-label">Who We Are</div>
+      <h2 class="section-title">Rooted in Nature, Committed to Excellence</h2>
+      <p style="font-family:'Montserrat',sans-serif;font-size:0.9rem;color:var(--text-light);line-height:1.9;margin-bottom:20px;">
+        Nasir Oil Expert was born from a deep belief in the healing power of nature. Founded with a mission to make authentic, pure hair oils accessible to everyone in Pakistan, we have spent years perfecting our formulations using time-honored botanical traditions.
+      </p>
+      <p style="font-family:'Montserrat',sans-serif;font-size:0.9rem;color:var(--text-light);line-height:1.9;margin-bottom:32px;">
+        Every product we create is a labour of love — carefully sourced, cold-pressed, and blended without synthetic chemicals. We believe your hair deserves the very best that nature has to offer, and we are dedicated to delivering exactly that.
+      </p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        <div style="text-align:center;padding:24px;background:var(--cream);border-radius:12px;">
+          <div style="font-size:2rem;font-weight:700;color:var(--gold);" data-target="5000" data-suffix="+">0+</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:0.7rem;color:var(--text-light);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;">Happy Customers</div>
+        </div>
+        <div style="text-align:center;padding:24px;background:var(--cream);border-radius:12px;">
+          <div style="font-size:2rem;font-weight:700;color:var(--gold);" data-target="8" data-suffix="+">0+</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:0.7rem;color:var(--text-light);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;">Product Range</div>
+        </div>
+        <div style="text-align:center;padding:24px;background:var(--cream);border-radius:12px;">
+          <div style="font-size:2rem;font-weight:700;color:var(--gold);" data-target="100" data-suffix="%">0%</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:0.7rem;color:var(--text-light);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;">Natural Ingredients</div>
+        </div>
+        <div style="text-align:center;padding:24px;background:var(--cream);border-radius:12px;">
+          <div style="font-size:2rem;font-weight:700;color:var(--gold);" data-target="4" data-suffix="★">0★</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:0.7rem;color:var(--text-light);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;">Avg. Rating</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MISSION QUOTE -->
+<section class="mission-section">
+  <div class="section-label reveal" style="justify-content:center;color:var(--gold);">Our Mission</div>
+  <p class="mission-quote reveal reveal-delay-1">
+    "To bring the <span>purest, most authentic</span> natural hair oils to every household, empowering people to embrace nature's wisdom for healthier, more beautiful hair."
+  </p>
+  <p style="font-family:'Montserrat',sans-serif;font-size:0.82rem;color:rgba(255,255,255,0.4);letter-spacing:0.12em;position:relative;z-index:1;" class="reveal reveal-delay-2">— Nasir Oil Expert</p>
+</section>
+
+<!-- VALUES -->
+<section style="padding:100px 60px;background:var(--cream);">
+  <div style="max-width:1200px;margin:0 auto;text-align:center;">
+    <div class="section-label reveal" style="justify-content:center;">Our Values</div>
+    <h2 class="section-title reveal reveal-delay-1">What We Stand For</h2>
+    <p class="section-subtitle reveal reveal-delay-2">These core values guide everything we do — from how we source our ingredients to how we serve our customers.</p>
+  </div>
+  <div class="values-grid">
+    <div class="value-card reveal reveal-delay-1">
+      <div class="value-icon">🌿</div>
+      <h3>Purity</h3>
+      <p>We use only the finest natural ingredients with no synthetic additives, preservatives, or harsh chemicals. What you see on the label is exactly what's in the bottle.</p>
+    </div>
+    <div class="value-card reveal reveal-delay-2">
+      <div class="value-icon">🤝</div>
+      <h3>Trust</h3>
+      <p>We build lasting relationships with our customers through transparency, honest communication, and consistent product quality they can rely on.</p>
+    </div>
+    <div class="value-card reveal reveal-delay-3">
+      <div class="value-icon">🌱</div>
+      <h3>Sustainability</h3>
+      <p>We source our botanicals responsibly and are committed to eco-friendly practices that protect the environment for future generations.</p>
+    </div>
+    <div class="value-card reveal reveal-delay-1">
+      <div class="value-icon">💡</div>
+      <h3>Innovation</h3>
+      <p>We continuously research and improve our formulations, combining ancient herbal wisdom with modern understanding of hair science.</p>
+    </div>
+    <div class="value-card reveal reveal-delay-2">
+      <div class="value-icon">❤️</div>
+      <h3>Care</h3>
+      <p>Every product is made with genuine care for our customers' well-being. We treat your hair as if it were our own — with the utmost attention and love.</p>
+    </div>
+    <div class="value-card reveal reveal-delay-3">
+      <div class="value-icon">⭐</div>
+      <h3>Excellence</h3>
+      <p>We never compromise on quality. Each batch undergoes rigorous quality checks to ensure you receive a product that truly delivers results.</p>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY TIMELINE -->
+<section style="padding:100px 60px;background:var(--white);">
+  <div style="max-width:1200px;margin:0 auto;text-align:center;">
+    <div class="section-label reveal" style="justify-content:center;">Our Journey</div>
+    <h2 class="section-title reveal reveal-delay-1">How It All Started</h2>
+    <p class="section-subtitle reveal reveal-delay-2">From a small dream to thousands of happy customers — here's our story.</p>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-content">
+        <div class="timeline-year">2015</div>
+        <h4>The Beginning</h4>
+        <p>Nasir Oil Expert was founded with a single mission: to provide pure, authentic hair oils that actually work. Started from humble roots with traditional recipes.</p>
+      </div>
+      <div class="timeline-dot"></div>
+      <div style="flex:1;"></div>
+    </div>
+    <div class="timeline-item reveal reveal-delay-1">
+      <div style="flex:1;"></div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-year">2018</div>
+        <h4>First Product Launch</h4>
+        <p>Launched our signature Golden Oil — the product that started it all. Received overwhelming response and quickly became a customer favourite.</p>
+      </div>
+    </div>
+    <div class="timeline-item reveal reveal-delay-2">
+      <div class="timeline-content">
+        <div class="timeline-year">2021</div>
+        <h4>Expanding the Range</h4>
+        <p>Added Black Rose Oil and Herbal Shampoo to our lineup, completing a full natural hair care system that customers could trust.</p>
+      </div>
+      <div class="timeline-dot"></div>
+      <div style="flex:1;"></div>
+    </div>
+    <div class="timeline-item reveal reveal-delay-3">
+      <div style="flex:1;"></div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <div class="timeline-year">2026</div>
+        <h4>5000+ Happy Customers</h4>
+        <p>Today we proudly serve thousands of customers across Pakistan, and our commitment to quality and authenticity remains as strong as ever.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div style="position:relative;z-index:1;">
+    <div class="section-label reveal" style="justify-content:center;">Get Started</div>
+    <h2 class="section-title reveal reveal-delay-1" style="color:var(--white);">Ready to Experience the Difference?</h2>
+    <p class="reveal reveal-delay-2">Join thousands of happy customers who have transformed their hair with Nasir Oil Expert.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:12px;" class="reveal reveal-delay-3">
+      <a href="products.html" class="btn-primary" style="display:inline-flex;">Shop Now <span class="arrow">→</span></a>
+      <a href="contact.html" class="btn-secondary">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:16px;">
+          <img src="images/logo.png" alt="Nasir Oil Expert" style="border-radius:50%;width:46px;height:46px;object-fit:cover;border:2px solid var(--gold);">
+          <span class="nav-logo-text">Nasir Oil Expert<span>Pure &amp; Authentic Oils</span></span>
+        </div>
+        <p>Your destination for natural, effective products that nurture healthier skin, stronger hair, and overall well-being.</p>
+        <div class="footer-socials">
+          <a href="https://www.tiktok.com/@nasiroilexpert" target="_blank" class="social-btn">📱</a>
+          <a href="https://youtube.com/@nasiroilexpert" target="_blank" class="social-btn">▶</a>
+          <a href="https://www.instagram.com/nasiroilexpert" target="_blank" class="social-btn">📷</a>
+          <a href="https://www.facebook.com/share/1941xcxZDj/" target="_blank" class="social-btn">f</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="products.html#golden-oil">Golden Oil</a></li>
+          <li><a href="products.html#black-rose-oil">Black Rose Oil</a></li>
+          <li><a href="products.html#herbal-shampoo">Herbal Shampoo</a></li>
+          <li><a href="products.html">Combo Deals</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="contact-item"><span class="icon">📧</span>nasiroilexpert@gmail.com</div>
+        <div class="contact-item"><span class="icon">📞</span>0333-5222865</div>
+        <div class="contact-item"><span class="icon">📍</span>Pakistan</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Nasir Oil Expert. All rights reserved.</p>
+      <p>Designed with ❤️ for natural beauty</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
