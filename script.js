@@ -209,11 +209,44 @@ function addToCart(name, price, img) {
 /* Wire up all .btn-cart buttons */
 function bindAddToCartButtons() {
   document.querySelectorAll('.btn-cart').forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', function(e) {
       const name  = btn.dataset.name;
       const price = parseInt(btn.dataset.price, 10);
       const img   = btn.dataset.img || '';
       addToCart(name, price, img);
+
+      /* Button "Added" feedback */
+      const orig = btn.innerHTML;
+      btn.innerHTML = '✓ Added!';
+      btn.classList.add('added');
+      setTimeout(() => {
+        btn.innerHTML = orig;
+        btn.classList.remove('added');
+      }, 1500);
+
+      /* Fly-dot animation toward cart icon */
+      const cartIcon = document.querySelector('.cart-icon-btn');
+      if (cartIcon) {
+        const btnRect  = btn.getBoundingClientRect();
+        const cartRect = cartIcon.getBoundingClientRect();
+        const dot = document.createElement('div');
+        dot.className = 'cart-fly-dot';
+        const tx = (cartRect.left + cartRect.width / 2) - (btnRect.left + btnRect.width / 2);
+        const ty = (cartRect.top  + cartRect.height / 2) - (btnRect.top  + btnRect.height / 2);
+        dot.style.left = (btnRect.left + btnRect.width / 2 - 7) + 'px';
+        dot.style.top  = (btnRect.top  + btnRect.height / 2 - 7) + 'px';
+        dot.style.setProperty('--tx', tx + 'px');
+        dot.style.setProperty('--ty', ty + 'px');
+        document.body.appendChild(dot);
+        setTimeout(() => dot.remove(), 600);
+      }
+
+      /* Badge bounce */
+      document.querySelectorAll('.cart-count').forEach(el => {
+        el.classList.remove('bounce');
+        void el.offsetWidth;
+        el.classList.add('bounce');
+      });
     });
   });
 }

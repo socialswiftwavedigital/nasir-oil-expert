@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Herbal Shampoo — Nasir Oil Expert</title>
+  <meta name="description" content="Herbal Shampoo by Nasir Oil Expert — sulfate-free, botanical cleansing for soft, healthy hair. Rs 600. Nationwide delivery in Pakistan." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ===== PRODUCT DETAIL PAGE ===== */
+    .pd-section { max-width:1200px; margin:0 auto; padding:60px 40px 80px; }
+    .pd-layout { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
+
+    /* Gallery */
+    .pd-gallery { position:sticky; top:100px; }
+    .pd-main-img {
+      width:100%; aspect-ratio:1/1;
+      background:linear-gradient(145deg,#e8f5ee,#c8e8d4);
+      border-radius:var(--radius);
+      overflow:hidden;
+      display:flex; align-items:center; justify-content:center;
+      margin-bottom:14px;
+      border:1px solid var(--cream-dark);
+    }
+    .pd-main-img img { width:100%; height:100%; object-fit:contain; padding:28px; transition:transform 0.5s ease; }
+    .pd-main-img:hover img { transform:scale(1.06); }
+    .pd-thumbs { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+    .pd-thumb {
+      aspect-ratio:1/1;
+      border-radius:10px;
+      overflow:hidden;
+      background:linear-gradient(145deg,#e8f5ee,#c8e8d4);
+      border:2px solid transparent;
+      cursor:pointer;
+      transition:all 0.3s ease;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .pd-thumb.active { border-color:var(--gold); }
+    .pd-thumb:hover { border-color:var(--green-mid); }
+    .pd-thumb img { width:100%; height:100%; object-fit:contain; padding:8px; }
+
+    /* Info panel */
+    .pd-badge-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
+    .pd-badge {
+      font-family:'Montserrat',sans-serif; font-size:0.62rem; font-weight:700;
+      letter-spacing:0.12em; text-transform:uppercase;
+      padding:4px 12px; border-radius:20px;
+    }
+    .pd-badge.green { background:var(--green-deep); color:var(--white); }
+    .pd-badge.gold  { background:var(--gold); color:var(--white); }
+    .pd-badge.light { background:var(--cream); color:var(--green-mid); }
+
+    .pd-title { font-size:2.4rem; line-height:1.15; margin-bottom:8px; }
+    .pd-subtitle { font-family:'Montserrat',sans-serif; font-size:0.8rem; color:var(--text-light); margin-bottom:18px; }
+
+    .pd-rating { display:flex; align-items:center; gap:8px; margin-bottom:18px; }
+    .pd-stars { color:#F59E0B; font-size:0.95rem; letter-spacing:2px; }
+    .pd-rating-count { font-family:'Montserrat',sans-serif; font-size:0.72rem; color:var(--text-light); }
+
+    .pd-price-row { display:flex; align-items:baseline; gap:12px; margin-bottom:22px; }
+    .pd-price { font-size:2rem; font-weight:700; color:var(--green-deep); }
+    .pd-price-orig { font-family:'Montserrat',sans-serif; font-size:1rem; color:var(--text-light); text-decoration:line-through; }
+    .pd-save-badge { font-family:'Montserrat',sans-serif; font-size:0.65rem; font-weight:700; background:#DCFCE7; color:#16A34A; padding:3px 10px; border-radius:20px; }
+
+    .pd-desc { font-family:'Montserrat',sans-serif; font-size:0.84rem; color:var(--text-light); line-height:1.85; margin-bottom:22px; }
+
+    .pd-qty-row { display:flex; align-items:center; gap:16px; margin-bottom:20px; }
+    .pd-qty-label { font-family:'Montserrat',sans-serif; font-size:0.72rem; font-weight:600; color:var(--text); letter-spacing:0.08em; text-transform:uppercase; }
+    .pd-qty-ctrl { display:flex; align-items:center; gap:0; border:1.5px solid var(--cream-dark); border-radius:30px; overflow:hidden; }
+    .pd-qty-btn { width:36px; height:36px; background:none; border:none; font-size:1.1rem; cursor:pointer; color:var(--text); display:flex; align-items:center; justify-content:center; transition:background 0.2s; }
+    .pd-qty-btn:hover { background:var(--cream); }
+    .pd-qty-num { width:36px; text-align:center; font-family:'Montserrat',sans-serif; font-size:0.85rem; font-weight:600; }
+
+    .pd-actions { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:24px; }
+    .pd-btn-cart {
+      flex:1; min-width:180px; padding:14px 24px;
+      background:var(--green-deep); color:var(--white);
+      font-family:'Montserrat',sans-serif; font-size:0.8rem; font-weight:600;
+      letter-spacing:0.07em; border-radius:40px; cursor:pointer;
+      border:2px solid transparent; transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      display:flex; align-items:center; justify-content:center; gap:8px;
+    }
+    .pd-btn-cart:hover { background:var(--green-mid); transform:translateY(-3px); box-shadow:0 8px 24px rgba(27,67,50,0.3); }
+    .pd-btn-cart.added { background:#2D6A4F; border-color:#52B788; box-shadow:0 0 0 3px rgba(82,183,136,0.25); }
+    .pd-btn-wa {
+      padding:14px 22px;
+      background:#25D366; color:var(--white);
+      font-family:'Montserrat',sans-serif; font-size:0.8rem; font-weight:600;
+      border-radius:40px; cursor:pointer; border:none;
+      transition:all 0.3s ease; display:flex; align-items:center; gap:8px;
+      text-decoration:none;
+    }
+    .pd-btn-wa:hover { background:#1ebe5a; transform:translateY(-3px); box-shadow:0 8px 20px rgba(37,211,102,0.3); }
+
+    .pd-perks { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:24px; }
+    .pd-perk { display:flex; align-items:center; gap:8px; font-family:'Montserrat',sans-serif; font-size:0.73rem; color:var(--text-light); }
+    .pd-perk-icon { width:28px; height:28px; background:var(--cream); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.85rem; flex-shrink:0; }
+
+    /* Tabs */
+    .pd-tabs { margin-top:40px; }
+    .pd-tab-nav { display:flex; border-bottom:2px solid var(--cream-dark); margin-bottom:24px; gap:0; overflow-x:auto; }
+    .pd-tab-btn {
+      padding:12px 22px; font-family:'Montserrat',sans-serif; font-size:0.7rem;
+      font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+      color:var(--text-light); background:none; border:none; cursor:pointer;
+      border-bottom:2px solid transparent; margin-bottom:-2px;
+      transition:all 0.3s ease; white-space:nowrap;
+    }
+    .pd-tab-btn.active { color:var(--green-deep); border-bottom-color:var(--green-deep); }
+    .pd-tab-panel { display:none; animation:fadeIn 0.3s ease; }
+    .pd-tab-panel.active { display:block; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+
+    .pd-tab-panel ul { list-style:none; padding:0; }
+    .pd-tab-panel ul li { display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid var(--cream); font-family:'Montserrat',sans-serif; font-size:0.8rem; color:var(--text-light); line-height:1.6; }
+    .pd-tab-panel ul li:last-child { border:none; }
+    .pd-tab-panel ul li::before { content:'✦'; color:var(--green-mid); flex-shrink:0; margin-top:1px; }
+    .pd-tab-panel p { font-family:'Montserrat',sans-serif; font-size:0.83rem; color:var(--text-light); line-height:1.85; }
+
+    .how-to-steps { display:flex; flex-direction:column; gap:16px; }
+    .how-step { display:flex; gap:16px; align-items:flex-start; }
+    .how-step-num { width:32px; height:32px; background:var(--green-deep); color:var(--white); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Montserrat',sans-serif; font-size:0.75rem; font-weight:700; flex-shrink:0; margin-top:2px; }
+    .how-step-text { font-family:'Montserrat',sans-serif; font-size:0.82rem; color:var(--text-light); line-height:1.7; }
+    .how-step-text strong { display:block; color:var(--text); font-weight:600; margin-bottom:2px; }
+
+    .ingr-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+    .ingr-chip { background:var(--cream); border-radius:12px; padding:16px 14px; text-align:center; }
+    .ingr-chip .ic { font-size:1.6rem; margin-bottom:6px; }
+    .ingr-chip h5 { font-size:0.8rem; color:var(--text); margin-bottom:4px; }
+    .ingr-chip p { font-family:'Montserrat',sans-serif; font-size:0.64rem; color:var(--text-light); line-height:1.5; }
+
+    /* Reviews */
+    .pd-reviews { padding:80px 40px; background:var(--bg-light); }
+    .pd-reviews-inner { max-width:1200px; margin:0 auto; }
+    .reviews-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:22px; margin-top:40px; }
+    .review-card { background:var(--white); border-radius:var(--radius); padding:28px; box-shadow:var(--shadow-sm); border:1px solid rgba(0,0,0,0.04); }
+    .review-stars { color:#F59E0B; font-size:0.9rem; letter-spacing:2px; margin-bottom:10px; }
+    .review-text { font-family:'Montserrat',sans-serif; font-size:0.8rem; color:var(--text-light); line-height:1.8; font-style:italic; margin-bottom:16px; }
+    .review-author { display:flex; align-items:center; gap:12px; }
+    .review-avatar { width:38px; height:38px; background:var(--green-deep); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Montserrat',sans-serif; font-size:0.72rem; font-weight:700; color:var(--white); flex-shrink:0; }
+    .review-author-info h5 { font-size:0.82rem; color:var(--text); margin-bottom:2px; }
+    .review-author-info span { font-family:'Montserrat',sans-serif; font-size:0.68rem; color:var(--text-light); }
+
+    /* Related */
+    .pd-related { padding:80px 40px; background:var(--white); }
+    .pd-related-inner { max-width:1200px; margin:0 auto; }
+    .related-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; margin-top:40px; }
+
+    @media(max-width:1024px){
+      .pd-layout { grid-template-columns:1fr; gap:40px; }
+      .pd-gallery { position:static; }
+    }
+    @media(max-width:768px){
+      .pd-section { padding:40px 20px 60px; }
+      .pd-title { font-size:1.8rem; }
+      .reviews-grid { grid-template-columns:1fr; }
+      .related-grid { grid-template-columns:1fr; }
+      .ingr-grid { grid-template-columns:repeat(2,1fr); }
+      .pd-reviews, .pd-related { padding:60px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="preloader-inner">
+    <div class="preloader-logo">NASIR OIL EXPERT</div>
+    <div class="preloader-bar"><div class="preloader-fill"></div></div>
+  </div>
+</div>
+
+<!-- CURSOR -->
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar scrolled" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="images/logo.png" alt="Nasir Oil Expert" class="nav-logo-img">
+    <div class="nav-logo-text">Nasir Oil Expert<span>Pure &amp; Authentic Oils</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="products.html" class="active">Products</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="cart.html" class="cart-icon-btn" title="Cart">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <span class="cart-count">0</span>
+    </a>
+    <a href="products.html" class="nav-cta">Shop Now</a>
+  </div>
+  <div class="nav-hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav">
+  <div class="mobile-nav-close">✕</div>
+  <a href="index.html">Home</a>
+  <a href="products.html">Products</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="cart.html" style="color:var(--gold)">🛒 Cart</a>
+</div>
+
+<!-- BREADCRUMB -->
+<div style="background:var(--bg-light);padding:14px 40px;margin-top:72px;border-bottom:1px solid var(--cream-dark);">
+  <div style="max-width:1200px;margin:0 auto;">
+    <span style="font-family:'Montserrat',sans-serif;font-size:0.72rem;color:var(--text-light);">
+      <a href="index.html" style="color:var(--text-light);">Home</a> /
+      <a href="products.html" style="color:var(--text-light);">Products</a> /
+      <strong style="color:var(--green-deep);">Herbal Shampoo</strong>
+    </span>
+  </div>
+</div>
+
+<!-- PRODUCT DETAIL -->
+<section class="pd-section">
+  <div class="pd-layout">
+
+    <!-- Gallery -->
+    <div class="pd-gallery">
+      <div class="pd-main-img">
+        <img src="images/img1.avif" alt="Herbal Shampoo" id="pdMainImg">
+      </div>
+      <div class="pd-thumbs">
+        <div class="pd-thumb active" onclick="switchImg('images/img1.avif', this)">
+          <img src="images/img1.avif" alt="Herbal Shampoo front">
+        </div>
+        <div class="pd-thumb" onclick="switchImg('images/img1.avif', this)" style="background:linear-gradient(145deg,#d0eeda,#a8d8b5);">
+          <img src="images/img1.avif" alt="Herbal Shampoo side">
+        </div>
+        <div class="pd-thumb" onclick="switchImg('images/img1.avif', this)" style="background:linear-gradient(145deg,#b8e0c4,#8ecfa0);">
+          <img src="images/img1.avif" alt="Herbal Shampoo texture">
+        </div>
+        <div class="pd-thumb" onclick="switchImg('images/logo.png', this)" style="background:var(--cream);">
+          <img src="images/logo.png" alt="Nasir Oil Expert range">
+        </div>
+      </div>
+    </div>
+
+    <!-- Info -->
+    <div class="pd-info">
+      <div class="pd-badge-row">
+        <span class="pd-badge green">Natural</span>
+        <span class="pd-badge light">Sulfate Free</span>
+        <span class="pd-badge gold">Rs 600</span>
+      </div>
+      <h1 class="pd-title">Herbal Shampoo</h1>
+      <p class="pd-subtitle">Gentle Botanical Cleansing for Soft, Healthy Hair</p>
+
+      <div class="pd-rating">
+        <span class="pd-stars">★★★★★</span>
+        <span class="pd-rating-count">4.8 out of 5 (87 reviews)</span>
+      </div>
+
+      <div class="pd-price-row">
+        <div class="pd-price">Rs <span>600</span></div>
+        <div class="pd-price-orig">Rs 800</div>
+        <span class="pd-save-badge">Save 25%</span>
+      </div>
+
+      <p class="pd-desc">
+        Our Herbal Shampoo is the perfect companion to our premium oils. Formulated with a powerful blend of neem, amla, bhringraj, and other botanical extracts, it gently cleanses your scalp and hair without stripping away natural oils. Completely sulfate and paraben free — safe for daily use, color-treated hair, and all hair types.
+      </p>
+
+      <div class="pd-qty-row">
+        <span class="pd-qty-label">Qty</span>
+        <div class="pd-qty-ctrl">
+          <button class="pd-qty-btn" onclick="pdQtyChange(-1)">−</button>
+          <span class="pd-qty-num" id="pdQtyNum">1</span>
+          <button class="pd-qty-btn" onclick="pdQtyChange(1)">+</button>
+        </div>
+      </div>
+
+      <div class="pd-actions">
+        <button class="pd-btn-cart" id="pdAddBtn" onclick="pdAddToCart()">
+          🛒 Add to Cart
+        </button>
+        <a class="pd-btn-wa" href="https://wa.me/923335222865?text=Assalam%20o%20Alaikum!%20I%20want%20to%20order%20Herbal%20Shampoo%20(Rs%20600)" target="_blank">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Order on WhatsApp
+        </a>
+      </div>
+
+      <div class="pd-perks">
+        <div class="pd-perk"><div class="pd-perk-icon">🌿</div> 100% Natural Botanicals</div>
+        <div class="pd-perk"><div class="pd-perk-icon">🚚</div> Free Delivery over Rs 1500</div>
+        <div class="pd-perk"><div class="pd-perk-icon">🧴</div> Sulfate &amp; Paraben Free</div>
+        <div class="pd-perk"><div class="pd-perk-icon">✅</div> Safe for All Hair Types</div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="pd-tabs">
+        <div class="pd-tab-nav">
+          <button class="pd-tab-btn active" onclick="switchTab('desc', this)">Description</button>
+          <button class="pd-tab-btn" onclick="switchTab('benefits', this)">Benefits</button>
+          <button class="pd-tab-btn" onclick="switchTab('howto', this)">How to Use</button>
+          <button class="pd-tab-btn" onclick="switchTab('ingr', this)">Ingredients</button>
+        </div>
+
+        <div class="pd-tab-panel active" id="tab-desc">
+          <p>Our Herbal Shampoo is crafted using an ancient Ayurvedic-inspired formula, combining the cleansing power of natural herbs with modern hair science. Every wash delivers a deep, refreshing cleanse that removes build-up, excess oil, and pollutants while maintaining your scalp's natural moisture balance.</p>
+          <p style="margin-top:12px;">Free from sulfates, parabens, artificial colors, and harsh detergents, this shampoo is gentle enough for everyday use. The rich botanical blend soothes an itchy or irritated scalp and helps combat dandruff naturally. Paired with our Golden Oil or Black Rose Oil, it forms the ultimate hair care ritual for strong, lustrous hair.</p>
+        </div>
+
+        <div class="pd-tab-panel" id="tab-benefits">
+          <ul>
+            <li>Gently cleanses scalp without stripping natural oils</li>
+            <li>Controls dandruff and soothes itchy scalp naturally</li>
+            <li>Strengthens hair shaft and reduces breakage</li>
+            <li>Adds softness, bounce, and natural shine</li>
+            <li>Promotes healthy hair growth with botanical actives</li>
+            <li>Sulfate and paraben free — safe for colored hair</li>
+            <li>Rich lather with fresh herbal fragrance that lasts</li>
+            <li>Suitable for all hair types including sensitive scalps</li>
+          </ul>
+        </div>
+
+        <div class="pd-tab-panel" id="tab-howto">
+          <div class="how-to-steps">
+            <div class="how-step">
+              <div class="how-step-num">1</div>
+              <div class="how-step-text"><strong>Wet Your Hair</strong>Thoroughly wet your hair and scalp with lukewarm water before applying the shampoo.</div>
+            </div>
+            <div class="how-step">
+              <div class="how-step-num">2</div>
+              <div class="how-step-text"><strong>Apply &amp; Massage</strong>Pour a small amount into your palm, apply to scalp and hair, then massage gently in circular motions for 2 to 3 minutes.</div>
+            </div>
+            <div class="how-step">
+              <div class="how-step-num">3</div>
+              <div class="how-step-text"><strong>Rinse Thoroughly</strong>Rinse completely with cool water to remove all residue and seal the hair cuticle for extra shine.</div>
+            </div>
+            <div class="how-step">
+              <div class="how-step-num">4</div>
+              <div class="how-step-text"><strong>Follow with Oil</strong>For best results, apply Nasir Oil Expert Golden Oil or Black Rose Oil after washing for deep nourishment and conditioning.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pd-tab-panel" id="tab-ingr">
+          <div class="ingr-grid">
+            <div class="ingr-chip">
+              <div class="ic">🌿</div>
+              <h5>Neem Extract</h5>
+              <p>Natural antibacterial that fights dandruff and scalp infections</p>
+            </div>
+            <div class="ingr-chip">
+              <div class="ic">🍈</div>
+              <h5>Amla (Indian Gooseberry)</h5>
+              <p>Rich in Vitamin C, promotes hair growth and adds shine</p>
+            </div>
+            <div class="ingr-chip">
+              <div class="ic">🌱</div>
+              <h5>Bhringraj</h5>
+              <p>The king of herbs for hair — reduces fall and premature greying</p>
+            </div>
+            <div class="ingr-chip">
+              <div class="ic">🥥</div>
+              <h5>Coconut Milk</h5>
+              <p>Deeply moisturizes and adds softness to each strand</p>
+            </div>
+            <div class="ingr-chip">
+              <div class="ic">🌼</div>
+              <h5>Chamomile Extract</h5>
+              <p>Soothes sensitive scalp and enhances natural hair color</p>
+            </div>
+            <div class="ingr-chip">
+              <div class="ic">🫚</div>
+              <h5>Aloe Vera Gel</h5>
+              <p>Balances scalp pH and delivers deep hydration</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="pd-reviews">
+  <div class="pd-reviews-inner">
+    <div class="section-label reveal" style="justify-content:left;">Customer Reviews</div>
+    <h2 class="section-title reveal reveal-delay-1">What Our Customers Say</h2>
+    <div class="reviews-grid">
+
+      <div class="review-card reveal reveal-delay-1">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Finally a shampoo that doesn't dry out my hair! My scalp feels so clean and my hair is incredibly soft. The herbal fragrance is so refreshing. Using it with the Golden Oil now and my hair has never looked better."</p>
+        <div class="review-author">
+          <div class="review-avatar">UM</div>
+          <div class="review-author-info">
+            <h5>Urooj Malik</h5>
+            <span>Lahore, Pakistan</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-2">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"My dandruff problem of years is finally under control! After just two weeks of using this shampoo my scalp is clear and itch-free. It lathers really well and rinses clean. Totally worth every penny."</p>
+        <div class="review-author">
+          <div class="review-avatar">SA</div>
+          <div class="review-author-info">
+            <h5>Saman Arshad</h5>
+            <span>Karachi, Pakistan</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-3">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"I was skeptical about switching from my branded shampoo but this herbal one is far superior! My hair grows faster, feels stronger, and the color looks more vibrant. A must-have for anyone serious about hair care."</p>
+        <div class="review-author">
+          <div class="review-avatar">HK</div>
+          <div class="review-author-info">
+            <h5>Hina Khan</h5>
+            <span>Islamabad, Pakistan</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card reveal reveal-delay-4">
+        <div class="review-stars">★★★★☆</div>
+        <p class="review-text">"Great natural shampoo with a lovely herbal smell. My hair feels clean without that squeaky-dry feeling. I pair it with the Black Rose Oil and the combo is amazing. Fast delivery too — arrived in 2 days!"</p>
+        <div class="review-author">
+          <div class="review-avatar">NB</div>
+          <div class="review-author-info">
+            <h5>Nadia Butt</h5>
+            <span>Faisalabad, Pakistan</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RELATED PRODUCTS -->
+<section class="pd-related">
+  <div class="pd-related-inner">
+    <div class="section-label reveal" style="justify-content:left;">You May Also Like</div>
+    <h2 class="section-title reveal reveal-delay-1">Related Products</h2>
+    <div class="related-grid">
+
+      <div class="product-card reveal reveal-delay-1">
+        <div class="product-card-img" style="background:linear-gradient(145deg,#fef9e8,#fde68a);">
+          <img src="images/img2.avif" alt="Golden Oil">
+          <div class="product-tag">Best Seller</div>
+          <div class="product-overlay">
+            <a href="golden-oil.html" class="product-overlay-btn">View Details</a>
+          </div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Golden Oil</h3>
+          <p class="product-desc">A nourishing blend of premium cold-pressed oils for deep moisture, shine, and hair growth.</p>
+          <div class="product-footer">
+            <div class="product-price"><span>Rs</span>900</div>
+            <button class="btn-cart" data-name="Golden Oil" data-price="900" data-img="images/img2.avif">🛒 Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-2">
+        <div class="product-card-img" style="background:linear-gradient(145deg,#f8f0f2,#f0e4e8);">
+          <img src="images/img3.avif" alt="Black Rose Oil">
+          <div class="product-tag" style="background:var(--green-deep);">Premium</div>
+          <div class="product-overlay">
+            <a href="black-rose-oil.html" class="product-overlay-btn">View Details</a>
+          </div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Black Rose Oil</h3>
+          <p class="product-desc">Infused with rare black rose extract — strengthens hair follicles and leaves hair silky and fragrant.</p>
+          <div class="product-footer">
+            <div class="product-price"><span>Rs</span>900</div>
+            <button class="btn-cart" data-name="Black Rose Oil" data-price="900" data-img="images/img3.avif">🛒 Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:14px;">
+          <img src="images/logo.png" alt="Nasir Oil Expert" style="border-radius:50%;width:42px;height:42px;object-fit:cover;border:2px solid var(--gold);">
+          <span class="nav-logo-text">Nasir Oil Expert<span>Pure &amp; Authentic Oils</span></span>
+        </div>
+        <p>Your destination for natural, effective products that nurture stronger, healthier hair.</p>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/share/1941xcxZDj/" target="_blank" class="social-btn fb" title="Facebook">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/nasiroilexpert" target="_blank" class="social-btn ig" title="Instagram">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://wa.me/923335222865" target="_blank" class="social-btn wa" title="WhatsApp">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="golden-oil.html">Golden Oil</a></li>
+          <li><a href="black-rose-oil.html">Black Rose Oil</a></li>
+          <li><a href="herbal-shampoo.html">Herbal Shampoo</a></li>
+          <li><a href="products.html">Combo Deals</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:nasiroilexpert@gmail.com" class="contact-item"><span class="icon">📧</span>nasiroilexpert@gmail.com</a>
+        <a href="tel:+923335222865" class="contact-item"><span class="icon">📞</span>0333-5222865</a>
+        <a href="https://wa.me/923335222865" class="contact-item" target="_blank"><span class="icon">💬</span>WhatsApp Order</a>
+        <div class="contact-item"><span class="icon">📍</span>Pakistan, Nationwide</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Nasir Oil Expert. All rights reserved.</p>
+      <p>Made with ❤️ for natural beauty</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  let pdQty = 1;
+
+  function pdQtyChange(delta) {
+    pdQty = Math.max(1, pdQty + delta);
+    document.getElementById('pdQtyNum').textContent = pdQty;
+  }
+
+  function pdAddToCart() {
+    addToCart('Herbal Shampoo', 600 * pdQty, 'images/img1.avif');
+    const btn = document.getElementById('pdAddBtn');
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✓ Added to Cart!';
+    btn.classList.add('added');
+    setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('added'); }, 1500);
+    document.querySelectorAll('.cart-count').forEach(el => {
+      el.classList.remove('bounce');
+      void el.offsetWidth;
+      el.classList.add('bounce');
+    });
+  }
+
+  function switchImg(src, el) {
+    document.getElementById('pdMainImg').src = src;
+    document.querySelectorAll('.pd-thumb').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  function switchTab(id, btn) {
+    document.querySelectorAll('.pd-tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.pd-tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
