@@ -121,13 +121,13 @@
   <div class="pd-layout">
     <div class="pd-gallery reveal-left">
       <div class="pd-main-img" id="pdMainImg">
-        <img src="images/img3.avif" alt="Black Rose Hair Oil" id="pdMainImgEl">
+        <img src="images/black-rose/1.png" alt="Black Rose Hair Oil" id="pdMainImgEl">
       </div>
       <div class="pd-thumbs">
-        <div class="pd-thumb active" onclick="switchImg('images/img3.avif',this)" style="background:linear-gradient(145deg,#fce8ec,#f5c5cc);"><img src="images/img3.avif" alt="Black Rose Oil bottle"></div>
-        <div class="pd-thumb" onclick="switchImg('images/logo.png',this)"><img src="images/logo.png" alt="Nasir Oil Expert range"></div>
-        <div class="pd-thumb" onclick="switchImg('images/img3.avif',this)" style="background:linear-gradient(145deg,#2d1b2e,#5c3157);"><img src="images/img3.avif" alt="Black Rose Oil dark" style="filter:brightness(0.9) contrast(1.05);"></div>
-        <div class="pd-thumb" onclick="switchImg('images/img3.avif',this)" style="background:linear-gradient(145deg,#f9d7e2,#f4a8be);"><img src="images/img3.avif" alt="Black Rose Oil rose"></div>
+        <div class="pd-thumb active" onclick="switchImg('images/black-rose/1.png',this)"><img src="images/black-rose/1.png" alt="Black Rose Oil view 1"></div>
+        <div class="pd-thumb" onclick="switchImg('images/black-rose/2.png',this)"><img src="images/black-rose/2.png" alt="Black Rose Oil view 2"></div>
+        <div class="pd-thumb" onclick="switchImg('images/black-rose/3.png',this)"><img src="images/black-rose/3.png" alt="Black Rose Oil view 3"></div>
+        <div class="pd-thumb" onclick="switchImg('images/black-rose/4.png',this)"><img src="images/black-rose/4.png" alt="Black Rose Oil view 4"></div>
       </div>
     </div>
     <div class="reveal-right">
@@ -243,12 +243,12 @@
   <h2 class="section-title" style="margin-bottom:36px;">Related Products</h2>
   <div class="products-grid" style="grid-template-columns:repeat(2,1fr);max-width:700px;">
     <div class="product-card reveal">
-      <div class="product-card-img"><img src="images/img2.avif" alt="Golden Hair Oil"><div class="product-tag">Best Seller</div><div class="product-overlay"><a href="golden-oil.html" class="product-overlay-btn">View Details</a></div></div>
-      <div class="product-info"><h3 class="product-name">Golden Hair Oil</h3><p class="product-desc">Deep nourishment for shine and hair growth.</p><div class="product-footer"><div class="product-price"><span>Rs</span>900</div><div class="product-btn-group"><a href="golden-oil.html" class="btn-details">View Details</a><button class="btn-cart" data-name="Golden Hair Oil" data-price="900" data-img="images/img2.avif">🛒 Add to Cart</button></div></div></div>
+      <div class="product-card-img"><img src="images/golden/1.png" alt="Golden Hair Oil"><div class="product-tag">Best Seller</div><div class="product-overlay"><a href="golden-oil.html" class="product-overlay-btn">View Details</a></div></div>
+      <div class="product-info"><h3 class="product-name">Golden Hair Oil</h3><p class="product-desc">Deep nourishment for shine and hair growth.</p><div class="product-footer"><div class="product-price"><span>Rs</span>900</div><div class="product-btn-group"><a href="golden-oil.html" class="btn-details">View Details</a><button class="btn-cart" data-name="Golden Hair Oil" data-price="900" data-img="images/golden/1.png">🛒 Add to Cart</button></div></div></div>
     </div>
     <div class="product-card reveal reveal-delay-1">
-      <div class="product-card-img" style="background:linear-gradient(145deg,#f0f8f2,#e4f0e8);"><img src="images/img1.avif" alt="Herbal Hair Shampoo"><div class="product-tag" style="background:var(--green-light);">Natural</div><div class="product-overlay"><a href="herbal-shampoo.html" class="product-overlay-btn">View Details</a></div></div>
-      <div class="product-info"><h3 class="product-name">Herbal Hair Shampoo</h3><p class="product-desc">Gentle sulfate-free cleanse with natural botanicals.</p><div class="product-footer"><div class="product-price"><span>Rs</span>600</div><div class="product-btn-group"><a href="herbal-shampoo.html" class="btn-details">View Details</a><button class="btn-cart" data-name="Herbal Hair Shampoo" data-price="600" data-img="images/img1.avif">🛒 Add to Cart</button></div></div></div>
+      <div class="product-card-img" style="background:linear-gradient(145deg,#f0f8f2,#e4f0e8);"><img src="images/shampoo/1.png" alt="Herbal Hair Shampoo"><div class="product-tag" style="background:var(--green-light);">Natural</div><div class="product-overlay"><a href="herbal-shampoo.html" class="product-overlay-btn">View Details</a></div></div>
+      <div class="product-info"><h3 class="product-name">Herbal Hair Shampoo</h3><p class="product-desc">Gentle sulfate-free cleanse with natural botanicals.</p><div class="product-footer"><div class="product-price"><span>Rs</span>600</div><div class="product-btn-group"><a href="herbal-shampoo.html" class="btn-details">View Details</a><button class="btn-cart" data-name="Herbal Hair Shampoo" data-price="600" data-img="images/shampoo/1.png">🛒 Add to Cart</button></div></div></div>
     </div>
   </div>
 </section>
@@ -265,7 +265,7 @@ let pdQty = 1;
 function pdQtyChange(d) { pdQty = Math.max(1, pdQty + d); document.getElementById('pdQty').textContent = pdQty; }
 function pdAddToCart() {
   const btn = document.getElementById('pdAddBtn');
-  for (let i = 0; i < pdQty; i++) addToCart('Black Rose Hair Oil', 900, 'images/img3.avif');
+  for (let i = 0; i < pdQty; i++) addToCart('Black Rose Hair Oil', 900, 'images/black-rose/1.png');
   const orig = btn.innerHTML;
   btn.innerHTML = '✓ Added to Cart!'; btn.classList.add('added');
   setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('added'); }, 1600);

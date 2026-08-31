@@ -209,20 +209,20 @@
     <!-- GALLERY -->
     <div class="pd-gallery reveal-left">
       <div class="pd-main-img" id="pdMainImg">
-        <img src="images/img2.avif" alt="Golden Hair Oil" id="pdMainImgEl">
+        <img src="images/golden/1.png" alt="Golden Hair Oil" id="pdMainImgEl">
       </div>
       <div class="pd-thumbs">
-        <div class="pd-thumb active" onclick="switchImg('images/img2.avif',this)">
-          <img src="images/img2.avif" alt="Golden Oil bottle">
+        <div class="pd-thumb active" onclick="switchImg('images/golden/1.png',this)">
+          <img src="images/golden/1.png" alt="Golden Oil view 1">
         </div>
-        <div class="pd-thumb" onclick="switchImg('images/logo.png',this)">
-          <img src="images/logo.png" alt="Nasir Oil Expert range">
+        <div class="pd-thumb" onclick="switchImg('images/golden/2.png',this)">
+          <img src="images/golden/2.png" alt="Golden Oil view 2">
         </div>
-        <div class="pd-thumb" onclick="switchImg('images/img2.avif',this)" style="background:linear-gradient(145deg,#fef3c7,#fde68a);">
-          <img src="images/img2.avif" alt="Golden Oil texture" style="filter:brightness(1.05) saturate(1.1);">
+        <div class="pd-thumb" onclick="switchImg('images/golden/3.png',this)">
+          <img src="images/golden/3.png" alt="Golden Oil view 3">
         </div>
-        <div class="pd-thumb" onclick="switchImg('images/img2.avif',this)" style="background:linear-gradient(145deg,#d1fae5,#a7f3d0);">
-          <img src="images/img2.avif" alt="Golden Oil ingredients">
+        <div class="pd-thumb" onclick="switchImg('images/golden/4.png',this)">
+          <img src="images/golden/4.png" alt="Golden Oil view 4">
         </div>
       </div>
     </div>
@@ -392,7 +392,7 @@
           <div class="product-price"><span>Rs</span>900</div>
           <div class="product-btn-group">
             <a href="black-rose-oil.html" class="btn-details">View Details</a>
-            <button class="btn-cart" data-name="Black Rose Hair Oil" data-price="900" data-img="images/img3.avif">🛒 Add to Cart</button>
+            <button class="btn-cart" data-name="Black Rose Hair Oil" data-price="900" data-img="images/black-rose/1.png">🛒 Add to Cart</button>
           </div>
         </div>
       </div>
@@ -410,7 +410,7 @@
           <div class="product-price"><span>Rs</span>600</div>
           <div class="product-btn-group">
             <a href="herbal-shampoo.html" class="btn-details">View Details</a>
-            <button class="btn-cart" data-name="Herbal Hair Shampoo" data-price="600" data-img="images/img1.avif">🛒 Add to Cart</button>
+            <button class="btn-cart" data-name="Herbal Hair Shampoo" data-price="600" data-img="images/shampoo/1.png">🛒 Add to Cart</button>
           </div>
         </div>
       </div>
@@ -448,7 +448,7 @@ function pdQtyChange(d) {
 }
 function pdAddToCart() {
   const btn = document.getElementById('pdAddBtn');
-  for (let i = 0; i < pdQty; i++) addToCart('Golden Hair Oil', 900, 'images/img2.avif');
+  for (let i = 0; i < pdQty; i++) addToCart('Golden Hair Oil', 900, 'images/golden/1.png');
   const orig = btn.innerHTML;
   btn.innerHTML = '✓ Added to Cart!';
   btn.classList.add('added');
