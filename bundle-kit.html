@@ -3,64 +3,60 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Golden Hair Oil — Nasir Oil Expert</title>
-  <meta name="description" content="Golden Hair Oil by Nasir Oil Expert — cold-pressed blend of premium oils for deep nourishment, shine and hair growth. Rs 900. Nationwide delivery." />
+  <title>3-in-1 Complete Hair Kit — Nasir Oil Expert</title>
+  <meta name="description" content="3-in-1 Complete Hair Kit by Nasir Oil Expert — Golden Oil + Black Rose Oil + Herbal Shampoo. Complete 20-day hair treatment. Rs 3,250 (save Rs 750). Nationwide delivery." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <style>
-    /* ===== PRODUCT DETAIL PAGE ===== */
     .pd-section { max-width:1200px; margin:0 auto; padding:60px 40px 80px; }
     .pd-layout { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
 
-    /* Gallery */
     .pd-gallery { position:sticky; top:100px; }
     .pd-main-img {
       width:100%; aspect-ratio:1/1;
-      background:var(--cream);
+      background:linear-gradient(145deg,#1B4332,#2D6A4F);
       border-radius:var(--radius);
       overflow:hidden;
       display:flex; align-items:center; justify-content:center;
       margin-bottom:14px;
-      border:1px solid var(--cream-dark);
+      border:1px solid rgba(201,168,76,0.25);
     }
-    .pd-main-img img { width:100%; height:100%; object-fit:contain; padding:28px; transition:transform 0.5s ease; }
-    .pd-main-img:hover img { transform:scale(1.06); }
+    .pd-main-img img { width:100%; height:100%; object-fit:cover; transition:transform 0.5s ease; }
+    .pd-main-img:hover img { transform:scale(1.04); }
     .pd-thumbs { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
     .pd-thumb {
-      aspect-ratio:1/1;
-      border-radius:10px;
-      overflow:hidden;
-      background:var(--cream);
-      border:2px solid transparent;
-      cursor:pointer;
-      transition:all 0.3s ease;
+      aspect-ratio:1/1; border-radius:10px; overflow:hidden;
+      background:var(--cream); border:2px solid transparent;
+      cursor:pointer; transition:all 0.3s ease;
       display:flex; align-items:center; justify-content:center;
     }
     .pd-thumb.active { border-color:var(--gold); }
     .pd-thumb:hover { border-color:var(--green-mid); }
-    .pd-thumb img { width:100%; height:100%; object-fit:contain; padding:8px; }
+    .pd-thumb img { width:100%; height:100%; object-fit:cover; }
 
-    /* Info panel */
     .pd-badge-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
-    .pd-badge {
-      font-family:'Montserrat',sans-serif; font-size:0.62rem; font-weight:700;
-      letter-spacing:0.12em; text-transform:uppercase;
-      padding:4px 12px; border-radius:20px;
-    }
-    .pd-badge.bestseller { background:var(--gold); color:var(--white); }
-    .pd-badge.natural    { background:rgba(64,145,108,0.12); color:var(--green-mid); }
+    .pd-badge { font-family:'Montserrat',sans-serif; font-size:0.62rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:4px 12px; border-radius:20px; }
+    .pd-badge.value    { background:var(--gold); color:var(--green-deep); }
+    .pd-badge.natural  { background:rgba(64,145,108,0.12); color:var(--green-mid); }
     .pd-rating { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
     .pd-stars { color:var(--gold); font-size:1rem; letter-spacing:2px; }
     .pd-rating-count { font-family:'Montserrat',sans-serif; font-size:0.75rem; color:var(--text-light); }
     .pd-name { font-size:clamp(1.8rem,4vw,2.8rem); line-height:1.1; margin-bottom:10px; }
-    .pd-price-row { display:flex; align-items:center; gap:16px; margin-bottom:22px; }
+    .pd-price-row { display:flex; align-items:center; gap:16px; margin-bottom:8px; }
     .pd-price { font-size:2rem; font-weight:700; color:var(--gold-dark); font-family:'Montserrat',sans-serif; }
     .pd-price-old { font-size:1.1rem; color:var(--text-light); text-decoration:line-through; font-family:'Montserrat',sans-serif; }
-    .pd-desc { font-family:'Montserrat',sans-serif; font-size:0.92rem; color:var(--text-light); line-height:1.9; margin-bottom:26px; }
+    .pd-save-badge { display:inline-flex; align-items:center; font-family:'Montserrat',sans-serif; font-size:0.7rem; font-weight:700; color:#fff; background:var(--green-mid); padding:5px 14px; border-radius:20px; margin-bottom:20px; }
+    .pd-desc { font-family:'Montserrat',sans-serif; font-size:0.92rem; color:var(--text-light); line-height:1.9; margin-bottom:20px; }
 
-    /* Qty + Cart */
+    .kit-includes { display:flex; flex-direction:column; gap:10px; margin-bottom:26px; }
+    .kit-item { display:flex; align-items:center; gap:14px; padding:12px 16px; background:var(--cream); border-radius:12px; border-left:3px solid var(--gold); }
+    .kit-item-icon { font-size:1.5rem; flex-shrink:0; }
+    .kit-item-info h4 { font-size:0.88rem; color:var(--text-dark); margin-bottom:1px; }
+    .kit-item-info p { font-family:'Montserrat',sans-serif; font-size:0.72rem; color:var(--text-light); margin:0; }
+    .kit-item-price { font-family:'Montserrat',sans-serif; font-size:0.78rem; font-weight:700; color:var(--green-mid); margin-left:auto; flex-shrink:0; }
+
     .pd-actions { display:flex; gap:14px; align-items:center; flex-wrap:wrap; margin-bottom:28px; }
     .qty-wrap { display:flex; align-items:center; gap:0; border:2px solid var(--cream-dark); border-radius:30px; overflow:hidden; }
     .qty-wrap button { width:38px; height:40px; background:none; border:none; font-size:1.2rem; cursor:pointer; color:var(--text-dark); transition:background 0.2s; }
@@ -88,13 +84,11 @@
     }
     .pd-wa-btn:hover { background:#128C7E; transform:translateY(-2px); }
 
-    /* Trust badges */
     .pd-trust { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
     .trust-item { text-align:center; padding:12px 8px; background:var(--cream); border-radius:10px; }
     .trust-item .t-icon { font-size:1.3rem; margin-bottom:4px; }
     .trust-item p { font-family:'Montserrat',sans-serif; font-size:0.64rem; font-weight:600; color:var(--text-mid); text-transform:uppercase; letter-spacing:0.06em; }
 
-    /* Tabs */
     .pd-tabs { margin-top:56px; }
     .tab-nav { display:flex; border-bottom:2px solid var(--cream-dark); gap:0; overflow-x:auto; }
     .tab-btn {
@@ -116,13 +110,7 @@
     .step-circle { width:36px; height:36px; border-radius:50%; background:var(--green-deep); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Montserrat',sans-serif; font-size:0.78rem; font-weight:700; flex-shrink:0; }
     .step-text h4 { font-size:0.95rem; color:var(--text-dark); margin-bottom:3px; }
     .step-text p { font-family:'Montserrat',sans-serif; font-size:0.82rem; color:var(--text-light); margin:0; }
-    .ingr-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
-    .ingr-item { display:flex; align-items:center; gap:12px; padding:12px 14px; background:var(--cream); border-radius:10px; }
-    .ingr-icon { font-size:1.4rem; flex-shrink:0; }
-    .ingr-item h4 { font-size:0.88rem; color:var(--text-dark); margin-bottom:2px; }
-    .ingr-item p { font-family:'Montserrat',sans-serif; font-size:0.72rem; color:var(--text-light); margin:0; }
 
-    /* Reviews */
     .reviews-section { background:var(--bg-light); padding:60px 40px; }
     .reviews-inner { max-width:1200px; margin:0 auto; }
     .reviews-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:36px; flex-wrap:wrap; gap:16px; }
@@ -143,13 +131,11 @@
     .review-text { font-family:'Montserrat',sans-serif; font-size:0.85rem; color:var(--text-mid); line-height:1.8; font-style:italic; }
     .review-verified { display:inline-flex; align-items:center; gap:4px; margin-top:10px; font-family:'Montserrat',sans-serif; font-size:0.65rem; color:var(--green-mid); font-weight:600; }
 
-    /* Related */
     .related-section { padding:60px 40px 80px; max-width:1200px; margin:0 auto; }
 
     @media(max-width:900px){ .pd-layout{grid-template-columns:1fr;} .pd-gallery{position:static;} }
-    @media(max-width:768px){ .pd-section{padding:40px 20px 60px;} .reviews-section{padding:40px 20px;} .related-section{padding:40px 20px 60px;} .reviews-grid{grid-template-columns:1fr;} .benefit-list,.ingr-grid{grid-template-columns:1fr;} .pd-trust{grid-template-columns:1fr 1fr;} }
+    @media(max-width:768px){ .pd-section{padding:40px 20px 60px;} .reviews-section{padding:40px 20px;} .related-section{padding:40px 20px 60px;} .reviews-grid{grid-template-columns:1fr;} .benefit-list{grid-template-columns:1fr;} .pd-trust{grid-template-columns:1fr 1fr;} }
 
-    /* Always keep navbar solid on product pages */
     #navbar { background:rgba(255,255,255,0.97) !important; backdrop-filter:blur(20px) !important; box-shadow:0 2px 24px rgba(0,0,0,0.08) !important; border-bottom:1px solid rgba(0,0,0,0.06) !important; padding:12px 60px !important; }
     #navbar .nav-logo-text { color:var(--text-dark) !important; }
     #navbar .nav-logo-text span { color:var(--gold-dark) !important; }
@@ -198,7 +184,7 @@
   <div style="max-width:1200px;margin:0 auto;font-family:'Montserrat',sans-serif;font-size:0.72rem;color:var(--text-light);">
     <a href="/" style="color:var(--text-light);">Home</a> &nbsp;/&nbsp;
     <a href="products" style="color:var(--text-light);">Products</a> &nbsp;/&nbsp;
-    <span style="color:var(--text-dark);font-weight:600;">Golden Hair Oil</span>
+    <span style="color:var(--text-dark);font-weight:600;">3-in-1 Complete Kit</span>
   </div>
 </div>
 
@@ -209,20 +195,20 @@
     <!-- GALLERY -->
     <div class="pd-gallery reveal-left">
       <div class="pd-main-img" id="pdMainImg">
-        <img src="images/golden/5.png" alt="Golden Hair Oil" id="pdMainImgEl">
+        <img src="images/box/box1.jpg" alt="3-in-1 Complete Hair Kit" id="pdMainImgEl">
       </div>
       <div class="pd-thumbs">
-        <div class="pd-thumb active" onclick="switchImg('images/golden/5.png',this)">
-          <img src="images/golden/5.png" alt="Golden Oil view 1">
+        <div class="pd-thumb active" onclick="switchImg('images/box/box1.jpg',this)">
+          <img src="images/box/box1.jpg" alt="Kit view 1">
         </div>
-        <div class="pd-thumb" onclick="switchImg('images/golden/2.png',this)">
-          <img src="images/golden/2.png" alt="Golden Oil view 2">
+        <div class="pd-thumb" onclick="switchImg('images/box/box2.jpg',this)">
+          <img src="images/box/box2.jpg" alt="Kit view 2">
         </div>
-        <div class="pd-thumb" onclick="switchImg('images/golden/3.png',this)">
-          <img src="images/golden/3.png" alt="Golden Oil view 3">
+        <div class="pd-thumb" onclick="switchImg('images/box/box5.jpg',this)">
+          <img src="images/box/box5.jpg" alt="Kit view 3">
         </div>
-        <div class="pd-thumb" onclick="switchImg('images/golden/4.png',this)">
-          <img src="images/golden/4.png" alt="Golden Oil view 4">
+        <div class="pd-thumb" onclick="switchImg('images/box/box6.jpg',this)">
+          <img src="images/box/box6.jpg" alt="Kit view 4">
         </div>
       </div>
     </div>
@@ -230,20 +216,51 @@
     <!-- INFO -->
     <div class="reveal-right">
       <div class="pd-badge-row">
-        <span class="pd-badge bestseller">Best Seller</span>
+        <span class="pd-badge value">Best Value</span>
         <span class="pd-badge natural">100% Natural</span>
       </div>
       <div class="pd-rating">
         <span class="pd-stars">★★★★★</span>
-        <span class="pd-rating-count">4.9 (128 reviews)</span>
+        <span class="pd-rating-count">4.9 (214 reviews)</span>
       </div>
-      <h1 class="pd-name">Golden Hair Oil</h1>
+      <h1 class="pd-name">3-in-1 Complete Hair Kit</h1>
       <div class="pd-price-row">
-        <span class="pd-price">Rs 1,500</span>
+        <span class="pd-price">Rs 3,250</span>
+        <span class="pd-price-old">Rs 4,000</span>
       </div>
+      <div class="pd-save-badge">You Save Rs 750 — Best Bundle Deal</div>
+
       <p class="pd-desc">
-        Our signature Golden Hair Oil is a luxurious cold-pressed blend of the finest natural oils — mustard, coconut, sesame and almond — enriched with herbal extracts. It deeply nourishes from root to tip, adds brilliant shine, promotes faster hair growth and significantly reduces hair fall.
+        Everything your hair needs in one kit. Our 3-in-1 Complete Hair Kit combines Golden Oil, Black Rose Oil, and Herbal Shampoo into a complete 20-day treatment that fights hair fall, reduces greying, eliminates dandruff, and restores natural shine from root to tip.
       </p>
+
+      <!-- What's included -->
+      <div class="kit-includes">
+        <div class="kit-item">
+          <div class="kit-item-icon">🌻</div>
+          <div class="kit-item-info">
+            <h4>Golden Hair Oil</h4>
+            <p>Deep nourishment &amp; hair growth boost</p>
+          </div>
+          <div class="kit-item-price">Rs 1,500</div>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item-icon">🌹</div>
+          <div class="kit-item-info">
+            <h4>Black Rose Oil</h4>
+            <p>Strength, shine &amp; anti-breakage formula</p>
+          </div>
+          <div class="kit-item-price">Rs 1,500</div>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item-icon">🌿</div>
+          <div class="kit-item-info">
+            <h4>Herbal Shampoo</h4>
+            <p>Sulfate-free botanical cleanser</p>
+          </div>
+          <div class="kit-item-price">Rs 1,000</div>
+        </div>
+      </div>
 
       <!-- Qty + Add to Cart -->
       <div class="pd-actions">
@@ -254,17 +271,17 @@
         </div>
         <button class="pd-add-btn" id="pdAddBtn" onclick="pdAddToCart()">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-          Add to Cart
+          Add to Cart — Rs 3,250
         </button>
       </div>
 
-      <a href="https://wa.me/923335222865?text=Hi!%20I%20want%20to%20order%20Golden%20Hair%20Oil%20(Rs%201500).%20Please%20confirm%20availability." target="_blank" class="pd-wa-btn">
+      <a href="https://wa.me/923335222865?text=Hi!%20I%20want%20to%20order%20the%203-in-1%20Complete%20Hair%20Kit%20(Rs%203250).%20Please%20confirm%20availability." target="_blank" class="pd-wa-btn">
         <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Order via WhatsApp
       </a>
 
       <div class="pd-trust">
-        <div class="trust-item"><div class="t-icon">🚚</div><p>Free delivery over Rs 1500</p></div>
+        <div class="trust-item"><div class="t-icon">🚚</div><p>Free delivery on bundle</p></div>
         <div class="trust-item"><div class="t-icon">💵</div><p>Cash on Delivery</p></div>
         <div class="trust-item"><div class="t-icon">🌿</div><p>100% Natural</p></div>
       </div>
@@ -274,49 +291,79 @@
   <!-- TABS -->
   <div class="pd-tabs">
     <div class="tab-nav">
-      <button class="tab-btn active" onclick="switchTab('description',this)">Description</button>
+      <button class="tab-btn active" onclick="switchTab('whats-inside',this)">What's Inside</button>
       <button class="tab-btn" onclick="switchTab('benefits',this)">Benefits</button>
       <button class="tab-btn" onclick="switchTab('howtouse',this)">How to Use</button>
-      <button class="tab-btn" onclick="switchTab('ingredients',this)">Ingredients</button>
+      <button class="tab-btn" onclick="switchTab('why-bundle',this)">Why Bundle</button>
     </div>
 
-    <div class="tab-panel active" id="tab-description">
-      <p>Golden Hair Oil is our most popular product and the one that started it all. Inspired by generations of traditional hair care wisdom, this formula combines the most effective natural oils used across the subcontinent for centuries.</p>
-      <p>Unlike commercial oils that use mineral oil as a base (which coats hair without nourishing it), our Golden Oil penetrates deep into the hair shaft to deliver real moisture, protein and nutrients exactly where your hair needs them most.</p>
-      <p>Suitable for all hair types — from dry and damaged to oily scalp. Safe for colour-treated hair.</p>
+    <div class="tab-panel active" id="tab-whats-inside">
+      <p>The 3-in-1 Complete Hair Kit contains all three of our core products, carefully packaged together for the complete Nasir Oil Expert 20-day hair treatment program.</p>
+      <p><strong>Golden Hair Oil</strong> — Our signature cold-pressed blend of mustard, coconut, sesame and almond oils enriched with herbal extracts. It deeply nourishes from root to tip, adds brilliant shine and promotes faster hair growth.</p>
+      <p><strong>Black Rose Oil</strong> — Infused with rare black rose extract and luxurious botanical oils. Strengthens hair from root to tip, protects against environmental damage, and leaves hair with a subtle, long-lasting fragrance.</p>
+      <p><strong>Herbal Shampoo</strong> — Formulated with neem, amla, bhringraj and botanical extracts. Sulfate-free and gentle — cleanses without stripping natural oils, leaving hair soft and manageable after every wash.</p>
     </div>
 
     <div class="tab-panel" id="tab-benefits">
       <ul class="benefit-list">
-        <li>Reduces hair fall and stops breakage</li>
-        <li>Prevents premature hair whitening / greying</li>
+        <li>Reduces hair fall by up to 70%</li>
+        <li>Prevents premature greying naturally</li>
         <li>Eliminates dandruff from roots</li>
-        <li>Strengthens hair roots and follicles</li>
-        <li>Deeply conditions and removes dryness</li>
-        <li>Promotes new hair growth</li>
-        <li>Adds shine and volume to lifeless hair</li>
-        <li>Strengthens weak and brittle hair</li>
+        <li>Strengthens hair follicles deeply</li>
+        <li>Adds brilliant natural shine</li>
+        <li>Repairs dry and damaged hair</li>
+        <li>Promotes faster new hair growth</li>
+        <li>Soothes dry and itchy scalp</li>
+        <li>Fights frizz and flyaways</li>
+        <li>Long-lasting herbal fragrance</li>
       </ul>
     </div>
 
     <div class="tab-panel" id="tab-howtouse">
       <p style="font-family:'Montserrat',sans-serif;font-size:0.78rem;color:var(--green-mid);font-weight:700;margin-bottom:18px;letter-spacing:0.06em;text-transform:uppercase;">Complete 20-Day Treatment Plan</p>
-      <div class="how-to-step"><div class="step-circle" style="background:var(--gold);min-width:36px;">10</div><div class="step-text"><h4>Phase 1 — Black Rose Oil (10 Nights)</h4><p>Apply Black Rose Oil to hair roots every night for 10 consecutive nights. Wash hair with Nasir Herbal Shampoo in the morning.</p></div></div>
-      <div class="how-to-step"><div class="step-circle" style="min-width:36px;">5</div><div class="step-text"><h4>Phase 2 — Golden Oil (5 Days)</h4><p>Apply Golden Oil to hair roots and massage gently into the scalp. Leave overnight and wash with Nasir Herbal Shampoo the next morning.</p></div></div>
-      <div class="how-to-step"><div class="step-circle" style="min-width:36px;">5</div><div class="step-text"><h4>Phase 3 — Alternating Oils (5 Days)</h4><p>Continue alternating Black Rose Oil and Golden Oil daily. Wash with Nasir Herbal Shampoo each time.</p></div></div>
+      <div class="how-to-step">
+        <div class="step-circle" style="background:var(--gold);min-width:36px;">10</div>
+        <div class="step-text">
+          <h4>Phase 1 — Black Rose Oil (10 Nights)</h4>
+          <p>Apply Black Rose Oil to hair roots every night for 10 consecutive nights. Massage gently into the scalp. Wash hair with Nasir Herbal Shampoo each morning.</p>
+        </div>
+      </div>
+      <div class="how-to-step">
+        <div class="step-circle" style="min-width:36px;">5</div>
+        <div class="step-text">
+          <h4>Phase 2 — Golden Oil (5 Days)</h4>
+          <p>Apply Golden Oil to hair roots and massage gently into the scalp. Leave overnight and wash with Nasir Herbal Shampoo the next morning.</p>
+        </div>
+      </div>
+      <div class="how-to-step">
+        <div class="step-circle" style="min-width:36px;">5</div>
+        <div class="step-text">
+          <h4>Phase 3 — Alternating Oils (5 Days)</h4>
+          <p>Continue alternating Black Rose Oil and Golden Oil daily. Wash with Nasir Herbal Shampoo each time to keep hair clean and fresh.</p>
+        </div>
+      </div>
       <div style="background:var(--cream);border-radius:10px;padding:14px 18px;margin-top:10px;font-family:'Montserrat',sans-serif;font-size:0.76rem;color:var(--text-light);line-height:1.8;">
-        <strong style="color:var(--text-dark);">Note:</strong> After 20 days, alternate Black Rose Oil and Golden Oil in 5-day cycles. Continue for 40–45 days for full results.
+        <strong style="color:var(--text-dark);">Note:</strong> After 20 days, alternate Black Rose Oil and Golden Oil in 5-day cycles. Continue for 40–45 days for full results. Best results seen with consistent daily use.
       </div>
     </div>
 
-    <div class="tab-panel" id="tab-ingredients">
-      <div class="ingr-grid">
-        <div class="ingr-item"><div class="ingr-icon">🌻</div><div><h4>Mustard Oil</h4><p>Stimulates blood circulation and promotes growth</p></div></div>
-        <div class="ingr-item"><div class="ingr-icon">🥥</div><div><h4>Coconut Oil</h4><p>Deep conditioning and protein protection</p></div></div>
-        <div class="ingr-item"><div class="ingr-icon">✨</div><div><h4>Sesame Oil</h4><p>Rich in antioxidants, nourishes scalp deeply</p></div></div>
-        <div class="ingr-item"><div class="ingr-icon">🌿</div><div><h4>Almond Oil</h4><p>Vitamins E and D for stronger, shinier hair</p></div></div>
-        <div class="ingr-item"><div class="ingr-icon">🍃</div><div><h4>Amla Extract</h4><p>Traditional Ayurvedic herb for hair darkening</p></div></div>
-        <div class="ingr-item"><div class="ingr-icon">🌱</div><div><h4>Bhringraj</h4><p>Reduces hair fall and delays premature greying</p></div></div>
+    <div class="tab-panel" id="tab-why-bundle">
+      <p>Buying the kit instead of individual products gives you a Rs 750 saving right away — but the real value is in having the complete treatment system from day one, without needing to order anything extra.</p>
+      <p>Our 20-day treatment plan requires all three products working together. When used as a system, they complement each other perfectly — the oils treat the scalp while the shampoo cleanses without undoing the nourishment.</p>
+      <p>Customers who start with the full kit see significantly better results compared to those who use only one product, because the treatment addresses hair fall, greying and dandruff simultaneously rather than one at a time.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;">
+        <div style="flex:1;min-width:160px;background:var(--cream);border-radius:12px;padding:16px;text-align:center;">
+          <div style="font-size:1.6rem;font-weight:700;color:var(--gold-dark);font-family:'Montserrat',sans-serif;">Rs 750</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:0.7rem;color:var(--text-light);margin-top:4px;">Saved vs. buying separately</div>
+        </div>
+        <div style="flex:1;min-width:160px;background:var(--cream);border-radius:12px;padding:16px;text-align:center;">
+          <div style="font-size:1.6rem;font-weight:700;color:var(--green-mid);font-family:'Montserrat',sans-serif;">20 Days</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:0.7rem;color:var(--text-light);margin-top:4px;">Complete treatment program</div>
+        </div>
+        <div style="flex:1;min-width:160px;background:var(--cream);border-radius:12px;padding:16px;text-align:center;">
+          <div style="font-size:1.6rem;font-weight:700;color:var(--text-dark);font-family:'Montserrat',sans-serif;">3 Products</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:0.7rem;color:var(--text-light);margin-top:4px;">One complete hair care system</div>
+        </div>
       </div>
     </div>
   </div>
@@ -334,41 +381,41 @@
         <div class="rating-big">4.9</div>
         <div class="rating-info">
           <div class="stars">★★★★★</div>
-          <p>Based on 128 reviews</p>
+          <p>Based on 214 reviews</p>
         </div>
       </div>
     </div>
     <div class="reviews-grid">
       <div class="review-card reveal">
         <div class="review-top">
-          <div class="reviewer"><div class="reviewer-avatar">SA</div><div><div class="reviewer-name">Sara Ahsan</div><div class="reviewer-loc">Lahore, Pakistan</div></div></div>
-          <div><div class="review-stars">★★★★★</div><div class="review-date">January 2026</div></div>
+          <div class="reviewer"><div class="reviewer-avatar">HF</div><div><div class="reviewer-name">Hina Farooq</div><div class="reviewer-loc">Lahore, Pakistan</div></div></div>
+          <div><div class="review-stars">★★★★★</div><div class="review-date">February 2026</div></div>
         </div>
-        <p class="review-text">"The Golden Oil completely transformed my hair! It is so much thicker and shinier after just 4 weeks. I used to lose so much hair while combing but that has reduced by at least 70%. I will never go back to chemical products."</p>
+        <p class="review-text">"I was skeptical at first but the results after the 20-day plan were unbelievable. My hair fall has reduced so much and my hair is visibly thicker. The shampoo is also amazing — no dryness after washing. Ordering again for sure."</p>
         <div class="review-verified">✓ Verified Purchase</div>
       </div>
       <div class="review-card reveal reveal-delay-1">
         <div class="review-top">
-          <div class="reviewer"><div class="reviewer-avatar">NK</div><div><div class="reviewer-name">Nadia Khan</div><div class="reviewer-loc">Karachi, Pakistan</div></div></div>
-          <div><div class="review-stars">★★★★★</div><div class="review-date">December 2025</div></div>
+          <div class="reviewer"><div class="reviewer-avatar">RA</div><div><div class="reviewer-name">Rubab Ali</div><div class="reviewer-loc">Karachi, Pakistan</div></div></div>
+          <div><div class="review-stars">★★★★★</div><div class="review-date">January 2026</div></div>
         </div>
-        <p class="review-text">"I have tried so many hair oils but nothing worked like this one. My hair was extremely dry and breaking at the ends. After just 3 weeks of regular use, it feels completely different. The smell is also very pleasant and natural."</p>
+        <p class="review-text">"The kit is completely worth it. Rs 750 savings is a bonus but honestly even at full price I would have bought it. The three products work perfectly together. My grey hairs have reduced and my hair is growing faster than before."</p>
         <div class="review-verified">✓ Verified Purchase</div>
       </div>
       <div class="review-card reveal reveal-delay-2">
         <div class="review-top">
-          <div class="reviewer"><div class="reviewer-avatar">AM</div><div><div class="reviewer-name">Ayesha Mirza</div><div class="reviewer-loc">Islamabad, Pakistan</div></div></div>
-          <div><div class="review-stars">★★★★★</div><div class="review-date">November 2025</div></div>
+          <div class="reviewer"><div class="reviewer-avatar">SM</div><div><div class="reviewer-name">Sana Malik</div><div class="reviewer-loc">Islamabad, Pakistan</div></div></div>
+          <div><div class="review-stars">★★★★★</div><div class="review-date">December 2025</div></div>
         </div>
-        <p class="review-text">"My mother has been using it for her dry scalp issue and she cannot stop praising it. She says it is like the oils they used back in the day — pure and effective. We ordered 3 bottles this time so we do not run out!"</p>
+        <p class="review-text">"Bought for my mother who had severe hair fall. After following the 20-day plan, she noticed a big difference. Her hair feels much stronger and she has not had dandruff since starting the shampoo. The Black Rose Oil smell is also lovely."</p>
         <div class="review-verified">✓ Verified Purchase</div>
       </div>
       <div class="review-card reveal reveal-delay-3">
         <div class="review-top">
-          <div class="reviewer"><div class="reviewer-avatar">ZB</div><div><div class="reviewer-name">Zara Baig</div><div class="reviewer-loc">Faisalabad, Pakistan</div></div></div>
-          <div><div class="review-stars">★★★★★</div><div class="review-date">October 2025</div></div>
+          <div class="reviewer"><div class="reviewer-avatar">TK</div><div><div class="reviewer-name">Tehreem Khan</div><div class="reviewer-loc">Faisalabad, Pakistan</div></div></div>
+          <div><div class="review-stars">★★★★★</div><div class="review-date">November 2025</div></div>
         </div>
-        <p class="review-text">"Fast delivery and exactly as described. The packaging is clean and the oil itself feels premium — not too heavy at all. I apply it the night before washing my hair and my hair has never been this soft. Highly recommend to everyone."</p>
+        <p class="review-text">"Fast delivery, good packaging. I followed the instructions exactly and by day 15 my hair felt noticeably different. Soft, shiny and less breakage. The Golden Oil is my favourite — it smells natural and absorbs quickly. Highly recommend the kit!"</p>
         <div class="review-verified">✓ Verified Purchase</div>
       </div>
     </div>
@@ -377,41 +424,59 @@
 
 <!-- RELATED PRODUCTS -->
 <section class="related-section">
-  <div class="section-label" style="margin-bottom:8px;">You May Also Like</div>
-  <h2 class="section-title" style="margin-bottom:36px;">Related Products</h2>
-  <div class="products-grid" style="grid-template-columns:repeat(2,1fr);max-width:700px;">
+  <div class="section-label" style="margin-bottom:8px;">Included in This Kit</div>
+  <h2 class="section-title" style="margin-bottom:36px;">Shop Individual Products</h2>
+  <div class="products-grid" style="grid-template-columns:repeat(3,1fr);max-width:1000px;">
     <div class="product-card reveal">
-      <div class="product-card-img">
-        <img src="images/img3.avif" alt="Black Rose Hair Oil">
-        <div class="product-tag" style="background:var(--green-deep);">Premium</div>
-        <div class="product-overlay"><a href="black-rose-oil" class="product-overlay-btn">View Details</a></div>
+      <div class="product-card-img" style="background:linear-gradient(145deg,#fef9e8,#fde68a);">
+        <img src="images/golden/5.png" alt="Golden Hair Oil">
+        <div class="product-tag">Best Seller</div>
+        <div class="product-overlay"><a href="golden-oil" class="product-overlay-btn">View Details</a></div>
       </div>
       <div class="product-info">
-        <h3 class="product-name">Black Rose Hair Oil</h3>
-        <p class="product-desc">Luxurious rose extract for strength, shine and fragrance.</p>
+        <h3 class="product-name">Golden Hair Oil</h3>
+        <p class="product-desc">Cold-pressed nourishing oil for growth and shine.</p>
         <div class="product-footer">
           <div class="product-price"><span>Rs</span>1,500</div>
           <div class="product-btn-group">
-            <a href="black-rose-oil" class="btn-details">View Details</a>
-            <button class="btn-cart" data-name="Black Rose Hair Oil" data-price="1500" data-img="images/black-rose/5.png">🛒 Add to Cart</button>
+            <a href="golden-oil" class="btn-details">View Details</a>
+            <button class="btn-cart" data-name="Golden Oil" data-price="1500" data-img="images/golden/5.png">🛒 Add to Cart</button>
           </div>
         </div>
       </div>
     </div>
     <div class="product-card reveal reveal-delay-1">
-      <div class="product-card-img" style="background:linear-gradient(145deg,#f0f8f2,#e4f0e8);">
-        <img src="images/img1.avif" alt="Herbal Hair Shampoo">
+      <div class="product-card-img" style="background:linear-gradient(145deg,#fce8f0,#f5c5d5);">
+        <img src="images/black-rose/5.png" alt="Black Rose Oil">
+        <div class="product-tag" style="background:var(--green-deep);">Premium</div>
+        <div class="product-overlay"><a href="black-rose-oil" class="product-overlay-btn">View Details</a></div>
+      </div>
+      <div class="product-info">
+        <h3 class="product-name">Black Rose Oil</h3>
+        <p class="product-desc">Rare rose extract for strength and fragrance.</p>
+        <div class="product-footer">
+          <div class="product-price"><span>Rs</span>1,500</div>
+          <div class="product-btn-group">
+            <a href="black-rose-oil" class="btn-details">View Details</a>
+            <button class="btn-cart" data-name="Black Rose Oil" data-price="1500" data-img="images/black-rose/5.png">🛒 Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="product-card reveal reveal-delay-2">
+      <div class="product-card-img" style="background:linear-gradient(145deg,#e8f5ee,#c8e8d4);">
+        <img src="images/shampoo/5.png" alt="Herbal Shampoo">
         <div class="product-tag" style="background:var(--green-light);">Natural</div>
         <div class="product-overlay"><a href="herbal-shampoo" class="product-overlay-btn">View Details</a></div>
       </div>
       <div class="product-info">
-        <h3 class="product-name">Herbal Hair Shampoo</h3>
-        <p class="product-desc">Gentle sulfate-free cleanse with natural botanicals.</p>
+        <h3 class="product-name">Herbal Shampoo</h3>
+        <p class="product-desc">Sulfate-free botanical cleanser for all hair types.</p>
         <div class="product-footer">
           <div class="product-price"><span>Rs</span>1,000</div>
           <div class="product-btn-group">
             <a href="herbal-shampoo" class="btn-details">View Details</a>
-            <button class="btn-cart" data-name="Herbal Hair Shampoo" data-price="1000" data-img="images/shampoo/5.png">🛒 Add to Cart</button>
+            <button class="btn-cart" data-name="Herbal Shampoo" data-price="1000" data-img="images/shampoo/5.png">🛒 Add to Cart</button>
           </div>
         </div>
       </div>
@@ -430,8 +495,8 @@
           <a href="https://www.facebook.com/nasiroilexpert" target="_blank" class="social-btn fb" title="Facebook"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
           <a href="https://www.instagram.com/nasiroilexpert" target="_blank" class="social-btn ig" title="Instagram"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
           <a href="https://wa.me/923335222865" target="_blank" class="social-btn wa" title="WhatsApp"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
-          <a href="https://www.youtube.com/@nasiroilexpert" target="_blank" class="social-btn" style="background:#FF0000;color:#fff;" title="YouTube"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
-          <a href="https://www.tiktok.com/@nasiroilexpert" target="_blank" class="social-btn" style="background:#010101;color:#fff;" title="TikTok"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.25 8.25 0 0 0 4.83 1.55V6.79a4.85 4.85 0 0 1-1.06-.1z"/></svg></a>
+          <a href="https://www.youtube.com/@nasiroilexpert" target="_blank" class="social-btn yt" title="YouTube"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
+          <a href="https://www.tiktok.com/@nasiroilexpert" target="_blank" class="social-btn tt" title="TikTok"><svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.25 8.25 0 0 0 4.83 1.55V6.79a4.85 4.85 0 0 1-1.06-.1z"/></svg></a>
         </div>
       </div>
       <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="/">Home</a></li><li><a href="products">Products</a></li><li><a href="reviews">Reviews</a></li><li><a href="cart">Cart</a></li><li><a href="about">About Us</a></li><li><a href="contact">Contact</a></li></ul></div>
@@ -446,6 +511,7 @@
   <span class="wa-float-pulse"></span>
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
+
 <script src="script.js"></script>
 <script>
 let pdQty = 1;
@@ -455,7 +521,7 @@ function pdQtyChange(d) {
 }
 function pdAddToCart() {
   const btn = document.getElementById('pdAddBtn');
-  for (let i = 0; i < pdQty; i++) addToCart('Golden Hair Oil', 1500, 'images/golden/5.png');
+  for (let i = 0; i < pdQty; i++) addToCart('3-in-1 Hair Complete Kit', 3250, 'images/box/box1.jpg');
   const orig = btn.innerHTML;
   btn.innerHTML = '✓ Added to Cart!';
   btn.classList.add('added');
