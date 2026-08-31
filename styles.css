@@ -1081,6 +1081,37 @@ footer {
 .social-btn.yt { background: #FF0000; border-color: #FF0000; color: #fff; }
 .social-btn.tt { background: #010101; border-color: #010101; color: #fff; }
 .social-btn:hover { opacity: 0.85; transform: translateY(-3px); }
+
+/* ===== WHATSAPP FLOAT BUTTON ===== */
+.wa-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.6); }
+.wa-float svg { width: 30px; height: 30px; fill: #fff; }
+.wa-float-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(37,211,102,0.4);
+  animation: wa-pulse 2s ease-out infinite;
+}
+@keyframes wa-pulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
 .footer-col h4 {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.7rem;
