@@ -1,4 +1,4 @@
-/* ===== PRELOADER ===== */
+﻿/* ===== PRELOADER ===== */
 window.addEventListener('load', () => {
   setTimeout(() => {
     const pre = document.getElementById('preloader');
@@ -296,7 +296,7 @@ function renderCartPage() {
     ${rows}`;
 
   const total = cartTotal(cart);
-  const delivery = total >= 1500 ? 0 : 150;
+  const delivery = total >= 5000 ? 0 : 250;
   document.getElementById('cartSubtotal').textContent  = 'Rs ' + total.toLocaleString();
   document.getElementById('cartDelivery').textContent  = delivery === 0 ? 'Free' : 'Rs ' + delivery;
   document.getElementById('cartTotal').textContent     = 'Rs ' + (total + delivery).toLocaleString();
@@ -339,7 +339,7 @@ function renderCheckoutSummary() {
     </div>`).join('');
 
   const total    = cartTotal(cart);
-  const delivery = total >= 1500 ? 0 : 150;
+  const delivery = total >= 5000 ? 0 : 250;
   document.getElementById('coSubtotal').textContent  = 'Rs ' + total.toLocaleString();
   document.getElementById('coDelivery').textContent  = delivery === 0 ? 'Free' : 'Rs ' + delivery;
   document.getElementById('coTotal').textContent     = 'Rs ' + (total + delivery).toLocaleString();
@@ -367,7 +367,7 @@ function initPlaceOrder() {
 
     const cart    = getCart();
     const total   = cartTotal(cart);
-    const delivery = total >= 1500 ? 0 : 150;
+    const delivery = total >= 5000 ? 0 : 250;
     const name    = form.querySelector('[name="fullName"]').value;
     const phone   = form.querySelector('[name="phone"]').value;
     const city    = form.querySelector('[name="city"]').value;
@@ -389,7 +389,7 @@ function initPlaceOrder() {
     }
 
     setTimeout(() => {
-      window.open(`https://wa.me/923335222865?text=${waMsg}`, '_blank');
+      window.open(`https://wa.me/923211112280?text=${waMsg}`, '_blank');
     }, 1200);
   });
 }

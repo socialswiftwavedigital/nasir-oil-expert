@@ -1,4 +1,4 @@
-/* ===== ROOT VARIABLES ===== */
+﻿/* ===== ROOT VARIABLES ===== */
 :root {
   --green-deep: #1B4332;
   --green-mid: #2D6A4F;
@@ -208,6 +208,27 @@ h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 700; lin
 .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
 .nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
 .navbar.scrolled .nav-links a:hover, .navbar.scrolled .nav-links a.active { color: var(--gold-dark); }
+
+/* Collections Dropdown */
+.nav-has-dropdown { position: relative; }
+.nav-dropdown {
+  position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%);
+  min-width: 200px; background: var(--white);
+  border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  padding: 8px 0; display: none; z-index: 1001;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.nav-has-dropdown:hover .nav-dropdown { display: block; }
+.nav-dropdown li { list-style: none; }
+.nav-dropdown li a {
+  display: block; padding: 10px 20px;
+  font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 600;
+  color: var(--text-mid); text-decoration: none; position: static;
+  transition: all 0.2s ease; letter-spacing: 0.04em;
+}
+.nav-dropdown li a::after { display: none !important; }
+.nav-dropdown li a:hover { background: var(--cream); color: var(--gold-dark); padding-left: 26px; }
+.nav-has-dropdown > a { cursor: pointer; }
 
 /* Cart Icon */
 .nav-right {
@@ -1042,7 +1063,7 @@ h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 700; lin
 footer {
   background: #111;
   padding: 72px 60px 32px;
-  color: rgba(255,255,255,0.65);
+  color: var(--white);
 }
 .footer-inner { max-width: 1200px; margin: 0 auto; }
 .footer-top {
@@ -1079,8 +1100,8 @@ footer {
 .social-btn.ig,
 .social-btn.wa,
 .social-btn.yt,
-.social-btn.tt { background: transparent; border-color: var(--green-light); color: var(--green-light); }
-.social-btn:hover { background: var(--green-light); border-color: var(--green-light); color: var(--white); opacity: 1; transform: translateY(-3px); }
+.social-btn.tt { background: var(--gold); border-color: var(--gold); color: var(--white); }
+.social-btn:hover { background: var(--green-mid); border-color: var(--green-mid); color: var(--white); opacity: 1; transform: translateY(-3px); }
 
 /* ===== WHATSAPP FLOAT BUTTON ===== */
 .wa-float {
@@ -1125,10 +1146,10 @@ footer {
 .footer-col ul a {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.78rem;
-  color: var(--gold-light);
+  color: var(--white);
   transition: color 0.3s ease;
 }
-.footer-col ul a:hover { color: var(--white); }
+.footer-col ul a:hover { color: var(--gold); }
 .footer-col .contact-item {
   display: flex;
   align-items: flex-start;
