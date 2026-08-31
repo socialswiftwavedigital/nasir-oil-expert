@@ -403,3 +403,31 @@ document.addEventListener('DOMContentLoaded', () => {
   initPaymentToggle();
   initPlaceOrder();
 });
+
+/* ===== CUSTOM VIDEO PLAY BUTTONS ===== */
+(function() {
+  function addPlayBtn(video) {
+    var wrap = video.parentElement;
+    if (!wrap || wrap.querySelector('.vid-play-btn')) return;
+    wrap.style.position = 'relative';
+    var btn = document.createElement('div');
+    btn.className = 'vid-play-btn';
+    btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+    wrap.appendChild(btn);
+    btn.addEventListener('click', function() {
+      video.play();
+      btn.classList.add('hidden');
+    });
+    video.addEventListener('pause', function() {
+      btn.classList.remove('hidden');
+    });
+    video.addEventListener('play', function() {
+      btn.classList.add('hidden');
+    });
+    video.removeAttribute('controls');
+    video.addEventListener('click', function() {
+      if (video.paused) { video.play(); } else { video.pause(); }
+    });
+  }
+  document.querySelectorAll('video').forEach(addPlayBtn);
+})();

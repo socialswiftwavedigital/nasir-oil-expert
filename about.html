@@ -32,7 +32,17 @@
     .timeline-content p { font-family:'Montserrat',sans-serif; font-size:0.76rem; color:var(--text-light); line-height:1.7; }
     .timeline-dot { width:14px; height:14px; border-radius:50%; background:var(--gold); flex-shrink:0; margin-top:26px; box-shadow:0 0 0 4px rgba(201,168,76,0.18); }
     @media(max-width:1024px){ .values-grid{grid-template-columns:repeat(2,1fr);} }
-    @media(max-width:768px){ .values-grid{grid-template-columns:1fr;} .mission-section{padding:72px 24px;} .timeline::before{left:16px;} .timeline-item,.timeline-item:nth-child(even){flex-direction:row;} .timeline-item:nth-child(even) .timeline-content{text-align:left;} .timeline-dot{flex-shrink:0;margin-left:-8px;} }
+    @media(max-width:768px){
+      .values-grid{grid-template-columns:1fr;}
+      .mission-section{padding:72px 24px;}
+      .timeline{padding:0 0 0 36px;}
+      .timeline::before{left:14px;}
+      .timeline-item,.timeline-item:nth-child(even){flex-direction:row; gap:16px;}
+      .timeline-item:nth-child(even) .timeline-content{text-align:left;}
+      .timeline-item > div:not(.timeline-content):not(.timeline-dot){display:none;}
+      .timeline-dot{flex-shrink:0; margin-top:24px; margin-left:-28px;}
+      .timeline-content{flex:1;}
+    }
   </style>
 </head>
 <body>
@@ -121,7 +131,7 @@
           <div style="font-family:'Montserrat',sans-serif;font-size:0.68rem;color:var(--text-light);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;">Happy Customers</div>
         </div>
         <div style="text-align:center;padding:22px;background:var(--cream);border-radius:12px;">
-          <div style="font-size:1.9rem;font-weight:700;color:var(--gold);" data-target="8" data-suffix="+">0+</div>
+          <div style="font-size:1.9rem;font-weight:700;color:var(--gold);" data-target="3" data-suffix="+">0+</div>
           <div style="font-family:'Montserrat',sans-serif;font-size:0.68rem;color:var(--text-light);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;">Product Range</div>
         </div>
         <div style="text-align:center;padding:22px;background:var(--cream);border-radius:12px;">
@@ -129,7 +139,7 @@
           <div style="font-family:'Montserrat',sans-serif;font-size:0.68rem;color:var(--text-light);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;">Natural Ingredients</div>
         </div>
         <div style="text-align:center;padding:22px;background:var(--cream);border-radius:12px;">
-          <div style="font-size:1.9rem;font-weight:700;color:var(--gold);" data-target="4" data-suffix="★">0★</div>
+          <div style="font-size:1.9rem;font-weight:700;color:var(--gold);" data-target="5" data-suffix="★">0★</div>
           <div style="font-family:'Montserrat',sans-serif;font-size:0.68rem;color:var(--text-light);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;">Avg. Rating</div>
         </div>
       </div>

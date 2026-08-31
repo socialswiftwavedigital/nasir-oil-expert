@@ -1865,3 +1865,28 @@ textarea.form-control { min-height: 120px; resize: vertical; }
   .checkout-section-card { padding: 20px; }
   .form-2col { grid-template-columns: 1fr; }
 }
+
+/* ===== CUSTOM VIDEO PLAY BUTTON ===== */
+.vid-play-btn {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 58px; height: 58px;
+  background: var(--gold);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 3; cursor: pointer;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+  transition: transform 0.25s ease, background 0.25s ease;
+  pointer-events: all;
+}
+.vid-play-btn svg { width: 22px; height: 22px; fill: var(--white); margin-left: 4px; }
+.vid-play-btn:hover { transform: translate(-50%, -50%) scale(1.1); background: var(--gold-dark); }
+.vid-play-btn.hidden { opacity: 0; pointer-events: none; }
+
+/* ===== REEL SLIDER MOBILE ===== */
+@media (max-width: 768px) {
+  #reelSlider { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  #reelSlider::-webkit-scrollbar { display: none; }
+  .reel-card { flex: 0 0 80vw !important; min-width: 80vw !important; }
+}
