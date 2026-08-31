@@ -212,22 +212,32 @@ h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 700; lin
 /* Collections Dropdown */
 .nav-has-dropdown { position: relative; }
 .nav-dropdown {
-  position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%);
-  min-width: 200px; background: var(--white);
-  border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-  padding: 8px 0; display: none; z-index: 1001;
-  border: 1px solid rgba(0,0,0,0.06);
+  position: absolute; top: calc(100% + 14px); left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  min-width: 210px; background: var(--white);
+  border-radius: 14px; box-shadow: 0 16px 48px rgba(0,0,0,0.13), 0 2px 8px rgba(0,0,0,0.06);
+  padding: 6px 0; z-index: 1001;
+  border: 1px solid rgba(0,0,0,0.07);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease;
 }
-.nav-has-dropdown:hover .nav-dropdown { display: block; }
+.nav-has-dropdown:hover .nav-dropdown {
+  opacity: 1; pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
 .nav-dropdown li { list-style: none; }
+.nav-dropdown li:not(:last-child) a { border-bottom: 1px solid rgba(0,0,0,0.04); }
 .nav-dropdown li a {
-  display: block; padding: 10px 20px;
-  font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 600;
+  display: flex; align-items: center; gap: 9px;
+  padding: 11px 18px;
+  font-family: 'Montserrat', sans-serif; font-size: 0.71rem; font-weight: 600;
   color: var(--text-mid); text-decoration: none; position: static;
-  transition: all 0.2s ease; letter-spacing: 0.04em;
+  transition: background 0.18s ease, color 0.18s ease; letter-spacing: 0.04em;
 }
+.nav-dropdown li a::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; opacity: 0; transition: opacity 0.18s ease; }
 .nav-dropdown li a::after { display: none !important; }
-.nav-dropdown li a:hover { background: var(--cream); color: var(--gold-dark); padding-left: 26px; }
+.nav-dropdown li a:hover { background: var(--cream); color: var(--gold-dark); }
+.nav-dropdown li a:hover::before { opacity: 1; }
 .nav-has-dropdown > a { cursor: pointer; }
 
 /* Cart Icon */
@@ -1174,12 +1184,6 @@ footer {
   transition: color 0.3s ease;
 }
 .footer-col ul a:hover { color: var(--gold); }
-.footer-col ul li.footer-sub-link a {
-  font-size: 0.72rem;
-  color: rgba(255,255,255,0.55);
-  padding-left: 14px;
-}
-.footer-col ul li.footer-sub-link a:hover { color: var(--gold-light); }
 .footer-col .contact-item {
   display: flex;
   align-items: flex-start;
