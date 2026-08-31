@@ -306,31 +306,55 @@ h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 700; lin
   position: fixed;
   inset: 0;
   background: var(--green-deep);
-  z-index: 999;
+  z-index: 9998;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.35s ease;
+  overflow-y: auto;
+  padding: 80px 32px 40px;
 }
 .mobile-nav.open { opacity: 1; pointer-events: all; display: flex; }
 .mobile-nav a {
-  font-size: 1.8rem;
-  font-weight: 700;
+  font-size: 1.05rem;
+  font-weight: 600;
   color: var(--white);
-  letter-spacing: 0.05em;
-  transition: color 0.3s ease;
+  letter-spacing: 0.04em;
+  padding: 12px 0;
+  width: 100%;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  transition: color 0.25s ease;
+  text-decoration: none;
 }
+.mobile-nav a:last-child { border-bottom: none; }
 .mobile-nav a:hover { color: var(--gold); }
+.mobile-nav a.mn-sub-link {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.65);
+  padding: 9px 0 9px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.mobile-nav a.mn-sub-link:hover { color: var(--gold-light); }
 .mobile-nav-close {
-  position: absolute;
-  top: 24px; right: 32px;
-  font-size: 2rem;
+  position: fixed;
+  top: 16px; right: 20px;
+  width: 42px; height: 42px;
+  font-size: 1.2rem;
   color: var(--white);
   cursor: pointer;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9999;
+  transition: background 0.2s;
+  -webkit-tap-highlight-color: transparent;
 }
+.mobile-nav-close:hover { background: rgba(255,255,255,0.22); }
 
 /* ===== CART TOAST ===== */
 .cart-toast {
