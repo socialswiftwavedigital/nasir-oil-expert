@@ -1,0 +1,293 @@
+<!-- SwiftWave Digital - Pricing Section for Elementor HTML Widget -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  .swd-pricing {
+    font-family: 'Poppins', sans-serif;
+    background: #ffffff;
+    padding: 70px 20px;
+    box-sizing: border-box;
+  }
+  .swd-pricing * { box-sizing: border-box; }
+
+  .swd-pricing-header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 50px;
+  }
+  .swd-pricing-eyebrow {
+    display: inline-block;
+    background: #F3E8FF;
+    color: #7B2CBF;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .swd-pricing-header h2 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1A1A2E;
+    margin: 0 0 12px;
+    line-height: 1.25;
+  }
+  .swd-pricing-header h2 span { color: #7B2CBF; }
+  .swd-pricing-header p {
+    font-size: 16px;
+    color: #6B7280;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .swd-pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 1140px;
+    margin: 0 auto;
+    align-items: stretch;
+  }
+
+  .swd-card {
+    background: #ffffff;
+    border: 1px solid #ECE9F1;
+    border-radius: 18px;
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 4px 18px rgba(123, 44, 191, 0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .swd-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px rgba(123, 44, 191, 0.14);
+  }
+
+  .swd-card--featured {
+    background: linear-gradient(180deg, #7B2CBF 0%, #5A189A 100%);
+    border: none;
+    box-shadow: 0 16px 40px rgba(90, 24, 154, 0.28);
+    transform: scale(1.04);
+  }
+  .swd-card--featured:hover { transform: scale(1.04) translateY(-6px); }
+
+  .swd-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #FFB020;
+    color: #1A1A2E;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  }
+
+  .swd-plan-name {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1A1A2E;
+    margin: 0 0 6px;
+  }
+  .swd-card--featured .swd-plan-name { color: #ffffff; }
+
+  .swd-plan-desc {
+    font-size: 14px;
+    color: #6B7280;
+    margin: 0 0 24px;
+    line-height: 1.5;
+    min-height: 42px;
+  }
+  .swd-card--featured .swd-plan-desc { color: #E9D8FD; }
+
+  .swd-price-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  .swd-price {
+    font-size: 46px;
+    font-weight: 800;
+    color: #1A1A2E;
+    line-height: 1;
+  }
+  .swd-card--featured .swd-price { color: #ffffff; }
+  .swd-price-period {
+    font-size: 15px;
+    color: #6B7280;
+    font-weight: 500;
+    padding-bottom: 8px;
+  }
+  .swd-card--featured .swd-price-period { color: #E9D8FD; }
+
+  .swd-divider {
+    height: 1px;
+    background: #ECE9F1;
+    margin: 24px 0;
+  }
+  .swd-card--featured .swd-divider { background: rgba(255,255,255,0.2); }
+
+  .swd-features {
+    list-style: none;
+    margin: 0 0 32px;
+    padding: 0;
+    flex-grow: 1;
+  }
+  .swd-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14.5px;
+    color: #374151;
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+  .swd-card--featured .swd-features li { color: #F3E8FF; }
+
+  .swd-check {
+    flex: 0 0 18px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #F3E8FF;
+    color: #7B2CBF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 800;
+    margin-top: 1px;
+  }
+  .swd-card--featured .swd-check {
+    background: rgba(255,255,255,0.18);
+    color: #ffffff;
+  }
+
+  .swd-cta {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    background: #7B2CBF;
+    color: #ffffff !important;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 20px;
+    border-radius: 10px;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .swd-cta:hover {
+    background: #5A189A;
+    transform: translateY(-2px);
+  }
+  .swd-card--featured .swd-cta {
+    background: #ffffff;
+    color: #7B2CBF !important;
+  }
+  .swd-card--featured .swd-cta:hover {
+    background: #F3E8FF;
+  }
+
+  .swd-note {
+    text-align: center;
+    color: #6B7280;
+    font-size: 13.5px;
+    margin: 36px auto 0;
+    max-width: 600px;
+  }
+  .swd-note a { color: #7B2CBF; font-weight: 600; text-decoration: none; }
+
+  @media (max-width: 991px) {
+    .swd-pricing-grid { grid-template-columns: 1fr; max-width: 440px; }
+    .swd-card--featured { transform: scale(1); order: -1; }
+    .swd-card--featured:hover { transform: translateY(-6px); }
+  }
+  @media (max-width: 480px) {
+    .swd-pricing { padding: 50px 14px; }
+    .swd-pricing-header h2 { font-size: 28px; }
+    .swd-card { padding: 32px 22px; }
+  }
+</style>
+
+<section class="swd-pricing">
+  <div class="swd-pricing-header">
+    <span class="swd-pricing-eyebrow">Pricing Plans</span>
+    <h2>Simple, Transparent <span>Pricing</span></h2>
+    <p>Choose the plan that fits your business. Every plan is built to help you automate, grow, and convert more customers.</p>
+  </div>
+
+  <div class="swd-pricing-grid">
+
+    <!-- Starter -->
+    <div class="swd-card">
+      <h3 class="swd-plan-name">Starter</h3>
+      <p class="swd-plan-desc">Perfect for small businesses getting started with digital marketing.</p>
+      <div class="swd-price-row">
+        <span class="swd-price">$99</span>
+        <span class="swd-price-period">/ month</span>
+      </div>
+      <div class="swd-divider"></div>
+      <ul class="swd-features">
+        <li><span class="swd-check">✓</span> Basic SEO &amp; Digital Marketing</li>
+        <li><span class="swd-check">✓</span> Social Media Management (1 platform)</li>
+        <li><span class="swd-check">✓</span> Monthly Performance Report</li>
+        <li><span class="swd-check">✓</span> Email Support</li>
+      </ul>
+      <a href="#" class="swd-cta">Get Started</a>
+    </div>
+
+    <!-- Growth (Featured) -->
+    <div class="swd-card swd-card--featured">
+      <span class="swd-badge">Most Popular</span>
+      <h3 class="swd-plan-name">Growth</h3>
+      <p class="swd-plan-desc">For growing businesses ready to scale with automation and ads.</p>
+      <div class="swd-price-row">
+        <span class="swd-price">$299</span>
+        <span class="swd-price-period">/ month</span>
+      </div>
+      <div class="swd-divider"></div>
+      <ul class="swd-features">
+        <li><span class="swd-check">✓</span> Everything in Starter, plus:</li>
+        <li><span class="swd-check">✓</span> Social Media Management (3 platforms)</li>
+        <li><span class="swd-check">✓</span> AI Chatbot &amp; Lead Generation Automation</li>
+        <li><span class="swd-check">✓</span> Email &amp; SMS Marketing Automation</li>
+        <li><span class="swd-check">✓</span> Bi-Weekly Performance Reports</li>
+        <li><span class="swd-check">✓</span> Priority Email &amp; Chat Support</li>
+      </ul>
+      <a href="#" class="swd-cta">Get Started</a>
+    </div>
+
+    <!-- Enterprise -->
+    <div class="swd-card">
+      <h3 class="swd-plan-name">Enterprise</h3>
+      <p class="swd-plan-desc">Full-service digital growth partner for established businesses.</p>
+      <div class="swd-price-row">
+        <span class="swd-price">$399</span>
+        <span class="swd-price-period">/ month</span>
+      </div>
+      <div class="swd-divider"></div>
+      <ul class="swd-features">
+        <li><span class="swd-check">✓</span> Dedicated Account Manager</li>
+        <li><span class="swd-check">✓</span> Complete Digital Marketing Suite</li>
+        <li><span class="swd-check">✓</span> CRM &amp; Sales Automation</li>
+        <li><span class="swd-check">✓</span> Paid Ads Management</li>
+        <li><span class="swd-check">✓</span> AI Customer Support Automation</li>
+        <li><span class="swd-check">✓</span> Weekly Performance Insights</li>
+        <li><span class="swd-check">✓</span> Priority Support 24/7</li>
+      </ul>
+      <a href="#" class="swd-cta">Get Started</a>
+    </div>
+
+  </div>
+
+  <p class="swd-note">Need something custom? <a href="#">Get a free quote</a> and we'll build a plan around your goals.</p>
+</section>

@@ -68,26 +68,38 @@
     .filter-btn:hover, .filter-btn.active { background: var(--green-deep); border-color: var(--green-deep); color: var(--white); }
 
     /* ===== PRODUCTS FULL GRID ===== */
-    .shop-section { padding: 0 60px 80px; background: var(--bg-light); }
+    .shop-section { padding: 72px 60px 80px; background: var(--bg-light); }
     .products-full-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; max-width: 1200px; margin: 0 auto; }
     .product-item { transition: opacity 0.4s ease, transform 0.4s ease; }
-    .product-detail-card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); transition: all var(--transition); border: 1px solid rgba(0,0,0,0.05); }
+    .product-detail-card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); transition: all var(--transition); border: 1px solid rgba(0,0,0,0.05); display: flex; flex-direction: column; height: 100%; }
     .product-detail-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
-    .product-detail-img { position: relative; height: 300px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 20px; }
+    .product-detail-img { position: relative; height: 300px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 20px; flex-shrink: 0; }
     .product-detail-img img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.5s ease; }
     .product-detail-card:hover .product-detail-img img { transform: scale(1.06); }
+    .product-detail-card .product-info { display: flex; flex-direction: column; flex: 1; }
+    .product-detail-card .product-desc { flex: 1; }
+    .product-detail-card .product-footer { margin-top: auto; }
     .product-benefits { display: flex; flex-wrap: wrap; gap: 7px; margin: 10px 0 14px; }
     .benefit-chip { padding: 4px 11px; background: var(--cream); border-radius: 20px; font-family: 'Montserrat', sans-serif; font-size: 0.63rem; font-weight: 600; color: var(--green-mid); letter-spacing: 0.05em; }
 
     /* ===== BUNDLES ===== */
     .bundle-section { background: var(--green-deep); padding: 100px 60px; }
-    .bundle-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 1200px; margin: 44px auto 0; }
-    .bundle-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(201,168,76,0.2); border-radius: var(--radius); padding: 32px; display: flex; align-items: center; gap: 24px; transition: all 0.4s ease; }
-    .bundle-card:hover { background: rgba(255,255,255,0.1); border-color: var(--gold); transform: translateY(-5px); }
-    .bundle-icon { font-size: 3.5rem; flex-shrink: 0; }
-    .bundle-info h3 { font-size: 1.2rem; color: var(--white); margin-bottom: 7px; }
-    .bundle-info p { font-family: 'Montserrat', sans-serif; font-size: 0.76rem; color: rgba(255,255,255,0.5); line-height: 1.7; margin-bottom: 14px; }
-    .bundle-footer { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .bundle-deal { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 1100px; margin: 60px auto 0; align-items: center; }
+    .bundle-deal-img { position: relative; border-radius: var(--radius); overflow: hidden; }
+    .bundle-deal-img img { width: 100%; height: auto; display: block; border-radius: var(--radius); object-fit: cover; }
+    .bundle-deal-img::after { content: ''; position: absolute; inset: 0; border-radius: var(--radius); border: 1px solid rgba(201,168,76,0.25); pointer-events: none; }
+    .bundle-deal-content { display: flex; flex-direction: column; gap: 0; }
+    .bundle-deal-content h3 { font-size: clamp(1.6rem, 2.5vw, 2.2rem); color: var(--white); margin-bottom: 14px; line-height: 1.2; }
+    .bundle-deal-content p { font-family: 'Montserrat', sans-serif; font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.85; margin-bottom: 24px; }
+    .bundle-items-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 28px; }
+    .bundle-item-chip { font-family: 'Montserrat', sans-serif; font-size: 0.67rem; font-weight: 600; color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); padding: 5px 13px; border-radius: 30px; }
+    .bundle-item-chip s { color: rgba(255,255,255,0.3); font-weight: 400; margin-left: 4px; }
+    .bundle-price-row { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 28px; }
+    .bundle-price-big { font-size: 2.6rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .bundle-price-big sub { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 400; color: rgba(255,255,255,0.5); }
+    .bundle-save-badge { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 700; color: #52b788; background: rgba(82,183,136,0.12); border: 1px solid rgba(82,183,136,0.25); padding: 6px 14px; border-radius: 30px; }
+    .bundle-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.07em; padding: 15px 34px; border-radius: 40px; cursor: pointer; border: none; transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+    .bundle-btn:hover { background: var(--gold-dark); transform: translateY(-3px); box-shadow: 0 10px 28px rgba(201,168,76,0.35); }
     .bundle-price { font-size: 1.5rem; font-weight: 700; color: var(--gold); }
     .bundle-price span { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; color: rgba(255,255,255,0.35); }
     .bundle-save { font-family: 'Montserrat', sans-serif; font-size: 0.65rem; font-weight: 700; color: var(--green-light); background: rgba(64,145,108,0.15); padding: 4px 10px; border-radius: 20px; }
@@ -98,16 +110,15 @@
 
     @media (max-width: 1024px) {
       .products-full-grid { grid-template-columns: repeat(2, 1fr); }
-      .bundle-grid { grid-template-columns: 1fr; }
+      .bundle-deal { grid-template-columns: 1fr; gap: 36px; }
+      .bundle-deal-img { max-width: 480px; margin: 0 auto; }
       .why-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 768px) {
       .shop-hero { padding: 110px 24px 56px; }
-      .shop-section { padding: 0 20px 60px; }
+      .shop-section { padding: 52px 20px 60px; }
       .products-full-grid { grid-template-columns: 1fr; }
       .bundle-section { padding: 72px 24px; }
-      .bundle-card { flex-direction: column; text-align: center; }
-      .bundle-footer { justify-content: center; }
       .why-section { padding: 60px 24px; }
       .why-grid { grid-template-columns: 1fr 1fr; }
     }
@@ -197,7 +208,7 @@
 
 <!-- SHOP / PRODUCTS -->
 <section class="shop-section">
-  <div style="max-width:1200px;margin:0 auto;text-align:center;">
+  <div style="max-width:1200px;margin:0 auto;text-align:center;padding-top:20px;">
     <div class="section-label reveal" style="justify-content:center;">Our Collections</div>
     <h2 class="section-title reveal reveal-delay-1">Shop By Collection</h2>
     <p class="section-subtitle reveal reveal-delay-2">All products crafted with 100% natural ingredients for maximum hair health.</p>
@@ -303,29 +314,40 @@
 
 <!-- BUNDLES -->
 <section class="bundle-section">
-  <div style="max-width:1200px;margin:0 auto;text-align:center;">
-    <div class="section-label reveal" style="justify-content:center;color:var(--gold);">Special Deals</div>
+  <div style="max-width:1100px;margin:0 auto;text-align:center;">
+    <div class="section-label reveal" style="justify-content:center;color:var(--gold);">Special Deal</div>
     <h2 class="section-title reveal reveal-delay-1" style="color:var(--white);">Complete Hair Treatment Kit</h2>
-    <p class="section-subtitle reveal reveal-delay-2" style="color:rgba(255,255,255,0.45);">The 3-in-1 bundle for the full 20-day hair restoration treatment — Golden Oil + Black Rose Oil + Herbal Shampoo, all in one pack.</p>
   </div>
-  <div class="bundle-grid" style="grid-template-columns:1fr;max-width:720px;">
-    <div class="bundle-card reveal reveal-delay-1" style="flex-direction:column;text-align:center;padding:40px 36px;">
-      <div class="bundle-icon" style="font-size:2.8rem;">🌕🌹🌿</div>
-      <div class="bundle-info" style="text-align:center;">
-        <h3 style="font-size:1.5rem;margin-bottom:12px;">3-in-1 Hair Complete Kit</h3>
-        <div style="display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin-bottom:16px;">
-          <div style="font-family:'Montserrat',sans-serif;font-size:0.72rem;color:rgba(255,255,255,0.55);">Golden Oil &nbsp;<span style="color:rgba(255,255,255,0.3);text-decoration:line-through;">Rs 1500</span></div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:0.72rem;color:rgba(255,255,255,0.55);">Herbal Shampoo &nbsp;<span style="color:rgba(255,255,255,0.3);text-decoration:line-through;">Rs 1000</span></div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:0.72rem;color:rgba(255,255,255,0.55);">Black Rose Oil &nbsp;<span style="color:rgba(255,255,255,0.3);text-decoration:line-through;">Rs 1500</span></div>
-        </div>
-        <p style="max-width:480px;margin:0 auto 20px;">Complete 20-day treatment for hair fall, greying, dandruff and hair growth. Includes all three products needed for the full 3-phase treatment plan.</p>
-        <div class="bundle-footer" style="justify-content:center;">
-          <div class="bundle-price" style="font-size:2rem;"><span style="font-size:0.85rem;font-weight:400;">Rs</span>3,250</div>
-          <span class="bundle-save" style="font-size:0.72rem;padding:6px 14px;">Save Rs 750</span>
-          <button class="btn-cart" style="background:var(--gold);color:var(--white);padding:12px 28px;" data-name="3-in-1 Hair Complete Kit" data-price="3250" data-img="images/logo.png">🛒 Add to Cart</button>
-        </div>
-      </div>
+
+  <div class="bundle-deal">
+
+    <!-- LEFT: Image -->
+    <div class="bundle-deal-img reveal reveal-delay-1">
+      <img src="images/bundle-kit.png" alt="3-in-1 Hair Complete Kit" onerror="this.style.display='none';this.parentElement.style.background='rgba(255,255,255,0.05)';this.parentElement.style.minHeight='400px'">
     </div>
+
+    <!-- RIGHT: Content -->
+    <div class="bundle-deal-content reveal reveal-delay-2">
+      <div class="section-label" style="margin-bottom:14px;color:var(--gold);">3-in-1 Bundle</div>
+      <h3>ناصر ہربل<br>ہیر کمپلیٹ کٹ</h3>
+      <p>20-day complete treatment for hair fall, greying, dandruff and hair growth. All three products needed for the full 3-phase treatment — in one kit.</p>
+
+      <div class="bundle-items-row">
+        <span class="bundle-item-chip">Golden Oil <s>Rs 1500</s></span>
+        <span class="bundle-item-chip">Herbal Shampoo <s>Rs 1000</s></span>
+        <span class="bundle-item-chip">Black Rose Oil <s>Rs 1500</s></span>
+      </div>
+
+      <div class="bundle-price-row">
+        <div class="bundle-price-big"><sub>Rs </sub>3,250</div>
+        <span class="bundle-save-badge">Save Rs 750</span>
+      </div>
+
+      <button class="bundle-btn btn-cart" data-name="3-in-1 Hair Complete Kit" data-price="3250" data-img="images/logo.png">
+        🛒 Add to Cart
+      </button>
+    </div>
+
   </div>
 </section>
 
@@ -366,7 +388,7 @@
         </div>
         <p>Pure, authentic hair oils crafted since 1948. Trusted by thousands across Pakistan.</p>
         <div class="footer-socials">
-          <a href="https://www.facebook.com/share/1941xcxZDj/" target="_blank" class="social-btn fb" title="Facebook">
+          <a href="https://www.facebook.com/nasiroilexpert" target="_blank" class="social-btn fb" title="Facebook">
             <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           </a>
           <a href="https://www.instagram.com/nasiroilexpert" target="_blank" class="social-btn ig" title="Instagram">

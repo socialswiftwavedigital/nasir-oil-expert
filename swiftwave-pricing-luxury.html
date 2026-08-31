@@ -1,0 +1,431 @@
+<!-- SwiftWave Digital — Luxury Pricing Section (Dark + Purple) — paste into an Elementor HTML widget -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,600&display=swap" rel="stylesheet">
+
+<style>
+  .swdlux-pricing {
+    --bg: #0A0A0D;
+    --bg-soft: #111116;
+    --gold: #990DFF;
+    --gold-bright: #B84DFF;
+    --gold-dim: rgba(153,13,255,0.35);
+    --card-glass: rgba(255,255,255,0.035);
+    --card-border: rgba(255,255,255,0.09);
+    --text-white: #F5F4F2;
+    --text-muted: rgba(245,244,242,0.62);
+    --text-faint: rgba(245,244,242,0.4);
+    --radius: 20px;
+    position: relative;
+    background: var(--bg);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    padding: 100px 20px 90px;
+    overflow: hidden;
+    box-sizing: border-box;
+    isolation: isolate;
+  }
+  .swdlux-pricing * { box-sizing: border-box; }
+
+  .swdlux-glow {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(600px 420px at 82% 8%, rgba(153,13,255,0.16), transparent 60%),
+      radial-gradient(560px 480px at 12% 92%, rgba(153,13,255,0.10), transparent 60%),
+      radial-gradient(900px 500px at 50% 0%, rgba(153,13,255,0.06), transparent 65%);
+  }
+
+  .swdlux-header {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 64px;
+  }
+  .swdlux-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold-dim);
+    background: rgba(153,13,255,0.06);
+    padding: 7px 18px;
+    border-radius: 30px;
+    margin-bottom: 22px;
+  }
+  .swdlux-headline {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 44px;
+    line-height: 1.2;
+    color: var(--text-white);
+    margin: 0 0 18px;
+    letter-spacing: -0.8px;
+  }
+  .swdlux-subheadline {
+    font-size: 16.5px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin: 0;
+    font-weight: 400;
+  }
+
+  .swdlux-grid {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 26px;
+    max-width: 1220px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+
+  .swdlux-card {
+    position: relative;
+    flex: 1 1 320px;
+    max-width: 350px;
+    background: var(--card-glass);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 40px 32px 36px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.45s cubic-bezier(.2,.8,.2,1), box-shadow 0.45s ease, border-color 0.45s ease;
+  }
+  .swdlux-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(153,13,255,0.3);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+  }
+
+  /* ---- Market Leader — the hero card ---- */
+  .swdlux-card--leader {
+    flex: 1.28 1 380px;
+    max-width: 430px;
+    margin-top: -34px;
+    padding: 52px 40px 44px;
+    background: linear-gradient(180deg, rgba(153,13,255,0.07) 0%, rgba(255,255,255,0.035) 45%);
+    border: 1.5px solid var(--gold);
+    box-shadow:
+      0 0 0 1px rgba(153,13,255,0.15),
+      0 25px 70px rgba(153,13,255,0.16),
+      0 10px 40px rgba(0,0,0,0.55);
+    z-index: 2;
+    animation: swdlux-breathe 4.5s ease-in-out infinite;
+  }
+  .swdlux-card--leader:hover {
+    transform: translateY(-14px) scale(1.015);
+    box-shadow:
+      0 0 0 1px rgba(153,13,255,0.28),
+      0 30px 90px rgba(153,13,255,0.28),
+      0 14px 50px rgba(0,0,0,0.6);
+  }
+  @keyframes swdlux-breathe {
+    0%, 100% { box-shadow: 0 0 0 1px rgba(153,13,255,0.15), 0 25px 70px rgba(153,13,255,0.16), 0 10px 40px rgba(0,0,0,0.55); }
+    50% { box-shadow: 0 0 0 1px rgba(153,13,255,0.22), 0 25px 80px rgba(153,13,255,0.24), 0 10px 40px rgba(0,0,0,0.55); }
+  }
+
+  .swdlux-badge {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border-radius: 30px;
+    box-shadow: 0 8px 24px rgba(153,13,255,0.45);
+    white-space: nowrap;
+  }
+
+  .swdlux-plan-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 23px;
+    font-weight: 700;
+    color: var(--text-white);
+    margin: 0 0 8px;
+  }
+  .swdlux-card--leader .swdlux-plan-name { font-size: 27px; color: var(--gold-bright); }
+
+  .swdlux-plan-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin: 0 0 26px;
+    min-height: 44px;
+  }
+
+  .swdlux-price-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 7px;
+    margin-bottom: 26px;
+  }
+  .swdlux-amount {
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--text-white);
+    line-height: 1;
+    letter-spacing: -0.5px;
+  }
+  .swdlux-card--leader .swdlux-amount { font-size: 48px; color: #FFFFFF; }
+  .swdlux-period {
+    font-size: 14px;
+    color: var(--text-faint);
+    font-weight: 500;
+    padding-bottom: 6px;
+  }
+
+  .swdlux-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    font-size: 14.5px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    padding: 15px 20px;
+    border-radius: 12px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+    margin-bottom: 30px;
+  }
+  .swdlux-cta--outline {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.18);
+    color: var(--text-white) !important;
+  }
+  .swdlux-cta--outline:hover {
+    border-color: var(--gold-dim);
+    background: rgba(153,13,255,0.06);
+    transform: translateY(-2px);
+  }
+  .swdlux-cta--gold-outline {
+    border: 1px solid var(--gold-dim);
+    color: var(--gold-bright) !important;
+  }
+  .swdlux-cta--gold-outline:hover {
+    background: rgba(153,13,255,0.1);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+  .swdlux-cta--solid {
+    background: linear-gradient(135deg, var(--gold-bright), var(--gold) 70%);
+    color: #FFFFFF !important;
+    box-shadow: 0 10px 30px rgba(153,13,255,0.35);
+  }
+  .swdlux-cta--solid:hover {
+    box-shadow: 0 14px 40px rgba(153,13,255,0.55);
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, var(--gold-bright), #7A00D9 80%);
+  }
+
+  .swdlux-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.09);
+    margin-bottom: 22px;
+  }
+  .swdlux-card--leader .swdlux-divider { background: rgba(153,13,255,0.22); }
+
+  .swdlux-includes {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(153,13,255,0.08);
+    border: 1px solid rgba(153,13,255,0.18);
+    padding: 9px 14px;
+    border-radius: 9px;
+    margin-bottom: 20px;
+  }
+
+  .swdlux-features {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+  }
+  .swdlux-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    font-size: 14px;
+    color: rgba(245,244,242,0.85);
+    line-height: 1.4;
+    margin-bottom: 15px;
+  }
+  .swdlux-card--leader .swdlux-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 16px;
+    row-gap: 14px;
+  }
+  .swdlux-card--leader .swdlux-features li:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .swdlux-check {
+    flex: 0 0 17px;
+    width: 17px;
+    height: 17px;
+    margin-top: 1px;
+  }
+  .swdlux-check svg { width: 100%; height: 100%; display: block; }
+
+  .swdlux-trust {
+    text-align: center;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 14.5px;
+    color: var(--gold-bright);
+    background: rgba(153,13,255,0.07);
+    border: 1px solid rgba(153,13,255,0.2);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin: 22px 0 0;
+  }
+
+  .swdlux-social-proof {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 560px;
+    margin: 68px auto 0;
+  }
+  .swdlux-stars {
+    color: var(--gold);
+    font-size: 20px;
+    letter-spacing: 4px;
+    margin-bottom: 14px;
+  }
+  .swdlux-social-proof p {
+    font-size: 14.5px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .swdlux-grid { align-items: stretch; }
+    .swdlux-card--leader { margin-top: 0; order: -1; max-width: 480px; flex-basis: 100%; }
+  }
+  @media (max-width: 640px) {
+    .swdlux-pricing { padding: 70px 16px 60px; }
+    .swdlux-headline { font-size: 30px; }
+    .swdlux-card, .swdlux-card--leader { padding: 34px 24px 30px; max-width: 100%; }
+    .swdlux-card--leader .swdlux-features { grid-template-columns: 1fr; }
+    .swdlux-amount { font-size: 34px; }
+    .swdlux-card--leader .swdlux-amount { font-size: 38px; }
+  }
+</style>
+
+<section class="swdlux-pricing">
+  <div class="swdlux-glow"></div>
+
+  <div class="swdlux-header">
+    <span class="swdlux-eyebrow">Investment Plans</span>
+    <h2 class="swdlux-headline">Choose the Growth System That Fits Your Business</h2>
+    <p class="swdlux-subheadline">Whether you're starting out or building a market-leading brand, we have a strategy designed to generate more leads, automate growth, and increase revenue.</p>
+  </div>
+
+  <div class="swdlux-grid">
+
+    <!-- Essential -->
+    <div class="swdlux-card">
+      <h3 class="swdlux-plan-name">Essential</h3>
+      <p class="swdlux-plan-sub">Perfect for businesses getting started.</p>
+      <div class="swdlux-price-row">
+        <span class="swdlux-amount">$2,500</span>
+        <span class="swdlux-period">/ Year</span>
+      </div>
+      <a href="https://wa.me/923366666788?text=Hi%2C%20I%27m%20interested%20in%20the%20Essential%20plan%20(%242%2C500%2FYear)." target="_blank" rel="noopener" class="swdlux-cta swdlux-cta--outline">Get Started</a>
+      <div class="swdlux-divider"></div>
+      <ul class="swdlux-features">
+        <li><span class="swdlux-check"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="rgba(255,255,255,0.08)"/><path d="M7 12.5L10.2 15.5L17 8.5" stroke="#990DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Social Media Management</li>
+        <li><span class="swdlux-check"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="rgba(255,255,255,0.08)"/><path d="M7 12.5L10.2 15.5L17 8.5" stroke="#990DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Premium Graphics</li>
+        <li><span class="swdlux-check"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="rgba(255,255,255,0.08)"/><path d="M7 12.5L10.2 15.5L17 8.5" stroke="#990DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Performance Marketing (Meta &amp; Google Ads)</li>
+        <li><span class="swdlux-check"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="rgba(255,255,255,0.08)"/><path d="M7 12.5L10.2 15.5L17 8.5" stroke="#990DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Monthly Performance Report</li>
+        <li><span class="swdlux-check"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="rgba(255,255,255,0.08)"/><path d="M7 12.5L10.2 15.5L17 8.5" stroke="#990DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Basic Support</li>
+      </ul>
+    </div>
+
+    <!-- Growth -->
+    <div class="swdlux-card">
+      <h3 class="swdlux-plan-name">Growth</h3>
+      <p class="swdlux-plan-sub">For businesses ready to scale.</p>
+      <div class="swdlux-price-row">
+        <span class="swdlux-amount">$7,500</span>
+        <span class="swdlux-period">/ Year</span>
+      </div>
+      <a href="https://wa.me/923366666788?text=Hi%2C%20I%27m%20interested%20in%20the%20Growth%20plan%20(%247%2C500%2FYear)." target="_blank" rel="noopener" class="swdlux-cta swdlux-cta--gold-outline">Scale My Business</a>
+      <div class="swdlux-divider"></div>
+      <div class="swdlux-includes">✓ Includes everything in Essential</div>
+      <ul class="swdlux-features">
+        <li><span class="swdlux-check"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="rgba(255,255,255,0.08)"/><path d="M7 12.5L10.2 15.5L17 8.5" stroke="#990DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>AI Video Reels</li>
+        <li><span class="swdlux-check"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="rgba(255,255,255,0.08)"/><path d="M7 12.5L10.2 15.5L17 8.5" stroke="#990DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Manual Lead Tracking</li>
+        <li><span class="swdlux-check"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="rgba(255,255,255,0.08)"/><path d="M7 12.5L10.2 15.5L17 8.5" stroke="#990DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Monthly Strategy Calls</li>
+        <li><span class="swdlux-check"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="rgba(255,255,255,0.08)"/><path d="M7 12.5L10.2 15.5L17 8.5" stroke="#990DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Priority Support</li>
+        <li><span class="swdlux-check"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="rgba(255,255,255,0.08)"/><path d="M7 12.5L10.2 15.5L17 8.5" stroke="#990DFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Content Planning</li>
+      </ul>
+    </div>
+
+    <!-- Market Leader -->
+    <div class="swdlux-card swdlux-card--leader">
+      <span class="swdlux-badge">⭐ Most Popular</span>
+      <h3 class="swdlux-plan-name">Market Leader</h3>
+      <p class="swdlux-plan-sub">Complete Personal Branding + AI Growth System</p>
+      <div class="swdlux-price-row">
+        <span class="swdlux-amount">$15,000</span>
+        <span class="swdlux-period">/ Year</span>
+      </div>
+      <a href="https://wa.me/923366666788?text=Hi%2C%20I%27m%20interested%20in%20the%20Market%20Leader%20plan%20(%2415%2C000%2FYear).%20I%27d%20like%20to%20book%20a%20strategy%20call." target="_blank" rel="noopener" class="swdlux-cta swdlux-cta--solid">Book Strategy Call →</a>
+      <p class="swdlux-trust">"Most successful clients choose this package."</p>
+      <div class="swdlux-divider" style="margin-top:22px;"></div>
+      <div class="swdlux-includes">✓ Includes everything in Growth</div>
+      <ul class="swdlux-features">
+        <li><span class="swdlux-check"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#990DFF"/><path d="M7 12.5L10.2 15.5L17 8.5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>AI Automations (GoHighLevel)</li>
+        <li><span class="swdlux-check"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#990DFF"/><path d="M7 12.5L10.2 15.5L17 8.5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>AI CRM &amp; Lead Management</li>
+        <li><span class="swdlux-check"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#990DFF"/><path d="M7 12.5L10.2 15.5L17 8.5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Complete Lead Funnels</li>
+        <li><span class="swdlux-check"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#990DFF"/><path d="M7 12.5L10.2 15.5L17 8.5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>AI Appointment Booking</li>
+        <li><span class="swdlux-check"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#990DFF"/><path d="M7 12.5L10.2 15.5L17 8.5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>AI Avatar Videos</li>
+        <li><span class="swdlux-check"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#990DFF"/><path d="M7 12.5L10.2 15.5L17 8.5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Educational Content Strategy</li>
+        <li><span class="swdlux-check"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#990DFF"/><path d="M7 12.5L10.2 15.5L17 8.5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Personal Branding Management</li>
+        <li><span class="swdlux-check"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#990DFF"/><path d="M7 12.5L10.2 15.5L17 8.5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Content Marketing</li>
+        <li><span class="swdlux-check"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#990DFF"/><path d="M7 12.5L10.2 15.5L17 8.5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Email &amp; WhatsApp Automation</li>
+        <li><span class="swdlux-check"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#990DFF"/><path d="M7 12.5L10.2 15.5L17 8.5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Analytics Dashboard</li>
+        <li><span class="swdlux-check"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#990DFF"/><path d="M7 12.5L10.2 15.5L17 8.5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Dedicated Growth Manager</li>
+        <li><span class="swdlux-check"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#990DFF"/><path d="M7 12.5L10.2 15.5L17 8.5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>24/7 Lead Nurturing System</li>
+        <li><span class="swdlux-check"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#990DFF"/><path d="M7 12.5L10.2 15.5L17 8.5" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Saves 20+ Hours Every Week</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="swdlux-social-proof">
+    <div class="swdlux-stars">★★★★★</div>
+    <p>Trusted by ambitious brands and business owners looking for long-term growth.</p>
+  </div>
+</section>
