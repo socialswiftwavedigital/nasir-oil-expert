@@ -322,9 +322,21 @@
 
   <div class="bundle-deal">
 
-    <!-- LEFT: Image -->
-    <div class="bundle-deal-img reveal reveal-delay-1">
-      <img src="images/bundle-kit.png" alt="3-in-1 Hair Complete Kit" onerror="this.style.display='none';this.parentElement.style.background='rgba(255,255,255,0.05)';this.parentElement.style.minHeight='400px'">
+    <!-- LEFT: Image Slider -->
+    <div class="bundle-deal-img reveal reveal-delay-1" style="position:relative;overflow:hidden;border-radius:var(--radius);">
+      <div id="bundleSlider" style="display:flex;transition:transform 0.5s cubic-bezier(0.25,0.8,0.25,1);">
+        <img src="images/box/box1.jpg" alt="Bundle" style="min-width:100%;height:420px;object-fit:cover;">
+        <img src="images/box/box2.jpg" alt="Bundle" style="min-width:100%;height:420px;object-fit:cover;">
+        <img src="images/box/box5.jpg" alt="Bundle" style="min-width:100%;height:420px;object-fit:cover;">
+        <img src="images/box/box6.jpg" alt="Bundle" style="min-width:100%;height:420px;object-fit:cover;">
+      </div>
+      <!-- Dots -->
+      <div id="bundleDots" style="position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:7px;">
+        <span onclick="goBundleSlide(0)" style="width:8px;height:8px;border-radius:50%;background:var(--gold);cursor:pointer;display:block;"></span>
+        <span onclick="goBundleSlide(1)" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;display:block;"></span>
+        <span onclick="goBundleSlide(2)" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;display:block;"></span>
+        <span onclick="goBundleSlide(3)" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.4);cursor:pointer;display:block;"></span>
+      </div>
     </div>
 
     <!-- RIGHT: Content -->
@@ -501,6 +513,17 @@ function slideReels(dir) {
   const cardW = card ? card.offsetWidth + 20 : 300;
   sl.scrollBy({ left: dir * cardW, behavior: 'smooth' });
 }
+
+// Bundle image slider
+let bundleIdx = 0;
+function goBundleSlide(n) {
+  bundleIdx = n;
+  document.getElementById('bundleSlider').style.transform = 'translateX(-' + (n * 100) + '%)';
+  document.querySelectorAll('#bundleDots span').forEach((d, i) => {
+    d.style.background = i === n ? 'var(--gold)' : 'rgba(255,255,255,0.4)';
+  });
+}
+setInterval(() => goBundleSlide((bundleIdx + 1) % 4), 3000);
 </script>
 
 <!-- FOOTER -->
