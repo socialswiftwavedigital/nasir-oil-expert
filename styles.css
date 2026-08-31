@@ -1174,6 +1174,12 @@ footer {
   transition: color 0.3s ease;
 }
 .footer-col ul a:hover { color: var(--gold); }
+.footer-col ul li.footer-sub-link a {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.55);
+  padding-left: 14px;
+}
+.footer-col ul li.footer-sub-link a:hover { color: var(--gold-light); }
 .footer-col .contact-item {
   display: flex;
   align-items: flex-start;
