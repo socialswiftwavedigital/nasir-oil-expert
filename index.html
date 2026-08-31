@@ -438,7 +438,7 @@
       <div id="reelSlider" style="display:flex;gap:20px;overflow:hidden;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;">
 
         <!-- REEL 1 -->
-        <div class="reel-card" style="flex:0 0 calc(25% - 15px);min-width:260px;border-radius:16px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(201,168,76,0.2);">
+        <div class="reel-card" style="flex:0 0 calc(33.33% - 14px);min-width:260px;border-radius:16px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(201,168,76,0.2);">
           <div style="position:relative;padding-top:177.78%;background:#0f0f0f;">
             <video style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" src="images/reels/reel1.mp4" controls playsinline preload="none" poster="images/reels/cover1.jpg"></video>
           </div>
@@ -449,7 +449,7 @@
         </div>
 
         <!-- REEL 2 -->
-        <div class="reel-card" style="flex:0 0 calc(25% - 15px);min-width:260px;border-radius:16px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(201,168,76,0.2);">
+        <div class="reel-card" style="flex:0 0 calc(33.33% - 14px);min-width:260px;border-radius:16px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(201,168,76,0.2);">
           <div style="position:relative;padding-top:177.78%;background:#0f0f0f;">
             <video style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" src="images/reels/reel2.mp4" controls playsinline preload="none" poster="images/reels/cover2.jpg"></video>
           </div>
@@ -460,7 +460,7 @@
         </div>
 
         <!-- REEL 3 -->
-        <div class="reel-card" style="flex:0 0 calc(25% - 15px);min-width:260px;border-radius:16px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(201,168,76,0.2);">
+        <div class="reel-card" style="flex:0 0 calc(33.33% - 14px);min-width:260px;border-radius:16px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(201,168,76,0.2);">
           <div style="position:relative;padding-top:177.78%;background:#0f0f0f;">
             <video style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" src="images/reels/reel3.mp4" controls playsinline preload="none" poster="images/reels/cover3.jpg"></video>
           </div>
@@ -471,7 +471,7 @@
         </div>
 
         <!-- REEL 4 -->
-        <div class="reel-card" style="flex:0 0 calc(25% - 15px);min-width:260px;border-radius:16px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(201,168,76,0.2);">
+        <div class="reel-card" style="flex:0 0 calc(33.33% - 14px);min-width:260px;border-radius:16px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(201,168,76,0.2);">
           <div style="position:relative;padding-top:177.78%;background:#0f0f0f;">
             <video style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" src="images/reels/reel4.mp4" controls playsinline preload="none" poster="images/reels/cover4.jpg"></video>
           </div>
@@ -497,7 +497,9 @@
 <script>
 function slideReels(dir) {
   const sl = document.getElementById('reelSlider');
-  sl.scrollLeft += dir * 280;
+  const card = sl.querySelector('.reel-card');
+  const cardW = card ? card.offsetWidth + 20 : 300;
+  sl.scrollBy({ left: dir * cardW, behavior: 'smooth' });
 }
 </script>
 

@@ -1079,8 +1079,8 @@ footer {
 .social-btn.ig,
 .social-btn.wa,
 .social-btn.yt,
-.social-btn.tt { background: transparent; border-color: var(--gold); color: var(--gold); }
-.social-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--green-deep); opacity: 1; transform: translateY(-3px); }
+.social-btn.tt { background: transparent; border-color: var(--green-light); color: var(--green-light); }
+.social-btn:hover { background: var(--green-light); border-color: var(--green-light); color: var(--white); opacity: 1; transform: translateY(-3px); }
 
 /* ===== WHATSAPP FLOAT BUTTON ===== */
 .wa-float {
