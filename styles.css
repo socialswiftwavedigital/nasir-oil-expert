@@ -1094,10 +1094,10 @@ footer {
 .footer-col ul a {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.78rem;
-  color: rgba(255,255,255,0.72);
+  color: var(--gold-light);
   transition: color 0.3s ease;
 }
-.footer-col ul a:hover { color: var(--gold); }
+.footer-col ul a:hover { color: var(--white); }
 .footer-col .contact-item {
   display: flex;
   align-items: flex-start;
