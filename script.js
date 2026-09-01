@@ -404,30 +404,119 @@ document.addEventListener('DOMContentLoaded', () => {
   initPlaceOrder();
 });
 
-/* ===== CUSTOM VIDEO PLAY BUTTONS ===== */
+/* ===== CUSTOM VIDEO PLAYER ===== */
 (function() {
-  function addPlayBtn(video) {
-    var wrap = video.parentElement;
-    if (!wrap || wrap.querySelector('.vid-play-btn')) return;
-    wrap.style.position = 'relative';
-    var btn = document.createElement('div');
-    btn.className = 'vid-play-btn';
-    btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
-    wrap.appendChild(btn);
-    btn.addEventListener('click', function() {
-      video.play();
-      btn.classList.add('hidden');
-    });
-    video.addEventListener('pause', function() {
-      btn.classList.remove('hidden');
-    });
-    video.addEventListener('play', function() {
-      btn.classList.add('hidden');
-    });
-    video.removeAttribute('controls');
-    video.addEventListener('click', function() {
-      if (video.paused) { video.play(); } else { video.pause(); }
-    });
+  function fmt(s) {
+    s = Math.floor(s || 0);
+    return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2);
   }
-  document.querySelectorAll('video').forEach(addPlayBtn);
+
+  function initVideo(video) {
+    var wrap = video.parentElement;
+    if (!wrap || wrap.querySelector('.vid-controls')) return;
+    wrap.classList.add('vid-outer');
+    wrap.style.position = 'relative';
+
+    // Big centre play button
+    var bigBtn = document.createElement('div');
+    bigBtn.className = 'vid-play-btn';
+    bigBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';
+    wrap.appendChild(bigBtn);
+
+    // Bottom control bar
+    var bar = document.createElement('div');
+    bar.className = 'vid-controls';
+    bar.innerHTML =
+      '<button class="vid-pp" aria-label="Play">' +
+        '<svg class="vi-play" viewBox="0 0 24 24" width="13" height="13" fill="white"><path d="M8 5v14l11-7z"/></svg>' +
+        '<svg class="vi-pause" viewBox="0 0 24 24" width="13" height="13" fill="white" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>' +
+      '</button>' +
+      '<div class="vid-progress"><div class="vid-fill"></div></div>' +
+      '<span class="vid-time">0:00 / 0:00</span>';
+    wrap.appendChild(bar);
+
+    var ppBtn  = bar.querySelector('.vid-pp');
+    var prog   = bar.querySelector('.vid-progress');
+    var fill   = bar.querySelector('.vid-fill');
+    var timeEl = bar.querySelector('.vid-time');
+    var iPlay  = ppBtn.querySelector('.vi-play');
+    var iPause = ppBtn.querySelector('.vi-pause');
+
+    function refresh() {
+      var paused = video.paused;
+      bigBtn.style.opacity = paused ? '1' : '0';
+      bigBtn.style.pointerEvents = paused ? 'all' : 'none';
+      wrap.classList.toggle('paused', paused);
+      iPlay.style.display  = paused  ? 'block' : 'none';
+      iPause.style.display = !paused ? 'block' : 'none';
+      var pct = video.duration ? (video.currentTime / video.duration * 100) : 0;
+      fill.style.width = pct + '%';
+      timeEl.textContent = fmt(video.currentTime) + ' / ' + fmt(video.duration);
+    }
+
+    function seek(e) {
+      if (!video.duration) return;
+      var rect = prog.getBoundingClientRect();
+      var x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+      video.currentTime = Math.max(0, Math.min(1, x / rect.width)) * video.duration;
+    }
+
+    bigBtn.addEventListener('click', function(e) { e.stopPropagation(); video.play(); });
+    ppBtn.addEventListener('click',  function(e) { e.stopPropagation(); video.paused ? video.play() : video.pause(); });
+    video.addEventListener('click', function() { video.paused ? video.play() : video.pause(); });
+    video.addEventListener('play',        refresh);
+    video.addEventListener('pause',       refresh);
+    video.addEventListener('timeupdate',  refresh);
+    video.addEventListener('loadedmetadata', refresh);
+
+    prog.addEventListener('click', seek);
+    prog.addEventListener('touchmove', function(e) { e.preventDefault(); seek(e); }, { passive: false });
+
+    video.removeAttribute('controls');
+    wrap.classList.add('paused');
+    refresh();
+  }
+
+  document.querySelectorAll('video').forEach(initVideo);
+})();
+
+/* ===== REVIEWS SLIDER ===== */
+(function() {
+  var track = document.querySelector('.rev-track');
+  if (!track) return;
+  var cards = Array.from(track.children);
+  var n = cards.length;
+  var cur = 0;
+
+  function perView() { return window.innerWidth <= 768 ? 1 : 3; }
+
+  function maxIdx() { return Math.max(0, n - perView()); }
+
+  function goTo(idx) {
+    cur = Math.max(0, Math.min(idx, maxIdx()));
+    var card = cards[0];
+    var gap = 24;
+    var w = card.getBoundingClientRect().width + gap;
+    track.style.transform = 'translateX(-' + (cur * w) + 'px)';
+    var prev = document.querySelector('.rev-prev');
+    var next = document.querySelector('.rev-next');
+    if (prev) prev.disabled = cur === 0;
+    if (next) next.disabled = cur >= maxIdx();
+  }
+
+  var prev = document.querySelector('.rev-prev');
+  var next = document.querySelector('.rev-next');
+  if (prev) prev.addEventListener('click', function() { goTo(cur - 1); });
+  if (next) next.addEventListener('click', function() { goTo(cur + 1); });
+
+  // Touch swipe
+  var sx = 0;
+  track.addEventListener('touchstart', function(e) { sx = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend',   function(e) {
+    var dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 48) goTo(cur + (dx < 0 ? 1 : -1));
+  });
+
+  window.addEventListener('resize', function() { cur = 0; goTo(0); });
+  goTo(0);
 })();
