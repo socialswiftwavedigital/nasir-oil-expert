@@ -487,41 +487,93 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* ===== REVIEWS SLIDER ===== */
 (function() {
-  var track = document.querySelector('.rev-track');
-  if (!track) return;
-  var cards = Array.from(track.children);
-  var n = cards.length;
-  var cur = 0;
+  function initSlider(track, prevBtn, nextBtn, gap, autoDelay) {
+    var cards = Array.from(track.children);
+    var n = cards.length;
+    var cur = 0, autoTimer;
 
-  function perView() { return window.innerWidth <= 768 ? 1 : 3; }
+    function pv() {
+      var w = window.innerWidth;
+      if (w <= 768) return 1;
+      if (w <= 1024) return Math.min(2, n);
+      return Math.min(3, n);
+    }
 
-  function maxIdx() { return Math.max(0, n - perView()); }
+    function maxIdx() { return Math.max(0, n - pv()); }
 
-  function goTo(idx) {
-    cur = Math.max(0, Math.min(idx, maxIdx()));
-    var card = cards[0];
-    var gap = 24;
-    var w = card.getBoundingClientRect().width + gap;
-    track.style.transform = 'translateX(-' + (cur * w) + 'px)';
-    var prev = document.querySelector('.rev-prev');
-    var next = document.querySelector('.rev-next');
-    if (prev) prev.disabled = cur === 0;
-    if (next) next.disabled = cur >= maxIdx();
+    function setWidths() {
+      var p = pv(), g = gap;
+      cards.forEach(function(c) {
+        c.style.flex = '0 0 calc(' + (100 / p) + '% - ' + (g * (p - 1) / p) + 'px)';
+      });
+    }
+
+    function goTo(idx) {
+      cur = ((idx % n) + n) % n;
+      if (cur > maxIdx()) cur = 0;
+      var w = cards[0].getBoundingClientRect().width + gap;
+      track.style.transform = 'translateX(-' + (cur * w) + 'px)';
+    }
+
+    function startAuto() {
+      autoTimer = setInterval(function() { goTo(cur + 1); }, autoDelay);
+    }
+
+    function resetAuto() { clearInterval(autoTimer); startAuto(); }
+
+    if (prevBtn) prevBtn.addEventListener('click', function() { goTo(cur - 1); resetAuto(); });
+    if (nextBtn) nextBtn.addEventListener('click', function() { goTo(cur + 1); resetAuto(); });
+
+    var sx = 0;
+    track.addEventListener('touchstart', function(e) { sx = e.touches[0].clientX; clearInterval(autoTimer); }, { passive: true });
+    track.addEventListener('touchend', function(e) {
+      var dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 48) goTo(cur + (dx < 0 ? 1 : -1));
+      startAuto();
+    });
+
+    window.addEventListener('resize', function() { setWidths(); cur = 0; goTo(0); });
+    setWidths();
+    goTo(0);
+    startAuto();
   }
 
-  var prev = document.querySelector('.rev-prev');
-  var next = document.querySelector('.rev-next');
-  if (prev) prev.addEventListener('click', function() { goTo(cur - 1); });
-  if (next) next.addEventListener('click', function() { goTo(cur + 1); });
+  // Home page — already has HTML slider structure
+  var homeTrack = document.querySelector('.rev-track');
+  if (homeTrack) {
+    initSlider(homeTrack, document.querySelector('.rev-prev'), document.querySelector('.rev-next'), 24, 4000);
+  }
 
-  // Touch swipe
-  var sx = 0;
-  track.addEventListener('touchstart', function(e) { sx = e.touches[0].clientX; }, { passive: true });
-  track.addEventListener('touchend',   function(e) {
-    var dx = e.changedTouches[0].clientX - sx;
-    if (Math.abs(dx) > 48) goTo(cur + (dx < 0 ? 1 : -1));
+  // Product pages / reviews page — convert .reviews-grid to slider
+  document.querySelectorAll('.reviews-grid').forEach(function(grid) {
+    var cards = Array.from(grid.querySelectorAll('.review-card'));
+    if (cards.length < 2) return;
+
+    var wrap   = document.createElement('div');  wrap.className = 'rs-wrap';
+    var slider = document.createElement('div');  slider.className = 'rs-slider';
+    var track  = document.createElement('div');  track.className = 'rs-track';
+
+    var prevBtn = document.createElement('button');
+    prevBtn.className = 'rs-nav-btn rs-prev';
+    prevBtn.innerHTML = '&#8249;';
+    prevBtn.setAttribute('aria-label', 'Previous review');
+
+    var nextBtn = document.createElement('button');
+    nextBtn.className = 'rs-nav-btn rs-next';
+    nextBtn.innerHTML = '&#8250;';
+    nextBtn.setAttribute('aria-label', 'Next review');
+
+    cards.forEach(function(c) {
+      c.classList.remove('reveal', 'reveal-left', 'reveal-right', 'reveal-delay-1', 'reveal-delay-2', 'reveal-delay-3');
+      track.appendChild(c);
+    });
+
+    slider.appendChild(track);
+    wrap.appendChild(prevBtn);
+    wrap.appendChild(slider);
+    wrap.appendChild(nextBtn);
+    grid.parentNode.replaceChild(wrap, grid);
+
+    initSlider(track, prevBtn, nextBtn, 20, 4000);
   });
-
-  window.addEventListener('resize', function() { cur = 0; goTo(0); });
-  goTo(0);
 })();

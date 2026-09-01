@@ -1962,3 +1962,29 @@ textarea.form-control { min-height: 120px; resize: vertical; }
   .rev-prev { left: calc(50% - 46px); }
   .rev-next { right: calc(50% - 46px); }
 }
+
+/* === REVIEWS GRID AUTO-SLIDER (product pages / reviews page) === */
+.rs-wrap { position: relative; padding: 0 44px; }
+.rs-slider { overflow: hidden; }
+.rs-track {
+  display: flex; gap: 20px;
+  transition: transform 0.45s cubic-bezier(0.25,0.8,0.25,1);
+  will-change: transform;
+}
+.rs-nav-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--white); border: 1.5px solid var(--cream-dark);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 2; transition: all 0.2s; font-size: 1.2rem;
+  color: var(--text-dark);
+}
+.rs-nav-btn:hover { background: var(--green-deep); color: var(--white); border-color: var(--green-deep); }
+.rs-prev { left: 0; }
+.rs-next { right: 0; }
+@media(max-width:768px) {
+  .rs-wrap { padding: 0 0 48px; }
+  .rs-nav-btn { top: auto; bottom: 4px; transform: none; width: 36px; height: 36px; font-size: 1rem; }
+  .rs-prev { left: calc(50% - 46px); }
+  .rs-next { right: calc(50% - 46px); }
+}
