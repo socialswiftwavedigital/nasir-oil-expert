@@ -211,6 +211,11 @@ h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 700; lin
 
 /* Collections Dropdown */
 .nav-has-dropdown { position: relative; }
+.nav-has-dropdown::after {
+  content: ''; position: absolute;
+  left: 0; right: 0; top: 100%;
+  height: 14px;
+}
 .nav-dropdown {
   position: absolute; top: calc(100% + 14px); left: 50%;
   transform: translateX(-50%) translateY(-8px);
