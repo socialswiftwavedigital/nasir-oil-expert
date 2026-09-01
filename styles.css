@@ -128,6 +128,7 @@ h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 700; lin
 }
 .cursor.hovered { transform: translate(-50%, -50%) scale(1.8); background: var(--green-deep); }
 .cursor-follower.hovered { width: 54px; height: 54px; opacity: 0.3; }
+@media (pointer: coarse) { .cursor, .cursor-follower { display: none; } }
 
 /* ===== NAVBAR ===== */
 .navbar {
