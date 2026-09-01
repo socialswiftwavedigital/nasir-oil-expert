@@ -469,8 +469,13 @@ document.addEventListener('DOMContentLoaded', () => {
     video.addEventListener('timeupdate',  refresh);
     video.addEventListener('loadedmetadata', refresh);
 
+    var dragging = false;
     prog.addEventListener('click', seek);
-    prog.addEventListener('touchmove', function(e) { e.preventDefault(); seek(e); }, { passive: false });
+    prog.addEventListener('mousedown', function(e) { dragging = true; seek(e); e.preventDefault(); });
+    document.addEventListener('mousemove', function(e) { if (dragging) seek(e); });
+    document.addEventListener('mouseup',   function()  { dragging = false; });
+    prog.addEventListener('touchstart', function(e) { e.preventDefault(); seek(e); }, { passive: false });
+    prog.addEventListener('touchmove',  function(e) { e.preventDefault(); seek(e); }, { passive: false });
 
     video.removeAttribute('controls');
     wrap.classList.add('paused');
