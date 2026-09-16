@@ -21,21 +21,21 @@
 <nav class="navbar scrolled" id="navbar">
   <a href="/" class="nav-logo">
     <img src="images/logo.png" alt="Nasir Oil Expert" class="nav-logo-img">
-    <div class="nav-logo-text">Nasir Oil Expert<span>Pure &amp; Authentic Oils</span></div>
+    <div class="nav-logo-text">Nasir Oil Expert<span data-i18n="ft.tagline">Pure &amp; Authentic Oils</span></div>
   </a>
   <ul class="nav-links">
-    <li><a href="/">Home</a></li>
-    <li class="nav-has-dropdown"><a href="products">Collections &#9660;</a><ul class="nav-dropdown"><li><a href="bundle-kit">Bundle Kit</a></li><li><a href="golden-oil">Golden Oil</a></li><li><a href="black-rose-oil">Black Rose Oil</a></li><li><a href="herbal-shampoo">Herbal Shampoo</a></li></ul></li>
-    <li><a href="about">About</a></li>
-    <li><a href="reviews">Reviews</a></li>
-    <li><a href="contact">Contact</a></li>
+    <li><a href="/" data-i18n="nav.home">Home</a></li>
+    <li class="nav-has-dropdown"><a href="products" data-i18n="nav.collections">Collections &#9660;</a><ul class="nav-dropdown"><li><a href="bundle-kit" data-i18n="nav.bundleKit">Bundle Kit</a></li><li><a href="golden-oil" data-i18n="nav.goldenOil">Golden Oil</a></li><li><a href="black-rose-oil" data-i18n="nav.blackRoseOil">Black Rose Oil</a></li><li><a href="herbal-shampoo" data-i18n="nav.herbalShampoo">Herbal Shampoo</a></li></ul></li>
+    <li><a href="about" data-i18n="nav.about">About</a></li>
+    <li><a href="reviews" data-i18n="nav.reviews">Reviews</a></li>
+    <li><a href="contact" data-i18n="nav.contact">Contact</a></li>
   </ul>
   <div class="nav-right">
     <a href="cart" class="cart-icon-btn" title="Cart">
       <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
       <span class="cart-count">0</span>
     </a>
-    <a href="products" class="nav-cta">Shop Now</a>
+    <a href="products" class="nav-cta" data-i18n="rv.cta.shop">Shop Now</a>
     <button class="lang-toggle" onclick="noeToggleLang()" data-active="en" title="Switch Language"><span>EN</span><span>اردو</span></button>
   </div>
   <div class="nav-hamburger"><span></span><span></span><span></span></div>
@@ -44,24 +44,25 @@
 <!-- MOBILE NAV -->
 <div class="mobile-nav">
   <button class="mobile-nav-close">&#10005;</button>
-  <a href="/">Home</a>
-  <a href="products">Collections</a>
-  <a href="bundle-kit" class="mn-sub-link">&#9656; Bundle Kit</a>
-  <a href="golden-oil" class="mn-sub-link">&#9656; Golden Oil</a>
-  <a href="black-rose-oil" class="mn-sub-link">&#9656; Black Rose Oil</a>
-  <a href="herbal-shampoo" class="mn-sub-link">&#9656; Herbal Shampoo</a>
-  <a href="about">About</a>
-  <a href="contact">Contact</a>
-  <a href="reviews">Reviews</a>
-  <a href="cart" style="color:var(--gold);font-weight:700;">&#128722; Cart</a>
+  <a href="/" data-i18n="nav.home">Home</a>
+  <a href="products" data-i18n="nav.collections">Collections</a>
+  <a href="bundle-kit" class="mn-sub-link" data-i18n="nav.bundleKit">&#9656; Bundle Kit</a>
+  <a href="golden-oil" class="mn-sub-link" data-i18n="nav.goldenOil">&#9656; Golden Oil</a>
+  <a href="black-rose-oil" class="mn-sub-link" data-i18n="nav.blackRoseOil">&#9656; Black Rose Oil</a>
+  <a href="herbal-shampoo" class="mn-sub-link" data-i18n="nav.herbalShampoo">&#9656; Herbal Shampoo</a>
+  <a href="about" data-i18n="nav.about">About</a>
+  <a href="contact" data-i18n="nav.contact">Contact</a>
+  <a href="reviews" data-i18n="nav.reviews">Reviews</a>
+  <a href="cart" style="color:var(--gold);font-weight:700;" data-i18n="nav.cart">&#128722; Cart</a>
+  <button class="lang-toggle" onclick="noeToggleLang()" data-active="en" style="margin:16px auto 0;display:flex;"><span>EN</span><span>اردو</span></button>
 </div>
 
 <!-- PAGE HERO -->
 <section class="page-hero" style="padding-top:80px;min-height:200px;">
   <div class="page-hero-content">
-    <div class="section-label" style="justify-content:center;margin-bottom:12px;">Secure Checkout</div>
-    <h1 style="font-size:clamp(1.8rem,4vw,2.8rem);">Place Your Order</h1>
-    <div class="breadcrumb"><a href="/">Home</a> / <a href="cart">Cart</a> / Checkout</div>
+    <div class="section-label" style="justify-content:center;margin-bottom:12px;" data-i18n="co.hero.label">Secure Checkout</div>
+    <h1 style="font-size:clamp(1.8rem,4vw,2.8rem);" data-i18n="co.h1">Place Your Order</h1>
+    <div class="breadcrumb"><a href="/" data-i18n="bc.home">Home</a> / <a href="cart" data-i18n="bc.cart">Cart</a> / <span data-i18n="bc.checkout">Checkout</span></div>
   </div>
 </section>
 
@@ -70,17 +71,17 @@
   <div style="max-width:700px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:0;font-family:'Montserrat',sans-serif;font-size:0.72rem;">
     <div style="display:flex;align-items:center;gap:6px;color:var(--text-light);">
       <div style="width:24px;height:24px;border-radius:50%;background:#e2e8f0;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;">✓</div>
-      <span>Cart</span>
+      <span data-i18n="bc.cart">Cart</span>
     </div>
     <div style="width:48px;height:1px;background:#e2e8f0;margin:0 8px;"></div>
     <div style="display:flex;align-items:center;gap:6px;color:var(--green-mid);font-weight:600;">
       <div style="width:24px;height:24px;border-radius:50%;background:var(--green-mid);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;">2</div>
-      <span>Checkout</span>
+      <span data-i18n="bc.checkout">Checkout</span>
     </div>
     <div style="width:48px;height:1px;background:#e2e8f0;margin:0 8px;"></div>
     <div style="display:flex;align-items:center;gap:6px;color:var(--text-light);">
       <div style="width:24px;height:24px;border-radius:50%;background:#e2e8f0;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;">3</div>
-      <span>Confirm</span>
+      <span data-i18n="co.step.confirm">Confirm</span>
     </div>
   </div>
 </div>
@@ -94,22 +95,22 @@
     <div id="checkoutFormWrap">
       <!-- SHIPPING -->
       <div class="checkout-section-card">
-        <h3><span class="step-num">1</span> Delivery Information</h3>
+        <h3><span class="step-num">1</span> <span data-i18n="co.delivery.title">Delivery Information</span></h3>
         <form id="checkoutForm">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:0;" class="form-2col">
             <div class="co-field">
-              <label>Full Name *</label>
+              <label data-i18n="co.name.label">Full Name *</label>
               <input type="text" name="fullName" placeholder="Your full name" required>
             </div>
             <div class="co-field">
-              <label>Phone Number *</label>
+              <label data-i18n="co.phone.label">Phone Number *</label>
               <input type="tel" name="phone" placeholder="03XX-XXXXXXX" required>
             </div>
           </div>
           <div class="co-field">
-            <label>City *</label>
+            <label data-i18n="co.city.label">City *</label>
             <select name="city" required>
-              <option value="">Select your city</option>
+              <option value="" data-i18n="co.city.select">Select your city</option>
               <option>Karachi</option>
               <option>Lahore</option>
               <option>Islamabad</option>
@@ -127,13 +128,13 @@
             </select>
           </div>
           <div class="co-field">
-            <label>Full Address *</label>
+            <label data-i18n="co.address.label">Full Address *</label>
             <textarea name="address" rows="3" placeholder="House no., street, area, city..." required></textarea>
           </div>
 
           <!-- PAYMENT -->
           <div class="checkout-section-card" style="margin-top:22px;padding:22px;">
-            <h3 style="margin-bottom:18px;"><span class="step-num">2</span> Payment Method</h3>
+            <h3 style="margin-bottom:18px;"><span class="step-num">2</span> <span data-i18n="co.payment.title">Payment Method</span></h3>
 
             <div class="payment-methods">
 
@@ -142,8 +143,8 @@
                 <div class="payment-card">
                   <div class="payment-icon-wrap">💵</div>
                   <div class="payment-info">
-                    <div class="payment-name">Cash on Delivery (COD)</div>
-                    <div class="payment-sub">Pay cash when your order is delivered</div>
+                    <div class="payment-name" data-i18n="co.cod.name">Cash on Delivery (COD)</div>
+                    <div class="payment-sub" data-i18n="co.cod.sub">Pay cash when your order is delivered</div>
                   </div>
                   <div class="payment-check">✓</div>
                 </div>
@@ -155,18 +156,18 @@
             <!-- COD info -->
             <div class="payment-detail-box show" id="detail-cod">
               <div class="detail-box-icon">💵</div>
-              <p>Cash on Delivery — Pay at home when your order arrives. No advance payment needed.</p>
-              <p style="margin-top:6px;font-weight:600;">✅ Rs 250 delivery charges — Free on orders over Rs 5,000!</p>
+              <p data-i18n="co.cod.info">Cash on Delivery — Pay at home when your order arrives. No advance payment needed.</p>
+              <p style="margin-top:6px;font-weight:600;" data-i18n="co.freedel.p">✅ Rs 250 delivery charges — Free on orders over Rs 5,000!</p>
             </div>
 
 
           </div>
 
-          <button type="submit" class="place-order-btn">
+          <button type="submit" class="place-order-btn" data-i18n="co.place.order">
             🛒 Place Order
           </button>
 
-          <p style="font-family:'Montserrat',sans-serif;font-size:0.7rem;color:var(--text-light);text-align:center;margin-top:12px;">You will receive a WhatsApp confirmation after placing your order</p>
+          <p style="font-family:'Montserrat',sans-serif;font-size:0.7rem;color:var(--text-light);text-align:center;margin-top:12px;" data-i18n="co.wa.confirm">You will receive a WhatsApp confirmation after placing your order</p>
         </form>
       </div>
     </div>
@@ -174,32 +175,32 @@
     <!-- ORDER SUCCESS -->
     <div id="orderSuccess" class="order-success">
       <div class="success-icon">✅</div>
-      <h2>Order Placed!</h2>
-      <p>Thank you! Your order has been received. You will get a WhatsApp confirmation shortly.</p>
+      <h2 data-i18n="co.success.title">Order Placed!</h2>
+      <p data-i18n="co.success.p1">Thank you! Your order has been received. You will get a WhatsApp confirmation shortly.</p>
       <p id="successPhone" style="font-weight:600;font-size:1rem;margin:12px 0;color:var(--green-mid);"></p>
-      <p style="font-size:0.8rem;color:var(--text-light);">WhatsApp is opening — your order details will be sent automatically.</p>
+      <p style="font-size:0.8rem;color:var(--text-light);" data-i18n="co.success.p2">WhatsApp is opening — your order details will be sent automatically.</p>
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px;">
-        <a href="/" class="btn-primary" style="display:inline-flex;">Go to Home <span class="arrow">→</span></a>
-        <a href="products" class="btn-secondary">Browse More Products</a>
+        <a href="/" class="btn-primary" style="display:inline-flex;" data-i18n="co.success.home">Go to Home <span class="arrow">→</span></a>
+        <a href="products" class="btn-secondary" data-i18n="co.success.browse">Browse More Products</a>
       </div>
     </div>
     </div><!-- /checkout-left-col -->
 
     <!-- RIGHT: Order Summary -->
     <div class="co-summary-wrap">
-      <h3>Order Summary</h3>
+      <h3 data-i18n="cart.summary">Order Summary</h3>
       <div id="checkoutItemsList" class="co-items-list"></div>
       <div class="summary-divider" style="margin:14px 0;"></div>
-      <div class="summary-row"><span>Subtotal</span><span id="coSubtotal">Rs 0</span></div>
-      <div class="summary-row"><span>Delivery</span><span id="coDelivery">Rs 250</span></div>
+      <div class="summary-row"><span data-i18n="cart.subtotal">Subtotal</span><span id="coSubtotal">Rs 0</span></div>
+      <div class="summary-row"><span data-i18n="cart.delivery.label">Delivery</span><span id="coDelivery">Rs 250</span></div>
       <div class="summary-divider" style="margin:10px 0;"></div>
-      <div class="summary-row total"><span>Total</span><span id="coTotal">Rs 0</span></div>
-      <div class="free-delivery-note" style="margin-top:14px;"><span>🚚</span> Rs 250 delivery charges — Free on orders over Rs 5,000!</div>
-      <a href="cart" style="display:flex;align-items:center;justify-content:center;gap:6px;margin-top:18px;font-family:'Montserrat',sans-serif;font-size:0.74rem;color:var(--text-light);text-decoration:none;">← Back to Cart</a>
+      <div class="summary-row total"><span data-i18n="cart.total">Total</span><span id="coTotal">Rs 0</span></div>
+      <div class="free-delivery-note" style="margin-top:14px;"><span>🚚</span> <span data-i18n="cart.freedel">Rs 250 delivery charges — Free on orders over Rs 5,000!</span></div>
+      <a href="cart" style="display:flex;align-items:center;justify-content:center;gap:6px;margin-top:18px;font-family:'Montserrat',sans-serif;font-size:0.74rem;color:var(--text-light);text-decoration:none;" data-i18n="co.back.cart">← Back to Cart</a>
 
       <div style="margin-top:22px;padding:14px;background:var(--cream);border-radius:8px;border:1px solid rgba(0,0,0,0.05);">
-        <div style="font-family:'Montserrat',sans-serif;font-size:0.66rem;text-transform:uppercase;letter-spacing:0.08em;font-weight:700;color:var(--text-dark);margin-bottom:10px;">Safe &amp; Secure</div>
-        <div style="font-family:'Montserrat',sans-serif;font-size:0.74rem;color:var(--text-light);line-height:1.7;">
+        <div style="font-family:'Montserrat',sans-serif;font-size:0.66rem;text-transform:uppercase;letter-spacing:0.08em;font-weight:700;color:var(--text-dark);margin-bottom:10px;" data-i18n="co.secure.title">Safe &amp; Secure</div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:0.74rem;color:var(--text-light);line-height:1.7;" data-i18n-html="co.secure.list">
           🔒 Your information is secure<br>
           🚚 Fast nationwide delivery<br>
           💵 COD available<br>
@@ -218,9 +219,9 @@
       <div class="footer-brand">
         <div class="nav-logo" style="margin-bottom:14px;">
           <img src="images/logo.png" alt="Nasir Oil Expert" style="border-radius:50%;width:42px;height:42px;object-fit:cover;border:2px solid var(--gold);">
-          <span class="nav-logo-text">Nasir Oil Expert<span>Pure &amp; Authentic Oils</span></span>
+          <span class="nav-logo-text">Nasir Oil Expert<span data-i18n="ft.tagline">Pure &amp; Authentic Oils</span></span>
         </div>
-        <p>Your destination for natural, effective products that nurture stronger, healthier hair.</p>
+        <p data-i18n="ft.brand.desc">Your destination for natural, effective products that nurture stronger, healthier hair.</p>
         <div class="footer-socials">
           <a href="https://www.facebook.com/nasiroilexpert" target="_blank" class="social-btn fb" title="Facebook">
             <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
@@ -238,24 +239,24 @@
             <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.77a4.85 4.85 0 01-1.02-.08z"/></svg>
           </a>
         </div>      </div>
-      <div class="footer-col"><h4>Quick Links</h4><ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="products">Collections</a></li>
-          <li><a href="reviews">Reviews</a></li>
-          <li><a href="about">About Us</a></li>
-          <li><a href="contact">Contact</a></li>
+      <div class="footer-col"><h4 data-i18n="ft.quickLinks">Quick Links</h4><ul>
+          <li><a href="/" data-i18n="ft.home">Home</a></li>
+          <li><a href="products" data-i18n="ft.collections">Collections</a></li>
+          <li><a href="reviews" data-i18n="ft.reviews">Reviews</a></li>
+          <li><a href="about" data-i18n="ft.about">About Us</a></li>
+          <li><a href="contact" data-i18n="ft.contactLink">Contact</a></li>
         </ul></div>
-      <div class="footer-col"><h4>Products</h4><ul><li><a href="products.html#golden-oil">Golden Oil</a></li><li><a href="products.html#black-rose-oil">Black Rose Oil</a></li><li><a href="products.html#herbal-shampoo">Herbal Shampoo</a></li><li><a href="products">Combo Deals</a></li></ul></div>
+      <div class="footer-col"><h4 data-i18n="ft.products">Products</h4><ul><li><a href="golden-oil" data-i18n="ft.prod.golden">Golden Oil</a></li><li><a href="black-rose-oil" data-i18n="ft.prod.rose">Black Rose Oil</a></li><li><a href="herbal-shampoo" data-i18n="ft.prod.shampoo">Herbal Shampoo</a></li><li><a href="products" data-i18n="ft.prod.combos">Combo Deals</a></li></ul></div>
       <div class="footer-col">
-        <h4>Contact</h4>
+        <h4 data-i18n="ft.contact">Contact</h4>
         <a href="mailto:nasiroilexpert@gmail.com" class="contact-item"><span class="icon">📧</span>nasiroilexpert@gmail.com</a>
         <a href="tel:+923211112280" class="contact-item"><span class="icon">📞</span>0321-1112280</a>
-        <a href="https://wa.me/923211112280" class="contact-item" target="_blank"><span class="icon">💬</span>WhatsApp Order</a>
+        <a href="https://wa.me/923211112280" class="contact-item" target="_blank"><span class="icon">💬</span><span data-i18n="ft.waOrder">WhatsApp Order</span></a>
         <div class="contact-item"><span class="icon">📍</span>Pakistan, Nationwide</div>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 Nasir Oil Expert. All rights reserved.</p>
+      <p data-i18n="ft.rights">© 2026 Nasir Oil Expert. All rights reserved.</p>
     </div>
   </div>
 </footer>
