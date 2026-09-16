@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — Nasir Oil Expert</title>
+  <meta name="description" content="Get in touch with Nasir Oil Expert for orders, inquiries, or support. Call, WhatsApp, or email us." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=20260916" />
+  <style>
+    .contact-layout { display:grid; grid-template-columns:1fr 1.4fr; gap:52px; max-width:1100px; margin:0 auto; padding:80px 24px 60px; }
+    .contact-info-col h2 { font-size:clamp(1.6rem,3.5vw,2.4rem); color:var(--text-dark); margin-bottom:12px; }
+    .contact-info-col > p { font-family:'Montserrat',sans-serif; font-size:0.82rem; color:var(--text-light); line-height:1.9; margin-bottom:36px; }
+    .contact-card { display:flex; align-items:flex-start; gap:16px; padding:20px; background:var(--white); border-radius:var(--radius-sm); border:1px solid rgba(0,0,0,0.05); box-shadow:var(--shadow-sm); margin-bottom:14px; text-decoration:none; transition:all 0.3s ease; }
+    .contact-card:hover { border-color:var(--gold); transform:translateY(-3px); box-shadow:var(--shadow-md); }
+    .contact-card-icon { width:46px; height:46px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; background:var(--cream); transition:all 0.3s ease; }
+    .contact-card:hover .contact-card-icon { background:var(--green-light); }
+    .contact-card-body h4 { font-size:0.82rem; font-family:'Montserrat',sans-serif; font-weight:600; color:var(--text-dark); margin-bottom:2px; }
+    .contact-card-body span { font-family:'Montserrat',sans-serif; font-size:0.8rem; color:var(--text-light); word-break:break-all; }
+    .contact-form-wrap { background:var(--white); border-radius:var(--radius); padding:42px; box-shadow:var(--shadow-md); border:1px solid rgba(0,0,0,0.04); }
+    .contact-form-wrap h3 { font-size:1.45rem; color:var(--text-dark); margin-bottom:24px; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .form-group { margin-bottom:16px; }
+    .form-group label { display:block; font-family:'Montserrat',sans-serif; font-size:0.7rem; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-dark); margin-bottom:6px; }
+    .form-group input, .form-group select, .form-group textarea { width:100%; padding:12px 14px; border:1.5px solid #e2e8f0; border-radius:8px; font-family:'Montserrat',sans-serif; font-size:0.82rem; color:var(--text-dark); background:var(--bg-light); transition:all 0.3s ease; outline:none; box-sizing:border-box; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--green-mid); background:var(--white); box-shadow:0 0 0 3px rgba(82,153,81,0.08); }
+    .form-group textarea { resize:vertical; min-height:110px; }
+    .wa-order-btn { display:flex; align-items:center; gap:10px; justify-content:center; width:100%; padding:14px; background:#25D366; color:#fff; border:none; border-radius:8px; font-family:'Montserrat',sans-serif; font-size:0.85rem; font-weight:600; cursor:pointer; text-decoration:none; margin-top:10px; transition:all 0.3s ease; }
+    .wa-order-btn:hover { background:#128C7E; transform:translateY(-2px); }
+    .form-divider { text-align:center; font-family:'Montserrat',sans-serif; font-size:0.72rem; color:var(--text-light); margin:14px 0; position:relative; }
+    .form-divider::before,.form-divider::after { content:''; position:absolute; top:50%; width:42%; height:1px; background:#e2e8f0; }
+    .form-divider::before { left:0; }
+    .form-divider::after { right:0; }
+    .map-placeholder { height:260px; background:linear-gradient(135deg,var(--cream),#e8f5e9); border-radius:var(--radius); display:flex; flex-direction:column; align-items:center; justify-content:center; margin-top:52px; border:1px solid rgba(0,0,0,0.06); }
+    .map-placeholder .map-icon { font-size:2.8rem; margin-bottom:10px; }
+    .map-placeholder h4 { font-size:1rem; color:var(--text-dark); margin-bottom:4px; }
+    .map-placeholder p { font-family:'Montserrat',sans-serif; font-size:0.76rem; color:var(--text-light); }
+    .faq-list { max-width:700px; margin:56px auto 0; }
+    .faq-item { border:1px solid rgba(0,0,0,0.06); border-radius:var(--radius-sm); margin-bottom:10px; overflow:hidden; }
+    .faq-question { padding:18px 20px; font-family:'Montserrat',sans-serif; font-size:0.84rem; font-weight:600; color:var(--text-dark); cursor:pointer; display:flex; justify-content:space-between; align-items:center; background:var(--white); transition:all 0.3s ease; }
+    .faq-question:hover { background:var(--cream); }
+    .faq-question .faq-arrow { font-size:1.1rem; transition:transform 0.3s ease; color:var(--green-mid); }
+    .faq-question.open .faq-arrow { transform:rotate(45deg); }
+    .faq-answer { display:none; padding:0 20px 16px; font-family:'Montserrat',sans-serif; font-size:0.8rem; color:var(--text-light); line-height:1.8; }
+    .faq-answer.open { display:block; }
+    @media(max-width:900px){ .contact-layout{grid-template-columns:1fr;} .form-row{grid-template-columns:1fr;} }
+    @media(max-width:600px){ .contact-form-wrap{padding:24px;} }
+  </style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar scrolled" id="navbar">
+  <a href="/" class="nav-logo">
+    <img src="images/logo.png" alt="Nasir Oil Expert" class="nav-logo-img">
+    <div class="nav-logo-text"><span data-i18n="nav.logo.name">Nasir Oil Expert</span><span data-i18n="ft.tagline">Pure &amp; Authentic Oils</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/" data-i18n="nav.home">Home</a></li>
+    <li class="nav-has-dropdown"><a href="products" data-i18n="nav.collections">Collections &#9660;</a><ul class="nav-dropdown"><li><a href="bundle-kit" data-i18n="nav.bundleKit">Bundle Kit</a></li><li><a href="golden-oil" data-i18n="nav.goldenOil">Golden Oil</a></li><li><a href="black-rose-oil" data-i18n="nav.blackRoseOil">Black Rose Oil</a></li><li><a href="herbal-shampoo" data-i18n="nav.herbalShampoo">Herbal Shampoo</a></li></ul></li>
+    <li><a href="about" data-i18n="nav.about">About</a></li>
+    <li><a href="reviews" data-i18n="nav.reviews">Reviews</a></li>
+    <li><a href="contact" class="active">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="lang-toggle" onclick="noeToggleLang()" data-active="en" aria-label="Switch language"><span class="lt-en">EN</span><span class="lt-divider">|</span><span class="lt-ur">اردو</span></button>
+    <a href="cart" class="cart-icon-btn" title="Cart">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <span class="cart-count">0</span>
+    </a>
+    <a href="products" class="nav-cta" data-i18n="nav.orderNow">Shop Now</a>
+  </div>
+  <div class="nav-hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav">
+  <button class="mobile-nav-close">&#10005;</button>
+  <a href="/" data-i18n="nav.home">Home</a>
+  <a href="products" data-i18n="nav.collections">Collections</a>
+  <a href="bundle-kit" class="mn-sub-link" data-i18n="nav.bundleKit">&#9656; Bundle Kit</a>
+  <a href="golden-oil" class="mn-sub-link" data-i18n="nav.goldenOil">&#9656; Golden Oil</a>
+  <a href="black-rose-oil" class="mn-sub-link" data-i18n="nav.blackRoseOil">&#9656; Black Rose Oil</a>
+  <a href="herbal-shampoo" class="mn-sub-link" data-i18n="nav.herbalShampoo">&#9656; Herbal Shampoo</a>
+  <a href="about" data-i18n="nav.about">About</a>
+  <a href="contact" data-i18n="nav.contact">Contact</a>
+  <a href="reviews" data-i18n="nav.reviews">Reviews</a>
+  <a href="cart" style="color:var(--gold);font-weight:700;" data-i18n="nav.cart">&#128722; Cart</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero" style="padding-top:80px;">
+  <div class="hero-particles"></div>
+  <div class="page-hero-content">
+    <div class="section-label" style="justify-content:center;margin-bottom:16px;" data-i18n="ct.label">Get In Touch</div>
+    <h1 data-i18n="ct.title">Contact Nasir Oil Expert</h1>
+    <div class="breadcrumb"><a href="/" data-i18n="nav.home">Home</a> / <span data-i18n="nav.contact">Contact</span></div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section style="background:var(--bg-light);">
+  <div class="contact-layout">
+
+    <!-- LEFT: Info -->
+    <div class="contact-info-col reveal-left">
+      <div class="section-label" style="margin-bottom:12px;" data-i18n="ct.reach.label">Reach Out to Us</div>
+      <h2 data-i18n="ct.reach.title">Get In Touch</h2>
+      <p data-i18n="ct.reach.p">Have a question, want to place an order, or need help? We are here for you. WhatsApp or call us and we will get back to you as soon as possible.</p>
+
+      <a href="tel:+923211112280" class="contact-card">
+        <div class="contact-card-icon">📞</div>
+        <div class="contact-card-body">
+          <h4 data-i18n="ct.phone.title">Phone / Call</h4>
+          <span>0321-1112280 &nbsp;|&nbsp; 0321-1112281</span>
+        </div>
+      </a>
+
+      <a href="https://wa.me/923211112280" target="_blank" class="contact-card">
+        <div class="contact-card-icon">💬</div>
+        <div class="contact-card-body">
+          <h4 data-i18n="ct.wa.h">WhatsApp Order</h4>
+          <span>0321-1112280</span>
+        </div>
+      </a>
+
+      <a href="mailto:nasiroilexpert@gmail.com" class="contact-card">
+        <div class="contact-card-icon">📧</div>
+        <div class="contact-card-body">
+          <h4 data-i18n="ct.email.h">Email</h4>
+          <span>nasiroilexpert@gmail.com</span>
+        </div>
+      </a>
+
+      <a class="contact-card" href="https://maps.google.com/?q=W725+Ganj+Mandi+Near+Bajaur+Plaza+Rawalpindi" target="_blank" rel="noopener">
+        <div class="contact-card-icon">📍</div>
+        <div class="contact-card-body">
+          <h4 data-i18n="ct.store.h">Our Store</h4>
+          <span>W/725, Ganj Mandi, Near Bajaur Plaza, Rawalpindi</span>
+        </div>
+      </a>
+
+      <div style="margin-top:28px;">
+        <div class="section-label" style="margin-bottom:14px;font-size:0.62rem;" data-i18n="ct.social.label">Social Media</div>
+        <div style="display:flex;gap:12px;">
+          <a href="https://www.facebook.com/people/Nasir-Oil-Expert/61592639019220/" target="_blank" class="social-btn fb" title="Facebook">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/nasiroilexpert" target="_blank" class="social-btn ig" title="Instagram">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://wa.me/923211112280" target="_blank" class="social-btn wa" title="WhatsApp">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@nasiroilexpert" target="_blank" class="social-btn yt" title="YouTube">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@nasiroilexpert" target="_blank" class="social-btn tt" title="TikTok">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.25 8.25 0 0 0 4.83 1.55V6.79a4.85 4.85 0 0 1-1.06-.1z"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: Form -->
+    <div class="contact-form-wrap reveal-right">
+      <h3 data-i18n="ct.form.title">Send Us Your Message</h3>
+
+      <a href="https://wa.me/923211112280?text=Hello!%20I%20would%20like%20to%20know%20more%20about%20Nasir%20Oil%20Expert%20products." target="_blank" class="wa-order-btn">
+        <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span data-i18n="ct.wa.direct">Message Us Directly on WhatsApp</span>
+      </a>
+
+      <div class="form-divider" data-i18n="ct.form.or">or fill in the form below</div>
+
+      <form id="contactForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label data-i18n="ct.name">Name *</label>
+            <input type="text" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label data-i18n="ct.phone">Phone *</label>
+            <input type="tel" name="phone" placeholder="03XX-XXXXXXX" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label data-i18n="ct.email.label">Email</label>
+          <input type="email" name="email" placeholder="email@example.com">
+        </div>
+        <div class="form-group">
+          <label data-i18n="ct.subject.label">Subject</label>
+          <select name="subject">
+            <option value="">Please select...</option>
+            <option value="order">Place an Order</option>
+            <option value="delivery">Delivery Inquiry</option>
+            <option value="product">Product Information</option>
+            <option value="return">Return / Refund</option>
+            <option value="other">Something Else</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-i18n="ct.message">Message</label>
+          <textarea name="message" placeholder="Type your message or order details here..."></textarea>
+        </div>
+        <button type="submit" class="form-submit btn-primary" style="width:100%;justify-content:center;border:none;cursor:pointer;" data-i18n="ct.send">
+          Send Message
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section style="padding:0 0 72px;background:var(--white);">
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;">
+    <div class="section-label reveal" style="justify-content:center;margin-bottom:10px;" data-i18n="ct.maps.label">Our Location</div>
+    <h2 class="section-title reveal reveal-delay-1" style="text-align:center;margin-bottom:28px;" data-i18n="ct.maps.title">Find Us on the Map</h2>
+    <div style="border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-md);border:1px solid rgba(0,0,0,0.06);">
+      <iframe
+        src="https://maps.google.com/maps?q=W725+Ganj+Mandi+Near+Bajaur+Plaza+Rawalpindi+Pakistan&output=embed&z=15"
+        width="100%" height="420" style="border:0;display:block;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <div style="text-align:center;margin-top:18px;">
+      <a href="https://maps.google.com/?q=W725+Ganj+Mandi+Near+Bajaur+Plaza+Rawalpindi" target="_blank" rel="noopener" class="btn-primary" style="display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:0.8rem;letter-spacing:0.06em;">
+        <span data-i18n="ct.maps.btn">📍 Open in Google Maps</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="padding:80px 60px;background:var(--white);">
+  <div style="max-width:1100px;margin:0 auto;text-align:center;">
+    <div class="section-label reveal" style="justify-content:center;" data-i18n="ct.faq.label">FAQ</div>
+    <h2 class="section-title reveal reveal-delay-1" data-i18n="ct.faq.title">Frequently Asked Questions</h2>
+    <p class="section-subtitle reveal reveal-delay-2" data-i18n="ct.faq.sub">Find answers to our most commonly asked questions.</p>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item reveal"><div class="faq-question">How long does delivery take? <span class="faq-arrow">+</span></div><div class="faq-answer">Delivery takes 2 to 4 working days in most cities across Pakistan. Remote areas may take 5 to 7 days.</div></div>
+    <div class="faq-item reveal reveal-delay-1"><div class="faq-question">Is Cash on Delivery (COD) available? <span class="faq-arrow">+</span></div><div class="faq-answer">Yes! We offer Cash on Delivery across Pakistan. You pay at home when your parcel arrives — no advance payment needed.</div></div>
+    <div class="faq-item reveal reveal-delay-2"><div class="faq-question">What are the delivery charges? <span class="faq-arrow">+</span></div><div class="faq-answer">Delivery is completely free on orders over Rs 1500. For orders below Rs 1500, a delivery charge of Rs 150 applies.</div></div>
+    <div class="faq-item reveal reveal-delay-3"><div class="faq-question">Are the products 100% natural? <span class="faq-arrow">+</span></div><div class="faq-answer">Absolutely! All our products are made exclusively from natural botanical ingredients. No synthetic chemicals or artificial fragrances are used.</div></div>
+    <div class="faq-item reveal"><div class="faq-question">How do I cancel or return an order? <span class="faq-arrow">+</span></div><div class="faq-answer">To cancel or return an order, simply WhatsApp or call us. We will assist you fully and make the process as smooth as possible.</div></div>
+    <div class="faq-item reveal reveal-delay-1"><div class="faq-question">Is there a discount on bulk orders? <span class="faq-arrow">+</span></div><div class="faq-answer">Yes! Special discounts are available on orders of 5 or more bottles. Contact us for more details and we will arrange the best deal for you.</div></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:14px;">
+          <img src="images/logo.png" alt="Nasir Oil Expert" style="border-radius:50%;width:42px;height:42px;object-fit:cover;border:2px solid var(--gold);">
+          <span class="nav-logo-text"><span data-i18n="nav.logo.name">Nasir Oil Expert</span><span data-i18n="ft.tagline">Pure &amp; Authentic Oils</span></span>
+        </div>
+        <p data-i18n="ft.brand.desc">Your destination for natural, effective products that nurture stronger, healthier hair.</p>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/people/Nasir-Oil-Expert/61592639019220/" target="_blank" class="social-btn fb" title="Facebook">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/nasiroilexpert" target="_blank" class="social-btn ig" title="Instagram">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://wa.me/923211112280" target="_blank" class="social-btn wa" title="WhatsApp">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@nasiroilexpert" target="_blank" class="social-btn yt" title="YouTube">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@nasiroilexpert" target="_blank" class="social-btn tt" title="TikTok">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.77a4.85 4.85 0 01-1.02-.08z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col"><h4 data-i18n="ft.quickLinks">Quick Links</h4><ul>
+          <li><a href="/" data-i18n="ft.home">Home</a></li>
+          <li><a href="products" data-i18n="ft.collections">Collections</a></li>
+          <li><a href="reviews" data-i18n="ft.reviews">Reviews</a></li>
+          <li><a href="about" data-i18n="ft.about">About Us</a></li>
+          <li><a href="contact" data-i18n="ft.contactLink">Contact</a></li>
+        </ul></div>
+      <div class="footer-col"><h4 data-i18n="ft.products">Products</h4><ul><li><a href="golden-oil" data-i18n="ft.prod.golden">Golden Oil</a></li><li><a href="black-rose-oil" data-i18n="ft.prod.rose">Black Rose Oil</a></li><li><a href="herbal-shampoo" data-i18n="ft.prod.shampoo">Herbal Shampoo</a></li><li><a href="bundle-kit" data-i18n="ft.prod.bundle">Bundle Kit</a></li></ul></div>
+      <div class="footer-col">
+        <h4 data-i18n="ft.contact">Contact</h4>
+        <a href="mailto:nasiroilexpert@gmail.com" class="contact-item"><span class="icon">📧</span>nasiroilexpert@gmail.com</a>
+        <a href="tel:+923211112280" class="contact-item"><span class="icon">📞</span>0321-1112280</a>
+        <a href="https://wa.me/923211112280" class="contact-item" target="_blank"><span class="icon">💬</span><span data-i18n="ft.waOrder">WhatsApp Order</span></a>
+        <a href="https://maps.google.com/?q=W725+Ganj+Mandi+Near+Bajaur+Plaza+Rawalpindi" target="_blank" class="contact-item"><span class="icon">📍</span>W/725, Ganj Mandi, Near Bajaur Plaza, Rawalpindi</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p data-i18n="ft.rights">© 2026 Nasir Oil Expert. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/923211112280" class="wa-float" target="_blank" title="Order on WhatsApp">
+  <span class="wa-float-pulse"></span>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<script src="script.js"></script>
+<script src="lang.js"></script>
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const answer = q.nextElementSibling;
+      const isOpen = q.classList.contains('open');
+      document.querySelectorAll('.faq-question').forEach(x => { x.classList.remove('open'); x.nextElementSibling.classList.remove('open'); });
+      if (!isOpen) { q.classList.add('open'); answer.classList.add('open'); }
+    });
+  });
+</script>
+</body>
+</html>
+
+
+
