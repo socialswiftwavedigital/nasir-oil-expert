@@ -67,6 +67,54 @@ h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 700; lin
   line-height: 1.8;
 }
 
+/* ===== LANGUAGE TOGGLE ===== */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  background: rgba(255,255,255,0.08);
+  border: 1.5px solid rgba(255,255,255,0.18);
+  border-radius: 30px;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: border-color 0.3s;
+  flex-shrink: 0;
+}
+.lang-toggle:hover { border-color: var(--gold); }
+.lang-toggle span {
+  padding: 5px 11px;
+  color: rgba(255,255,255,0.5);
+  transition: background 0.25s, color 0.25s;
+}
+.lang-toggle[data-active="en"] span:first-child,
+.lang-toggle[data-active="ur"] span:last-child {
+  background: var(--gold);
+  color: #fff;
+  border-radius: 30px;
+}
+.lang-toggle[data-active="en"] span:last-child,
+.lang-toggle[data-active="ur"] span:first-child {
+  color: rgba(255,255,255,0.6);
+  background: transparent;
+}
+
+/* ===== RTL (Urdu) ===== */
+.lang-ur { direction: rtl; }
+.lang-ur .navbar, .lang-ur .mobile-nav { direction: rtl; }
+.lang-ur .nav-links { flex-direction: row-reverse; }
+.lang-ur .nav-right { flex-direction: row-reverse; }
+.lang-ur .footer-inner, .lang-ur .footer-top { direction: rtl; text-align: right; }
+.lang-ur .section-label, .lang-ur .section-title, .lang-ur .section-subtitle { text-align: center; }
+.lang-ur body, .lang-ur p, .lang-ur li, .lang-ur span, .lang-ur h1, .lang-ur h2, .lang-ur h3, .lang-ur h4 {
+  font-family: 'Noto Nastaliq Urdu', 'Cormorant Garamond', serif;
+  line-height: 2;
+}
+.lang-ur .product-info, .lang-ur .product-name, .lang-ur .product-desc { text-align: right; }
+
 /* ===== CURSOR ===== */
 .cursor {
   width: 10px; height: 10px;
