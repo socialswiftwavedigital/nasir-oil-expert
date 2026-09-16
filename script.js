@@ -1,10 +1,9 @@
 ﻿/* ===== PRELOADER ===== */
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    const pre = document.getElementById('preloader');
-    if (pre) pre.classList.add('hidden');
-  }, 1900);
-});
+/* script.js runs at end of <body>, so DOM is ready. Hide after animation completes. */
+setTimeout(() => {
+  const pre = document.getElementById('preloader');
+  if (pre) pre.classList.add('hidden');
+}, 1900);
 
 /* ===== CUSTOM CURSOR ===== */
 const cursor = document.querySelector('.cursor');
