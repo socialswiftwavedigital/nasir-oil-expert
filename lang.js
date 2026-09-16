@@ -442,6 +442,10 @@
       /* Ingredients — Herbal Shampoo */
       'pd.ing.neem': 'Neem Extract',
       'pd.ing.amlaberry': 'Amla (Indian Gooseberry)',
+      'pd.ing.coconutmilk': 'Coconut Milk',
+      'pd.ing.chamomile': 'Chamomile Extract',
+      'pd.ing.aloe': 'Aloe Vera Gel',
+      'pd.badge.sulfate': 'Sulfate Free',
 
       /* Cart badge */
       'tag.new': 'New',
@@ -884,6 +888,10 @@
       /* Ingredients — Herbal Shampoo */
       'pd.ing.neem': 'نیم عرق',
       'pd.ing.amlaberry': 'آملہ (ہندی آنولہ)',
+      'pd.ing.coconutmilk': 'ناریل کا دودھ',
+      'pd.ing.chamomile': 'بابونہ عرق',
+      'pd.ing.aloe': 'ایلو ویرا جیل',
+      'pd.badge.sulfate': 'سلفیٹ فری',
 
       /* Cart badge */
       'tag.new': 'نیا',
