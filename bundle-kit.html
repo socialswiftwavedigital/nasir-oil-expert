@@ -43,10 +43,10 @@
     .pd-rating { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
     .pd-stars { color:var(--gold); font-size:1rem; letter-spacing:2px; }
     .pd-rating-count { font-family:'Montserrat',sans-serif; font-size:0.75rem; color:var(--text-light); }
-    .pd-name { font-size:clamp(1.8rem,4vw,2.8rem); line-height:1.1; margin-bottom:10px; }
+    .pd-name { font-size:clamp(1.8rem,4vw,2.8rem); line-height:1.1; margin-bottom:10px; font-family:'Cormorant Garamond',serif; }
     .pd-price-row { display:flex; align-items:center; gap:16px; margin-bottom:8px; }
-    .pd-price { font-size:2rem; font-weight:700; color:var(--gold-dark); font-family:'Montserrat',sans-serif; }
-    .pd-price-old { font-size:1.1rem; color:var(--text-light); text-decoration:line-through; font-family:'Montserrat',sans-serif; }
+    .pd-price { font-size:2.2rem; font-weight:700; color:var(--gold-dark); font-family:'Cormorant Garamond',serif; }
+    .pd-price-old { font-size:1.1rem; color:var(--text-light); text-decoration:line-through; font-family:'Cormorant Garamond',serif; }
     .pd-save-badge { display:inline-flex; align-items:center; font-family:'Montserrat',sans-serif; font-size:0.7rem; font-weight:700; color:#fff; background:var(--green-mid); padding:5px 14px; border-radius:20px; margin-bottom:20px; }
     .pd-desc { font-family:'Montserrat',sans-serif; font-size:0.92rem; color:var(--text-light); line-height:1.9; margin-bottom:20px; }
 
@@ -57,7 +57,7 @@
     .kit-item-info p { font-family:'Montserrat',sans-serif; font-size:0.72rem; color:var(--text-light); margin:0; }
     .kit-item-price { font-family:'Montserrat',sans-serif; font-size:0.78rem; font-weight:700; color:var(--green-mid); margin-left:auto; flex-shrink:0; }
 
-    .pd-actions { display:flex; gap:14px; align-items:center; flex-wrap:wrap; margin-bottom:28px; }
+    .pd-actions { display:flex; gap:14px; align-items:center; flex-wrap:wrap; margin-bottom:16px; }
     .qty-wrap { display:flex; align-items:center; gap:0; border:2px solid var(--cream-dark); border-radius:30px; overflow:hidden; }
     .qty-wrap button { width:38px; height:40px; background:none; border:none; font-size:1.2rem; cursor:pointer; color:var(--text-dark); transition:background 0.2s; }
     .qty-wrap button:hover { background:var(--cream); }
@@ -74,6 +74,16 @@
     .pd-add-btn:hover { transform:translateY(-3px) scale(1.03); box-shadow:0 10px 28px rgba(27,67,50,0.3); }
     .pd-add-btn:active { transform:scale(0.97); }
     .pd-add-btn.added { background:linear-gradient(135deg,#2D6A4F,#52B788); box-shadow:0 0 0 3px rgba(82,183,136,0.25); }
+    .pd-cod-btn {
+      display:flex; align-items:center; justify-content:center; gap:8px;
+      width:100%; padding:13px 28px;
+      background:linear-gradient(135deg, var(--gold-dark), var(--gold));
+      color:#fff; border-radius:12px; border:none; cursor:pointer;
+      font-family:'Montserrat',sans-serif; font-size:0.82rem;
+      font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+      transition:all 0.3s ease; margin-bottom:16px; text-decoration:none;
+    }
+    .pd-cod-btn:hover { transform:translateY(-2px); box-shadow:0 10px 28px rgba(160,120,48,0.3); }
     .pd-wa-btn {
       width:100%; padding:13px;
       background:#25D366; color:#fff; border:none; border-radius:12px;
@@ -291,6 +301,10 @@
           <span data-i18n="pg.addCart">Add to Cart</span> — Rs 3,250
         </button>
       </div>
+
+      <button class="pd-cod-btn" onclick="pdCODBuy()">
+        <span data-i18n="pd.cod.buy">💵 Buy with Cash on Delivery</span>
+      </button>
 
       <a href="https://wa.me/923211112280?text=Hi!%20I%20want%20to%20order%20the%203-in-1%20Complete%20Hair%20Kit%20(Rs%203250).%20Please%20confirm%20availability." target="_blank" class="pd-wa-btn">
         <svg width="16" height="16" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -524,7 +538,7 @@
           <li><a href="contact" data-i18n="ft.contactLink">Contact</a></li>
         </ul></div>
       <div class="footer-col"><h4 data-i18n="ft.products">Products</h4><ul><li><a href="bundle-kit" data-i18n="ft.prod.bundle">Bundle Kit</a></li><li><a href="golden-oil" data-i18n="ft.prod.golden">Golden Hair Oil</a></li><li><a href="black-rose-oil" data-i18n="ft.prod.rose">Black Rose Oil</a></li><li><a href="herbal-shampoo" data-i18n="ft.prod.shampoo">Herbal Shampoo</a></li></ul></div>
-      <div class="footer-col"><h4 data-i18n="ft.contact">Contact</h4><a href="mailto:nasiroilexpert@gmail.com" class="contact-item"><span class="icon">📧</span>nasiroilexpert@gmail.com</a><a href="tel:+923211112280" class="contact-item"><span class="icon">📞</span>0321-1112280</a><a href="https://wa.me/923211112280" class="contact-item" target="_blank"><span class="icon">💬</span><span data-i18n="ft.waOrder">WhatsApp Order</span></a><div class="contact-item"><span class="icon">📍</span>Pakistan, Nationwide</div></div>
+      <div class="footer-col"><h4 data-i18n="ft.contact">Contact</h4><a href="mailto:info@nasiroilexpert.com" class="contact-item"><span class="icon">📧</span>info@nasiroilexpert.com</a><a href="mailto:nasiroilexpert@gmail.com" class="contact-item" style="font-size:0.78rem;opacity:0.75;"><span class="icon">📧</span>nasiroilexpert@gmail.com</a><a href="tel:+923211112280" class="contact-item"><span class="icon">📞</span>0321-1112280</a><a href="https://wa.me/923211112280" class="contact-item" target="_blank"><span class="icon">💬</span><span data-i18n="ft.waOrder">WhatsApp Order</span></a><div class="contact-item"><span class="icon">📍</span>Pakistan, Nationwide</div></div>
     </div>
     <div class="footer-bottom"><p data-i18n="ft.rights">© 2026 Nasir Oil Expert. All rights reserved.</p></div>
   </div>
@@ -541,6 +555,10 @@ let pdQty = 1;
 function pdQtyChange(d) {
   pdQty = Math.max(1, pdQty + d);
   document.getElementById('pdQty').textContent = pdQty;
+}
+function pdCODBuy() {
+  for (let i = 0; i < pdQty; i++) addToCart('3-in-1 Hair Complete Kit', 3250, 'images/box/box1.jpg');
+  window.location.href = 'checkout.html';
 }
 function pdAddToCart() {
   const btn = document.getElementById('pdAddBtn');

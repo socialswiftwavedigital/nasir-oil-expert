@@ -212,6 +212,7 @@
 
       /* Product detail — WhatsApp button */
       'pd.wa.order': 'Order via WhatsApp',
+      'pd.cod.buy': '💵 Buy with Cash on Delivery',
 
       /* Cart page */
       'cart.title': 'Your Cart',
@@ -821,6 +822,7 @@
 
       /* Product detail — WhatsApp button */
       'pd.wa.order': 'واٹس ایپ پر آرڈر کریں',
+      'pd.cod.buy': '💵 کیش آن ڈیلیوری سے خریدیں',
 
       /* Cart page */
       'cart.title': 'آپ کا کارٹ',
