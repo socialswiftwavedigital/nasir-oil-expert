@@ -290,6 +290,35 @@
       'pd.kit.title': 'Shop Individual Products',
       'pd.bundle.addcart': 'Add to Cart — Rs 3,250',
 
+      /* Index review cards */
+      'idx.rev.c1.q': '"After just 45 days of using the complete kit, my hair fall reduced by 80%. The Black Rose Oil works overnight. I wake up to softer, thicker hair."',
+      'idx.rev.c1.name': 'Ayesha Khan',
+      'idx.rev.c1.city': 'Lahore',
+      'idx.rev.c2.q': '"Nasir Golden Oil has been a game changer. My hair went from dry and brittle to shiny and strong in one month. 100% natural, you can feel the difference."',
+      'idx.rev.c2.name': 'Muhammad Usman',
+      'idx.rev.c2.city': 'Karachi',
+      'idx.rev.c3.q': '"The Herbal Shampoo is so gentle — no dryness, no frizz. My dandruff is completely gone after 3 weeks. Highly recommended!"',
+      'idx.rev.c3.name': 'Sara Mahmood',
+      'idx.rev.c3.city': 'Islamabad',
+      'idx.rev.c4.q': '"I was skeptical at first but the results after 45 days speak for themselves. My scalp is healthier and hair loss has stopped completely."',
+      'idx.rev.c4.name': 'Fatima Malik',
+      'idx.rev.c4.city': 'Faisalabad',
+      'idx.rev.c5.q': '"Black Rose Oil is my new favourite. The colour of my hair has improved and it looks so much thicker. Order from Nasir Oil Expert — pure quality!"',
+      'idx.rev.c5.name': 'Zara Siddiqui',
+      'idx.rev.c5.city': 'Rawalpindi',
+      'idx.rev.c6.q': '"Been using the 3-in-1 kit for two months. Best investment I made for my hair. Friends keep asking what I use — it is all Nasir Oil Expert!"',
+      'idx.rev.c6.name': 'Hamza Raza',
+      'idx.rev.c6.city': 'Multan',
+
+      /* Index reels section */
+      'idx.reel.label': 'Real Results',
+      'idx.reel.h2': 'Watch Customer Stories',
+      'idx.reel.p': 'See what our customers are saying on social media.',
+      'idx.reel.c1': '"Incredible results in just 45 days!"',
+      'idx.reel.c2': '"Hair fall stopped completely!"',
+      'idx.reel.c3': '"My greying hair is back to black!"',
+      'idx.reel.c4': '"Best herbal oil in Pakistan!"',
+
       /* Index review links */
       'rev.viewAll': 'View All Reviews & Videos',
       'rev.seeAll': 'See All Reviews',
@@ -735,6 +764,35 @@
       'pd.kit.label': 'اس کٹ میں شامل',
       'pd.kit.title': 'انفرادی مصنوعات خریدیں',
       'pd.bundle.addcart': 'کارٹ میں شامل کریں — Rs 3,250',
+
+      /* Index review cards */
+      'idx.rev.c1.q': '"صرف 45 دن مکمل کٹ استعمال کرنے کے بعد، میرے بال گرنے میں 80٪ کمی آئی۔ بلیک روز آئل رات بھر اثر کرتا ہے۔ میں نرم اور گھنے بالوں کے ساتھ اٹھتی ہوں۔"',
+      'idx.rev.c1.name': 'Ayesha Khan',
+      'idx.rev.c1.city': 'لاہور',
+      'idx.rev.c2.q': '"ناصر گولڈن آئل بہترین پروڈکٹ ہے۔ ایک مہینے میں میرے بال خشک سے چمکدار اور مضبوط ہو گئے۔ 100٪ قدرتی، فرق محسوس ہوتا ہے۔"',
+      'idx.rev.c2.name': 'Muhammad Usman',
+      'idx.rev.c2.city': 'کراچی',
+      'idx.rev.c3.q': '"ہربل شیمپو بہت نرم ہے — نہ خشکی، نہ الجھاؤ۔ 3 ہفتوں میں خشکی مکمل ختم ہو گئی۔ بہت سفارش کرتی ہوں!"',
+      'idx.rev.c3.name': 'Sara Mahmood',
+      'idx.rev.c3.city': 'اسلام آباد',
+      'idx.rev.c4.q': '"پہلے یقین نہیں تھا لیکن 45 دن بعد نتائج خود بول رہے ہیں۔ میری کھوپڑی صحت مند اور بالوں کا گرنا مکمل بند ہو گیا۔"',
+      'idx.rev.c4.name': 'Fatima Malik',
+      'idx.rev.c4.city': 'فیصل آباد',
+      'idx.rev.c5.q': '"بلیک روز آئل میرا پسندیدہ ہے۔ میرے بالوں کا رنگ بہتر ہوا اور وہ بہت گھنے لگتے ہیں۔ ناصر آئل ایکسپرٹ سے آرڈر کریں — خالص معیار!"',
+      'idx.rev.c5.name': 'Zara Siddiqui',
+      'idx.rev.c5.city': 'راولپنڈی',
+      'idx.rev.c6.q': '"دو مہینوں سے 3-in-1 کٹ استعمال کر رہا ہوں۔ بالوں کے لیے بہترین سرمایہ کاری۔ دوست پوچھتے رہتے ہیں کیا لگاتا ہوں — سب ناصر آئل ایکسپرٹ ہے!"',
+      'idx.rev.c6.name': 'Hamza Raza',
+      'idx.rev.c6.city': 'ملتان',
+
+      /* Index reels section */
+      'idx.reel.label': 'حقیقی نتائج',
+      'idx.reel.h2': 'گاہکوں کی کہانیاں دیکھیں',
+      'idx.reel.p': 'دیکھیں ہمارے گاہک سوشل میڈیا پر کیا کہہ رہے ہیں۔',
+      'idx.reel.c1': '"صرف 45 دنوں میں حیرت انگیز نتائج!"',
+      'idx.reel.c2': '"بالوں کا گرنا مکمل بند ہو گیا!"',
+      'idx.reel.c3': '"میرے سفید بال واپس کالے ہو گئے!"',
+      'idx.reel.c4': '"پاکستان میں بہترین ہربل آئل!"',
 
       /* Index review links */
       'rev.viewAll': 'تمام تبصرے اور ویڈیوز دیکھیں',
