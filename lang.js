@@ -231,6 +231,12 @@
       'cart.cod': '💵 Cash on Delivery',
       'cart.more.label': 'More Products',
       'cart.more.title': 'You May Also Like',
+      'cart.h1': 'Shopping Cart',
+      'bc.cart': 'Cart',
+      'cart.golden.desc': 'Intense nourishment for dry &amp; damaged hair.',
+      'cart.rose.desc': 'Luxurious rose extract for shine &amp; strength.',
+      'cart.shampoo.desc': 'Gentle daily cleanse with natural botanicals.',
+      'cart.herbal.badge': 'Herbal',
 
       /* Nav logo */
       'nav.logo.name': 'Nasir Oil Expert',
@@ -807,6 +813,12 @@
       'cart.cod': '💵 کیش آن ڈیلیوری',
       'cart.more.label': 'مزید مصنوعات',
       'cart.more.title': 'آپ کو یہ بھی پسند آ سکتا ہے',
+      'cart.h1': 'شاپنگ کارٹ',
+      'bc.cart': 'کارٹ',
+      'cart.golden.desc': 'خشک اور خراب بالوں کے لیے گہری غذائیت۔',
+      'cart.rose.desc': 'چمک اور مضبوطی کے لیے لگژری گلاب کا عرق۔',
+      'cart.shampoo.desc': 'قدرتی نباتاتی عرق سے نرم روزانہ صفائی۔',
+      'cart.herbal.badge': 'جڑی بوٹی',
 
       /* Nav logo */
       'nav.logo.name': 'ناصر آئل ایکسپرٹ',
