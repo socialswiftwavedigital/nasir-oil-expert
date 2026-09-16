@@ -25,7 +25,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 17px; }
 body {
-  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-family: 'Montserrat', sans-serif;
   background: var(--white);
   color: var(--text-dark);
   overflow-x: hidden;
@@ -37,7 +37,7 @@ ul { list-style: none; }
 button { cursor: pointer; border: none; background: none; font-family: inherit; }
 
 /* ===== TYPOGRAPHY ===== */
-h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 700; line-height: 1.15; }
+h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; line-height: 1.2; }
 .section-label {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.72rem;
@@ -71,47 +71,33 @@ h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 700; lin
 .lang-toggle {
   display: inline-flex;
   align-items: center;
-  gap: 0;
-  background: rgba(255,255,255,0.08);
-  border: 1.5px solid rgba(255,255,255,0.18);
-  border-radius: 30px;
+  background: rgba(255,255,255,0.06);
+  border: 1.5px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
   overflow: hidden;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   cursor: pointer;
-  transition: border-color 0.3s;
+  transition: border-color 0.25s;
   flex-shrink: 0;
 }
 .lang-toggle:hover { border-color: var(--gold); }
 .lang-toggle span {
-  padding: 5px 10px;
-  color: rgba(255,255,255,0.5);
-  transition: background 0.25s, color 0.25s;
-  position: relative;
-}
-.lang-toggle span:first-child::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 20%;
-  height: 60%;
-  width: 1px;
-  background: rgba(255,255,255,0.2);
+  padding: 6px 14px;
+  color: rgba(255,255,255,0.45);
+  transition: background 0.2s, color 0.2s;
+  line-height: 1;
 }
 .lang-toggle[data-active="en"] span:first-child,
 .lang-toggle[data-active="ur"] span:last-child {
   background: var(--gold);
   color: #fff;
-  border-radius: 30px;
-}
-.lang-toggle[data-active="en"] span:first-child::after {
-  display: none;
 }
 .lang-toggle[data-active="en"] span:last-child,
 .lang-toggle[data-active="ur"] span:first-child {
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.5);
   background: transparent;
 }
 
@@ -123,7 +109,7 @@ h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 700; lin
 .lang-ur .footer-inner, .lang-ur .footer-top { direction: rtl; text-align: right; }
 .lang-ur .section-label, .lang-ur .section-title, .lang-ur .section-subtitle { text-align: center; }
 .lang-ur body, .lang-ur p, .lang-ur li, .lang-ur span, .lang-ur h1, .lang-ur h2, .lang-ur h3, .lang-ur h4 {
-  font-family: 'Noto Nastaliq Urdu', 'Cormorant Garamond', serif;
+  font-family: 'Noto Nastaliq Urdu', 'Montserrat', sans-serif;
   line-height: 2;
 }
 .lang-ur .product-info, .lang-ur .product-name, .lang-ur .product-desc { text-align: right; }
@@ -826,7 +812,7 @@ h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 700; lin
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(27,67,50,0.25);
 }
-.product-price { font-size: 1.4rem; font-weight: 700; color: var(--gold-dark); }
+.product-price { font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--gold-dark); }
 .product-price span { font-family: 'Montserrat', sans-serif; font-size: 0.68rem; font-weight: 400; color: var(--text-light); margin-right: 2px; }
 .btn-cart {
   padding: 10px 20px;
@@ -867,6 +853,29 @@ h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 700; lin
   border-color: #52B788;
   box-shadow: 0 0 0 3px rgba(82,183,136,0.25);
   transform: scale(1);
+}
+.btn-cod {
+  padding: 10px 20px;
+  background: #1A1A1A;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  border-radius: 30px;
+  transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn-cod:hover {
+  background: #333;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 @keyframes cart-badge-bounce {
   0%   { transform: scale(1); }
