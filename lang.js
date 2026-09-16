@@ -251,6 +251,7 @@
       'ft.prod.golden': 'Golden Oil',
       'ft.prod.rose': 'Black Rose Oil',
       'ft.prod.shampoo': 'Herbal Shampoo',
+      'ft.prod.combos': 'Combo Deals',
 
       /* Breadcrumbs */
       'bc.home': 'Home',
@@ -692,6 +693,7 @@
       'ft.prod.golden': 'گولڈن آئل',
       'ft.prod.rose': 'بلیک روز آئل',
       'ft.prod.shampoo': 'ہربل شیمپو',
+      'ft.prod.combos': 'کمبو ڈیلز',
 
       /* Breadcrumbs */
       'bc.home': 'گھر',
