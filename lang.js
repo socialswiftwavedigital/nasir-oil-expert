@@ -402,6 +402,17 @@
 
       /* Products page h2 */
       'pg.essentials.h2': 'Choose Your Hair Care Essential',
+      'pg.why.label': 'Why Choose Us',
+      'pg.why.value.title': 'Best Value',
+      'pg.why.value.desc': 'Premium quality at affordable prices that fit every budget.',
+      'pg.bundles.label': 'Special Deals',
+      'pg.bundles.h2': 'Value Combo Packs',
+      'pg.bundles.sub': 'Get the complete hair care experience with our specially curated combo packs at unbeatable prices.',
+      'pg.combo1.name': 'Golden Oil + Herbal Shampoo',
+      'pg.combo1.desc': 'The perfect everyday hair care duo. Cleanse with our herbal shampoo and nourish deeply with Golden Oil for maximum hair health.',
+      'pg.combo2.name': 'Black Rose Oil + Herbal Shampoo',
+      'pg.combo2.desc': 'A luxurious combination for premium fragrance and strength. The ultimate hair care experience for silky, strong hair.',
+      'pg.bundle.save': 'Save Rs 200',
 
       /* About page story + value + timeline content */
       'ab.who.p1': 'Nasir Oil Expert was born from a deep belief in the healing power of nature. Founded with a mission to make authentic, pure hair oils accessible to everyone in Pakistan, we have spent years perfecting our formulations using time-honored botanical traditions.',
@@ -420,6 +431,30 @@
 
       /* Contact intro paragraph */
       'ct.reach.p': 'Have a question, want to place an order, or need help? We are here for you. WhatsApp or call us and we will get back to you as soon as possible.',
+
+      /* Contact page hero + breadcrumb */
+      'ct.hero.label': 'Get In Touch',
+      'ct.hero.h1': 'Contact Nasir Oil Expert',
+      'bc.contact': 'Contact',
+
+      /* Contact form labels */
+      'ct.form.name.label': 'Name',
+      'ct.form.phone.label': 'Phone',
+      'ct.form.msg.label': 'Message',
+
+      /* FAQ questions & answers */
+      'ct.faq.q1': 'How long does delivery take?',
+      'ct.faq.a1': 'Delivery takes 2 to 4 working days in most cities across Pakistan. Remote areas may take 5 to 7 days.',
+      'ct.faq.q2': 'Is Cash on Delivery (COD) available?',
+      'ct.faq.a2': 'Yes! We offer Cash on Delivery across Pakistan. You pay at home when your parcel arrives — no advance payment needed.',
+      'ct.faq.q3': 'What are the delivery charges?',
+      'ct.faq.a3': 'Delivery is completely free on orders over Rs 1500. For orders below Rs 1500, a delivery charge of Rs 150 applies.',
+      'ct.faq.q4': 'Are the products 100% natural?',
+      'ct.faq.a4': 'Absolutely! All our products are made exclusively from natural botanical ingredients. No synthetic chemicals or artificial fragrances are used.',
+      'ct.faq.q5': 'How do I cancel or return an order?',
+      'ct.faq.a5': 'To cancel or return an order, simply WhatsApp or call us. We will assist you fully and make the process as smooth as possible.',
+      'ct.faq.q6': 'Is there a discount on bulk orders?',
+      'ct.faq.a6': 'Yes! Special discounts are available on orders of 5 or more bottles. Contact us for more details and we will arrange the best deal for you.',
 
       /* Products page bullet items */
       'pg.golden.b1': 'Promotes faster hair growth',
@@ -896,6 +931,30 @@
       /* Contact intro paragraph */
       'ct.reach.p': 'کوئی سوال ہے، آرڈر دینا ہے یا مدد چاہیے؟ ہم حاضر ہیں۔ واٹس ایپ یا فون کریں، ہم جلد جواب دیں گے۔',
 
+      /* Contact page hero + breadcrumb */
+      'ct.hero.label': 'رابطہ کریں',
+      'ct.hero.h1': 'ناصر آئل ایکسپرٹ سے رابطہ کریں',
+      'bc.contact': 'رابطہ',
+
+      /* Contact form labels */
+      'ct.form.name.label': 'نام',
+      'ct.form.phone.label': 'فون',
+      'ct.form.msg.label': 'پیغام',
+
+      /* FAQ questions & answers */
+      'ct.faq.q1': 'ڈیلیوری میں کتنا وقت لگتا ہے؟',
+      'ct.faq.a1': 'پاکستان کے زیادہ تر شہروں میں ڈیلیوری 2 سے 4 کام کے دن میں ہوتی ہے۔ دور دراز علاقوں میں 5 سے 7 دن لگ سکتے ہیں۔',
+      'ct.faq.q2': 'کیش آن ڈیلیوری (COD) دستیاب ہے؟',
+      'ct.faq.a2': 'جی ہاں! ہم پاکستان بھر میں کیش آن ڈیلیوری دیتے ہیں۔ پارسل آنے پر گھر پر ادائیگی کریں — پیشگی رقم کی ضرورت نہیں۔',
+      'ct.faq.q3': 'ڈیلیوری چارجز کتنے ہیں؟',
+      'ct.faq.a3': 'Rs 1500 سے زیادہ کے آرڈر پر ڈیلیوری بالکل مفت ہے۔ Rs 1500 سے کم کے آرڈر پر Rs 150 ڈیلیوری چارج لاگو ہوتا ہے۔',
+      'ct.faq.q4': 'کیا مصنوعات 100% قدرتی ہیں؟',
+      'ct.faq.a4': 'بالکل! ہماری تمام مصنوعات خالصتاً قدرتی نباتاتی اجزاء سے بنی ہیں۔ کوئی مصنوعی کیمیکل یا مصنوعی خوشبو نہیں۔',
+      'ct.faq.q5': 'آرڈر منسوخ یا واپس کیسے کریں؟',
+      'ct.faq.a5': 'آرڈر منسوخ یا واپس کرنے کے لیے بس واٹس ایپ یا فون کریں۔ ہم پوری مدد کریں گے اور عمل کو ممکنہ حد تک آسان بنائیں گے۔',
+      'ct.faq.q6': 'کیا بلک آرڈر پر چھوٹ ملتی ہے؟',
+      'ct.faq.a6': 'جی ہاں! 5 یا اس سے زیادہ بوتلوں کے آرڈر پر خصوصی چھوٹ دستیاب ہے۔ مزید تفصیل کے لیے ہم سے رابطہ کریں اور ہم آپ کے لیے بہترین ڈیل کا اہتمام کریں گے۔',
+
       /* Products page bullet items */
       'pg.golden.b1': 'بالوں کی نشوونما تیز کرتا ہے',
       'pg.golden.b2': 'بال گرنا اور ٹوٹنا کم کرتا ہے',
@@ -912,6 +971,19 @@
       'pg.shampoo.b3': 'قدرتی طور پر خشکی کنٹرول کرتا ہے',
       'pg.shampoo.b4': 'تمام قسم کے بالوں کے لیے محفوظ',
       'pg.shampoo.b5': 'تازہ جڑی بوٹی خوشبو',
+
+      /* Products page extra */
+      'pg.why.label': 'ہمیں کیوں چنیں',
+      'pg.why.value.title': 'بہترین قیمت',
+      'pg.why.value.desc': 'سستی قیمتوں پر پریمیم معیار جو ہر بجٹ کے لیے موزوں ہو۔',
+      'pg.bundles.label': 'خصوصی ڈیلز',
+      'pg.bundles.h2': 'قیمتی کمبو پیکجز',
+      'pg.bundles.sub': 'ہمارے خصوصی کمبو پیکجز سے مکمل بالوں کی دیکھ بھال کا تجربہ بے مثال قیمت میں حاصل کریں۔',
+      'pg.combo1.name': 'گولڈن آئل + ہربل شیمپو',
+      'pg.combo1.desc': 'روزانہ کی بالوں کی دیکھ بھال کا بہترین جوڑا۔ ہربل شیمپو سے صفائی اور گولڈن آئل سے گہری نمی — بالوں کی بہترین صحت کے لیے۔',
+      'pg.combo2.name': 'بلیک روز آئل + ہربل شیمپو',
+      'pg.combo2.desc': 'پریمیم خوشبو اور مضبوطی کے لیے شاندار مجموعہ۔ ریشمی اور مضبوط بالوں کے لیے بہترین بالوں کی دیکھ بھال کا تجربہ۔',
+      'pg.bundle.save': 'Rs 200 کی بچت',
 
       /* About page badge + mission quote */
       'ab.badge.since': '1948<br>سے',
