@@ -256,6 +256,7 @@
       /* Breadcrumbs */
       'bc.home': 'Home',
       'bc.products': 'Products',
+      'bc.about': 'About',
       'bc.golden': 'Golden Hair Oil',
       'bc.rose': 'Black Rose Hair Oil',
       'bc.shampoo': 'Herbal Shampoo',
@@ -766,6 +767,7 @@
       /* Breadcrumbs */
       'bc.home': 'گھر',
       'bc.products': 'مصنوعات',
+      'bc.about': 'بارے میں',
       'bc.golden': 'گولڈن ہیئر آئل',
       'bc.rose': 'بلیک روز ہیئر آئل',
       'bc.shampoo': 'ہربل شیمپو',
