@@ -86,15 +86,28 @@ h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 700; lin
 }
 .lang-toggle:hover { border-color: var(--gold); }
 .lang-toggle span {
-  padding: 5px 11px;
+  padding: 5px 10px;
   color: rgba(255,255,255,0.5);
   transition: background 0.25s, color 0.25s;
+  position: relative;
+}
+.lang-toggle span:first-child::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 20%;
+  height: 60%;
+  width: 1px;
+  background: rgba(255,255,255,0.2);
 }
 .lang-toggle[data-active="en"] span:first-child,
 .lang-toggle[data-active="ur"] span:last-child {
   background: var(--gold);
   color: #fff;
   border-radius: 30px;
+}
+.lang-toggle[data-active="en"] span:first-child::after {
+  display: none;
 }
 .lang-toggle[data-active="en"] span:last-child,
 .lang-toggle[data-active="ur"] span:first-child {
