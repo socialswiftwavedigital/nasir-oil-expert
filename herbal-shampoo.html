@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -8,16 +8,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260916" />
+  <link rel="stylesheet" href="styles.css" />
   <style>
     /* ===== PRODUCT DETAIL PAGE ===== */
     .pd-section { max-width:1200px; margin:0 auto; padding:60px 40px 80px; }
     .pd-layout { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start; }
-    .pd-layout > * { min-width: 0; }
 
     /* Gallery */
     .pd-gallery { position:sticky; top:100px; }
-    .pd-gallery { min-width: 0; max-width: 100%; }
     .pd-main-img {
       width:100%; aspect-ratio:1/1;
       background:linear-gradient(145deg,#e8f5ee,#c8e8d4);
@@ -171,7 +169,6 @@
     #navbar .nav-links a { color:var(--text-mid) !important; }
     #navbar .nav-links a:hover, #navbar .nav-links a.active { color:var(--gold-dark) !important; }
     #navbar .cart-icon-btn { color:var(--text-dark) !important; }
-    #navbar .nav-hamburger span { background:var(--text-dark) !important; }
     @media(max-width:1024px){ #navbar { padding:12px 32px !important; } }
     @media(max-width:768px){ #navbar { padding:12px 20px !important; } }
 
@@ -180,15 +177,18 @@
       .pd-section { padding:40px 16px 60px; }
       .pd-layout { grid-template-columns:1fr; gap:32px; }
       .pd-gallery { position:static; }
-      .pd-actions { flex-direction:column; align-items:stretch; }
-      .pd-btn-cart { width:100%; min-width:0; flex:none; box-sizing:border-box; justify-content:center; }
-      .pd-btn-wa { width:100%; flex:none; box-sizing:border-box; display:flex; align-items:center; justify-content:center; }
-      .pd-tab-nav { -webkit-overflow-scrolling:touch; scrollbar-width:none; padding-right:70px; }
-      .pd-tab-nav::-webkit-scrollbar { display:none; }
     }
   </style>
 </head>
 <body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="preloader-inner">
+    <div class="preloader-logo">NASIR OIL EXPERT</div>
+    <div class="preloader-bar"><div class="preloader-fill"></div></div>
+  </div>
+</div>
 
 <!-- CURSOR -->
 <div class="cursor"></div>
@@ -198,22 +198,21 @@
 <nav class="navbar scrolled" id="navbar">
   <a href="/" class="nav-logo">
     <img src="images/logo.png" alt="Nasir Oil Expert" class="nav-logo-img">
-    <div class="nav-logo-text"><span data-i18n="nav.logo.name">Nasir Oil Expert</span><span data-i18n="ft.tagline">Pure &amp; Authentic Oils</span></div>
+    <div class="nav-logo-text">Nasir Oil Expert<span>Pure &amp; Authentic Oils</span></div>
   </a>
   <ul class="nav-links">
-    <li><a href="/" data-i18n="nav.home">Home</a></li>
-    <li class="nav-has-dropdown"><a href="products" data-i18n="nav.collections">Collections &#9660;</a><ul class="nav-dropdown"><li><a href="bundle-kit" data-i18n="nav.bundleKit">Bundle Kit</a></li><li><a href="golden-oil" data-i18n="nav.goldenOil">Golden Oil</a></li><li><a href="black-rose-oil" data-i18n="nav.blackRoseOil">Black Rose Oil</a></li><li><a href="herbal-shampoo" data-i18n="nav.herbalShampoo">Herbal Shampoo</a></li></ul></li>
-    <li><a href="about" data-i18n="nav.about">About</a></li>
-    <li><a href="reviews" data-i18n="nav.reviews">Reviews</a></li>
-    <li><a href="contact" data-i18n="nav.contact">Contact</a></li>
+    <li><a href="/">Home</a></li>
+    <li class="nav-has-dropdown"><a href="products">Collections &#9660;</a><ul class="nav-dropdown"><li><a href="bundle-kit">Bundle Kit</a></li><li><a href="golden-oil">Golden Oil</a></li><li><a href="black-rose-oil">Black Rose Oil</a></li><li><a href="herbal-shampoo">Herbal Shampoo</a></li></ul></li>
+    <li><a href="about">About</a></li>
+    <li><a href="reviews">Reviews</a></li>
+    <li><a href="contact">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <button class="lang-toggle" onclick="noeToggleLang()" data-active="en" aria-label="Switch language"><span class="lt-en">EN</span><span class="lt-divider">|</span><span class="lt-ur">اردو</span></button>
     <a href="cart" class="cart-icon-btn" title="Cart">
       <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
       <span class="cart-count">0</span>
     </a>
-    <a href="products" class="nav-cta" data-i18n="nav.orderNow">Shop Now</a>
+    <a href="products" class="nav-cta">Shop Now</a>
   </div>
   <div class="nav-hamburger"><span></span><span></span><span></span></div>
 </nav>
@@ -221,25 +220,25 @@
 <!-- MOBILE NAV -->
 <div class="mobile-nav">
   <button class="mobile-nav-close">&#10005;</button>
-  <a href="/" data-i18n="nav.home">Home</a>
-  <a href="products" data-i18n="nav.collections">Collections</a>
-  <a href="bundle-kit" class="mn-sub-link" data-i18n="nav.bundleKit">&#9656; Bundle Kit</a>
-  <a href="golden-oil" class="mn-sub-link" data-i18n="nav.goldenOil">&#9656; Golden Oil</a>
-  <a href="black-rose-oil" class="mn-sub-link" data-i18n="nav.blackRoseOil">&#9656; Black Rose Oil</a>
-  <a href="herbal-shampoo" class="mn-sub-link" data-i18n="nav.herbalShampoo">&#9656; Herbal Shampoo</a>
-  <a href="about" data-i18n="nav.about">About</a>
-  <a href="contact" data-i18n="nav.contact">Contact</a>
-  <a href="reviews" data-i18n="nav.reviews">Reviews</a>
-  <a href="cart" style="color:var(--gold);font-weight:700;" data-i18n="nav.cart">&#128722; Cart</a>
+  <a href="/">Home</a>
+  <a href="products">Collections</a>
+  <a href="bundle-kit" class="mn-sub-link">&#9656; Bundle Kit</a>
+  <a href="golden-oil" class="mn-sub-link">&#9656; Golden Oil</a>
+  <a href="black-rose-oil" class="mn-sub-link">&#9656; Black Rose Oil</a>
+  <a href="herbal-shampoo" class="mn-sub-link">&#9656; Herbal Shampoo</a>
+  <a href="about">About</a>
+  <a href="contact">Contact</a>
+  <a href="reviews">Reviews</a>
+  <a href="cart" style="color:var(--gold);font-weight:700;">&#128722; Cart</a>
 </div>
 
 <!-- BREADCRUMB -->
 <div style="background:var(--bg-light);padding:14px 40px;margin-top:72px;border-bottom:1px solid var(--cream-dark);">
   <div style="max-width:1200px;margin:0 auto;">
     <span style="font-family:'Montserrat',sans-serif;font-size:0.72rem;color:var(--text-light);">
-      <a href="/" style="color:var(--text-light);" data-i18n="bc.home">Home</a> /
-      <a href="products" style="color:var(--text-light);" data-i18n="bc.products">Products</a> /
-      <strong style="color:var(--green-deep);" data-i18n="bc.shampoo">Herbal Shampoo</strong>
+      <a href="/" style="color:var(--text-light);">Home</a> /
+      <a href="products" style="color:var(--text-light);">Products</a> /
+      <strong style="color:var(--green-deep);">Herbal Shampoo</strong>
     </span>
   </div>
 </div>
@@ -276,8 +275,8 @@
         <span class="pd-badge light">Sulfate Free</span>
         <span class="pd-badge gold">Rs 1,000</span>
       </div>
-      <h1 class="pd-title" data-i18n="pd.shampoo.name">Herbal Shampoo</h1>
-      <p class="pd-subtitle" data-i18n="pd.shampoo.sub">Gentle Botanical Cleansing for Soft, Healthy Hair</p>
+      <h1 class="pd-title">Herbal Shampoo</h1>
+      <p class="pd-subtitle">Gentle Botanical Cleansing for Soft, Healthy Hair</p>
 
       <div class="pd-rating">
         <span class="pd-stars">★★★★★</span>
@@ -288,7 +287,7 @@
         <div class="pd-price">Rs <span>1,000</span></div>
       </div>
 
-      <p class="pd-desc" data-i18n="pd.shampoo.desc">
+      <p class="pd-desc">
         Our Herbal Shampoo is the perfect companion to our premium oils. Formulated with a powerful blend of neem, amla, bhringraj, and other botanical extracts, it gently cleanses your scalp and hair without stripping away natural oils. Completely sulfate and paraben free — safe for daily use, color-treated hair, and all hair types.
       </p>
 
@@ -302,29 +301,29 @@
       </div>
 
       <div class="pd-actions">
-        <button class="pd-btn-cart" id="pdAddBtn" onclick="pdAddToCart()" data-i18n="pd.addCart">
+        <button class="pd-btn-cart" id="pdAddBtn" onclick="pdAddToCart()">
           🛒 Add to Cart
         </button>
         <a class="pd-btn-wa" href="https://wa.me/923211112280?text=Assalam%20o%20Alaikum!%20I%20want%20to%20order%20Herbal%20Shampoo%20(Rs%201000)" target="_blank">
           <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          <span data-i18n="pd.wa.order">Order on WhatsApp</span>
+          Order on WhatsApp
         </a>
       </div>
 
       <div class="pd-perks">
-        <div class="pd-perk"><div class="pd-perk-icon">🌿</div> <span data-i18n="pd.perk.botanicals">100% Natural Botanicals</span></div>
-        <div class="pd-perk"><div class="pd-perk-icon">🚚</div> <span data-i18n="pd.perk.delivery">Rs 250 delivery • Free on Rs 5,000+</span></div>
-        <div class="pd-perk"><div class="pd-perk-icon">🧴</div> <span data-i18n="pd.perk.sulfate">Sulfate &amp; Paraben Free</span></div>
-        <div class="pd-perk"><div class="pd-perk-icon">✅</div> <span data-i18n="pd.perk.allhair">Safe for All Hair Types</span></div>
+        <div class="pd-perk"><div class="pd-perk-icon">🌿</div> 100% Natural Botanicals</div>
+        <div class="pd-perk"><div class="pd-perk-icon">🚚</div> Rs 250 delivery • Free on Rs 5,000+</div>
+        <div class="pd-perk"><div class="pd-perk-icon">🧴</div> Sulfate &amp; Paraben Free</div>
+        <div class="pd-perk"><div class="pd-perk-icon">✅</div> Safe for All Hair Types</div>
       </div>
 
       <!-- Tabs -->
       <div class="pd-tabs">
         <div class="pd-tab-nav">
-          <button class="pd-tab-btn active" onclick="switchTab('desc', this)" data-i18n="pd.tab.desc">Description</button>
-          <button class="pd-tab-btn" onclick="switchTab('benefits', this)" data-i18n="pd.tab.benefits">Benefits</button>
-          <button class="pd-tab-btn" onclick="switchTab('howto', this)" data-i18n="pd.tab.use">How to Use</button>
-          <button class="pd-tab-btn" onclick="switchTab('ingr', this)" data-i18n="pd.tab.ing">Ingredients</button>
+          <button class="pd-tab-btn active" onclick="switchTab('desc', this)">Description</button>
+          <button class="pd-tab-btn" onclick="switchTab('benefits', this)">Benefits</button>
+          <button class="pd-tab-btn" onclick="switchTab('howto', this)">How to Use</button>
+          <button class="pd-tab-btn" onclick="switchTab('ingr', this)">Ingredients</button>
         </div>
 
         <div class="pd-tab-panel active" id="tab-desc">
@@ -371,22 +370,22 @@
           <div class="ingr-grid">
             <div class="ingr-chip">
               <div class="ic">🌿</div>
-              <h5 data-i18n="pd.ing.neem">Neem Extract</h5>
+              <h5>Neem Extract</h5>
               <p>Natural antibacterial that fights dandruff and scalp infections</p>
             </div>
             <div class="ingr-chip">
               <div class="ic">🍈</div>
-              <h5 data-i18n="pd.ing.amlaberry">Amla (Indian Gooseberry)</h5>
+              <h5>Amla (Indian Gooseberry)</h5>
               <p>Rich in Vitamin C, promotes hair growth and adds shine</p>
             </div>
             <div class="ingr-chip">
               <div class="ic">🌱</div>
-              <h5 data-i18n="pd.ing.bhringraj">Bhringraj</h5>
+              <h5>Bhringraj</h5>
               <p>The king of herbs for hair — reduces fall and premature greying</p>
             </div>
             <div class="ingr-chip">
               <div class="ic">🥥</div>
-              <h5 data-i18n="pd.ing.coconut">Coconut Milk</h5>
+              <h5>Coconut Milk</h5>
               <p>Deeply moisturizes and adds softness to each strand</p>
             </div>
             <div class="ingr-chip">
@@ -469,26 +468,26 @@
 <!-- RELATED PRODUCTS -->
 <section class="pd-related">
   <div class="pd-related-inner">
-    <div class="section-label reveal" style="justify-content:left;" data-i18n="pd.rel.label">You May Also Like</div>
-    <h2 class="section-title reveal reveal-delay-1" data-i18n="pd.rel.title">Related Products</h2>
+    <div class="section-label reveal" style="justify-content:left;">You May Also Like</div>
+    <h2 class="section-title reveal reveal-delay-1">Related Products</h2>
     <div class="related-grid">
 
       <div class="product-card reveal reveal-delay-1">
         <div class="product-card-img" style="background:linear-gradient(145deg,#fef9e8,#fde68a);">
-          <img src="images/golden/6.png" alt="Golden Oil">
-          <div class="product-tag" data-i18n="tag.bestSeller">Best Seller</div>
+          <img src="images/golden/5.png" alt="Golden Oil">
+          <div class="product-tag">Best Seller</div>
           <div class="product-overlay">
-            <a href="golden-oil" class="product-overlay-btn" data-i18n="btn.details">View Details</a>
+            <a href="golden-oil" class="product-overlay-btn">View Details</a>
           </div>
         </div>
         <div class="product-info">
-          <h3 class="product-name" data-i18n="pd.golden.name">Golden Oil</h3>
-          <p class="product-desc" data-i18n="desc.golden">A nourishing blend of premium cold-pressed oils for deep moisture, shine, and hair growth.</p>
+          <h3 class="product-name">Golden Oil</h3>
+          <p class="product-desc">A nourishing blend of premium cold-pressed oils for deep moisture, shine, and hair growth.</p>
           <div class="product-footer">
             <div class="product-price"><span>Rs</span>1,500</div>
             <div class="product-btn-group">
-              <a href="golden-oil" class="btn-details" data-i18n="btn.details">View Details</a>
-              <button class="btn-cart" data-name="Golden Oil" data-price="1500" data-img="images/golden/6.png">🛒 Add to Cart</button>
+              <a href="golden-oil" class="btn-details">View Details</a>
+              <button class="btn-cart" data-name="Golden Oil" data-price="1500" data-img="images/golden/5.png">🛒 Add to Cart</button>
             </div>
           </div>
         </div>
@@ -497,18 +496,18 @@
       <div class="product-card reveal reveal-delay-2">
         <div class="product-card-img" style="background:linear-gradient(145deg,#f8f0f2,#f0e4e8);">
           <img src="images/black-rose/5.png" alt="Black Rose Oil">
-          <div class="product-tag" style="background:var(--green-deep);" data-i18n="tag.premium">Premium</div>
+          <div class="product-tag" style="background:var(--green-deep);">Premium</div>
           <div class="product-overlay">
-            <a href="black-rose-oil" class="product-overlay-btn" data-i18n="btn.details">View Details</a>
+            <a href="black-rose-oil" class="product-overlay-btn">View Details</a>
           </div>
         </div>
         <div class="product-info">
-          <h3 class="product-name" data-i18n="pd.rose.name">Black Rose Oil</h3>
-          <p class="product-desc" data-i18n="desc.rose">Infused with rare black rose extract — strengthens hair follicles and leaves hair silky and fragrant.</p>
+          <h3 class="product-name">Black Rose Oil</h3>
+          <p class="product-desc">Infused with rare black rose extract — strengthens hair follicles and leaves hair silky and fragrant.</p>
           <div class="product-footer">
             <div class="product-price"><span>Rs</span>1,500</div>
             <div class="product-btn-group">
-              <a href="black-rose-oil" class="btn-details" data-i18n="btn.details">View Details</a>
+              <a href="black-rose-oil" class="btn-details">View Details</a>
               <button class="btn-cart" data-name="Black Rose Oil" data-price="1500" data-img="images/black-rose/5.png">🛒 Add to Cart</button>
             </div>
           </div>
@@ -526,11 +525,11 @@
       <div class="footer-brand">
         <div class="nav-logo" style="margin-bottom:14px;">
           <img src="images/logo.png" alt="Nasir Oil Expert" style="border-radius:50%;width:42px;height:42px;object-fit:cover;border:2px solid var(--gold);">
-          <span class="nav-logo-text"><span data-i18n="nav.logo.name">Nasir Oil Expert</span><span data-i18n="ft.tagline">Pure &amp; Authentic Oils</span></span>
+          <span class="nav-logo-text">Nasir Oil Expert<span>Pure &amp; Authentic Oils</span></span>
         </div>
-        <p data-i18n="ft.brand.desc">Your destination for natural, effective products that nurture stronger, healthier hair.</p>
+        <p>Your destination for natural, effective products that nurture stronger, healthier hair.</p>
         <div class="footer-socials">
-          <a href="https://www.facebook.com/people/Nasir-Oil-Expert/61592639019220/" target="_blank" class="social-btn fb" title="Facebook">
+          <a href="https://www.facebook.com/nasiroilexpert" target="_blank" class="social-btn fb" title="Facebook">
             <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           </a>
           <a href="https://www.instagram.com/nasiroilexpert" target="_blank" class="social-btn ig" title="Instagram">
@@ -547,33 +546,33 @@
           </a>
         </div>      </div>
       <div class="footer-col">
-        <h4 data-i18n="ft.quickLinks">Quick Links</h4>
+        <h4>Quick Links</h4>
         <ul>
-          <li><a href="/" data-i18n="ft.home">Home</a></li>
-          <li><a href="products" data-i18n="ft.collections">Collections</a></li>
-          <li><a href="reviews" data-i18n="ft.reviews">Reviews</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="products">Collections</a></li>
+          <li><a href="reviews">Reviews</a></li>
           <li><a href="about">About Us</a></li>
-          <li><a href="contact" data-i18n="ft.contactLink">Contact</a></li>
+          <li><a href="contact">Contact</a></li>
         </ul></div>
       <div class="footer-col">
-        <h4 data-i18n="ft.products">Products</h4>
+        <h4>Products</h4>
         <ul>
-          <li><a href="bundle-kit" data-i18n="ft.prod.bundle">Bundle Kit</a></li>
-          <li><a href="golden-oil" data-i18n="ft.prod.golden">Golden Oil</a></li>
-          <li><a href="black-rose-oil" data-i18n="ft.prod.rose">Black Rose Oil</a></li>
-          <li><a href="herbal-shampoo" data-i18n="ft.prod.shampoo">Herbal Shampoo</a></li>
+          <li><a href="bundle-kit">Bundle Kit</a></li>
+          <li><a href="golden-oil">Golden Oil</a></li>
+          <li><a href="black-rose-oil">Black Rose Oil</a></li>
+          <li><a href="herbal-shampoo">Herbal Shampoo</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4 data-i18n="ft.contact">Contact</h4>
+        <h4>Contact</h4>
         <a href="mailto:nasiroilexpert@gmail.com" class="contact-item"><span class="icon">📧</span>nasiroilexpert@gmail.com</a>
         <a href="tel:+923211112280" class="contact-item"><span class="icon">📞</span>0321-1112280</a>
-        <a href="https://wa.me/923211112280" class="contact-item" target="_blank"><span class="icon">💬</span><span data-i18n="ft.waOrder">WhatsApp Order</span></a>
-        <a href="https://maps.google.com/?q=W725+Ganj+Mandi+Near+Bajaur+Plaza+Rawalpindi" target="_blank" class="contact-item"><span class="icon">📍</span>W/725, Ganj Mandi, Near Bajaur Plaza, Rawalpindi</a>
+        <a href="https://wa.me/923211112280" class="contact-item" target="_blank"><span class="icon">💬</span>WhatsApp Order</a>
+        <div class="contact-item"><span class="icon">📍</span>Pakistan, Nationwide</div>
       </div>
     </div>
     <div class="footer-bottom">
-      <p data-i18n="ft.rights">© 2026 Nasir Oil Expert. All rights reserved.</p>
+      <p>© 2026 Nasir Oil Expert. All rights reserved.</p>
     </div>
   </div>
 </footer>
@@ -583,7 +582,6 @@
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 <script src="script.js"></script>
-<script src="lang.js"></script>
 <script>
   let pdQty = 1;
 
@@ -621,7 +619,3 @@
 </script>
 </body>
 </html>
-
-
-
-

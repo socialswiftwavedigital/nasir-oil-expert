@@ -1,4 +1,12 @@
-﻿/* ===== CUSTOM CURSOR ===== */
+﻿/* ===== PRELOADER ===== */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const pre = document.getElementById('preloader');
+    if (pre) pre.classList.add('hidden');
+  }, 1900);
+});
+
+/* ===== CUSTOM CURSOR ===== */
 const cursor = document.querySelector('.cursor');
 const follower = document.querySelector('.cursor-follower');
 if (cursor && follower) {
@@ -424,7 +432,7 @@ document.addEventListener('DOMContentLoaded', () => {
         '<svg class="vi-pause" viewBox="0 0 24 24" width="13" height="13" fill="white" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>' +
       '</button>' +
       '<div class="vid-progress"><div class="vid-fill"></div></div>' +
-      '<span class="vid-time">0:00</span>';
+      '<span class="vid-time">0:00 / 0:00</span>';
     wrap.appendChild(bar);
 
     var ppBtn  = bar.querySelector('.vid-pp');
@@ -443,7 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
       iPause.style.display = !paused ? 'block' : 'none';
       var pct = video.duration ? (video.currentTime / video.duration * 100) : 0;
       fill.style.width = pct + '%';
-      timeEl.textContent = fmt(video.currentTime);
+      timeEl.textContent = fmt(video.currentTime) + ' / ' + fmt(video.duration);
     }
 
     function seek(e) {

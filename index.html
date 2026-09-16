@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260916" />
+  <link rel="stylesheet" href="styles.css" />
   <style>
     /* ===== SHOP HERO ===== */
     .shop-hero {
@@ -130,6 +130,14 @@
 </head>
 <body>
 
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="preloader-inner">
+    <div class="preloader-logo">NASIR OIL EXPERT</div>
+    <div class="preloader-bar"><div class="preloader-fill"></div></div>
+  </div>
+</div>
+
 <!-- CURSOR -->
 <div class="cursor"></div>
 <div class="cursor-follower"></div>
@@ -138,24 +146,21 @@
 <nav class="navbar" id="navbar">
   <a href="/" class="nav-logo">
     <img src="images/logo.png" alt="Nasir Oil Expert" class="nav-logo-img">
-    <div class="nav-logo-text"><span data-i18n="nav.logo.name">Nasir Oil Expert</span><span data-i18n="ft.tagline">Pure &amp; Authentic Oils</span></div>
+    <div class="nav-logo-text">Nasir Oil Expert<span>Pure &amp; Authentic Oils</span></div>
   </a>
   <ul class="nav-links">
-    <li><a href="/" class="active" data-i18n="nav.home">Home</a></li>
-    <li class="nav-has-dropdown"><a href="products" data-i18n="nav.collections">Collections &#9660;</a><ul class="nav-dropdown"><li><a href="bundle-kit" data-i18n="nav.bundleKit">Bundle Kit</a></li><li><a href="golden-oil" data-i18n="nav.goldenOil">Golden Oil</a></li><li><a href="black-rose-oil" data-i18n="nav.blackRoseOil">Black Rose Oil</a></li><li><a href="herbal-shampoo" data-i18n="nav.herbalShampoo">Herbal Shampoo</a></li></ul></li>
-    <li><a href="about" data-i18n="nav.about">About</a></li>
-    <li><a href="reviews" data-i18n="nav.reviews">Reviews</a></li>
-    <li><a href="contact" data-i18n="nav.contact">Contact</a></li>
+    <li><a href="/" class="active">Home</a></li>
+    <li class="nav-has-dropdown"><a href="products">Collections &#9660;</a><ul class="nav-dropdown"><li><a href="bundle-kit">Bundle Kit</a></li><li><a href="golden-oil">Golden Oil</a></li><li><a href="black-rose-oil">Black Rose Oil</a></li><li><a href="herbal-shampoo">Herbal Shampoo</a></li></ul></li>
+    <li><a href="about">About</a></li>
+    <li><a href="reviews">Reviews</a></li>
+    <li><a href="contact">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <button class="lang-toggle" onclick="noeToggleLang()" data-active="en" aria-label="Switch language">
-      <span class="lt-en">EN</span><span class="lt-divider">|</span><span class="lt-ur">اردو</span>
-    </button>
     <a href="cart" class="cart-icon-btn" title="Cart">
       <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
       <span class="cart-count">0</span>
     </a>
-    <a href="contact" class="nav-cta" data-i18n="nav.orderNow">Order Now</a>
+    <a href="contact" class="nav-cta">Order Now</a>
   </div>
   <div class="nav-hamburger">
     <span></span><span></span><span></span>
@@ -165,30 +170,30 @@
 <!-- MOBILE NAV -->
 <div class="mobile-nav">
   <button class="mobile-nav-close">&#10005;</button>
-  <a href="/" data-i18n="nav.home">Home</a>
-  <a href="products" data-i18n="nav.collections">Collections</a>
-  <a href="bundle-kit" class="mn-sub-link" data-i18n="nav.bundleKit">&#9656; Bundle Kit</a>
-  <a href="golden-oil" class="mn-sub-link" data-i18n="nav.goldenOil">&#9656; Golden Oil</a>
-  <a href="black-rose-oil" class="mn-sub-link" data-i18n="nav.blackRoseOil">&#9656; Black Rose Oil</a>
-  <a href="herbal-shampoo" class="mn-sub-link" data-i18n="nav.herbalShampoo">&#9656; Herbal Shampoo</a>
-  <a href="about" data-i18n="nav.about">About</a>
-  <a href="contact" data-i18n="nav.contact">Contact</a>
-  <a href="reviews" data-i18n="nav.reviews">Reviews</a>
-  <a href="cart" style="color:var(--gold);font-weight:700;" data-i18n="nav.cart">&#128722; Cart</a>
+  <a href="/">Home</a>
+  <a href="products">Collections</a>
+  <a href="bundle-kit" class="mn-sub-link">&#9656; Bundle Kit</a>
+  <a href="golden-oil" class="mn-sub-link">&#9656; Golden Oil</a>
+  <a href="black-rose-oil" class="mn-sub-link">&#9656; Black Rose Oil</a>
+  <a href="herbal-shampoo" class="mn-sub-link">&#9656; Herbal Shampoo</a>
+  <a href="about">About</a>
+  <a href="contact">Contact</a>
+  <a href="reviews">Reviews</a>
+  <a href="cart" style="color:var(--gold);font-weight:700;">&#128722; Cart</a>
 </div>
 
 <!-- SHOP HERO -->
 <section class="shop-hero">
   <div class="hero-particles"></div>
   <div class="shop-hero-content">
-    <div class="section-label" data-i18n="hero.since">Since 1948 &nbsp;·&nbsp; Nasir Oil Expert</div>
-    <h1 data-i18n-html="hero.h1">Pure &amp; Authentic<br><span class="highlight">Hair Care</span></h1>
-    <p class="hero-sub" data-i18n="hero.sub">Natural oils and herbal care crafted from the finest botanicals for stronger, shinier, healthier hair.</p>
+    <div class="section-label">Since 1948 &nbsp;·&nbsp; Nasir Oil Expert</div>
+    <h1>Pure &amp; Authentic<br><span class="highlight">Hair Care</span></h1>
+    <p class="hero-sub">Natural oils and herbal care crafted from the finest botanicals for stronger, shinier, healthier hair.</p>
     <div class="shop-trust-chips">
-      <span class="trust-chip"><span class="dot">✦</span><span data-i18n="hero.chip1">100% Natural</span></span>
-      <span class="trust-chip"><span class="dot">✦</span><span data-i18n="hero.chip2">Est. 1948</span></span>
-      <span class="trust-chip"><span class="dot">✦</span><span data-i18n="hero.chip3">5000+ Customers</span></span>
-      <span class="trust-chip"><span class="dot">✦</span><span data-i18n="hero.chip4">Nationwide Delivery</span></span>
+      <span class="trust-chip"><span class="dot">✦</span>100% Natural</span>
+      <span class="trust-chip"><span class="dot">✦</span>Est. 1948</span>
+      <span class="trust-chip"><span class="dot">✦</span>5000+ Customers</span>
+      <span class="trust-chip"><span class="dot">✦</span>Nationwide Delivery</span>
     </div>
   </div>
 </section>
@@ -196,29 +201,29 @@
 <!-- MARQUEE -->
 <div class="marquee-strip">
   <div class="marquee-track">
-    <span class="marquee-item" data-i18n="marq.1">Pure Extracted Oils</span>
-    <span class="marquee-item" data-i18n="marq.2">Organic &amp; Herbal</span>
-    <span class="marquee-item" data-i18n="marq.3">Golden Oil Collection</span>
-    <span class="marquee-item" data-i18n="marq.4">Black Rose Oil</span>
-    <span class="marquee-item" data-i18n="marq.5">Herbal Shampoo</span>
-    <span class="marquee-item" data-i18n="marq.6">100% Natural</span>
-    <span class="marquee-item" data-i18n="marq.7">Since 1948</span>
-    <span class="marquee-item" data-i18n="marq.8">Nationwide Delivery</span>
-    <span class="marquee-item" data-i18n="marq.9">Authentic Formula</span>
+    <span class="marquee-item">Pure Extracted Oils</span>
+    <span class="marquee-item">Organic &amp; Herbal</span>
+    <span class="marquee-item">Golden Oil Collection</span>
+    <span class="marquee-item">Black Rose Oil</span>
+    <span class="marquee-item">Herbal Shampoo</span>
+    <span class="marquee-item">100% Natural</span>
+    <span class="marquee-item">Since 1948</span>
+    <span class="marquee-item">Nationwide Delivery</span>
+    <span class="marquee-item">Authentic Formula</span>
   </div>
 </div>
 
 <!-- SHOP / PRODUCTS -->
 <section class="shop-section">
   <div style="max-width:1200px;margin:0 auto;text-align:center;padding-top:20px;">
-    <div class="section-label reveal" style="justify-content:center;" data-i18n="shop.label">Our Collections</div>
-    <h2 class="section-title reveal reveal-delay-1" data-i18n="shop.title">Shop By Collection</h2>
-    <p class="section-subtitle reveal reveal-delay-2" data-i18n="shop.sub">All products crafted with 100% natural ingredients for maximum hair health.</p>
+    <div class="section-label reveal" style="justify-content:center;">Our Collections</div>
+    <h2 class="section-title reveal reveal-delay-1">Shop By Collection</h2>
+    <p class="section-subtitle reveal reveal-delay-2">All products crafted with 100% natural ingredients for maximum hair health.</p>
     <div class="filter-bar reveal reveal-delay-3">
-      <button class="filter-btn active" data-filter="all" data-i18n="filter.all">All Products</button>
-      <button class="filter-btn" data-filter="golden-oil" data-i18n="filter.oil">Golden Oil</button>
-      <button class="filter-btn" data-filter="black-rose-oil" data-i18n="filter.rose">Black Rose Oil</button>
-      <button class="filter-btn" data-filter="herbal-shampoo" data-i18n="filter.shampoo">Herbal Shampoo</button>
+      <button class="filter-btn active" data-filter="all">All Products</button>
+      <button class="filter-btn" data-filter="golden-oil">Golden Oil</button>
+      <button class="filter-btn" data-filter="black-rose-oil">Black Rose Oil</button>
+      <button class="filter-btn" data-filter="herbal-shampoo">Herbal Shampoo</button>
     </div>
   </div>
 
@@ -227,29 +232,29 @@
     <!-- 3-in-1 Bundle Card -->
     <div class="product-item reveal reveal-delay-1" data-category="bundle">
       <div class="product-detail-card" style="background:var(--green-deep);border:1px solid rgba(201,168,76,0.25);">
-        <a href="bundle-kit" class="product-detail-img" style="background:linear-gradient(145deg,#1B4332,#2D6A4F);display:flex;text-decoration:none;">
+        <div class="product-detail-img" style="background:linear-gradient(145deg,#1B4332,#2D6A4F);">
           <img src="images/box/box1.jpg" alt="3-in-1 Bundle Kit">
-          <div class="product-tag" style="background:var(--gold);color:var(--green-deep);" data-i18n="tag.bestValue">Best Value</div>
+          <div class="product-tag" style="background:var(--gold);color:var(--green-deep);">Best Value</div>
           <div class="product-overlay">
             <button class="product-overlay-btn btn-cart" data-name="3-in-1 Hair Complete Kit" data-price="3250" data-img="images/box/box1.jpg" style="border:none;cursor:pointer;">Add to Cart</button>
           </div>
-        </a>
+        </div>
         <div class="product-info">
-          <h3 class="product-name" style="color:var(--white);" data-i18n="prod.bundle">3-in-1 Complete Kit</h3>
+          <h3 class="product-name" style="color:var(--white);">3-in-1 Complete Kit</h3>
           <div class="product-benefits">
-            <span class="benefit-chip" style="background:rgba(201,168,76,0.12);color:var(--gold-light);" data-i18n="ben.golden">✦ Golden Oil</span>
-            <span class="benefit-chip" style="background:rgba(201,168,76,0.12);color:var(--gold-light);" data-i18n="ben.rose">✦ Black Rose Oil</span>
-            <span class="benefit-chip" style="background:rgba(201,168,76,0.12);color:var(--gold-light);" data-i18n="ben.shampoo">✦ Herbal Shampoo</span>
+            <span class="benefit-chip" style="background:rgba(201,168,76,0.12);color:var(--gold-light);">✦ Golden Oil</span>
+            <span class="benefit-chip" style="background:rgba(201,168,76,0.12);color:var(--gold-light);">✦ Black Rose Oil</span>
+            <span class="benefit-chip" style="background:rgba(201,168,76,0.12);color:var(--gold-light);">✦ Herbal Shampoo</span>
           </div>
-          <p class="product-desc" style="color:rgba(255,255,255,0.55);" data-i18n="desc.bundle">Complete 45-day hair treatment — fights hair fall, greying and dandruff. All 3 products in one special kit. Save Rs 750 on the full combo.</p>
+          <p class="product-desc" style="color:rgba(255,255,255,0.55);">Complete 45-day hair treatment — fights hair fall, greying and dandruff. All 3 products in one special kit. Save Rs 750 on the full combo.</p>
           <div class="product-footer">
             <div>
               <div class="product-price" style="color:var(--gold);"><span style="color:rgba(255,255,255,0.4);">Rs</span>3,250</div>
               <div style="font-family:'Montserrat',sans-serif;font-size:0.65rem;color:rgba(255,255,255,0.35);text-decoration:line-through;margin-top:2px;">Rs 4,000 separately</div>
             </div>
             <div class="product-btn-group">
-              <a href="bundle-kit" class="btn-details" style="background:rgba(255,255,255,0.08);color:var(--gold-light);border-color:rgba(201,168,76,0.3);" data-i18n="btn.details">View Details</a>
-              <button class="btn-cart" data-name="3-in-1 Hair Complete Kit" data-price="3250" data-img="images/box/box1.jpg" style="background:var(--gold);color:var(--green-deep);" data-i18n="btn.cart">🛒 Add to Cart</button>
+              <a href="bundle-kit" class="btn-details" style="background:rgba(255,255,255,0.08);color:var(--gold-light);border-color:rgba(201,168,76,0.3);">View Details</a>
+              <button class="btn-cart" data-name="3-in-1 Hair Complete Kit" data-price="3250" data-img="images/box/box1.jpg" style="background:var(--gold);color:var(--green-deep);">🛒 Add to Cart</button>
             </div>
           </div>
         </div>
@@ -259,26 +264,26 @@
     <!-- Golden Oil -->
     <div class="product-item reveal reveal-delay-2" data-category="golden-oil">
       <div class="product-detail-card">
-        <a href="golden-oil" class="product-detail-img" style="background:linear-gradient(145deg,#fef9e8,#fde68a);display:flex;text-decoration:none;">
-          <img src="images/golden/6.png" alt="Golden Oil">
-          <div class="product-tag" data-i18n="tag.bestSeller">Best Seller</div>
+        <div class="product-detail-img" style="background:linear-gradient(145deg,#fef9e8,#fde68a);">
+          <img src="images/golden/5.png" alt="Golden Oil">
+          <div class="product-tag">Best Seller</div>
           <div class="product-overlay">
-            <span class="product-overlay-btn">View Details</span>
+            <a href="golden-oil" class="product-overlay-btn">View Details</a>
           </div>
-        </a>
+        </div>
         <div class="product-info">
-          <h3 class="product-name" data-i18n="prod.golden">Golden Oil</h3>
+          <h3 class="product-name">Golden Oil</h3>
           <div class="product-benefits">
-            <span class="benefit-chip" data-i18n="ben.growth">✦ Hair Growth</span>
-            <span class="benefit-chip" data-i18n="ben.nourish">✦ Deep Nourish</span>
-            <span class="benefit-chip" data-i18n="ben.shine">✦ Shine Boost</span>
+            <span class="benefit-chip">✦ Hair Growth</span>
+            <span class="benefit-chip">✦ Deep Nourish</span>
+            <span class="benefit-chip">✦ Shine Boost</span>
           </div>
-          <p class="product-desc" data-i18n="desc.golden">Our signature Golden Oil is a rich blend of premium cold-pressed oils and herbal extracts. Deeply penetrates the hair shaft to moisturize, nourish, and stimulate healthy hair growth.</p>
+          <p class="product-desc">Our signature Golden Oil is a rich blend of premium cold-pressed oils and herbal extracts. Deeply penetrates the hair shaft to moisturize, nourish, and stimulate healthy hair growth.</p>
           <div class="product-footer">
             <div class="product-price"><span>Rs</span>1,500</div>
             <div class="product-btn-group">
-              <a href="golden-oil" class="btn-details" data-i18n="btn.details">View Details</a>
-              <button class="btn-cart" data-name="Golden Oil" data-price="1500" data-img="images/golden/6.png" data-i18n="btn.cart">🛒 Add to Cart</button>
+              <a href="golden-oil" class="btn-details">View Details</a>
+              <button class="btn-cart" data-name="Golden Oil" data-price="1500" data-img="images/golden/5.png">🛒 Add to Cart</button>
             </div>
           </div>
         </div>
@@ -288,26 +293,26 @@
     <!-- Black Rose Oil -->
     <div class="product-item reveal reveal-delay-3" data-category="black-rose-oil">
       <div class="product-detail-card">
-        <a href="black-rose-oil" class="product-detail-img" style="background:linear-gradient(145deg,#fce8f0,#f5c5d5);display:flex;text-decoration:none;">
+        <div class="product-detail-img" style="background:linear-gradient(145deg,#fce8f0,#f5c5d5);">
           <img src="images/black-rose/5.png" alt="Black Rose Oil">
-          <div class="product-tag" style="background:var(--green-deep);" data-i18n="tag.premium">Premium</div>
+          <div class="product-tag" style="background:var(--green-deep);">Premium</div>
           <div class="product-overlay">
-            <span class="product-overlay-btn">View Details</span>
+            <a href="black-rose-oil" class="product-overlay-btn">View Details</a>
           </div>
-        </a>
+        </div>
         <div class="product-info">
-          <h3 class="product-name" data-i18n="prod.rose">Black Rose Oil</h3>
+          <h3 class="product-name">Black Rose Oil</h3>
           <div class="product-benefits">
-            <span class="benefit-chip" data-i18n="ben.strong">✦ Strengthening</span>
-            <span class="benefit-chip" data-i18n="ben.nobreak">✦ Anti-Breakage</span>
-            <span class="benefit-chip" data-i18n="ben.fragrant">✦ Fragrant</span>
+            <span class="benefit-chip">✦ Strengthening</span>
+            <span class="benefit-chip">✦ Anti-Breakage</span>
+            <span class="benefit-chip">✦ Fragrant</span>
           </div>
-          <p class="product-desc" data-i18n="desc.rose">Infused with rare black rose extract and luxurious botanical oils. Strengthens hair from root to tip with long-lasting fragrance and antioxidant protection.</p>
+          <p class="product-desc">Infused with rare black rose extract and luxurious botanical oils. Strengthens hair from root to tip with long-lasting fragrance and antioxidant protection.</p>
           <div class="product-footer">
             <div class="product-price"><span>Rs</span>1,500</div>
             <div class="product-btn-group">
-              <a href="black-rose-oil" class="btn-details" data-i18n="btn.details">View Details</a>
-              <button class="btn-cart" data-name="Black Rose Oil" data-price="1500" data-img="images/black-rose/5.png" data-i18n="btn.cart">🛒 Add to Cart</button>
+              <a href="black-rose-oil" class="btn-details">View Details</a>
+              <button class="btn-cart" data-name="Black Rose Oil" data-price="1500" data-img="images/black-rose/5.png">🛒 Add to Cart</button>
             </div>
           </div>
         </div>
@@ -317,26 +322,26 @@
     <!-- Herbal Shampoo -->
     <div class="product-item reveal reveal-delay-3" data-category="herbal-shampoo">
       <div class="product-detail-card">
-        <a href="herbal-shampoo" class="product-detail-img" style="background:linear-gradient(145deg,#e8f5ee,#c8e8d4);display:flex;text-decoration:none;">
+        <div class="product-detail-img" style="background:linear-gradient(145deg,#e8f5ee,#c8e8d4);">
           <img src="images/shampoo/5.png" alt="Herbal Shampoo">
-          <div class="product-tag" style="background:var(--green-light);" data-i18n="tag.natural">Natural</div>
+          <div class="product-tag" style="background:var(--green-light);">Natural</div>
           <div class="product-overlay">
-            <span class="product-overlay-btn">View Details</span>
+            <a href="herbal-shampoo" class="product-overlay-btn">View Details</a>
           </div>
-        </a>
+        </div>
         <div class="product-info">
-          <h3 class="product-name" data-i18n="prod.shampoo">Herbal Shampoo</h3>
+          <h3 class="product-name">Herbal Shampoo</h3>
           <div class="product-benefits">
-            <span class="benefit-chip" data-i18n="ben.cleanse">✦ Gentle Cleanse</span>
-            <span class="benefit-chip" data-i18n="ben.scalp">✦ Scalp Care</span>
-            <span class="benefit-chip" data-i18n="ben.sulfate">✦ Sulfate Free</span>
+            <span class="benefit-chip">✦ Gentle Cleanse</span>
+            <span class="benefit-chip">✦ Scalp Care</span>
+            <span class="benefit-chip">✦ Sulfate Free</span>
           </div>
-          <p class="product-desc" data-i18n="desc.shampoo">Formulated with neem, amla, bhringraj and botanical extracts. Gently cleanses without stripping natural oils. Soft, manageable, beautifully clean hair every wash.</p>
+          <p class="product-desc">Formulated with neem, amla, bhringraj and botanical extracts. Gently cleanses without stripping natural oils. Soft, manageable, beautifully clean hair every wash.</p>
           <div class="product-footer">
             <div class="product-price"><span>Rs</span>1,000</div>
             <div class="product-btn-group">
-              <a href="herbal-shampoo" class="btn-details" data-i18n="btn.details">View Details</a>
-              <button class="btn-cart" data-name="Herbal Shampoo" data-price="1000" data-img="images/shampoo/5.png" data-i18n="btn.cart">🛒 Add to Cart</button>
+              <a href="herbal-shampoo" class="btn-details">View Details</a>
+              <button class="btn-cart" data-name="Herbal Shampoo" data-price="1000" data-img="images/shampoo/5.png">🛒 Add to Cart</button>
             </div>
           </div>
         </div>
@@ -349,8 +354,8 @@
 <!-- BUNDLES -->
 <section class="bundle-section">
   <div style="max-width:1100px;margin:0 auto;text-align:center;">
-    <div class="section-label reveal" style="justify-content:center;color:var(--gold);" data-i18n="bund.label">Special Deal</div>
-    <h2 class="section-title reveal reveal-delay-1" style="color:var(--white);" data-i18n="bund.title">Complete Hair Treatment Kit</h2>
+    <div class="section-label reveal" style="justify-content:center;color:var(--gold);">Special Deal</div>
+    <h2 class="section-title reveal reveal-delay-1" style="color:var(--white);">Complete Hair Treatment Kit</h2>
   </div>
 
   <div class="bundle-deal">
@@ -374,14 +379,14 @@
 
     <!-- RIGHT: Content -->
     <div class="bundle-deal-content reveal reveal-delay-2">
-      <div class="section-label" style="margin-bottom:14px;color:var(--gold);" data-i18n="bund.badge2">3-in-1 Bundle</div>
-      <h3 data-i18n="bund.kit.title">Nasir Herbal Hair Complete Kit</h3>
-      <p data-i18n="bund.kit.desc">45-day complete treatment for hair fall, greying, dandruff and hair growth. All three products needed for the full 3-phase treatment, in one kit.</p>
+      <div class="section-label" style="margin-bottom:14px;color:var(--gold);">3-in-1 Bundle</div>
+      <h3>Nasir Herbal<br>Hair Complete Kit</h3>
+      <p>45-day complete treatment for hair fall, greying, dandruff and hair growth. All three products needed for the full 3-phase treatment, in one kit.</p>
 
       <div class="bundle-items-row">
-        <span class="bundle-item-chip"><span data-i18n="bund.chip1">Golden Oil</span> <s>Rs 1500</s></span>
-        <span class="bundle-item-chip"><span data-i18n="bund.chip2">Herbal Shampoo</span> <s>Rs 1000</s></span>
-        <span class="bundle-item-chip"><span data-i18n="bund.chip3">Black Rose Oil</span> <s>Rs 1500</s></span>
+        <span class="bundle-item-chip">Golden Oil <s>Rs 1500</s></span>
+        <span class="bundle-item-chip">Herbal Shampoo <s>Rs 1000</s></span>
+        <span class="bundle-item-chip">Black Rose Oil <s>Rs 1500</s></span>
       </div>
 
       <div class="bundle-price-row">
@@ -390,10 +395,10 @@
       </div>
 
       <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
-        <button class="bundle-btn btn-cart" data-name="3-in-1 Hair Complete Kit" data-price="3250" data-img="images/box/box1.jpg" data-i18n="bund.btn">
+        <button class="bundle-btn btn-cart" data-name="3-in-1 Hair Complete Kit" data-price="3250" data-img="images/box/box1.jpg">
           🛒 Add to Cart
         </button>
-        <a href="products" style="display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.07em;color:var(--gold);border:2px solid var(--gold);padding:14px 28px;border-radius:40px;text-decoration:none;transition:all 0.3s ease;" onmouseover="this.style.background='var(--gold)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'" data-i18n="bund.viewDetails">View Details →</a>
+        <a href="products" style="display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.07em;color:var(--gold);border:2px solid var(--gold);padding:14px 28px;border-radius:40px;text-decoration:none;transition:all 0.3s ease;" onmouseover="this.style.background='var(--gold)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">View Details →</a>
       </div>
     </div>
 
@@ -403,25 +408,25 @@
 <!-- WHY CHOOSE US -->
 <section class="why-section">
   <div style="max-width:1200px;margin:0 auto;text-align:center;">
-    <div class="section-label reveal" style="justify-content:center;" data-i18n="why.label">Why Choose Us</div>
-    <h2 class="section-title reveal reveal-delay-1" data-i18n="why.title">The Nasir Difference</h2>
+    <div class="section-label reveal" style="justify-content:center;">Why Choose Us</div>
+    <h2 class="section-title reveal reveal-delay-1">The Nasir Oil Expert Difference</h2>
   </div>
   <div class="why-grid">
     <div class="about-feat-item reveal reveal-delay-1" style="flex-direction:column;text-align:center;padding:28px 18px;">
       <div class="feat-icon" style="margin:0 auto 14px;width:50px;height:50px;font-size:1.4rem;">🌿</div>
-      <div class="feat-info"><h4 style="font-size:1.15rem;margin-bottom:8px;font-weight:700;" data-i18n="why.c1.title">100% Natural</h4><p style="font-size:0.88rem;line-height:1.7;" data-i18n="why.c1.desc">No synthetic chemicals. Pure botanical goodness in every drop.</p></div>
+      <div class="feat-info"><h4 style="font-size:1.15rem;margin-bottom:8px;font-weight:700;">100% Natural</h4><p style="font-size:0.88rem;line-height:1.7;">No synthetic chemicals. Pure botanical goodness in every drop.</p></div>
     </div>
     <div class="about-feat-item reveal reveal-delay-2" style="flex-direction:column;text-align:center;padding:28px 18px;">
       <div class="feat-icon" style="margin:0 auto 14px;width:50px;height:50px;font-size:1.4rem;">🏛️</div>
-      <div class="feat-info"><h4 style="font-size:1.15rem;margin-bottom:8px;font-weight:700;" data-i18n="why.c2.title">Since 1948</h4><p style="font-size:0.88rem;line-height:1.7;" data-i18n="why.c2.desc">Over 78 years of expertise in authentic herbal hair care formulations.</p></div>
+      <div class="feat-info"><h4 style="font-size:1.15rem;margin-bottom:8px;font-weight:700;">Since 1948</h4><p style="font-size:0.88rem;line-height:1.7;">Over 78 years of expertise in authentic herbal hair care formulations.</p></div>
     </div>
     <div class="about-feat-item reveal reveal-delay-3" style="flex-direction:column;text-align:center;padding:28px 18px;">
       <div class="feat-icon" style="margin:0 auto 14px;width:50px;height:50px;font-size:1.4rem;">🚚</div>
-      <div class="feat-info"><h4 style="font-size:1.15rem;margin-bottom:8px;font-weight:700;" data-i18n="why.c3.title">Fast Delivery</h4><p style="font-size:0.88rem;line-height:1.7;" data-i18n="why.c3.desc">Quick and reliable delivery across Pakistan to your doorstep.</p></div>
+      <div class="feat-info"><h4 style="font-size:1.15rem;margin-bottom:8px;font-weight:700;">Fast Delivery</h4><p style="font-size:0.88rem;line-height:1.7;">Quick and reliable delivery across Pakistan to your doorstep.</p></div>
     </div>
     <div class="about-feat-item reveal reveal-delay-4" style="flex-direction:column;text-align:center;padding:28px 18px;">
       <div class="feat-icon" style="margin:0 auto 14px;width:50px;height:50px;font-size:1.4rem;">⭐</div>
-      <div class="feat-info"><h4 style="font-size:1.15rem;margin-bottom:8px;font-weight:700;" data-i18n="why.c4.title">5000+ Customers</h4><p style="font-size:0.88rem;line-height:1.7;" data-i18n="why.c4.desc">Trusted by thousands of satisfied customers across Pakistan.</p></div>
+      <div class="feat-info"><h4 style="font-size:1.15rem;margin-bottom:8px;font-weight:700;">5000+ Customers</h4><p style="font-size:0.88rem;line-height:1.7;">Trusted by thousands of satisfied customers across Pakistan.</p></div>
     </div>
   </div>
 </section>
@@ -430,9 +435,9 @@
 <section style="padding:80px 60px;background:var(--bg-light);">
   <div style="max-width:1200px;margin:0 auto;">
     <div style="text-align:center;margin-bottom:52px;">
-      <div class="section-label reveal" style="justify-content:center;" data-i18n="rev.label">Customer Reviews</div>
-      <h2 class="section-title reveal reveal-delay-1" data-i18n="rev.title">What Our Customers Say</h2>
-      <p class="section-subtitle reveal reveal-delay-2" style="text-align:center;margin:0 auto;" data-i18n="rev.sub">Real results from real people across Pakistan.</p>
+      <div class="section-label reveal" style="justify-content:center;">Customer Reviews</div>
+      <h2 class="section-title reveal reveal-delay-1">What Our Customers Say</h2>
+      <p class="section-subtitle reveal reveal-delay-2" style="text-align:center;margin:0 auto;">Real results from real people across Pakistan.</p>
     </div>
     <div class="rev-slider-wrap reveal">
   <button class="rev-nav-btn rev-prev" aria-label="Previous">&#8249;</button>
@@ -500,7 +505,7 @@
 
     <!-- VIEW ALL -->
     <div style="text-align:center;margin-top:44px;">
-      <a href="reviews" style="display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--green-deep);border:2px solid var(--green-deep);padding:13px 32px;border-radius:40px;transition:all 0.3s ease;" onmouseover="this.style.background='var(--green-deep)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--green-deep)'" data-i18n="rev.viewAll">View All Reviews &amp; Videos</a>
+      <a href="reviews" style="display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--green-deep);border:2px solid var(--green-deep);padding:13px 32px;border-radius:40px;transition:all 0.3s ease;" onmouseover="this.style.background='var(--green-deep)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--green-deep)'">View All Reviews &amp; Videos</a>
     </div>
   </div>
 </section>
@@ -509,9 +514,9 @@
 <section style="padding:80px 60px 90px;background:var(--green-deep);overflow:hidden;">
   <div style="max-width:1200px;margin:0 auto;">
     <div style="text-align:center;margin-bottom:48px;">
-      <div class="section-label reveal" style="justify-content:center;color:var(--gold);" data-i18n="reels.label">Customer Reels</div>
-      <h2 class="section-title reveal reveal-delay-1" style="color:var(--white);" data-i18n="reels.title">See Real Transformations</h2>
-      <p class="section-subtitle reveal reveal-delay-2" style="color:rgba(255,255,255,0.6);text-align:center;margin:0 auto;" data-i18n="test.label">Testimonials</p>
+      <div class="section-label reveal" style="justify-content:center;color:var(--gold);">Real Results</div>
+      <h2 class="section-title reveal reveal-delay-1" style="color:var(--white);">Watch Customer Stories</h2>
+      <p class="section-subtitle reveal reveal-delay-2" style="color:rgba(255,255,255,0.6);text-align:center;margin:0 auto;">See what our customers are saying on social media.</p>
     </div>
 
     <!-- SLIDER WRAPPER -->
@@ -521,7 +526,7 @@
         <!-- REEL 1 -->
         <div class="reel-card" style="flex:0 0 calc(33.33% - 14px);min-width:260px;border-radius:16px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(201,168,76,0.2);">
           <div style="position:relative;padding-top:177.78%;background:#0f0f0f;">
-            <video style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" poster="images/reels/cover1.jpg" src="images/reels/reel1.mp4" controls playsinline preload="none"></video>
+            <video style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" src="images/reels/reel1.mp4" controls playsinline preload="none" poster="images/reels/reel1.jpg"></video>
           </div>
           <div style="padding:16px;">
             <div style="color:var(--gold);font-size:0.85rem;letter-spacing:1px;">★★★★★</div>
@@ -532,7 +537,7 @@
         <!-- REEL 2 -->
         <div class="reel-card" style="flex:0 0 calc(33.33% - 14px);min-width:260px;border-radius:16px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(201,168,76,0.2);">
           <div style="position:relative;padding-top:177.78%;background:#0f0f0f;">
-            <video style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" poster="images/reels/cover2.jpg" src="images/reels/reel2.mp4" controls playsinline preload="none"></video>
+            <video style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" src="images/reels/reel2.mp4" controls playsinline preload="none" poster="images/reels/reel2.jpg"></video>
           </div>
           <div style="padding:16px;">
             <div style="color:var(--gold);font-size:0.85rem;letter-spacing:1px;">★★★★★</div>
@@ -543,7 +548,7 @@
         <!-- REEL 3 -->
         <div class="reel-card" style="flex:0 0 calc(33.33% - 14px);min-width:260px;border-radius:16px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(201,168,76,0.2);">
           <div style="position:relative;padding-top:177.78%;background:#0f0f0f;">
-            <video style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" poster="images/reels/cover3.jpg" src="images/reels/reel3.mp4" controls playsinline preload="none"></video>
+            <video style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" src="images/reels/reel3.mp4" controls playsinline preload="none" poster="images/reels/reel3.jpg"></video>
           </div>
           <div style="padding:16px;">
             <div style="color:var(--gold);font-size:0.85rem;letter-spacing:1px;">★★★★★</div>
@@ -554,7 +559,7 @@
         <!-- REEL 4 -->
         <div class="reel-card" style="flex:0 0 calc(33.33% - 14px);min-width:260px;border-radius:16px;overflow:hidden;background:rgba(255,255,255,0.05);border:1px solid rgba(201,168,76,0.2);">
           <div style="position:relative;padding-top:177.78%;background:#0f0f0f;">
-            <video style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" poster="images/reels/cover4.jpg" src="images/reels/reel4.mp4" controls playsinline preload="none"></video>
+            <video style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" src="images/reels/reel4.mp4" controls playsinline preload="none" poster="images/reels/reel4.jpg"></video>
           </div>
           <div style="padding:16px;">
             <div style="color:var(--gold);font-size:0.85rem;letter-spacing:1px;">★★★★★</div>
@@ -570,7 +575,7 @@
     </div>
 
     <div style="text-align:center;margin-top:36px;">
-      <a href="reviews" style="display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);border:2px solid var(--gold);padding:13px 32px;border-radius:40px;transition:all 0.3s ease;" onmouseover="this.style.background='var(--gold)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'" data-i18n="rev.seeAll">See All Reviews</a>
+      <a href="reviews" style="display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);border:2px solid var(--gold);padding:13px 32px;border-radius:40px;transition:all 0.3s ease;" onmouseover="this.style.background='var(--gold)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">See All Reviews</a>
     </div>
   </div>
 </section>
@@ -604,9 +609,9 @@ setInterval(() => goBundleSlide((bundleIdx + 1) % 4), 3000);
           <img src="images/logo.png" alt="Nasir Oil Expert" style="border-radius:50%;width:42px;height:42px;object-fit:cover;border:2px solid var(--gold);">
           <span class="nav-logo-text">Nasir Oil Expert<span>Pure &amp; Authentic Oils</span></span>
         </div>
-        <p data-i18n="ft.brand.desc">Pure, authentic hair oils crafted since 1948. Trusted by thousands across Pakistan.</p>
+        <p>Pure, authentic hair oils crafted since 1948. Trusted by thousands across Pakistan.</p>
         <div class="footer-socials">
-          <a href="https://www.facebook.com/people/Nasir-Oil-Expert/61592639019220/" target="_blank" class="social-btn fb" title="Facebook">
+          <a href="https://www.facebook.com/nasiroilexpert" target="_blank" class="social-btn fb" title="Facebook">
             <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           </a>
           <a href="https://www.instagram.com/nasiroilexpert" target="_blank" class="social-btn ig" title="Instagram">
@@ -623,34 +628,34 @@ setInterval(() => goBundleSlide((bundleIdx + 1) % 4), 3000);
           </a>
         </div>      </div>
       <div class="footer-col">
-        <h4 data-i18n="ft.quickLinks">Quick Links</h4>
+        <h4>Quick Links</h4>
         <ul>
-          <li><a href="/" data-i18n="ft.home">Home</a></li>
-          <li><a href="products" data-i18n="ft.collections">Collections</a></li>
-          <li><a href="reviews" data-i18n="ft.reviews">Reviews</a></li>
-          <li><a href="about" data-i18n="ft.about">About Us</a></li>
-          <li><a href="contact" data-i18n="ft.contactLink">Contact</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="products">Collections</a></li>
+          <li><a href="reviews">Reviews</a></li>
+          <li><a href="about">About Us</a></li>
+          <li><a href="contact">Contact</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4 data-i18n="ft.products">Products</h4>
+        <h4>Products</h4>
         <ul>
-          <li><a href="bundle-kit" data-i18n="ft.prod.bundle">Bundle Kit</a></li>
-          <li><a href="golden-oil" data-i18n="ft.prod.golden">Golden Oil</a></li>
-          <li><a href="black-rose-oil" data-i18n="ft.prod.rose">Black Rose Oil</a></li>
-          <li><a href="herbal-shampoo" data-i18n="ft.prod.shampoo">Herbal Shampoo</a></li>
+          <li><a href="bundle-kit">Bundle Kit</a></li>
+          <li><a href="golden-oil">Golden Oil</a></li>
+          <li><a href="black-rose-oil">Black Rose Oil</a></li>
+          <li><a href="herbal-shampoo">Herbal Shampoo</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4 data-i18n="ft.contact">Contact</h4>
+        <h4>Contact</h4>
         <a href="mailto:nasiroilexpert@gmail.com" class="contact-item"><span class="icon">📧</span>nasiroilexpert@gmail.com</a>
         <a href="tel:+923211112280" class="contact-item"><span class="icon">📞</span>0321-1112280</a>
-        <a href="https://wa.me/923211112280" class="contact-item" target="_blank"><span class="icon">💬</span><span data-i18n="ft.waOrder">WhatsApp Order</span></a>
-        <a href="https://maps.google.com/?q=W725+Ganj+Mandi+Near+Bajaur+Plaza+Rawalpindi" target="_blank" class="contact-item"><span class="icon">📍</span>W/725, Ganj Mandi, Near Bajaur Plaza, Rawalpindi</a>
+        <a href="https://wa.me/923211112280" class="contact-item" target="_blank"><span class="icon">💬</span>WhatsApp Order</a>
+        <div class="contact-item"><span class="icon">📍</span>Pakistan, Nationwide</div>
       </div>
     </div>
     <div class="footer-bottom">
-      <p data-i18n="ft.rights">© 2026 Nasir Oil Expert. All rights reserved.</p>
+      <p>© 2026 Nasir Oil Expert. All rights reserved.</p>
     </div>
   </div>
 </footer>
@@ -660,6 +665,5 @@ setInterval(() => goBundleSlide((bundleIdx + 1) % 4), 3000);
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 <script src="script.js"></script>
-<script src="lang.js"></script>
 </body>
 </html>

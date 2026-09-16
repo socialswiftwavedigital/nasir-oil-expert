@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260916" />
+  <link rel="stylesheet" href="styles.css" />
   <style>
     .values-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:1200px; margin:52px auto 0; }
     .value-card { padding:36px 28px; background:var(--white); border-radius:var(--radius); border-bottom:3px solid transparent; box-shadow:var(--shadow-sm); transition:all 0.4s ease; text-align:center; border:1px solid rgba(0,0,0,0.05); }
@@ -47,6 +47,14 @@
 </head>
 <body>
 
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="preloader-inner">
+    <div class="preloader-logo">NASIR OIL EXPERT</div>
+    <div class="preloader-bar"><div class="preloader-fill"></div></div>
+  </div>
+</div>
+
 <!-- CURSOR -->
 <div class="cursor"></div>
 <div class="cursor-follower"></div>
@@ -55,22 +63,21 @@
 <nav class="navbar scrolled" id="navbar">
   <a href="/" class="nav-logo">
     <img src="images/logo.png" alt="Nasir Oil Expert" class="nav-logo-img">
-    <div class="nav-logo-text"><span data-i18n="nav.logo.name">Nasir Oil Expert</span><span data-i18n="ft.tagline">Pure &amp; Authentic Oils</span></div>
+    <div class="nav-logo-text">Nasir Oil Expert<span>Pure &amp; Authentic Oils</span></div>
   </a>
   <ul class="nav-links">
-    <li><a href="/" data-i18n="nav.home">Home</a></li>
-    <li class="nav-has-dropdown"><a href="products" data-i18n="nav.collections">Collections &#9660;</a><ul class="nav-dropdown"><li><a href="bundle-kit" data-i18n="nav.bundleKit">Bundle Kit</a></li><li><a href="golden-oil" data-i18n="nav.goldenOil">Golden Oil</a></li><li><a href="black-rose-oil" data-i18n="nav.blackRoseOil">Black Rose Oil</a></li><li><a href="herbal-shampoo" data-i18n="nav.herbalShampoo">Herbal Shampoo</a></li></ul></li>
+    <li><a href="/">Home</a></li>
+    <li class="nav-has-dropdown"><a href="products">Collections &#9660;</a><ul class="nav-dropdown"><li><a href="bundle-kit">Bundle Kit</a></li><li><a href="golden-oil">Golden Oil</a></li><li><a href="black-rose-oil">Black Rose Oil</a></li><li><a href="herbal-shampoo">Herbal Shampoo</a></li></ul></li>
     <li><a href="about" class="active">About</a></li>
-    <li><a href="reviews" data-i18n="nav.reviews">Reviews</a></li>
-    <li><a href="contact" data-i18n="nav.contact">Contact</a></li>
+    <li><a href="reviews">Reviews</a></li>
+    <li><a href="contact">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <button class="lang-toggle" onclick="noeToggleLang()" data-active="en" aria-label="Switch language"><span class="lt-en">EN</span><span class="lt-divider">|</span><span class="lt-ur">اردو</span></button>
     <a href="cart" class="cart-icon-btn" title="Cart">
       <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
       <span class="cart-count">0</span>
     </a>
-    <a href="products" class="nav-cta" data-i18n="nav.orderNow">Shop Now</a>
+    <a href="products" class="nav-cta">Shop Now</a>
   </div>
   <div class="nav-hamburger"><span></span><span></span><span></span></div>
 </nav>
@@ -78,25 +85,25 @@
 <!-- MOBILE NAV -->
 <div class="mobile-nav">
   <button class="mobile-nav-close">&#10005;</button>
-  <a href="/" data-i18n="nav.home">Home</a>
-  <a href="products" data-i18n="nav.collections">Collections</a>
-  <a href="bundle-kit" class="mn-sub-link" data-i18n="nav.bundleKit">&#9656; Bundle Kit</a>
-  <a href="golden-oil" class="mn-sub-link" data-i18n="nav.goldenOil">&#9656; Golden Oil</a>
-  <a href="black-rose-oil" class="mn-sub-link" data-i18n="nav.blackRoseOil">&#9656; Black Rose Oil</a>
-  <a href="herbal-shampoo" class="mn-sub-link" data-i18n="nav.herbalShampoo">&#9656; Herbal Shampoo</a>
-  <a href="about" data-i18n="nav.about">About</a>
-  <a href="contact" data-i18n="nav.contact">Contact</a>
-  <a href="reviews" data-i18n="nav.reviews">Reviews</a>
-  <a href="cart" style="color:var(--gold);font-weight:700;" data-i18n="nav.cart">&#128722; Cart</a>
+  <a href="/">Home</a>
+  <a href="products">Collections</a>
+  <a href="bundle-kit" class="mn-sub-link">&#9656; Bundle Kit</a>
+  <a href="golden-oil" class="mn-sub-link">&#9656; Golden Oil</a>
+  <a href="black-rose-oil" class="mn-sub-link">&#9656; Black Rose Oil</a>
+  <a href="herbal-shampoo" class="mn-sub-link">&#9656; Herbal Shampoo</a>
+  <a href="about">About</a>
+  <a href="contact">Contact</a>
+  <a href="reviews">Reviews</a>
+  <a href="cart" style="color:var(--gold);font-weight:700;">&#128722; Cart</a>
 </div>
 
 <!-- PAGE HERO -->
 <section class="page-hero" style="padding-top:80px;">
   <div class="hero-particles"></div>
   <div class="page-hero-content">
-    <div class="section-label" style="justify-content:center;margin-bottom:16px;" data-i18n="ab.label">Our Story</div>
-    <h1 data-i18n="ab.h1">About Nasir Oil Expert</h1>
-    <div class="breadcrumb"><a href="/" data-i18n="nav.home">Home</a> / <span data-i18n="nav.about">About</span></div>
+    <div class="section-label" style="justify-content:center;margin-bottom:16px;">Our Story</div>
+    <h1>About Nasir Oil Expert</h1>
+    <div class="breadcrumb"><a href="/">Home</a> / About</div>
   </div>
 </section>
 
@@ -106,35 +113,35 @@
     <div class="about-img-wrap reveal-left">
       <img src="images/bundle-cover.png" alt="3-in-1 Complete Hair Kit" style="width:100%;height:480px;object-fit:contain;border-radius:20px;background:var(--cream);padding:20px;">
       <div class="about-badge-float">
-        <div class="num" style="font-size:1.4rem;line-height:1.1;" data-i18n-html="ab.badge.since">Since<br>1948</div>
-        <div class="txt" data-i18n-html="ab.badge.years">78+ Years of<br>Excellence</div>
+        <div class="num" style="font-size:1.4rem;line-height:1.1;">Since<br>1948</div>
+        <div class="txt">78+ Years of<br>Excellence</div>
       </div>
     </div>
     <div class="reveal-right">
-      <div class="section-label" data-i18n="ab.who.label">Who We Are</div>
-      <h2 class="section-title" data-i18n="ab.who.title">Rooted in Nature, Committed to Excellence</h2>
-      <p style="font-family:'Montserrat',sans-serif;font-size:0.88rem;color:var(--text-light);line-height:1.9;margin-bottom:18px;" data-i18n="ab.who.p1">
+      <div class="section-label">Who We Are</div>
+      <h2 class="section-title">Rooted in Nature, Committed to Excellence</h2>
+      <p style="font-family:'Montserrat',sans-serif;font-size:0.88rem;color:var(--text-light);line-height:1.9;margin-bottom:18px;">
         Nasir Oil Expert was born from a deep belief in the healing power of nature. Founded with a mission to make authentic, pure hair oils accessible to everyone in Pakistan, we have spent years perfecting our formulations using time-honored botanical traditions.
       </p>
-      <p style="font-family:'Montserrat',sans-serif;font-size:0.88rem;color:var(--text-light);line-height:1.9;margin-bottom:32px;" data-i18n="ab.who.p2">
+      <p style="font-family:'Montserrat',sans-serif;font-size:0.88rem;color:var(--text-light);line-height:1.9;margin-bottom:32px;">
         Every product we create is a labour of love — carefully sourced, cold-pressed, and blended without synthetic chemicals. We believe your hair deserves the very best that nature has to offer.
       </p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
         <div style="text-align:center;padding:22px;background:var(--cream);border-radius:12px;">
           <div style="font-size:1.9rem;font-weight:700;color:var(--gold);" data-target="5000" data-suffix="+">0+</div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:0.68rem;color:var(--text-light);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;" data-i18n="ab.stat1">Happy Customers</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:0.68rem;color:var(--text-light);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;">Happy Customers</div>
         </div>
         <div style="text-align:center;padding:22px;background:var(--cream);border-radius:12px;">
           <div style="font-size:1.9rem;font-weight:700;color:var(--gold);" data-target="3" data-suffix="+">0+</div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:0.68rem;color:var(--text-light);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;" data-i18n="ab.stat2">Product Range</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:0.68rem;color:var(--text-light);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;">Product Range</div>
         </div>
         <div style="text-align:center;padding:22px;background:var(--cream);border-radius:12px;">
           <div style="font-size:1.9rem;font-weight:700;color:var(--gold);" data-target="100" data-suffix="%">0%</div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:0.68rem;color:var(--text-light);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;" data-i18n="ab.stat3">Natural Ingredients</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:0.68rem;color:var(--text-light);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;">Natural Ingredients</div>
         </div>
         <div style="text-align:center;padding:22px;background:var(--cream);border-radius:12px;">
           <div style="font-size:1.9rem;font-weight:700;color:var(--gold);" data-target="5" data-suffix="★">0★</div>
-          <div style="font-family:'Montserrat',sans-serif;font-size:0.68rem;color:var(--text-light);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;" data-i18n="ab.stat4">Avg. Rating</div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:0.68rem;color:var(--text-light);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;">Avg. Rating</div>
         </div>
       </div>
     </div>
@@ -145,8 +152,8 @@
 
 <!-- MISSION QUOTE -->
 <section class="mission-section">
-  <div class="section-label reveal" style="justify-content:center;color:var(--gold);" data-i18n="ab.mission.label">Our Mission</div>
-  <p class="mission-quote reveal reveal-delay-1" data-i18n-html="ab.mission.quote">
+  <div class="section-label reveal" style="justify-content:center;color:var(--gold);">Our Mission</div>
+  <p class="mission-quote reveal reveal-delay-1">
     "To bring the <span>purest, most authentic</span> natural hair oils to every household, empowering people to embrace nature's wisdom for healthier, more beautiful hair."
   </p>
   <p style="font-family:'Montserrat',sans-serif;font-size:0.8rem;color:rgba(255,255,255,0.35);letter-spacing:0.12em;position:relative;z-index:1;" class="reveal reveal-delay-2">— Nasir Oil Expert</p>
@@ -155,47 +162,47 @@
 <!-- VALUES -->
 <section style="padding:100px 60px;background:var(--bg-light);">
   <div style="max-width:1200px;margin:0 auto;text-align:center;">
-    <div class="section-label reveal" style="justify-content:center;" data-i18n="ab.values.label">Our Values</div>
-    <h2 class="section-title reveal reveal-delay-1" data-i18n="ab.values.title">What We Stand For</h2>
-    <p class="section-subtitle reveal reveal-delay-2" data-i18n="ab.values.sub">These core values guide everything we do — from how we source our ingredients to how we serve our customers.</p>
+    <div class="section-label reveal" style="justify-content:center;">Our Values</div>
+    <h2 class="section-title reveal reveal-delay-1">What We Stand For</h2>
+    <p class="section-subtitle reveal reveal-delay-2">These core values guide everything we do — from how we source our ingredients to how we serve our customers.</p>
   </div>
   <div class="values-grid">
-    <div class="value-card reveal reveal-delay-1"><div class="value-icon">🌿</div><h3 data-i18n="ab.val1.title">Purity</h3><p data-i18n="ab.val1.desc">We use only the finest natural ingredients with no synthetic additives or harsh chemicals. What you see on the label is exactly what's in the bottle.</p></div>
-    <div class="value-card reveal reveal-delay-2"><div class="value-icon">🤝</div><h3 data-i18n="ab.val2.title">Trust</h3><p data-i18n="ab.val2.desc">We build lasting relationships with our customers through transparency, honest communication, and consistent product quality they can rely on.</p></div>
-    <div class="value-card reveal reveal-delay-3"><div class="value-icon">🌱</div><h3 data-i18n="ab.val3.title">Sustainability</h3><p data-i18n="ab.val3.desc">We source our botanicals responsibly and are committed to eco-friendly practices that protect the environment for future generations.</p></div>
-    <div class="value-card reveal reveal-delay-1"><div class="value-icon">💡</div><h3 data-i18n="ab.val4.title">Innovation</h3><p data-i18n="ab.val4.desc">We continuously research and improve our formulations, combining ancient herbal wisdom with modern understanding of hair science.</p></div>
-    <div class="value-card reveal reveal-delay-2"><div class="value-icon">❤️</div><h3 data-i18n="ab.val5.title">Care</h3><p data-i18n="ab.val5.desc">Every product is made with genuine care for our customers' well-being. We treat your hair as if it were our own — with the utmost attention and love.</p></div>
-    <div class="value-card reveal reveal-delay-3"><div class="value-icon">⭐</div><h3 data-i18n="ab.val6.title">Excellence</h3><p data-i18n="ab.val6.desc">We never compromise on quality. Each batch undergoes rigorous quality checks to ensure you receive a product that truly delivers results.</p></div>
+    <div class="value-card reveal reveal-delay-1"><div class="value-icon">🌿</div><h3>Purity</h3><p>We use only the finest natural ingredients with no synthetic additives or harsh chemicals. What you see on the label is exactly what's in the bottle.</p></div>
+    <div class="value-card reveal reveal-delay-2"><div class="value-icon">🤝</div><h3>Trust</h3><p>We build lasting relationships with our customers through transparency, honest communication, and consistent product quality they can rely on.</p></div>
+    <div class="value-card reveal reveal-delay-3"><div class="value-icon">🌱</div><h3>Sustainability</h3><p>We source our botanicals responsibly and are committed to eco-friendly practices that protect the environment for future generations.</p></div>
+    <div class="value-card reveal reveal-delay-1"><div class="value-icon">💡</div><h3>Innovation</h3><p>We continuously research and improve our formulations, combining ancient herbal wisdom with modern understanding of hair science.</p></div>
+    <div class="value-card reveal reveal-delay-2"><div class="value-icon">❤️</div><h3>Care</h3><p>Every product is made with genuine care for our customers' well-being. We treat your hair as if it were our own — with the utmost attention and love.</p></div>
+    <div class="value-card reveal reveal-delay-3"><div class="value-icon">⭐</div><h3>Excellence</h3><p>We never compromise on quality. Each batch undergoes rigorous quality checks to ensure you receive a product that truly delivers results.</p></div>
   </div>
 </section>
 
 <!-- JOURNEY TIMELINE -->
 <section style="padding:100px 60px;background:var(--white);">
   <div style="max-width:1200px;margin:0 auto;text-align:center;">
-    <div class="section-label reveal" style="justify-content:center;" data-i18n="ab.journey.label">Our Journey</div>
-    <h2 class="section-title reveal reveal-delay-1" data-i18n="ab.journey.title">How It All Started</h2>
-    <p class="section-subtitle reveal reveal-delay-2" data-i18n="ab.journey.sub">From a small dream to thousands of happy customers — here's our story.</p>
+    <div class="section-label reveal" style="justify-content:center;">Our Journey</div>
+    <h2 class="section-title reveal reveal-delay-1">How It All Started</h2>
+    <p class="section-subtitle reveal reveal-delay-2">From a small dream to thousands of happy customers — here's our story.</p>
   </div>
   <div class="timeline">
     <div class="timeline-item reveal">
-      <div class="timeline-content"><div class="timeline-year">1948</div><h4 data-i18n="ab.tl1.title">The Beginning</h4><p data-i18n="ab.tl1.desc">Nasir Oil Expert was founded with a single mission: to provide pure, authentic hair oils that actually work. Started from humble roots with traditional recipes.</p></div>
+      <div class="timeline-content"><div class="timeline-year">2015</div><h4>The Beginning</h4><p>Nasir Oil Expert was founded with a single mission: to provide pure, authentic hair oils that actually work. Started from humble roots with traditional recipes.</p></div>
       <div class="timeline-dot"></div>
       <div style="flex:1;"></div>
     </div>
     <div class="timeline-item reveal reveal-delay-1">
       <div style="flex:1;"></div>
       <div class="timeline-dot"></div>
-      <div class="timeline-content"><div class="timeline-year">2018</div><h4 data-i18n="ab.tl2.title">First Product Launch</h4><p data-i18n="ab.tl2.desc">Launched our signature Golden Oil — the product that started it all. Received overwhelming response and quickly became a customer favourite.</p></div>
+      <div class="timeline-content"><div class="timeline-year">2018</div><h4>First Product Launch</h4><p>Launched our signature Golden Oil — the product that started it all. Received overwhelming response and quickly became a customer favourite.</p></div>
     </div>
     <div class="timeline-item reveal reveal-delay-2">
-      <div class="timeline-content"><div class="timeline-year">2021</div><h4 data-i18n="ab.tl3.title">Expanding the Range</h4><p data-i18n="ab.tl3.desc">Added Black Rose Oil and Herbal Shampoo to our lineup, completing a full natural hair care system that customers could trust.</p></div>
+      <div class="timeline-content"><div class="timeline-year">2021</div><h4>Expanding the Range</h4><p>Added Black Rose Oil and Herbal Shampoo to our lineup, completing a full natural hair care system that customers could trust.</p></div>
       <div class="timeline-dot"></div>
       <div style="flex:1;"></div>
     </div>
     <div class="timeline-item reveal reveal-delay-3">
       <div style="flex:1;"></div>
       <div class="timeline-dot"></div>
-      <div class="timeline-content"><div class="timeline-year">2026</div><h4 data-i18n="ab.tl4.title">5000+ Happy Customers</h4><p data-i18n="ab.tl4.desc">Today we proudly serve thousands of customers across Pakistan, and our commitment to quality and authenticity remains as strong as ever.</p></div>
+      <div class="timeline-content"><div class="timeline-year">2026</div><h4>5000+ Happy Customers</h4><p>Today we proudly serve thousands of customers across Pakistan, and our commitment to quality and authenticity remains as strong as ever.</p></div>
     </div>
   </div>
 </section>
@@ -203,12 +210,12 @@
 <!-- CTA -->
 <section class="cta-section">
   <div style="position:relative;z-index:1;">
-    <div class="section-label reveal" style="justify-content:center;" data-i18n="ab.cta.label">Get Started</div>
-    <h2 class="section-title reveal reveal-delay-1" style="color:var(--white);" data-i18n="ab.cta.title">Ready to Experience the Difference?</h2>
-    <p class="reveal reveal-delay-2" data-i18n="ab.cta.p">Join thousands of happy customers who have transformed their hair with Nasir Oil Expert.</p>
+    <div class="section-label reveal" style="justify-content:center;">Get Started</div>
+    <h2 class="section-title reveal reveal-delay-1" style="color:var(--white);">Ready to Experience the Difference?</h2>
+    <p class="reveal reveal-delay-2">Join thousands of happy customers who have transformed their hair with Nasir Oil Expert.</p>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:12px;" class="reveal reveal-delay-3">
-      <a href="products" class="btn-primary" style="display:inline-flex;" data-i18n="ab.cta.shop">Shop Now →</a>
-      <a href="contact" class="btn-secondary" data-i18n="ab.cta.contact">Contact Us</a>
+      <a href="products" class="btn-primary" style="display:inline-flex;">Shop Now <span class="arrow">→</span></a>
+      <a href="contact" class="btn-secondary">Contact Us</a>
     </div>
   </div>
 </section>
@@ -220,11 +227,11 @@
       <div class="footer-brand">
         <div class="nav-logo" style="margin-bottom:14px;">
           <img src="images/logo.png" alt="Nasir Oil Expert" style="border-radius:50%;width:42px;height:42px;object-fit:cover;border:2px solid var(--gold);">
-          <span class="nav-logo-text"><span data-i18n="nav.logo.name">Nasir Oil Expert</span><span data-i18n="ft.tagline">Pure &amp; Authentic Oils</span></span>
+          <span class="nav-logo-text">Nasir Oil Expert<span>Pure &amp; Authentic Oils</span></span>
         </div>
-        <p data-i18n="ft.brand.desc">Your destination for natural, effective products that nurture stronger, healthier hair.</p>
+        <p>Your destination for natural, effective products that nurture stronger, healthier hair.</p>
         <div class="footer-socials">
-          <a href="https://www.facebook.com/people/Nasir-Oil-Expert/61592639019220/" target="_blank" class="social-btn fb" title="Facebook">
+          <a href="https://www.facebook.com/nasiroilexpert" target="_blank" class="social-btn fb" title="Facebook">
             <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           </a>
           <a href="https://www.instagram.com/nasiroilexpert" target="_blank" class="social-btn ig" title="Instagram">
@@ -240,24 +247,24 @@
             <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.77a4.85 4.85 0 01-1.02-.08z"/></svg>
           </a>
         </div>      </div>
-      <div class="footer-col"><h4 data-i18n="ft.quickLinks">Quick Links</h4><ul>
-          <li><a href="/" data-i18n="ft.home">Home</a></li>
-          <li><a href="products" data-i18n="ft.collections">Collections</a></li>
-          <li><a href="reviews" data-i18n="ft.reviews">Reviews</a></li>
-          <li><a href="about" data-i18n="ft.about">About Us</a></li>
-          <li><a href="contact" data-i18n="ft.contactLink">Contact</a></li>
+      <div class="footer-col"><h4>Quick Links</h4><ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="products">Collections</a></li>
+          <li><a href="reviews">Reviews</a></li>
+          <li><a href="about">About Us</a></li>
+          <li><a href="contact">Contact</a></li>
         </ul></div>
-      <div class="footer-col"><h4 data-i18n="ft.products">Products</h4><ul><li><a href="golden-oil" data-i18n="ft.prod.golden">Golden Oil</a></li><li><a href="black-rose-oil" data-i18n="ft.prod.rose">Black Rose Oil</a></li><li><a href="herbal-shampoo" data-i18n="ft.prod.shampoo">Herbal Shampoo</a></li><li><a href="bundle-kit" data-i18n="ft.prod.bundle">Bundle Kit</a></li></ul></div>
+      <div class="footer-col"><h4>Products</h4><ul><li><a href="products.html#golden-oil">Golden Oil</a></li><li><a href="products.html#black-rose-oil">Black Rose Oil</a></li><li><a href="products.html#herbal-shampoo">Herbal Shampoo</a></li><li><a href="products">Combo Deals</a></li></ul></div>
       <div class="footer-col">
-        <h4 data-i18n="ft.contact">Contact</h4>
+        <h4>Contact</h4>
         <a href="mailto:nasiroilexpert@gmail.com" class="contact-item"><span class="icon">📧</span>nasiroilexpert@gmail.com</a>
         <a href="tel:+923211112280" class="contact-item"><span class="icon">📞</span>0321-1112280</a>
-        <a href="https://wa.me/923211112280" class="contact-item" target="_blank"><span class="icon">💬</span><span data-i18n="ft.waOrder">WhatsApp Order</span></a>
-        <a href="https://maps.google.com/?q=W725+Ganj+Mandi+Near+Bajaur+Plaza+Rawalpindi" target="_blank" class="contact-item"><span class="icon">📍</span>W/725, Ganj Mandi, Near Bajaur Plaza, Rawalpindi</a>
+        <a href="https://wa.me/923211112280" class="contact-item" target="_blank"><span class="icon">💬</span>WhatsApp Order</a>
+        <div class="contact-item"><span class="icon">📍</span>Pakistan, Nationwide</div>
       </div>
     </div>
     <div class="footer-bottom">
-      <p data-i18n="ft.rights">© 2026 Nasir Oil Expert. All rights reserved.</p>
+      <p>© 2026 Nasir Oil Expert. All rights reserved.</p>
     </div>
   </div>
 </footer>
@@ -267,9 +274,5 @@
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 <script src="script.js"></script>
-<script src="lang.js"></script>
 </body>
 </html>
-
-
-
