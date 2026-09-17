@@ -86,7 +86,7 @@ h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; line-h
 .lang-toggle:hover { border-color: var(--gold); }
 .lang-toggle span {
   padding: 6px 14px;
-  color: rgba(255,255,255,0.45);
+  color: rgba(255,255,255,0.85);
   transition: background 0.2s, color 0.2s;
   line-height: 1;
 }
@@ -97,7 +97,7 @@ h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; line-h
 }
 .lang-toggle[data-active="en"] span:last-child,
 .lang-toggle[data-active="ur"] span:first-child {
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.85);
   background: transparent;
 }
 
