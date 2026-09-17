@@ -1241,7 +1241,7 @@ footer {
   align-items: center;
   justify-content: space-between;
 }
-.footer-bottom p { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; color: rgba(255,255,255,0.5); }
+.footer-bottom p { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; color: var(--white); }
 
 /* ===== PAGE HERO (subpages) ===== */
 .page-hero {
