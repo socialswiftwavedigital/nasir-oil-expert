@@ -556,10 +556,7 @@ function pdQtyChange(d) {
   pdQty = Math.max(1, pdQty + d);
   document.getElementById('pdQty').textContent = pdQty;
 }
-function pdCODBuy() {
-  for (let i = 0; i < pdQty; i++) addToCart('3-in-1 Hair Complete Kit', 3250, 'images/box/box1.jpg');
-  window.location.href = 'checkout.html';
-}
+function pdCODBuy() { openCodModal('3-in-1 Hair Complete Kit', 3250 * pdQty); }
 function pdAddToCart() {
   const btn = document.getElementById('pdAddBtn');
   for (let i = 0; i < pdQty; i++) addToCart('3-in-1 Hair Complete Kit', 3250, 'images/box/box1.jpg');
@@ -581,5 +578,6 @@ function switchTab(id, btn) {
 }
 </script>
 <script src="lang.js?v=20260917"></script>
+<script src="order-modal.js?v=20260923"></script>
 </body>
 </html>

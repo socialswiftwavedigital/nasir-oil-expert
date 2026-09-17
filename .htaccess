@@ -17,3 +17,9 @@ RewriteRule ^(.+?)/?$ $1.html [L]
 
 # Custom 404
 ErrorDocument 404 /404.html
+
+# Block direct access to order data
+<Files "orders-data.json">
+    Order Allow,Deny
+    Deny from all
+</Files>

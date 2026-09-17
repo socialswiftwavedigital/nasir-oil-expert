@@ -498,10 +498,7 @@ function pdAddToCart() {
   btn.classList.add('added');
   setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('added'); }, 1600);
 }
-function pdCODBuy() {
-  for (let i = 0; i < pdQty; i++) addToCart('Golden Hair Oil', 1500, 'images/golden/1.png');
-  window.location.href = 'checkout.html';
-}
+function pdCODBuy() { openCodModal('Golden Hair Oil', 1500 * pdQty); }
 function switchImg(src, thumb) {
   document.getElementById('pdMainImgEl').src = src;
   document.querySelectorAll('.pd-thumb').forEach(t => t.classList.remove('active'));
@@ -515,5 +512,6 @@ function switchTab(id, btn) {
 }
 </script>
 <script src="lang.js?v=20260917"></script>
+<script src="order-modal.js?v=20260923"></script>
 </body>
 </html>

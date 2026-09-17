@@ -613,10 +613,7 @@
       el.classList.add('bounce');
     });
   }
-  function pdCODBuy() {
-    addToCart('Herbal Shampoo', 1000 * pdQty, 'images/shampoo/5.png');
-    window.location.href = 'checkout.html';
-  }
+  function pdCODBuy() { openCodModal('Herbal Shampoo', 1000 * pdQty); }
 
   function switchImg(src, el) {
     document.getElementById('pdMainImg').src = src;
@@ -632,5 +629,6 @@
   }
 </script>
 <script src="lang.js?v=20260917"></script>
+<script src="order-modal.js?v=20260923"></script>
 </body>
 </html>

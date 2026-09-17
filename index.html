@@ -248,7 +248,7 @@
             </div>
             <div class="product-btn-group">
               <a href="bundle-kit" class="btn-details" style="background:rgba(255,255,255,0.08);color:var(--gold-light);border-color:rgba(201,168,76,0.3);" data-i18n="btn.details">View Details</a>
-              <button class="btn-cod" onclick="(function(){addToCart('3-in-1 Hair Complete Kit',3250,'images/box/box1.jpg');window.location.href='checkout.html';})()"><span data-i18n="pd.cod.buy">Buy with Cash on Delivery</span></button>
+              <button class="btn-cod" onclick="openCodModal('3-in-1 Hair Complete Kit', 3250)"><span data-i18n="pd.cod.buy">Buy with Cash on Delivery</span></button>
             </div>
           </div>
         </div>
@@ -277,7 +277,7 @@
             <div class="product-price"><span>Rs</span>1,500</div>
             <div class="product-btn-group">
               <a href="golden-oil" class="btn-details" data-i18n="btn.details">View Details</a>
-              <button class="btn-cod" onclick="(function(){addToCart('Golden Oil',1500,'images/golden/1.png');window.location.href='checkout.html';})()"><span data-i18n="pd.cod.buy">Buy with Cash on Delivery</span></button>
+              <button class="btn-cod" onclick="openCodModal('Golden Oil', 1500)"><span data-i18n="pd.cod.buy">Buy with Cash on Delivery</span></button>
             </div>
           </div>
         </div>
@@ -306,7 +306,7 @@
             <div class="product-price"><span>Rs</span>1,500</div>
             <div class="product-btn-group">
               <a href="black-rose-oil" class="btn-details" data-i18n="btn.details">View Details</a>
-              <button class="btn-cod" onclick="(function(){addToCart('Black Rose Oil',1500,'images/black-rose/5.png');window.location.href='checkout.html';})()"><span data-i18n="pd.cod.buy">Buy with Cash on Delivery</span></button>
+              <button class="btn-cod" onclick="openCodModal('Black Rose Oil', 1500)"><span data-i18n="pd.cod.buy">Buy with Cash on Delivery</span></button>
             </div>
           </div>
         </div>
@@ -335,7 +335,7 @@
             <div class="product-price"><span>Rs</span>1,000</div>
             <div class="product-btn-group">
               <a href="herbal-shampoo" class="btn-details" data-i18n="btn.details">View Details</a>
-              <button class="btn-cod" onclick="(function(){addToCart('Herbal Shampoo',1000,'images/shampoo/5.png');window.location.href='checkout.html';})()"><span data-i18n="pd.cod.buy">Buy with Cash on Delivery</span></button>
+              <button class="btn-cod" onclick="openCodModal('Herbal Shampoo', 1000)"><span data-i18n="pd.cod.buy">Buy with Cash on Delivery</span></button>
             </div>
           </div>
         </div>
@@ -389,7 +389,7 @@
       </div>
 
       <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
-        <button class="btn-cod" onclick="(function(){addToCart('3-in-1 Hair Complete Kit',3250,'images/box/box1.jpg');window.location.href='checkout.html';})()"><span data-i18n="pd.cod.buy">Buy with Cash on Delivery</span></button>
+        <button class="btn-cod" onclick="openCodModal('3-in-1 Hair Complete Kit', 3250)"><span data-i18n="pd.cod.buy">Buy with Cash on Delivery</span></button>
         <a href="bundle-kit" style="display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.07em;color:var(--gold);border:2px solid var(--gold);padding:14px 28px;border-radius:40px;text-decoration:none;transition:all 0.3s ease;" onmouseover="this.style.background='var(--gold)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'" data-i18n="bund.viewDetails">View Details</a>
       </div>
     </div>
@@ -658,5 +658,6 @@ setInterval(() => goBundleSlide((bundleIdx + 1) % 4), 3000);
 </a>
 <script src="script.js"></script>
 <script src="lang.js?v=20260917"></script>
+<script src="order-modal.js?v=20260923"></script>
 </body>
 </html>
