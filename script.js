@@ -20,9 +20,7 @@ if (cursor && follower) {
 /* ===== NAVBAR SCROLL ===== */
 const navbar = document.querySelector('.navbar');
 if (navbar) {
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
-  });
+  navbar.classList.add('scrolled');
 }
 
 /* ===== MOBILE MENU ===== */
