@@ -10,57 +10,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css?v=20260922" />
   <style>
-    /* ===== SHOP HERO ===== */
+    /* ===== SHOP HERO BANNER ===== */
     .shop-hero {
-      background: var(--green-deep);
-      padding: 120px 60px 72px;
-      position: relative;
-      overflow: hidden;
-      text-align: center;
+      margin: 0;
+      padding: 0;
+      display: block;
+      line-height: 0;
     }
-    .shop-hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 120%, rgba(201,168,76,0.12) 0%, transparent 70%);
-      pointer-events: none;
+    .hero-banner-link { display: block; }
+    .hero-banner-img {
+      width: 100%;
+      display: block;
+      height: auto;
+      max-height: 620px;
+      object-fit: cover;
+      object-position: center center;
     }
-    .shop-hero .hero-particles { position: absolute; inset: 0; pointer-events: none; }
-    .shop-hero-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
-    .shop-hero .section-label { justify-content: center; color: var(--gold); margin-bottom: 16px; }
-    .shop-hero h1 {
-      font-size: clamp(2.4rem, 5vw, 4rem);
-      color: var(--white);
-      line-height: 1.1;
-      margin-bottom: 16px;
+    @media (max-width: 768px) {
+      .hero-banner-img { max-height: 280px; object-position: 60% center; }
     }
-    .shop-hero h1 .highlight { color: var(--gold-light); }
-    .shop-hero .hero-sub {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.8;
-      margin-bottom: 28px;
-    }
-    .shop-trust-chips {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .trust-chip {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.75);
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
-      padding: 7px 16px;
-      border-radius: 30px;
-    }
-    .trust-chip .dot { color: var(--gold); margin-right: 5px; }
 
     /* ===== FILTER BAR ===== */
     .filter-bar { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 52px 0 44px; padding: 0 20px; }
@@ -115,7 +83,6 @@
       .why-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 768px) {
-      .shop-hero { padding: 110px 24px 56px; }
       .shop-section { padding: 52px 20px 60px; }
       .products-full-grid { grid-template-columns: 1fr; }
       .bundle-section { padding: 72px 24px; }
@@ -176,20 +143,11 @@
   <button class="lang-toggle" onclick="noeToggleLang()" data-active="en" style="margin:16px auto 0;display:flex;"><span>EN</span><span>&#1575;&#1585;&#1583;&#1608;</span></button>
 </div>
 
-<!-- SHOP HERO -->
+<!-- SHOP HERO BANNER -->
 <section class="shop-hero">
-  <div class="hero-particles"></div>
-  <div class="shop-hero-content">
-    <div class="section-label" data-i18n="hero.since">Since 1948 &nbsp;Â·&nbsp; Nasir Oil Expert</div>
-    <h1 data-i18n-html="hero.h1">Pure &amp; Authentic<br><span class="highlight">Hair Care</span></h1>
-    <p class="hero-sub" data-i18n="hero.sub">Natural oils and herbal care crafted from the finest botanicals for stronger, shinier, healthier hair.</p>
-    <div class="shop-trust-chips">
-      <span class="trust-chip"><span class="dot">&#9679;</span><span data-i18n="hero.chip1">100% Natural</span></span>
-      <span class="trust-chip"><span class="dot">&#9679;</span><span data-i18n="hero.chip2">Est. 1948</span></span>
-      <span class="trust-chip"><span class="dot">&#9679;</span><span data-i18n="hero.chip3">5000+ Customers</span></span>
-      <span class="trust-chip"><span class="dot">&#9679;</span><span data-i18n="hero.chip4">Nationwide Delivery</span></span>
-    </div>
-  </div>
+  <a href="bundle-kit.html" class="hero-banner-link">
+    <img src="images/hero-banner.jpg" alt="Nasir Oil Expert - 3-in-1 Complete Hair Care Solution" class="hero-banner-img">
+  </a>
 </section>
 
 <!-- MARQUEE -->
