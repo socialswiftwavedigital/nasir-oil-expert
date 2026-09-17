@@ -1,6 +1,5 @@
 <?php
-// Password protection — change this to a strong password
-define('ADMIN_PASS', 'nasir@admin2024');
+require_once __DIR__ . '/config.php';
 
 $key = $_GET['key'] ?? '';
 if ($key !== ADMIN_PASS) {
