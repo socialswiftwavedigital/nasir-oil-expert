@@ -150,6 +150,10 @@ h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; line-h
   align-items: center;
   justify-content: space-between;
   transition: all 0.4s ease;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 2px 24px rgba(0,0,0,0.08);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 .navbar.scrolled {
   background: rgba(255,255,255,0.97);
@@ -185,11 +189,11 @@ h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; line-h
   font-family: 'Cormorant Garamond', serif;
   font-weight: 700;
   font-size: 1.1rem;
-  color: var(--white);
+  color: var(--text-dark);
   line-height: 1.2;
   transition: color 0.3s ease;
 }
-.nav-logo-text span { display: block; font-size: 0.62rem; font-weight: 400; letter-spacing: 0.15em; color: var(--gold-light); font-family: 'Montserrat', sans-serif; }
+.nav-logo-text span { display: block; font-size: 0.62rem; font-weight: 400; letter-spacing: 0.15em; color: var(--gold-dark); font-family: 'Montserrat', sans-serif; }
 .navbar.scrolled .nav-logo-text { color: var(--text-dark); }
 .navbar.scrolled .nav-logo-text span { color: var(--gold-dark); }
 .nav-links {
@@ -203,7 +207,7 @@ h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; line-h
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.85);
+  color: var(--text-mid);
   position: relative;
   transition: color 0.3s ease;
 }
@@ -217,7 +221,7 @@ h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; line-h
   transition: width 0.3s ease;
 }
 .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-.nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
+.nav-links a:hover, .nav-links a.active { color: var(--gold-dark); }
 .navbar.scrolled .nav-links a:hover, .navbar.scrolled .nav-links a.active { color: var(--gold-dark); }
 
 /* Collections Dropdown */
@@ -266,14 +270,14 @@ h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; line-h
   position: relative;
   width: 42px; height: 42px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.12);
-  border: 1.5px solid rgba(255,255,255,0.25);
+  background: var(--cream);
+  border: 1.5px solid var(--cream-dark);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: var(--white);
+  color: var(--text-dark);
   text-decoration: none;
 }
 .navbar.scrolled .cart-icon-btn {
@@ -320,7 +324,7 @@ h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; line-h
 }
 .nav-hamburger span {
   width: 26px; height: 2px;
-  background: var(--white);
+  background: var(--text-dark);
   border-radius: 2px;
   transition: all 0.3s ease;
 }
