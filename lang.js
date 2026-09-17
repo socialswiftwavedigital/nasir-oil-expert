@@ -500,6 +500,20 @@
       'ct.form.phone.label': 'Phone',
       'ct.form.msg.label': 'Message',
 
+      /* Contact form placeholders */
+      'ct.form.name.ph': 'Your name',
+      'ct.form.phone.ph': '03XX-XXXXXXX',
+      'ct.form.email.ph': 'email@example.com',
+      'ct.form.msg.ph': 'Type your message or order details here...',
+
+      /* Contact form select options */
+      'ct.subject.default': 'Please select...',
+      'ct.subject.order': 'Place an Order',
+      'ct.subject.delivery': 'Delivery Inquiry',
+      'ct.subject.product': 'Product Information',
+      'ct.subject.return': 'Return / Refund',
+      'ct.subject.other': 'Something Else',
+
       /* FAQ questions & answers */
       'ct.faq.q1': 'How long does delivery take?',
       'ct.faq.a1': 'Delivery takes 2 to 4 working days in most cities across Pakistan. Remote areas may take 5 to 7 days.',
@@ -1099,6 +1113,20 @@
       'ct.form.phone.label': 'فون',
       'ct.form.msg.label': 'پیغام',
 
+      /* Contact form placeholders */
+      'ct.form.name.ph': 'آپ کا نام',
+      'ct.form.phone.ph': '03XX-XXXXXXX',
+      'ct.form.email.ph': 'ای میل ایڈریس',
+      'ct.form.msg.ph': 'اپنا پیغام یہاں لکھیں...',
+
+      /* Contact form select options */
+      'ct.subject.default': 'منتخب کریں...',
+      'ct.subject.order': 'آرڈر دیں',
+      'ct.subject.delivery': 'ڈیلیوری کی معلومات',
+      'ct.subject.product': 'پروڈکٹ کی معلومات',
+      'ct.subject.return': 'واپسی / ریفنڈ',
+      'ct.subject.other': 'کچھ اور',
+
       /* FAQ questions & answers */
       'ct.faq.q1': 'ڈیلیوری میں کتنا وقت لگتا ہے؟',
       'ct.faq.a1': 'پاکستان کے زیادہ تر شہروں میں ڈیلیوری 2 سے 4 کام کے دن میں ہوتی ہے۔ دور دراز علاقوں میں 5 سے 7 دن لگ سکتے ہیں۔',
@@ -1250,6 +1278,12 @@
     document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
       var key = el.getAttribute('data-i18n-html');
       if (d[key] !== undefined) el.innerHTML = d[key];
+    });
+
+    /* placeholder replacements */
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-placeholder');
+      if (d[key] !== undefined) el.placeholder = d[key];
     });
 
     /* RTL direction & Urdu font */

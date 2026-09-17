@@ -185,31 +185,31 @@
         <div class="form-row">
           <div class="form-group">
             <label data-i18n="ct.form.name.label">Name</label>
-            <input type="text" name="name" placeholder="Your name" required>
+            <input type="text" name="name" placeholder="Your name" data-i18n-placeholder="ct.form.name.ph" required>
           </div>
           <div class="form-group">
             <label data-i18n="ct.form.phone.label">Phone</label>
-            <input type="tel" name="phone" placeholder="03XX-XXXXXXX" required>
+            <input type="tel" name="phone" placeholder="03XX-XXXXXXX" data-i18n-placeholder="ct.form.phone.ph" required>
           </div>
         </div>
         <div class="form-group">
           <label data-i18n="ct.email.label">Email</label>
-          <input type="email" name="email" placeholder="email@example.com">
+          <input type="email" name="email" placeholder="email@example.com" data-i18n-placeholder="ct.form.email.ph">
         </div>
         <div class="form-group">
           <label data-i18n="ct.subject.label">Subject</label>
           <select name="subject">
-            <option value="">Please select...</option>
-            <option value="order">Place an Order</option>
-            <option value="delivery">Delivery Inquiry</option>
-            <option value="product">Product Information</option>
-            <option value="return">Return / Refund</option>
-            <option value="other">Something Else</option>
+            <option value="" data-i18n="ct.subject.default">Please select...</option>
+            <option value="order" data-i18n="ct.subject.order">Place an Order</option>
+            <option value="delivery" data-i18n="ct.subject.delivery">Delivery Inquiry</option>
+            <option value="product" data-i18n="ct.subject.product">Product Information</option>
+            <option value="return" data-i18n="ct.subject.return">Return / Refund</option>
+            <option value="other" data-i18n="ct.subject.other">Something Else</option>
           </select>
         </div>
         <div class="form-group">
           <label data-i18n="ct.form.msg.label">Message</label>
-          <textarea name="message" placeholder="Type your message or order details here..."></textarea>
+          <textarea name="message" placeholder="Type your message or order details here..." data-i18n-placeholder="ct.form.msg.ph"></textarea>
         </div>
         <button type="submit" class="form-submit btn-primary" style="width:100%;justify-content:center;border:none;cursor:pointer;">
           <span data-i18n="ct.send">Send Message</span> <span class="arrow">&#8594;</span>
