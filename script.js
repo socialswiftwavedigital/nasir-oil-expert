@@ -112,9 +112,7 @@ if (filterBtns.length) {
       const filter = btn.dataset.filter;
       productItems.forEach(item => {
         const show = filter === 'all' || item.dataset.category === filter;
-        item.style.opacity = show ? '1' : '0.3';
-        item.style.transform = show ? 'scale(1)' : 'scale(0.95)';
-        item.style.pointerEvents = show ? 'all' : 'none';
+        item.style.display = show ? '' : 'none';
       });
     });
   });

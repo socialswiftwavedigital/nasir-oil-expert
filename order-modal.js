@@ -13,8 +13,11 @@
           '<input type="hidden" id="codProdPrice">',
           codField('codName',    'text',     'Full Name *',         'Apna poora naam'),
           codField('codPhone',   'tel',      'Phone Number *',      '03XX-XXXXXXX'),
+          codField('codWA',      'tel',      'WhatsApp Number *',   '03XX-XXXXXXX'),
           codField('codCity',    'text',     'City *',              'Lahore / Karachi / Islamabad...'),
+          codField('codNearby',  'text',     'Nearby Place / Landmark', 'Masjid, School, Market...'),
           codFieldTA('codAddr',              'Full Address *',      'Ghar ka pura pata likhein...'),
+          '<div id="codPriceSummary" style="background:#f0f7f4;border:1px solid #c8e8d4;border-radius:8px;padding:12px 16px;margin:12px 0;font-family:Montserrat,sans-serif;font-size:.82rem;"></div>',
           '<button type="submit" id="codSubmitBtn" style="width:100%;padding:14px;background:#1A1A1A;color:#fff;border:none;border-radius:30px;font-family:Montserrat,sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.06em;cursor:pointer;margin-top:4px;transition:.2s;">',
             '&#128444; Place Order — Cash on Delivery',
           '</button>',
@@ -60,13 +63,19 @@
     btn.style.opacity = '.65';
 
     var fd = new FormData();
-    fd.append('product', document.getElementById('codProdName').value);
-    fd.append('price',   document.getElementById('codProdPrice').value);
-    fd.append('name',    document.getElementById('codName').value.trim());
-    fd.append('phone',   document.getElementById('codPhone').value.trim());
-    fd.append('city',    document.getElementById('codCity').value.trim());
-    fd.append('address', document.getElementById('codAddr').value.trim());
-    fd.append('source',  window.location.href);
+    var prodPrice = Number(document.getElementById('codProdPrice').value);
+    var delivery  = 250;
+    fd.append('product',  document.getElementById('codProdName').value);
+    fd.append('price',    prodPrice);
+    fd.append('delivery', delivery);
+    fd.append('total',    prodPrice + delivery);
+    fd.append('name',     document.getElementById('codName').value.trim());
+    fd.append('phone',    document.getElementById('codPhone').value.trim());
+    fd.append('whatsapp', document.getElementById('codWA').value.trim());
+    fd.append('city',     document.getElementById('codCity').value.trim());
+    fd.append('nearby',   document.getElementById('codNearby').value.trim());
+    fd.append('address',  document.getElementById('codAddr').value.trim());
+    fd.append('source',   window.location.href);
 
     fetch('order-handler.php', { method: 'POST', body: fd })
       .then(function (r) { return r.json(); })
@@ -108,8 +117,15 @@ function openCodModal(product, price) {
   btn.disabled = false; btn.style.opacity = '1';
   document.getElementById('codName').value = '';
   document.getElementById('codPhone').value = '';
+  document.getElementById('codWA').value = '';
   document.getElementById('codCity').value = '';
+  document.getElementById('codNearby').value = '';
   document.getElementById('codAddr').value = '';
+  var delivery = 250;
+  var total = Number(price) + delivery;
+  document.getElementById('codPriceSummary').innerHTML =
+    '<div style="display:flex;justify-content:space-between;margin-bottom:5px;color:#555;">Delivery Charges: <strong style="color:#333;">Rs ' + delivery + '</strong></div>' +
+    '<div style="display:flex;justify-content:space-between;font-weight:700;font-size:.9rem;color:#1B4332;">Total Payable: <strong style="color:#B8860B;">Rs ' + total.toLocaleString() + '</strong></div>';
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
 }
