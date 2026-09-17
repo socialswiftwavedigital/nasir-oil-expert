@@ -1,8 +1,8 @@
 ﻿/* ===== ROOT VARIABLES ===== */
 :root {
-  --green-deep: #1B4332;
-  --green-mid: #2D6A4F;
-  --green-light: #40916C;
+  --green-deep: #1C6038;
+  --green-mid: #2D8A5F;
+  --green-light: #40C070;
   --gold: #C9A84C;
   --gold-light: #E2C07A;
   --gold-dark: #A07830;
@@ -426,7 +426,7 @@ h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; line-h
   background:
     radial-gradient(ellipse 60% 80% at 70% 50%, rgba(201,168,76,0.1) 0%, transparent 70%),
     radial-gradient(ellipse 40% 60% at 20% 80%, rgba(64,145,108,0.18) 0%, transparent 60%),
-    linear-gradient(135deg, #0d2b1f 0%, #1B4332 45%, #2D6A4F 100%);
+    linear-gradient(135deg, #0f3d22 0%, #1C6038 45%, #2D8A5F 100%);
 }
 .hero-particles { position: absolute; inset: 0; overflow: hidden; }
 .particle {
@@ -1080,7 +1080,7 @@ h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; line-h
 
 /* ===== CTA SECTION ===== */
 .cta-section {
-  background: linear-gradient(135deg, #0d2b1f 0%, var(--green-deep) 50%, var(--green-mid) 100%);
+  background: linear-gradient(135deg, #0f3d22 0%, var(--green-deep) 50%, var(--green-mid) 100%);
   padding: 100px 60px;
   text-align: center;
   position: relative;
@@ -1250,7 +1250,7 @@ footer {
 /* ===== PAGE HERO (subpages) ===== */
 .page-hero {
   height: 380px;
-  background: linear-gradient(135deg, #0d2b1f 0%, var(--green-deep) 60%, var(--green-mid) 100%);
+  background: linear-gradient(135deg, #0f3d22 0%, var(--green-deep) 60%, var(--green-mid) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
