@@ -103,9 +103,10 @@ h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; line-h
 
 /* ===== RTL (Urdu) ===== */
 .lang-ur { direction: rtl; }
-.lang-ur .navbar, .lang-ur .mobile-nav { direction: rtl; }
-.lang-ur .nav-links { flex-direction: row-reverse; }
-.lang-ur .nav-right { flex-direction: row-reverse; }
+/* Keep navbar layout LTR so logo stays left, links center, cart right */
+.lang-ur .navbar { direction: ltr; }
+.lang-ur .nav-links a { font-family: 'Noto Nastaliq Urdu', sans-serif; font-size: 0.82rem; }
+.lang-ur .mobile-nav { direction: rtl; }
 .lang-ur .footer-inner, .lang-ur .footer-top { direction: rtl; text-align: right; }
 .lang-ur .section-label, .lang-ur .section-title, .lang-ur .section-subtitle { text-align: center; }
 .lang-ur body, .lang-ur p, .lang-ur li, .lang-ur span, .lang-ur h1, .lang-ur h2, .lang-ur h3, .lang-ur h4 {
