@@ -93,7 +93,8 @@
     .reviewer-loc { font-family:'Montserrat',sans-serif; font-size:0.7rem; color:var(--text-light); }
     .review-stars { color:var(--gold); font-size:0.85rem; }
     .review-date { font-family:'Montserrat',sans-serif; font-size:0.68rem; color:var(--text-light); }
-    .review-text { font-family:'Noto Nastaliq Urdu','Jameel Noori Nastaleeq',serif; font-size:0.9rem; color:var(--text-mid); line-height:2.2; direction:rtl; text-align:right; font-style:normal; }
+    .review-text { font-family:'Montserrat',sans-serif; font-size:0.88rem; color:var(--text-mid); line-height:1.8; direction:ltr; text-align:left; font-style:italic; }
+    .lang-ur .review-text { font-family:'Noto Nastaliq Urdu','Jameel Noori Nastaleeq',serif; font-size:0.9rem; line-height:2.2; direction:rtl; text-align:right; font-style:normal; }
     .review-verified { display:inline-flex; align-items:center; gap:4px; margin-top:10px; font-family:'Montserrat',sans-serif; font-size:0.65rem; color:var(--green-mid); font-weight:600; }
     .related-section { padding:60px 40px 80px; max-width:1200px; margin:0 auto; }
     @media(max-width:900px){ .pd-layout{grid-template-columns:1fr;} .pd-gallery{position:static;} }
@@ -249,24 +250,24 @@
     </div>
     <div class="reviews-grid">
       <div class="review-card reveal">
-        <div class="review-top"><div class="reviewer"><div class="reviewer-avatar">FM</div><div><div class="reviewer-name">فاطمہ ملک</div><div class="reviewer-loc">کراچی، پاکستان</div></div></div><div><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="review-date">February 2026</div></div></div>
-        <p class="review-text">"بلیک روز آئل کی خوشبو لاجواب ہے اور کام اس سے بھی بہتر کرتا ہے۔ صرف ۳ ہفتوں میں بال گرنا بہت کم ہو گیا۔ اب سب پوچھتے ہیں کہ بالوں کو کیا لگاتی ہوں۔ بے حد پسند آیا!"</p>
-        <div class="review-verified" data-i18n="pd.rev.verified">? Verified Purchase</div>
+        <div class="review-top"><div class="reviewer"><div class="reviewer-avatar">FM</div><div><div class="reviewer-name" data-i18n="br.rev.c1.name">فاطمہ ملک</div><div class="reviewer-loc" data-i18n="br.rev.c1.loc">کراچی، پاکستان</div></div></div><div><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="review-date">February 2026</div></div></div>
+        <p class="review-text" data-i18n="br.rev.c1.q">"بلیک روز آئل کی خوشبو لاجواب ہے اور کام اس سے بھی بہتر کرتا ہے۔ صرف ۳ ہفتوں میں بال گرنا بہت کم ہو گیا۔ اب سب پوچھتے ہیں کہ بالوں کو کیا لگاتی ہوں۔ بے حد پسند آیا!"</p>
+        <div class="review-verified" data-i18n="pd.rev.verified">&#10003; Verified Purchase</div>
       </div>
       <div class="review-card reveal reveal-delay-1">
-        <div class="review-top"><div class="reviewer"><div class="reviewer-avatar">RA</div><div><div class="reviewer-name">رابعہ علی</div><div class="reviewer-loc">ملتان، پاکستان</div></div></div><div><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="review-date">January 2026</div></div></div>
-        <p class="review-text">"پہلے شک تھا کیونکہ بہت سے تیل آزمائے لیکن یہ مختلف ہے۔ خوشبو بہت ہلکی اور قدرتی ہے۔ استعمال کے بعد بال بہت ملائم اور مضبوط محسوس ہوتے ہیں۔ دوبارہ ضرور آرڈر کروں گی!"</p>
-        <div class="review-verified" data-i18n="pd.rev.verified">? Verified Purchase</div>
+        <div class="review-top"><div class="reviewer"><div class="reviewer-avatar">RA</div><div><div class="reviewer-name" data-i18n="br.rev.c2.name">رابعہ علی</div><div class="reviewer-loc" data-i18n="br.rev.c2.loc">ملتان، پاکستان</div></div></div><div><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="review-date">January 2026</div></div></div>
+        <p class="review-text" data-i18n="br.rev.c2.q">"پہلے شک تھا کیونکہ بہت سے تیل آزمائے لیکن یہ مختلف ہے۔ خوشبو بہت ہلکی اور قدرتی ہے۔ استعمال کے بعد بال بہت ملائم اور مضبوط محسوس ہوتے ہیں۔ دوبارہ ضرور آرڈر کروں گی!"</p>
+        <div class="review-verified" data-i18n="pd.rev.verified">&#10003; Verified Purchase</div>
       </div>
       <div class="review-card reveal reveal-delay-2">
-        <div class="review-top"><div class="reviewer"><div class="reviewer-avatar">SH</div><div><div class="reviewer-name">ثنا حامد</div><div class="reviewer-loc">لاہور، پاکستان</div></div></div><div><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="review-date">December 2025</div></div></div>
-        <p class="review-text">"پیکیجنگ خوبصورت ہے اور تیل بھی شاندار ہے۔ میرے رنگے ہوئے بال ہیں اور ڈر تھا کہ کوئی ردعمل نہ ہو لیکن بال اور بھی خوبصورت ہو گئے۔ جو چمک آئی ہے وہ قابل یقین نہیں۔ ۵ ستارے!"</p>
-        <div class="review-verified" data-i18n="pd.rev.verified">? Verified Purchase</div>
+        <div class="review-top"><div class="reviewer"><div class="reviewer-avatar">SH</div><div><div class="reviewer-name" data-i18n="br.rev.c3.name">ثنا حامد</div><div class="reviewer-loc" data-i18n="br.rev.c3.loc">لاہور، پاکستان</div></div></div><div><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="review-date">December 2025</div></div></div>
+        <p class="review-text" data-i18n="br.rev.c3.q">"پیکیجنگ خوبصورت ہے اور تیل بھی شاندار ہے۔ میرے رنگے ہوئے بال ہیں اور ڈر تھا کہ کوئی ردعمل نہ ہو لیکن بال اور بھی خوبصورت ہو گئے۔ جو چمک آئی ہے وہ قابل یقین نہیں۔ ۵ ستارے!"</p>
+        <div class="review-verified" data-i18n="pd.rev.verified">&#10003; Verified Purchase</div>
       </div>
       <div class="review-card reveal reveal-delay-3">
-        <div class="review-top"><div class="reviewer"><div class="reviewer-avatar">MN</div><div><div class="reviewer-name">میرا ناصر</div><div class="reviewer-loc">راولپنڈی، پاکستان</div></div></div><div><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="review-date">November 2025</div></div></div>
-        <p class="review-text">"میں نے یہ اپنی بہن کو تحفہ دیا اور انہیں اتنا پسند آیا کہ ۳ اور بوتلیں منگوا لیں۔ گلاب کی خوشبو اصلی ہے اور بالکل تیز نہیں۔ اب یہ ہمارے گھر کا ضروری حصہ بن گیا ہے۔"</p>
-        <div class="review-verified" data-i18n="pd.rev.verified">? Verified Purchase</div>
+        <div class="review-top"><div class="reviewer"><div class="reviewer-avatar">MN</div><div><div class="reviewer-name" data-i18n="br.rev.c4.name">میرا ناصر</div><div class="reviewer-loc" data-i18n="br.rev.c4.loc">راولپنڈی، پاکستان</div></div></div><div><div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="review-date">November 2025</div></div></div>
+        <p class="review-text" data-i18n="br.rev.c4.q">"میں نے یہ اپنی بہن کو تحفہ دیا اور انہیں اتنا پسند آیا کہ ۳ اور بوتلیں منگوا لیں۔ گلاب کی خوشبو اصلی ہے اور بالکل تیز نہیں۔ اب یہ ہمارے گھر کا ضروری حصہ بن گیا ہے۔"</p>
+        <div class="review-verified" data-i18n="pd.rev.verified">&#10003; Verified Purchase</div>
       </div>
     </div>
   </div>
