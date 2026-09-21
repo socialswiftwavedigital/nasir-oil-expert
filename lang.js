@@ -480,7 +480,7 @@
       'ct.email.h': 'Email',
       'ct.store.h': 'Our Store',
       'ct.social.label': 'Social Media',
-      'ct.form.title': 'Send Us Your Message',
+      'ct.form.title': 'Send Your Message',
       'ct.wa.direct': 'Message Us Directly on WhatsApp',
       'ct.form.or': 'or fill in the form below',
       'ct.email.label': 'Email',
@@ -531,7 +531,9 @@
 
       /* Contact form labels */
       'ct.form.name.label': 'Name',
-      'ct.form.phone.label': 'Phone',
+      'ct.form.phone.label': 'WhatsApp / Phone',
+      'ct.form.city.label': 'City',
+      'ct.form.addr.label': 'Delivery Address',
       'ct.form.msg.label': 'Message',
 
       /* Contact form placeholders */
@@ -539,6 +541,23 @@
       'ct.form.phone.ph': '03XX-XXXXXXX',
       'ct.form.email.ph': 'email@example.com',
       'ct.form.msg.ph': 'Type your message or order details here...',
+      'ct.form.addr.ph': 'House No, Street, Area...',
+
+      /* Smart form — section titles */
+      'ct.sect.purpose': 'Purpose',
+      'ct.sect.prods': 'Select Products',
+      'ct.sect.details': 'Your Details',
+      'ct.sect.msg': 'Message / Notes',
+
+      /* Smart form — submit + COD */
+      'ct.form.submit': 'Send on WhatsApp',
+      'ct.cod.text': 'Cash on Delivery (COD) — Pay at your door',
+
+      /* Smart form — purpose labels */
+      'ct.purpose.order': 'Place an Order',
+      'ct.purpose.inquiry': 'Inquiry',
+      'ct.purpose.complaint': 'Complaint',
+      'ct.purpose.return': 'Return / Refund',
 
       /* Contact form select options */
       'ct.subject.default': 'Please select...',
@@ -1142,7 +1161,7 @@
       'ct.email.h': 'ای میل',
       'ct.store.h': 'ہمارا اسٹور',
       'ct.social.label': 'سوشل میڈیا',
-      'ct.form.title': 'ہمیں اپنا پیغام بھیجیں',
+      'ct.form.title': 'اپنا پیغام یا آرڈر بھیجیں',
       'ct.wa.direct': 'واٹس ایپ پر براہ راست پیغام دیں',
       'ct.form.or': 'یا نیچے فارم بھریں',
       'ct.email.label': 'ای میل',
@@ -1182,7 +1201,9 @@
 
       /* Contact form labels */
       'ct.form.name.label': 'نام',
-      'ct.form.phone.label': 'فون',
+      'ct.form.phone.label': 'واٹس ایپ / فون',
+      'ct.form.city.label': 'شہر',
+      'ct.form.addr.label': 'گھر کا پتہ',
       'ct.form.msg.label': 'پیغام',
 
       /* Contact form placeholders */
@@ -1190,6 +1211,23 @@
       'ct.form.phone.ph': '03XX-XXXXXXX',
       'ct.form.email.ph': 'ای میل ایڈریس',
       'ct.form.msg.ph': 'اپنا پیغام یہاں لکھیں...',
+      'ct.form.addr.ph': 'گھر نمبر، گلی، علاقہ...',
+
+      /* Smart form — section titles */
+      'ct.sect.purpose': 'مقصد',
+      'ct.sect.prods': 'پروڈکٹ چنیں',
+      'ct.sect.details': 'آپ کی معلومات',
+      'ct.sect.msg': 'پیغام یا نوٹ',
+
+      /* Smart form — submit + COD */
+      'ct.form.submit': 'وٹس ایپ پر بھیجیں',
+      'ct.cod.text': 'کیش آن ڈیلیوری — گھر پر ادائیگی کریں',
+
+      /* Smart form — purpose labels */
+      'ct.purpose.order': 'آرڈر کریں',
+      'ct.purpose.inquiry': 'سوال / معلومات',
+      'ct.purpose.complaint': 'شکایت',
+      'ct.purpose.return': 'واپسی / ریفنڈ',
 
       /* Contact form select options */
       'ct.subject.default': 'منتخب کریں...',

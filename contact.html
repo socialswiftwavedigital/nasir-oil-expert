@@ -92,12 +92,21 @@
     .ct-cod-ur { font-family:'Noto Nastaliq Urdu',serif; font-size:0.78rem; color:var(--text-light); direction:rtl; display:block; margin-top:2px; }
     /* Labels */
     .ct-lbl { font-family:'Montserrat',sans-serif; font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; color:var(--text-dark); display:block; margin-bottom:5px; }
-    .ct-lbl-ur { font-family:'Noto Nastaliq Urdu',serif; font-weight:400; font-size:0.76rem; color:var(--text-light); text-transform:none; letter-spacing:0; direction:rtl; }
     /* Submit */
     .ct-submit-wa { width:100%; padding:15px; background:linear-gradient(135deg,#25D366,#1aab55); color:#fff; border:none; border-radius:12px; font-family:'Montserrat',sans-serif; font-size:0.86rem; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:10px; letter-spacing:0.04em; transition:all 0.3s ease; margin-top:8px; }
     .ct-submit-wa:hover { background:linear-gradient(135deg,#20be5a,#128C7E); transform:translateY(-2px); box-shadow:0 8px 22px rgba(37,211,102,0.28); }
-    .ct-submit-ur { font-family:'Noto Nastaliq Urdu',serif; font-size:0.8rem; font-weight:400; opacity:0.88; }
     .ct-hidden { display:none !important; }
+    /* Purpose card text */
+    .ct-purpose-text { font-family:'Montserrat',sans-serif; font-size:0.66rem; font-weight:700; color:var(--text-dark); display:block; }
+    /* Qty row language spans */
+    html:not(.lang-ur) .ct-qty-ur { display:none !important; }
+    html.lang-ur .ct-qty-en { display:none !important; }
+    /* Urdu mode font overrides */
+    html.lang-ur .ct-form-title { font-family:'Noto Nastaliq Urdu',serif; direction:rtl; letter-spacing:0; }
+    html.lang-ur .ct-sect-ttl { font-family:'Noto Nastaliq Urdu',serif; direction:rtl; font-weight:700; }
+    html.lang-ur .ct-lbl { font-family:'Noto Nastaliq Urdu',serif; direction:rtl; text-transform:none; letter-spacing:0; font-weight:700; font-size:0.8rem; }
+    html.lang-ur .ct-purpose-text { font-family:'Noto Nastaliq Urdu',serif; font-size:0.72rem; font-weight:400; direction:rtl; }
+    html.lang-ur .ct-submit-wa { font-family:'Noto Nastaliq Urdu',serif; letter-spacing:0; }
     @media(max-width:600px){
       .ct-purpose-grid { grid-template-columns:repeat(2,1fr); }
       .ct-prod-grid { grid-template-columns:repeat(2,1fr); }
@@ -228,8 +237,7 @@
     <!-- RIGHT: Form -->
     <div class="contact-form-wrap reveal-right">
 
-      <div class="ct-form-title">Send Your Message</div>
-      <span class="ct-form-title-ur">اپنا پیغام یا آرڈر یہاں بھیجیں</span>
+      <div class="ct-form-title" data-i18n="ct.form.title">Send Your Message</div>
 
       <form id="contactForm" onsubmit="ctSubmit(event)" novalidate>
 
@@ -238,7 +246,7 @@
           <div class="ct-sect-hd">
             <div class="ct-sect-num">1</div>
             <div>
-              <div class="ct-sect-ttl">Purpose <span class="ct-sect-ur">/ مقصد</span></div>
+              <div class="ct-sect-ttl" data-i18n="ct.sect.purpose">Purpose</div>
             </div>
           </div>
           <div class="ct-sect-body">
@@ -247,32 +255,28 @@
                 <input type="radio" name="purpose" value="order" checked onchange="ctPurposeChange()">
                 <div class="ct-purpose-bd">
                   <span class="ct-purpose-icon">&#128722;</span>
-                  <span class="ct-purpose-en">Place an Order</span>
-                  <span class="ct-purpose-ur">&#1570;&#1585;&#1688;&#1585; &#1705;&#1585;&#1740;&#1722;</span>
+                  <span class="ct-purpose-text" data-i18n="ct.purpose.order">Place an Order</span>
                 </div>
               </label>
               <label class="ct-purpose-card">
                 <input type="radio" name="purpose" value="inquiry" onchange="ctPurposeChange()">
                 <div class="ct-purpose-bd">
                   <span class="ct-purpose-icon">&#10067;</span>
-                  <span class="ct-purpose-en">Inquiry</span>
-                  <span class="ct-purpose-ur">&#1587;&#1608;&#1575;&#1604; / &#1605;&#1593;&#1604;&#1608;&#1605;&#1575;&#1578;</span>
+                  <span class="ct-purpose-text" data-i18n="ct.purpose.inquiry">Inquiry</span>
                 </div>
               </label>
               <label class="ct-purpose-card">
                 <input type="radio" name="purpose" value="complaint" onchange="ctPurposeChange()">
                 <div class="ct-purpose-bd">
                   <span class="ct-purpose-icon">&#9888;&#65039;</span>
-                  <span class="ct-purpose-en">Complaint</span>
-                  <span class="ct-purpose-ur">&#1588;&#1705;&#1575;&#1740;&#1578;</span>
+                  <span class="ct-purpose-text" data-i18n="ct.purpose.complaint">Complaint</span>
                 </div>
               </label>
               <label class="ct-purpose-card">
                 <input type="radio" name="purpose" value="return" onchange="ctPurposeChange()">
                 <div class="ct-purpose-bd">
                   <span class="ct-purpose-icon">&#128260;</span>
-                  <span class="ct-purpose-en">Return / Refund</span>
-                  <span class="ct-purpose-ur">&#1608;&#1575;&#1662;&#1587;&#1740; / &#1585;&#1740;&#1601;&#1606;&#1688;</span>
+                  <span class="ct-purpose-text" data-i18n="ct.purpose.return">Return / Refund</span>
                 </div>
               </label>
             </div>
@@ -284,7 +288,7 @@
           <div class="ct-sect-hd">
             <div class="ct-sect-num">2</div>
             <div>
-              <div class="ct-sect-ttl">Select Products <span class="ct-sect-ur">/ &#1662;&#1585;&#1608;&#1688;&#1705;&#1657; &#1670;&#1606;&#1740;&#1722;</span></div>
+              <div class="ct-sect-ttl" data-i18n="ct.sect.prods">Select Products</div>
             </div>
           </div>
           <div class="ct-sect-body">
@@ -341,8 +345,7 @@
             <div class="ct-cod">
               <span class="ct-cod-icon">&#128179;</span>
               <div>
-                <span class="ct-cod-en">Cash on Delivery (COD) &#8212; Pay at your door</span>
-                <span class="ct-cod-ur">&#1705;&#1740;&#1588; &#1570;&#1606; &#1672;&#1610;&#1604;&#1608;&#1585;&#1740; &#8212; &#1711;&#1726;&#1585; &#1662;&#1585; &#1575;&#1583;&#1575;&#1574;&#1610;&#1711;&#1740; &#1705;&#1585;&#1740;&#1722;</span>
+                <span data-i18n="ct.cod.text">Cash on Delivery (COD) &#8212; Pay at your door</span>
               </div>
             </div>
           </div>
@@ -353,22 +356,22 @@
           <div class="ct-sect-hd">
             <div class="ct-sect-num" id="ctN3">3</div>
             <div>
-              <div class="ct-sect-ttl">Your Details <span class="ct-sect-ur">/ &#1570;&#1662; &#1705;&#1740; &#1605;&#1593;&#1604;&#1608;&#1605;&#1575;&#1578;</span></div>
+              <div class="ct-sect-ttl" data-i18n="ct.sect.details">Your Details</div>
             </div>
           </div>
           <div class="ct-sect-body">
             <div class="form-row" style="margin-bottom:0;">
               <div class="form-group">
-                <label class="ct-lbl">Name <span class="ct-lbl-ur">&#1606;&#1575;&#1605;</span></label>
-                <input type="text" name="ctName" placeholder="Ahmad Ali" required style="font-size:0.88rem;">
+                <label class="ct-lbl" data-i18n="ct.form.name.label">Name</label>
+                <input type="text" name="ctName" data-i18n-placeholder="ct.form.name.ph" placeholder="Your name" required style="font-size:0.88rem;">
               </div>
               <div class="form-group">
-                <label class="ct-lbl">WhatsApp / Phone <span class="ct-lbl-ur">&#1606;&#1605;&#1576;&#1585;</span></label>
+                <label class="ct-lbl" data-i18n="ct.form.phone.label">WhatsApp / Phone</label>
                 <input type="tel" name="ctPhone" placeholder="0321-XXXXXXX" required style="font-size:0.88rem;">
               </div>
             </div>
             <div class="form-group">
-              <label class="ct-lbl">City <span class="ct-lbl-ur">&#1588;&#1726;&#1585;</span></label>
+              <label class="ct-lbl" data-i18n="ct.form.city.label">City</label>
               <select name="ctCity" style="font-size:0.86rem;">
                 <option value="">-- Select City / &#1588;&#1726;&#1585; &#1670;&#1606;&#1740;&#1722; --</option>
                 <option>Karachi &#8212; &#1705;&#1585;&#1575;&#1670;&#1740;</option>
@@ -392,8 +395,8 @@
               </select>
             </div>
             <div class="form-group" id="ct-addr-wrap">
-              <label class="ct-lbl">Delivery Address <span class="ct-lbl-ur">&#1711;&#1726;&#1585; &#1705;&#1575; &#1662;&#1578;&#1729;</span></label>
-              <input type="text" name="ctAddr" placeholder="House No, Street, Area... / &#1711;&#1726;&#1585; &#1606;&#1605;&#1576;&#1585;&#1548; &#1711;&#1604;&#1740;&#1548; &#1593;&#1604;&#1575;&#1602;&#1729;..." style="font-size:0.86rem;">
+              <label class="ct-lbl" data-i18n="ct.form.addr.label">Delivery Address</label>
+              <input type="text" name="ctAddr" data-i18n-placeholder="ct.form.addr.ph" placeholder="House No, Street, Area..." style="font-size:0.86rem;">
             </div>
           </div>
         </div>
@@ -403,19 +406,18 @@
           <div class="ct-sect-hd">
             <div class="ct-sect-num" id="ctN4">4</div>
             <div>
-              <div class="ct-sect-ttl">Message / Notes <span class="ct-sect-ur">/ &#1662;&#1740;&#1594;&#1575;&#1605; &#1740;&#1575; &#1606;&#1608;&#1657;</span></div>
+              <div class="ct-sect-ttl" data-i18n="ct.sect.msg">Message / Notes</div>
             </div>
           </div>
           <div class="ct-sect-body">
-            <textarea name="ctMsg" rows="3" placeholder="Type here... / &#1740;&#1729;&#1575;&#1722; &#1604;&#1705;&#1726;&#1740;&#1722;..." style="width:100%;padding:12px 14px;border:1.5px solid #e2e8f0;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:0.84rem;resize:vertical;outline:none;box-sizing:border-box;background:var(--bg-light);transition:border-color 0.3s;" onfocus="this.style.borderColor='var(--green-mid)'" onblur="this.style.borderColor='#e2e8f0'"></textarea>
+            <textarea name="ctMsg" rows="3" data-i18n-placeholder="ct.form.msg.ph" placeholder="Type your message or order details here..." style="width:100%;padding:12px 14px;border:1.5px solid #e2e8f0;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:0.84rem;resize:vertical;outline:none;box-sizing:border-box;background:var(--bg-light);transition:border-color 0.3s;" onfocus="this.style.borderColor='var(--green-mid)'" onblur="this.style.borderColor='#e2e8f0'"></textarea>
           </div>
         </div>
 
         <!-- Submit -->
         <button type="submit" class="ct-submit-wa">
           <svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          <span>Send on WhatsApp</span>
-          <span class="ct-submit-ur">&#1608;&#1575;&#1657;&#1587; &#1575;&#1740;&#1662; &#1662;&#1585; &#1576;&#1726;&#1740;&#1580;&#1740;&#1722;</span>
+          <span data-i18n="ct.form.submit">Send on WhatsApp</span>
         </button>
 
       </form>
@@ -562,7 +564,7 @@
         total += sub;
         var row = document.createElement('div');
         row.className = 'ct-qty-row';
-        row.innerHTML = '<div class="ct-qty-label">' + p.en + ' <span class="ct-qty-ur">/ ' + p.ur + '</span></div>' +
+        row.innerHTML = '<div class="ct-qty-label"><span class="ct-qty-en">' + p.en + '</span><span class="ct-qty-ur">' + p.ur + '</span></div>' +
           '<div class="ct-qty-ctrl">' +
           '<button type="button" class="ct-qty-btn" onclick="ctQtyChange(\'' + key + '\',-1)">−</button>' +
           '<span class="ct-qty-num" id="qv-' + key + '">' + qty + '</span>' +
@@ -675,6 +677,6 @@
     });
   }
 </script>
-<script src="lang.js?v=20260921"></script>
+<script src="lang.js?v=20260922"></script>
 </body>
 </html>
