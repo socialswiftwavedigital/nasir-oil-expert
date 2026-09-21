@@ -602,19 +602,22 @@
       return;
     }
 
-    var lines = [];
     var purposeMap = {
       order:     '🛒 نئی آرڈر | New Order',
       inquiry:   '❓ Inquiry | استفسار',
       complaint: '⚠️ Complaint | شکایت',
       return:    '🔄 Return/Refund | واپسی'
     };
+
+    var lines = [];
     lines.push('*' + purposeMap[purpose] + '*');
     lines.push('');
 
+    var emailBody = purposeMap[purpose] + '\n\n';
+    var orderTotal = 0;
+    var hasProduct = false;
+
     if (purpose === 'order') {
-      var hasProduct = false;
-      var total = 0;
       Object.keys(ctProds).forEach(function(key) {
         var cb = document.getElementById(key);
         if (cb && cb.checked) {
@@ -622,16 +625,18 @@
           var qty = ctQty[key];
           var p = ctProds[key];
           var sub = qty * p.price;
-          total += sub;
+          orderTotal += sub;
           lines.push('📦 ' + p.en + ' / ' + p.ur + ' × ' + qty + ' = Rs ' + sub.toLocaleString());
+          emailBody += p.en + ' x' + qty + ' = Rs ' + sub.toLocaleString() + '\n';
         }
       });
       if (!hasProduct) {
         alert('Please select at least one product.\nکوئی ایک پروڈکٹ ضرور چنیں۔');
         return;
       }
-      lines.push('💰 *Total: Rs ' + total.toLocaleString() + '*');
+      lines.push('💰 *Total: Rs ' + orderTotal.toLocaleString() + '*');
       lines.push('💳 Payment: Cash on Delivery (COD)');
+      emailBody += '\nTotal: Rs ' + orderTotal.toLocaleString() + '\nPayment: COD\n';
     }
 
     lines.push('');
@@ -641,8 +646,37 @@
     if (addr) lines.push('📍 *Address:* ' + addr);
     if (msg) lines.push('💬 *Notes:* ' + msg);
 
-    var url = 'https://wa.me/923211112280?text=' + encodeURIComponent(lines.join('\n'));
-    window.open(url, '_blank');
+    emailBody += '\nName: ' + name + '\nPhone: ' + phone;
+    if (city) emailBody += '\nCity: ' + city;
+    if (addr) emailBody += '\nAddress: ' + addr;
+    if (msg) emailBody += '\nNotes: ' + msg;
+
+    var waUrl = 'https://wa.me/923211112280?text=' + encodeURIComponent(lines.join('\n'));
+    var submitBtn = f.querySelector('.ct-submit-wa');
+    submitBtn.disabled = true;
+    submitBtn.style.opacity = '0.7';
+
+    // Send email via Formsubmit, then open WhatsApp
+    fetch('https://formsubmit.co/ajax/info@nasiroilexpert.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: (purpose === 'order' ? '🛒 New Order' : '📩 ' + purpose.charAt(0).toUpperCase() + purpose.slice(1)) + ' - ' + name,
+        name: name,
+        phone: phone,
+        city: city || '-',
+        address: addr || '-',
+        purpose: purpose,
+        message: emailBody,
+        _template: 'table'
+      })
+    })
+    .catch(function() { /* silent fail — WhatsApp still opens */ })
+    .finally(function() {
+      submitBtn.disabled = false;
+      submitBtn.style.opacity = '1';
+      window.open(waUrl, '_blank');
+    });
   }
 </script>
 <script src="lang.js?v=20260921"></script>
