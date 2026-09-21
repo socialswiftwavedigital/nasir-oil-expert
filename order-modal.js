@@ -146,19 +146,19 @@ function codSubmit() {
   document.getElementById('codSubmitText').textContent = ur ? 'بھیج رہے ہیں...' : 'Sending...';
 
   var lines = [
-    '🛒 *' + (ur ? 'نیا آرڈر' : 'New Order') + '*',
+    '*' + (ur ? 'نیا آرڈر' : 'New Order') + '*',
     '',
-    '📦 *' + prod + '* — Rs ' + price.toLocaleString(),
-    '🚚 ' + (ur ? 'ڈیلیوری:' : 'Delivery:') + ' Rs ' + delivery,
-    '💰 *' + (ur ? 'کل رقم:' : 'Total:') + ' Rs ' + total.toLocaleString() + '* (COD)',
+    '*' + prod + '* — Rs ' + price.toLocaleString(),
+    (ur ? 'ڈیلیوری:' : 'Delivery:') + ' Rs ' + delivery,
+    '*' + (ur ? 'کل رقم:' : 'Total:') + ' Rs ' + total.toLocaleString() + '* (COD)',
     '',
-    '👤 *' + (ur ? 'نام:' : 'Name:') + '* ' + name,
-    '📱 *' + (ur ? 'فون:' : 'Phone:') + '* ' + phone
+    '*' + (ur ? 'نام:' : 'Name:') + '* ' + name,
+    '*' + (ur ? 'فون:' : 'Phone:') + '* ' + phone
   ];
-  if (city) lines.push('🏙️ *' + (ur ? 'شہر:' : 'City:') + '* ' + city);
-  if (addr) lines.push('📍 *' + (ur ? 'پتہ:' : 'Address:') + '* ' + addr);
-  if (note) lines.push('💬 *' + (ur ? 'نوٹ:' : 'Notes:') + '* ' + note);
-  lines.push('', '🌍 nasiroilexpert.com');
+  if (city) lines.push('*' + (ur ? 'شہر:' : 'City:') + '* ' + city);
+  if (addr) lines.push('*' + (ur ? 'پتہ:' : 'Address:') + '* ' + addr);
+  if (note) lines.push('*' + (ur ? 'نوٹ:' : 'Notes:') + '* ' + note);
+  lines.push('', 'nasiroilexpert.com');
 
   function _showSuccess(titleEn, titleUr, subEn, subUr) {
     btn.disabled = false;
