@@ -47,6 +47,61 @@
     .faq-answer.open { display:block; }
     @media(max-width:900px){ .contact-layout{grid-template-columns:1fr;} .form-row{grid-template-columns:1fr;} }
     @media(max-width:600px){ .contact-form-wrap{padding:24px;} }
+
+    /* ===== SMART FORM ===== */
+    .ct-form-title { font-size:1.3rem; color:var(--text-dark); margin-bottom:6px; font-family:'Cormorant Garamond',serif; font-weight:700; }
+    .ct-form-title-ur { font-family:'Noto Nastaliq Urdu',serif; font-size:0.9rem; color:var(--text-light); direction:rtl; display:block; margin-bottom:20px; }
+    .ct-sect { margin-bottom:16px; border:1.5px solid rgba(0,0,0,0.07); border-radius:12px; overflow:hidden; }
+    .ct-sect-hd { display:flex; align-items:flex-start; gap:12px; padding:12px 16px; background:linear-gradient(135deg,var(--cream),#f0f7f0); border-bottom:1px solid rgba(0,0,0,0.05); }
+    .ct-sect-num { width:26px; height:26px; border-radius:50%; background:var(--green-deep); color:#fff; font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.72rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+    .ct-sect-ttl { font-family:'Montserrat',sans-serif; font-size:0.8rem; font-weight:700; color:var(--text-dark); }
+    .ct-sect-ur { font-family:'Noto Nastaliq Urdu',serif; font-size:0.76rem; color:var(--text-light); direction:rtl; display:inline-block; margin-right:4px; }
+    .ct-sect-body { padding:14px 16px; }
+    /* Purpose */
+    .ct-purpose-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
+    .ct-purpose-card input[type=radio] { display:none; }
+    .ct-purpose-bd { border:2px solid rgba(0,0,0,0.08); border-radius:10px; padding:11px 6px; text-align:center; cursor:pointer; transition:all 0.22s ease; background:var(--bg-light); }
+    .ct-purpose-card input:checked + .ct-purpose-bd { border-color:var(--green-mid); background:rgba(82,153,81,0.08); }
+    .ct-purpose-icon { font-size:1.4rem; display:block; margin-bottom:4px; }
+    .ct-purpose-en { font-family:'Montserrat',sans-serif; font-size:0.66rem; font-weight:700; color:var(--text-dark); display:block; }
+    .ct-purpose-ur { font-family:'Noto Nastaliq Urdu',serif; font-size:0.72rem; color:var(--text-light); display:block; direction:rtl; margin-top:2px; }
+    /* Products */
+    .ct-prod-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:10px; }
+    .ct-prod-card { position:relative; cursor:pointer; }
+    .ct-prod-card input[type=checkbox] { display:none; }
+    .ct-prod-bd { border:2px solid rgba(0,0,0,0.08); border-radius:10px; overflow:hidden; transition:all 0.22s ease; background:var(--bg-light); }
+    .ct-prod-card input:checked + .ct-prod-bd { border-color:var(--green-mid); box-shadow:0 0 0 3px rgba(82,153,81,0.1); }
+    .ct-prod-bd img { width:100%; height:78px; object-fit:cover; display:block; }
+    .ct-prod-info { padding:7px 6px; text-align:center; }
+    .ct-prod-name { font-family:'Montserrat',sans-serif; font-size:0.62rem; font-weight:700; color:var(--text-dark); }
+    .ct-prod-price { font-family:'Montserrat',sans-serif; font-size:0.6rem; color:var(--green-mid); font-weight:700; margin-top:2px; }
+    .ct-prod-check { position:absolute; top:5px; right:5px; width:18px; height:18px; background:var(--green-mid); border-radius:50%; color:#fff; font-size:0.6rem; display:none; align-items:center; justify-content:center; font-weight:700; }
+    .ct-prod-card input:checked ~ .ct-prod-check { display:flex; }
+    /* Qty */
+    .ct-qty-row { display:flex; align-items:center; justify-content:space-between; padding:9px 13px; background:rgba(82,153,81,0.07); border-radius:8px; margin-bottom:6px; }
+    .ct-qty-label { font-family:'Montserrat',sans-serif; font-size:0.74rem; font-weight:600; color:var(--text-dark); }
+    .ct-qty-ur { font-family:'Noto Nastaliq Urdu',serif; font-size:0.7rem; color:var(--text-light); direction:rtl; }
+    .ct-qty-ctrl { display:flex; align-items:center; gap:8px; }
+    .ct-qty-btn { width:26px; height:26px; border-radius:50%; border:1.5px solid var(--green-mid); background:none; cursor:pointer; color:var(--green-mid); font-size:0.95rem; font-weight:700; display:flex; align-items:center; justify-content:center; transition:all 0.2s; line-height:1; }
+    .ct-qty-btn:hover { background:var(--green-mid); color:#fff; }
+    .ct-qty-num { font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.88rem; min-width:20px; text-align:center; }
+    /* COD */
+    .ct-cod { display:flex; align-items:center; gap:12px; padding:11px 14px; background:linear-gradient(135deg,rgba(45,106,79,0.07),rgba(82,183,136,0.05)); border:1px solid rgba(82,183,136,0.22); border-radius:10px; margin-top:12px; }
+    .ct-cod-icon { font-size:1.6rem; flex-shrink:0; }
+    .ct-cod-en { font-family:'Montserrat',sans-serif; font-size:0.75rem; font-weight:700; color:var(--green-deep); display:block; }
+    .ct-cod-ur { font-family:'Noto Nastaliq Urdu',serif; font-size:0.78rem; color:var(--text-light); direction:rtl; display:block; margin-top:2px; }
+    /* Labels */
+    .ct-lbl { font-family:'Montserrat',sans-serif; font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; color:var(--text-dark); display:block; margin-bottom:5px; }
+    .ct-lbl-ur { font-family:'Noto Nastaliq Urdu',serif; font-weight:400; font-size:0.76rem; color:var(--text-light); text-transform:none; letter-spacing:0; direction:rtl; }
+    /* Submit */
+    .ct-submit-wa { width:100%; padding:15px; background:linear-gradient(135deg,#25D366,#1aab55); color:#fff; border:none; border-radius:12px; font-family:'Montserrat',sans-serif; font-size:0.86rem; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:10px; letter-spacing:0.04em; transition:all 0.3s ease; margin-top:8px; }
+    .ct-submit-wa:hover { background:linear-gradient(135deg,#20be5a,#128C7E); transform:translateY(-2px); box-shadow:0 8px 22px rgba(37,211,102,0.28); }
+    .ct-submit-ur { font-family:'Noto Nastaliq Urdu',serif; font-size:0.8rem; font-weight:400; opacity:0.88; }
+    .ct-hidden { display:none !important; }
+    @media(max-width:600px){
+      .ct-purpose-grid { grid-template-columns:repeat(2,1fr); }
+      .ct-prod-grid { grid-template-columns:repeat(2,1fr); }
+    }
   </style>
 </head>
 <body>
@@ -172,48 +227,197 @@
 
     <!-- RIGHT: Form -->
     <div class="contact-form-wrap reveal-right">
-      <h3 data-i18n="ct.form.title">Send Us Your Message</h3>
 
-      <a href="https://wa.me/923211112280?text=Hello!%20I%20would%20like%20to%20know%20more%20about%20Nasir%20Oil%20Expert%20products." target="_blank" class="wa-order-btn">
-        <svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        <span data-i18n="ct.wa.direct">Message Us Directly on WhatsApp</span>
-      </a>
+      <div class="ct-form-title">Send Your Message</div>
+      <span class="ct-form-title-ur">اپنا پیغام یا آرڈر یہاں بھیجیں</span>
 
-      <div class="form-divider" data-i18n="ct.form.or">or fill in the form below</div>
+      <form id="contactForm" onsubmit="ctSubmit(event)" novalidate>
 
-      <form id="contactForm">
-        <div class="form-row">
-          <div class="form-group">
-            <label data-i18n="ct.form.name.label">Name</label>
-            <input type="text" name="name" placeholder="Your name" data-i18n-placeholder="ct.form.name.ph" required>
+        <!-- 1: Purpose -->
+        <div class="ct-sect">
+          <div class="ct-sect-hd">
+            <div class="ct-sect-num">1</div>
+            <div>
+              <div class="ct-sect-ttl">Purpose <span class="ct-sect-ur">/ مقصد</span></div>
+            </div>
           </div>
-          <div class="form-group">
-            <label data-i18n="ct.form.phone.label">Phone</label>
-            <input type="tel" name="phone" placeholder="03XX-XXXXXXX" data-i18n-placeholder="ct.form.phone.ph" required>
+          <div class="ct-sect-body">
+            <div class="ct-purpose-grid">
+              <label class="ct-purpose-card">
+                <input type="radio" name="purpose" value="order" checked onchange="ctPurposeChange()">
+                <div class="ct-purpose-bd">
+                  <span class="ct-purpose-icon">&#128722;</span>
+                  <span class="ct-purpose-en">Place an Order</span>
+                  <span class="ct-purpose-ur">&#1570;&#1585;&#1688;&#1585; &#1705;&#1585;&#1740;&#1722;</span>
+                </div>
+              </label>
+              <label class="ct-purpose-card">
+                <input type="radio" name="purpose" value="inquiry" onchange="ctPurposeChange()">
+                <div class="ct-purpose-bd">
+                  <span class="ct-purpose-icon">&#10067;</span>
+                  <span class="ct-purpose-en">Inquiry</span>
+                  <span class="ct-purpose-ur">&#1587;&#1608;&#1575;&#1604; / &#1605;&#1593;&#1604;&#1608;&#1605;&#1575;&#1578;</span>
+                </div>
+              </label>
+              <label class="ct-purpose-card">
+                <input type="radio" name="purpose" value="complaint" onchange="ctPurposeChange()">
+                <div class="ct-purpose-bd">
+                  <span class="ct-purpose-icon">&#9888;&#65039;</span>
+                  <span class="ct-purpose-en">Complaint</span>
+                  <span class="ct-purpose-ur">&#1588;&#1705;&#1575;&#1740;&#1578;</span>
+                </div>
+              </label>
+              <label class="ct-purpose-card">
+                <input type="radio" name="purpose" value="return" onchange="ctPurposeChange()">
+                <div class="ct-purpose-bd">
+                  <span class="ct-purpose-icon">&#128260;</span>
+                  <span class="ct-purpose-en">Return / Refund</span>
+                  <span class="ct-purpose-ur">&#1608;&#1575;&#1662;&#1587;&#1740; / &#1585;&#1740;&#1601;&#1606;&#1688;</span>
+                </div>
+              </label>
+            </div>
           </div>
         </div>
-        <div class="form-group">
-          <label data-i18n="ct.email.label">Email</label>
-          <input type="email" name="email" placeholder="email@example.com" data-i18n-placeholder="ct.form.email.ph">
+
+        <!-- 2: Products (order only) -->
+        <div class="ct-sect" id="ct-prod-sect">
+          <div class="ct-sect-hd">
+            <div class="ct-sect-num">2</div>
+            <div>
+              <div class="ct-sect-ttl">Select Products <span class="ct-sect-ur">/ &#1662;&#1585;&#1608;&#1688;&#1705;&#1657; &#1670;&#1606;&#1740;&#1722;</span></div>
+            </div>
+          </div>
+          <div class="ct-sect-body">
+            <div class="ct-prod-grid">
+              <label class="ct-prod-card">
+                <input type="checkbox" id="prod_go" onchange="ctQtyUpdate()">
+                <div class="ct-prod-bd">
+                  <img src="images/golden/1.png" alt="Golden Oil">
+                  <div class="ct-prod-info">
+                    <div class="ct-prod-name">Golden Oil</div>
+                    <div class="ct-prod-price">Rs 1,500</div>
+                  </div>
+                </div>
+                <div class="ct-prod-check">&#10003;</div>
+              </label>
+              <label class="ct-prod-card">
+                <input type="checkbox" id="prod_br" onchange="ctQtyUpdate()">
+                <div class="ct-prod-bd">
+                  <img src="images/black-rose/1.png" alt="Black Rose Oil">
+                  <div class="ct-prod-info">
+                    <div class="ct-prod-name">Black Rose Oil</div>
+                    <div class="ct-prod-price">Rs 1,500</div>
+                  </div>
+                </div>
+                <div class="ct-prod-check">&#10003;</div>
+              </label>
+              <label class="ct-prod-card">
+                <input type="checkbox" id="prod_sh" onchange="ctQtyUpdate()">
+                <div class="ct-prod-bd">
+                  <img src="images/shampoo/1.png" alt="Herbal Shampoo">
+                  <div class="ct-prod-info">
+                    <div class="ct-prod-name">Herbal Shampoo</div>
+                    <div class="ct-prod-price">Rs 1,000</div>
+                  </div>
+                </div>
+                <div class="ct-prod-check">&#10003;</div>
+              </label>
+              <label class="ct-prod-card">
+                <input type="checkbox" id="prod_bk" onchange="ctQtyUpdate()">
+                <div class="ct-prod-bd">
+                  <img src="images/bundle-kit.png" alt="Bundle Kit">
+                  <div class="ct-prod-info">
+                    <div class="ct-prod-name">Bundle Kit</div>
+                    <div class="ct-prod-price">Rs 3,250</div>
+                  </div>
+                </div>
+                <div class="ct-prod-check">&#10003;</div>
+              </label>
+            </div>
+            <div id="ct-qty-wrap"></div>
+            <div id="ct-total-row" class="ct-hidden" style="text-align:right;font-family:'Montserrat',sans-serif;font-size:0.82rem;font-weight:700;color:var(--gold-dark);padding:6px 2px 0;">
+              Total: <span id="ct-total-val">Rs 0</span>
+            </div>
+            <div class="ct-cod">
+              <span class="ct-cod-icon">&#128179;</span>
+              <div>
+                <span class="ct-cod-en">Cash on Delivery (COD) &#8212; Pay at your door</span>
+                <span class="ct-cod-ur">&#1705;&#1740;&#1588; &#1570;&#1606; &#1672;&#1610;&#1604;&#1608;&#1585;&#1740; &#8212; &#1711;&#1726;&#1585; &#1662;&#1585; &#1575;&#1583;&#1575;&#1574;&#1610;&#1711;&#1740; &#1705;&#1585;&#1740;&#1722;</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label data-i18n="ct.subject.label">Subject</label>
-          <select name="subject">
-            <option value="" data-i18n="ct.subject.default">Please select...</option>
-            <option value="order" data-i18n="ct.subject.order">Place an Order</option>
-            <option value="delivery" data-i18n="ct.subject.delivery">Delivery Inquiry</option>
-            <option value="product" data-i18n="ct.subject.product">Product Information</option>
-            <option value="return" data-i18n="ct.subject.return">Return / Refund</option>
-            <option value="other" data-i18n="ct.subject.other">Something Else</option>
-          </select>
+
+        <!-- 3: Contact Details -->
+        <div class="ct-sect">
+          <div class="ct-sect-hd">
+            <div class="ct-sect-num" id="ctN3">3</div>
+            <div>
+              <div class="ct-sect-ttl">Your Details <span class="ct-sect-ur">/ &#1570;&#1662; &#1705;&#1740; &#1605;&#1593;&#1604;&#1608;&#1605;&#1575;&#1578;</span></div>
+            </div>
+          </div>
+          <div class="ct-sect-body">
+            <div class="form-row" style="margin-bottom:0;">
+              <div class="form-group">
+                <label class="ct-lbl">Name <span class="ct-lbl-ur">&#1606;&#1575;&#1605;</span></label>
+                <input type="text" name="ctName" placeholder="Ahmad Ali" required style="font-size:0.88rem;">
+              </div>
+              <div class="form-group">
+                <label class="ct-lbl">WhatsApp / Phone <span class="ct-lbl-ur">&#1606;&#1605;&#1576;&#1585;</span></label>
+                <input type="tel" name="ctPhone" placeholder="0321-XXXXXXX" required style="font-size:0.88rem;">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="ct-lbl">City <span class="ct-lbl-ur">&#1588;&#1726;&#1585;</span></label>
+              <select name="ctCity" style="font-size:0.86rem;">
+                <option value="">-- Select City / &#1588;&#1726;&#1585; &#1670;&#1606;&#1740;&#1722; --</option>
+                <option>Karachi &#8212; &#1705;&#1585;&#1575;&#1670;&#1740;</option>
+                <option>Lahore &#8212; &#1604;&#1575;&#1729;&#1608;&#1585;</option>
+                <option>Islamabad &#8212; &#1575;&#1587;&#1604;&#1575;&#1605; &#1570;&#1576;&#1575;&#1583;</option>
+                <option>Rawalpindi &#8212; &#1585;&#1575;&#1608;&#1604;&#1662;&#1606;&#1672;&#1740;</option>
+                <option>Faisalabad &#8212; &#1601;&#1740;&#1589;&#1604; &#1570;&#1576;&#1575;&#1583;</option>
+                <option>Multan &#8212; &#1605;&#1604;&#1578;&#1575;&#1606;</option>
+                <option>Peshawar &#8212; &#1662;&#1588;&#1575;&#1608;&#1585;</option>
+                <option>Quetta &#8212; &#1705;&#1608;&#1574;&#1657;&#1729;</option>
+                <option>Sialkot &#8212; &#1587;&#1740;&#1575;&#1604;&#1705;&#1608;&#1657;</option>
+                <option>Gujranwala &#8212; &#1711;&#1608;&#1580;&#1585;&#1575;&#1606;&#1608;&#1575;&#1604;&#1729;</option>
+                <option>Hyderabad &#8212; &#1581;&#1740;&#1583;&#1585; &#1570;&#1576;&#1575;&#1583;</option>
+                <option>Abbottabad &#8212; &#1575;&#1740;&#1576;&#1657; &#1570;&#1576;&#1575;&#1583;</option>
+                <option>Bahawalpur &#8212; &#1576;&#1729;&#1575;&#1608;&#1604;&#1662;&#1608;&#1585;</option>
+                <option>Sargodha &#8212; &#1587;&#1585;&#1711;&#1608;&#1583;&#1726;&#1575;</option>
+                <option>Dera Ghazi Khan &#8212; &#1672;&#1740;&#1585;&#1729; &#1711;&#1726;&#1575;&#1586;&#1740; &#1582;&#1575;&#1606;</option>
+                <option>Mardan &#8212; &#1605;&#1585;&#1583;&#1575;&#1606;</option>
+                <option>Sukkur &#8212; &#1587;&#1705;&#1726;&#1585;</option>
+                <option>Other / &#1583;&#1608;&#1587;&#1585;&#1575; &#1588;&#1726;&#1585;</option>
+              </select>
+            </div>
+            <div class="form-group" id="ct-addr-wrap">
+              <label class="ct-lbl">Delivery Address <span class="ct-lbl-ur">&#1711;&#1726;&#1585; &#1705;&#1575; &#1662;&#1578;&#1729;</span></label>
+              <input type="text" name="ctAddr" placeholder="House No, Street, Area... / &#1711;&#1726;&#1585; &#1606;&#1605;&#1576;&#1585;&#1548; &#1711;&#1604;&#1740;&#1548; &#1593;&#1604;&#1575;&#1602;&#1729;..." style="font-size:0.86rem;">
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label data-i18n="ct.form.msg.label">Message</label>
-          <textarea name="message" placeholder="Type your message or order details here..." data-i18n-placeholder="ct.form.msg.ph"></textarea>
+
+        <!-- 4: Message -->
+        <div class="ct-sect">
+          <div class="ct-sect-hd">
+            <div class="ct-sect-num" id="ctN4">4</div>
+            <div>
+              <div class="ct-sect-ttl">Message / Notes <span class="ct-sect-ur">/ &#1662;&#1740;&#1594;&#1575;&#1605; &#1740;&#1575; &#1606;&#1608;&#1657;</span></div>
+            </div>
+          </div>
+          <div class="ct-sect-body">
+            <textarea name="ctMsg" rows="3" placeholder="Type here... / &#1740;&#1729;&#1575;&#1722; &#1604;&#1705;&#1726;&#1740;&#1722;..." style="width:100%;padding:12px 14px;border:1.5px solid #e2e8f0;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:0.84rem;resize:vertical;outline:none;box-sizing:border-box;background:var(--bg-light);transition:border-color 0.3s;" onfocus="this.style.borderColor='var(--green-mid)'" onblur="this.style.borderColor='#e2e8f0'"></textarea>
+          </div>
         </div>
-        <button type="submit" class="form-submit btn-primary" style="width:100%;justify-content:center;border:none;cursor:pointer;">
-          <span data-i18n="ct.send">Send Message</span> <span class="arrow">&#8594;</span>
+
+        <!-- Submit -->
+        <button type="submit" class="ct-submit-wa">
+          <svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span>Send on WhatsApp</span>
+          <span class="ct-submit-ur">&#1608;&#1575;&#1657;&#1587; &#1575;&#1740;&#1662; &#1662;&#1585; &#1576;&#1726;&#1740;&#1580;&#1740;&#1722;</span>
         </button>
+
       </form>
     </div>
   </div>
@@ -321,6 +525,125 @@
       if (!isOpen) { q.classList.add('open'); answer.classList.add('open'); }
     });
   });
+
+  // ===== SMART FORM =====
+  var ctProds = {
+    prod_go: { en: 'Golden Oil', ur: 'گولڈن آئل', price: 1500 },
+    prod_br: { en: 'Black Rose Oil', ur: 'بلیک روز آئل', price: 1500 },
+    prod_sh: { en: 'Herbal Shampoo', ur: 'ہربل شیمپو', price: 1000 },
+    prod_bk: { en: 'Bundle Kit', ur: 'بنڈل کٹ', price: 3250 }
+  };
+  var ctQty = { prod_go: 1, prod_br: 1, prod_sh: 1, prod_bk: 1 };
+
+  function ctPurposeChange() {
+    var purpose = document.querySelector('[name="purpose"]:checked').value;
+    var prodSect = document.getElementById('ct-prod-sect');
+    var addrWrap = document.getElementById('ct-addr-wrap');
+    var isOrder = purpose === 'order';
+    prodSect.classList.toggle('ct-hidden', !isOrder);
+    addrWrap.classList.toggle('ct-hidden', !isOrder);
+    document.getElementById('ctN3').textContent = isOrder ? '3' : '2';
+    document.getElementById('ctN4').textContent = isOrder ? '4' : '3';
+  }
+
+  function ctQtyUpdate() {
+    var wrap = document.getElementById('ct-qty-wrap');
+    var totalRow = document.getElementById('ct-total-row');
+    wrap.innerHTML = '';
+    var total = 0;
+    var any = false;
+    Object.keys(ctProds).forEach(function(key) {
+      var cb = document.getElementById(key);
+      if (cb && cb.checked) {
+        any = true;
+        var p = ctProds[key];
+        var qty = ctQty[key];
+        var sub = qty * p.price;
+        total += sub;
+        var row = document.createElement('div');
+        row.className = 'ct-qty-row';
+        row.innerHTML = '<div class="ct-qty-label">' + p.en + ' <span class="ct-qty-ur">/ ' + p.ur + '</span></div>' +
+          '<div class="ct-qty-ctrl">' +
+          '<button type="button" class="ct-qty-btn" onclick="ctQtyChange(\'' + key + '\',-1)">−</button>' +
+          '<span class="ct-qty-num" id="qv-' + key + '">' + qty + '</span>' +
+          '<button type="button" class="ct-qty-btn" onclick="ctQtyChange(\'' + key + '\',1)">+</button>' +
+          '<span style="font-family:Montserrat,sans-serif;font-size:0.7rem;color:var(--text-light);margin-left:10px;min-width:64px;text-align:right;">Rs ' + sub.toLocaleString() + '</span>' +
+          '</div>';
+        wrap.appendChild(row);
+      }
+    });
+    if (any) {
+      totalRow.classList.remove('ct-hidden');
+      document.getElementById('ct-total-val').textContent = 'Rs ' + total.toLocaleString();
+    } else {
+      totalRow.classList.add('ct-hidden');
+    }
+  }
+
+  function ctQtyChange(key, delta) {
+    ctQty[key] = Math.max(1, ctQty[key] + delta);
+    var el = document.getElementById('qv-' + key);
+    if (el) el.textContent = ctQty[key];
+    ctQtyUpdate();
+  }
+
+  function ctSubmit(e) {
+    e.preventDefault();
+    var f = document.getElementById('contactForm');
+    var purpose = f.querySelector('[name="purpose"]:checked').value;
+    var name = f.querySelector('[name="ctName"]').value.trim();
+    var phone = f.querySelector('[name="ctPhone"]').value.trim();
+    var city = f.querySelector('[name="ctCity"]').value;
+    var addr = f.querySelector('[name="ctAddr"]').value.trim();
+    var msg = f.querySelector('[name="ctMsg"]').value.trim();
+
+    if (!name || !phone) {
+      alert('Please enter your name and phone number.\nنام اور فون نمبر ضرور بھریں۔');
+      return;
+    }
+
+    var lines = [];
+    var purposeMap = {
+      order:     '🛒 نئی آرڈر | New Order',
+      inquiry:   '❓ Inquiry | استفسار',
+      complaint: '⚠️ Complaint | شکایت',
+      return:    '🔄 Return/Refund | واپسی'
+    };
+    lines.push('*' + purposeMap[purpose] + '*');
+    lines.push('');
+
+    if (purpose === 'order') {
+      var hasProduct = false;
+      var total = 0;
+      Object.keys(ctProds).forEach(function(key) {
+        var cb = document.getElementById(key);
+        if (cb && cb.checked) {
+          hasProduct = true;
+          var qty = ctQty[key];
+          var p = ctProds[key];
+          var sub = qty * p.price;
+          total += sub;
+          lines.push('📦 ' + p.en + ' / ' + p.ur + ' × ' + qty + ' = Rs ' + sub.toLocaleString());
+        }
+      });
+      if (!hasProduct) {
+        alert('Please select at least one product.\nکوئی ایک پروڈکٹ ضرور چنیں۔');
+        return;
+      }
+      lines.push('💰 *Total: Rs ' + total.toLocaleString() + '*');
+      lines.push('💳 Payment: Cash on Delivery (COD)');
+    }
+
+    lines.push('');
+    lines.push('👤 *Name:* ' + name);
+    lines.push('📱 *WhatsApp:* ' + phone);
+    if (city) lines.push('🏙️ *City:* ' + city);
+    if (addr) lines.push('📍 *Address:* ' + addr);
+    if (msg) lines.push('💬 *Notes:* ' + msg);
+
+    var url = 'https://wa.me/923211112280?text=' + encodeURIComponent(lines.join('\n'));
+    window.open(url, '_blank');
+  }
 </script>
 <script src="lang.js?v=20260921"></script>
 </body>
