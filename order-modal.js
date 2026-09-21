@@ -1,4 +1,4 @@
-/* COD Order Modal — nasiroilexpert.com */
+/* COD / WA Order Modal — nasiroilexpert.com */
 (function () {
   var modalHtml = '<div id="codModal" style="display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;">' +
     '<div onclick="closeCodModal()" style="position:absolute;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);"></div>' +
@@ -12,8 +12,8 @@
         '<input type="hidden" id="codProdPrice">' +
         '<div id="codFieldsWrap"></div>' +
         '<div id="codPriceSummary" style="background:#f0f7f4;border:1px solid #c8e8d4;border-radius:8px;padding:10px 14px;margin:10px 0;font-family:Montserrat,sans-serif;font-size:.82rem;"></div>' +
-        '<button type="button" id="codSubmitBtn" onclick="codSubmit()" style="width:100%;padding:14px;background:linear-gradient(135deg,#25D366,#1aab55);color:#fff;border:none;border-radius:30px;font-family:Montserrat,sans-serif;font-size:.84rem;font-weight:700;cursor:pointer;margin-top:6px;transition:.2s;display:flex;align-items:center;justify-content:center;gap:8px;">' +
-          '<svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>' +
+        '<button type="button" id="codSubmitBtn" onclick="codSubmit()" style="width:100%;padding:14px;color:#fff;border:none;border-radius:30px;font-family:Montserrat,sans-serif;font-size:.84rem;font-weight:700;cursor:pointer;margin-top:6px;transition:.2s;display:flex;align-items:center;justify-content:center;gap:8px;">' +
+          '<span id="codSubmitIcon"></span>' +
           '<span id="codSubmitText"></span>' +
         '</button>' +
       '</form>' +
@@ -29,6 +29,10 @@
     document.body.insertAdjacentHTML('beforeend', modalHtml);
   });
 })();
+
+var _waOnly = false;
+
+var _waSvg = '<svg width="18" height="18" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>';
 
 function _isUr() {
   return document.documentElement.classList.contains('lang-ur');
@@ -54,16 +58,22 @@ function _omField(id, type, labelEn, labelUr, phEn, phUr, required) {
     inner + '</div>';
 }
 
-function openCodModal(product, price) {
+function _openModal(product, price, waMode) {
   var modal = document.getElementById('codModal');
   if (!modal) return;
 
+  _waOnly = waMode;
   var ur = _isUr();
   var delivery = 250;
   var total = Number(price) + delivery;
 
-  document.getElementById('codModalTitle').textContent = ur ? 'آرڈر دیں — کیش آن ڈیلیوری' : 'Cash on Delivery Order';
-  document.getElementById('codModalSub').textContent = ur ? 'اپنی تفصیل بھریں — ہم جلد رابطہ کریں گے' : 'Fill your details — we will contact you shortly';
+  if (waMode) {
+    document.getElementById('codModalTitle').textContent = ur ? 'واٹس ایپ پر آرڈر دیں' : 'Order via WhatsApp';
+    document.getElementById('codModalSub').textContent = ur ? 'تفصیل بھریں — آرڈر واٹس ایپ پر جائے گا' : 'Fill your details — order will open on WhatsApp';
+  } else {
+    document.getElementById('codModalTitle').textContent = ur ? 'آرڈر دیں — کیش آن ڈیلیوری' : 'Cash on Delivery Order';
+    document.getElementById('codModalSub').textContent = ur ? 'اپنی تفصیل بھریں — ہم جلد رابطہ کریں گے' : 'Fill your details — we will contact you shortly';
+  }
 
   document.getElementById('codProdName').value = product;
   document.getElementById('codProdPrice').value = price;
@@ -71,11 +81,11 @@ function openCodModal(product, price) {
     '<strong>' + product + '</strong> &nbsp;&mdash;&nbsp; <strong style="color:#B8860B;">Rs ' + Number(price).toLocaleString() + '</strong>';
 
   document.getElementById('codFieldsWrap').innerHTML =
-    _omField('codName',  'text',     'Full Name',         'پورا نام',         'Ahmad Ali',           'آپ کا نام',               true) +
-    _omField('codPhone', 'tel',      'WhatsApp / Phone',  'واٹس ایپ / فون',   '03XX-XXXXXXX',        '03XX-XXXXXXX',            true) +
-    _omField('codCity',  'text',     'City',              'شہر',              'Karachi / Lahore...',  'کراچی / لاہور...',         true) +
-    _omField('codAddr',  'textarea', 'Delivery Address',  'گھر کا پتہ',       'House No, Street, Area...',  'گھر نمبر، گلی، علاقہ...', true) +
-    _omField('codNote',  'textarea', 'Notes (optional)',  'نوٹ (اختیاری)',    'Any special instructions...', 'کوئی خاص ہدایات...',    false);
+    _omField('codName',  'text',     'Full Name',         'پورا نام',         'Ahmad Ali',                 'آپ کا نام',               true) +
+    _omField('codPhone', 'tel',      'WhatsApp / Phone',  'واٹس ایپ / فون',   '03XX-XXXXXXX',              '03XX-XXXXXXX',            true) +
+    _omField('codCity',  'text',     'City',              'شہر',              'Karachi / Lahore...',        'کراچی / لاہور...',         true) +
+    _omField('codAddr',  'textarea', 'Delivery Address',  'گھر کا پتہ',       'House No, Street, Area...', 'گھر نمبر، گلی، علاقہ...', true) +
+    _omField('codNote',  'textarea', 'Notes (optional)',  'نوٹ (اختیاری)',    'Any special instructions...','کوئی خاص ہدایات...',      false);
 
   document.getElementById('codPriceSummary').innerHTML =
     '<div style="display:flex;justify-content:space-between;margin-bottom:4px;color:#555;">' +
@@ -85,13 +95,27 @@ function openCodModal(product, price) {
       (ur ? 'کل رقم: <strong style="color:#B8860B;">Rs ' + total.toLocaleString() + '</strong>' : 'Total Payable: <strong style="color:#B8860B;">Rs ' + total.toLocaleString() + '</strong>') +
     '</div>';
 
-  document.getElementById('codSubmitText').textContent = ur ? 'آرڈر دیں — وٹس ایپ پر' : 'Place Order — via WhatsApp';
+  var btn = document.getElementById('codSubmitBtn');
+  var icon = document.getElementById('codSubmitIcon');
+  if (waMode) {
+    btn.style.background = 'linear-gradient(135deg,#25D366,#1aab55)';
+    icon.innerHTML = _waSvg;
+    document.getElementById('codSubmitText').textContent = ur ? 'واٹس ایپ پر آرڈر بھیجیں' : 'Send Order on WhatsApp';
+  } else {
+    btn.style.background = 'linear-gradient(135deg,#B8860B,#8B6914)';
+    icon.innerHTML = '&#128204;';
+    document.getElementById('codSubmitText').textContent = ur ? 'آرڈر دیں — کیش آن ڈیلیوری' : 'Place COD Order';
+  }
+
   document.getElementById('codSuccessDiv').style.display = 'none';
   document.getElementById('codModalForm').style.display = 'block';
 
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
 }
+
+function openCodModal(product, price) { _openModal(product, price, false); }
+function openWaModal(product, price)  { _openModal(product, price, true);  }
 
 function closeCodModal() {
   var modal = document.getElementById('codModal');
@@ -119,10 +143,10 @@ function codSubmit() {
   var btn = document.getElementById('codSubmitBtn');
   btn.disabled = true;
   btn.style.opacity = '.65';
-  document.getElementById('codSubmitText').textContent = ur ? 'بھیج رہے ہیں...' : 'Placing Order...';
+  document.getElementById('codSubmitText').textContent = ur ? 'بھیج رہے ہیں...' : 'Sending...';
 
   var lines = [
-    '🛒 *' + (ur ? 'نیا آرڈر' : 'New COD Order') + '*',
+    '🛒 *' + (ur ? 'نیا آرڈر' : 'New Order') + '*',
     '',
     '📦 *' + prod + '* — Rs ' + price.toLocaleString(),
     '🚚 ' + (ur ? 'ڈیلیوری:' : 'Delivery:') + ' Rs ' + delivery,
@@ -131,32 +155,44 @@ function codSubmit() {
     '👤 *' + (ur ? 'نام:' : 'Name:') + '* ' + name,
     '📱 *' + (ur ? 'فون:' : 'Phone:') + '* ' + phone
   ];
-  if (city)  lines.push('🏙️ *' + (ur ? 'شہر:' : 'City:') + '* ' + city);
-  if (addr)  lines.push('📍 *' + (ur ? 'پتہ:' : 'Address:') + '* ' + addr);
-  if (note)  lines.push('💬 *' + (ur ? 'نوٹ:' : 'Notes:') + '* ' + note);
+  if (city) lines.push('🏙️ *' + (ur ? 'شہر:' : 'City:') + '* ' + city);
+  if (addr) lines.push('📍 *' + (ur ? 'پتہ:' : 'Address:') + '* ' + addr);
+  if (note) lines.push('💬 *' + (ur ? 'نوٹ:' : 'Notes:') + '* ' + note);
   lines.push('', '🌍 nasiroilexpert.com');
 
-  var waUrl = 'https://wa.me/923211112280?text=' + encodeURIComponent(lines.join('\n'));
-
-  var emailBody = prod + ' x1 = Rs ' + price.toLocaleString() + '\nDelivery: Rs ' + delivery + '\nTotal: Rs ' + total.toLocaleString() + ' (COD)';
-
-  fetch('/send-order.php', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      name: name, phone: phone, purpose: 'order',
-      city: city, address: addr, note: note,
-      body: emailBody
-    })
-  })
-  .catch(function () {})
-  .finally(function () {
+  function _showSuccess(titleEn, titleUr, subEn, subUr) {
     btn.disabled = false;
     btn.style.opacity = '1';
-    window.open(waUrl, '_blank');
     document.getElementById('codModalForm').style.display = 'none';
     document.getElementById('codSuccessDiv').style.display = 'block';
-    document.getElementById('codSuccessTitle').textContent = ur ? 'آرڈر ہو گیا!' : 'Order Placed!';
-    document.getElementById('codSuccessSub').textContent = ur ? 'واٹس ایپ پر آپ کا آرڈر بھیج دیا گیا۔ ہم جلد رابطہ کریں گے۔' : 'Your order was sent on WhatsApp. We will contact you shortly.';
-  });
+    document.getElementById('codSuccessTitle').textContent = ur ? titleUr : titleEn;
+    document.getElementById('codSuccessSub').textContent = ur ? subUr : subEn;
+  }
+
+  if (_waOnly) {
+    var waUrl = 'https://wa.me/923211112280?text=' + encodeURIComponent(lines.join('\n'));
+    window.open(waUrl, '_blank');
+    _showSuccess(
+      'WhatsApp Opened!', 'واٹس ایپ کھل گیا!',
+      'Your order details were sent on WhatsApp.', 'آپ کا آرڈر واٹس ایپ پر بھیجا گیا۔'
+    );
+  } else {
+    var emailBody = prod + ' x1 = Rs ' + price.toLocaleString() + '\nDelivery: Rs ' + delivery + '\nTotal: Rs ' + total.toLocaleString() + ' (COD)';
+    fetch('/send-order.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name, phone: phone, purpose: 'order',
+        city: city, address: addr, note: note,
+        body: emailBody
+      })
+    })
+    .catch(function () {})
+    .finally(function () {
+      _showSuccess(
+        'Order Received!', 'آرڈر موصول ہوا!',
+        'Your COD order was received. We will contact you shortly.', 'آپ کا COD آرڈر موصول ہوا۔ ہم جلد رابطہ کریں گے۔'
+      );
+    });
+  }
 }
