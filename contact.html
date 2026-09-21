@@ -652,7 +652,27 @@
     if (msg) emailBody += '\nNotes: ' + msg;
 
     var waUrl = 'https://wa.me/923211112280?text=' + encodeURIComponent(lines.join('\n'));
-    window.open(waUrl, '_blank');
+    var btn = f.querySelector('.ct-submit-wa');
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
+
+    fetch('/send-order.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: name, phone: phone, purpose: purpose,
+        city: city, address: addr, note: msg,
+        body: (purpose === 'order'
+          ? lines.filter(function(l){ return l.indexOf('📦') === 0 || l.indexOf('💰') === 0 || l.indexOf('💳') === 0; }).join('\n')
+          : (msg || '-'))
+      })
+    })
+    .catch(function(){})
+    .finally(function(){
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      window.open(waUrl, '_blank');
+    });
   }
 </script>
 <script src="lang.js?v=20260921"></script>
