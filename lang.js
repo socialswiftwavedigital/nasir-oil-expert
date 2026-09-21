@@ -1391,6 +1391,6 @@
   document.addEventListener('DOMContentLoaded', function () {
     var saved = 'en';
     try { saved = localStorage.getItem(LANG_KEY) || 'en'; } catch (e) {}
-    if (saved === 'ur') applyLang('ur');
+    applyLang(saved);
   });
 })();
