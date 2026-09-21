@@ -652,31 +652,7 @@
     if (msg) emailBody += '\nNotes: ' + msg;
 
     var waUrl = 'https://wa.me/923211112280?text=' + encodeURIComponent(lines.join('\n'));
-    var submitBtn = f.querySelector('.ct-submit-wa');
-    submitBtn.disabled = true;
-    submitBtn.style.opacity = '0.7';
-
-    // Send email via Formsubmit, then open WhatsApp
-    fetch('https://formsubmit.co/ajax/info@nasiroilexpert.com', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        _subject: (purpose === 'order' ? '🛒 New Order' : '📩 ' + purpose.charAt(0).toUpperCase() + purpose.slice(1)) + ' - ' + name,
-        name: name,
-        phone: phone,
-        city: city || '-',
-        address: addr || '-',
-        purpose: purpose,
-        message: emailBody,
-        _template: 'table'
-      })
-    })
-    .catch(function() { /* silent fail — WhatsApp still opens */ })
-    .finally(function() {
-      submitBtn.disabled = false;
-      submitBtn.style.opacity = '1';
-      window.open(waUrl, '_blank');
-    });
+    window.open(waUrl, '_blank');
   }
 </script>
 <script src="lang.js?v=20260921"></script>
