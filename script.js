@@ -566,3 +566,16 @@ document.addEventListener('DOMContentLoaded', () => {
     initSlider(track, prevBtn, nextBtn, 20, 4000);
   });
 })();
+
+/* ===== FULL CARD CLICKABLE ===== */
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.product-detail-card, .product-card').forEach(function(card) {
+    var link = card.querySelector('a.btn-details');
+    if (!link) return;
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', function(e) {
+      if (e.target.closest('button') || e.target.closest('a')) return;
+      window.location.href = link.href;
+    });
+  });
+});
