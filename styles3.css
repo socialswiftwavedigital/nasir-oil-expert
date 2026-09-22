@@ -792,7 +792,7 @@ h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; line-h
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 .btn-details {
   padding: 9px 16px;
