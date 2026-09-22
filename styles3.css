@@ -2027,6 +2027,11 @@ textarea.form-control { min-height: 120px; resize: vertical; }
   .rs-next { right: calc(50% - 46px); }
 }
 
+/* ===== HIDE CART ON MOBILE ===== */
+@media (max-width: 768px) {
+  .cart-icon-btn { display: none !important; }
+}
+
 /* ===== GLOBAL MOBILE RESPONSIVE FIXES ===== */
 @media (max-width: 768px) {
   section { padding-left: 20px !important; padding-right: 20px !important; }

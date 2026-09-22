@@ -205,7 +205,6 @@
   <a href="about" data-i18n="nav.about">About</a>
   <a href="contact" data-i18n="nav.contact">Contact</a>
   <a href="reviews" data-i18n="nav.reviews">Reviews</a>
-  <a href="cart" style="color:var(--gold);font-weight:700;" data-i18n="nav.cart">&#128722; Cart</a>
   <button class="lang-toggle" onclick="noeToggleLang()" data-active="en" style="margin:16px auto 0;display:flex;"><span>EN</span><span>&#1575;&#1585;&#1583;&#1608;</span></button>
 </div>
 
@@ -292,17 +291,13 @@
         </div>
       </div>
 
-      <!-- Qty + Add to Cart -->
+      <!-- Qty -->
       <div class="pd-actions">
         <div class="qty-wrap">
           <button onclick="pdQtyChange(-1)">-</button>
           <span id="pdQty">1</span>
           <button onclick="pdQtyChange(1)">+</button>
         </div>
-        <button class="pd-add-btn" id="pdAddBtn" onclick="pdAddToCart()">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-          <span data-i18n="pg.addCart">Add to Cart</span> |  Rs 3,250
-        </button>
       </div>
 
       <button class="pd-cod-btn" onclick="pdCODBuy()">
@@ -474,7 +469,7 @@
           <div class="product-price"><span>Rs</span>1,500</div>
           <div class="product-btn-group">
             <a href="golden-oil" class="btn-details" data-i18n="prod.viewDetails">View Details</a>
-            <button class="btn-cart" data-name="Golden Oil" data-price="1500" data-img="images/golden/4.png" data-i18n="btn.cart">Add to Cart</button>
+            <button class="btn-cart" onclick="openCodModal('Golden Hair Oil',1500)">Buy with COD</button>
           </div>
         </div>
       </div>
@@ -492,7 +487,7 @@
           <div class="product-price"><span>Rs</span>1,500</div>
           <div class="product-btn-group">
             <a href="black-rose-oil" class="btn-details" data-i18n="prod.viewDetails">View Details</a>
-            <button class="btn-cart" data-name="Black Rose Oil" data-price="1500" data-img="images/black-rose/5.png" data-i18n="btn.cart">Add to Cart</button>
+            <button class="btn-cart" onclick="openCodModal('Black Rose Hair Oil',1500)">Buy with COD</button>
           </div>
         </div>
       </div>
@@ -510,7 +505,7 @@
           <div class="product-price"><span>Rs</span>1,000</div>
           <div class="product-btn-group">
             <a href="herbal-shampoo" class="btn-details" data-i18n="prod.viewDetails">View Details</a>
-            <button class="btn-cart" data-name="Herbal Shampoo" data-price="1000" data-img="images/shampoo/5.png" data-i18n="btn.cart">Add to Cart</button>
+            <button class="btn-cart" onclick="openCodModal('Herbal Shampoo',1000)">Buy with COD</button>
           </div>
         </div>
       </div>

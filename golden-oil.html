@@ -219,7 +219,6 @@
   <a href="about" data-i18n="nav.about">About</a>
   <a href="contact" data-i18n="nav.contact">Contact</a>
   <a href="reviews" data-i18n="nav.reviews">Reviews</a>
-  <a href="cart" style="color:var(--gold);font-weight:700;" data-i18n="nav.cart">&#128722; Cart</a>
   <button class="lang-toggle" onclick="noeToggleLang()" data-active="en" title="Switch Language"><span>EN</span><span>&#1575;&#1585;&#1583;&#1608;</span></button>
 </div>
 
@@ -248,11 +247,11 @@
         <div class="pd-thumb" onclick="switchImg('images/golden/4.png',this)">
           <img src="images/golden/4.png" alt="Golden Oil view 2">
         </div>
-        <div class="pd-thumb" onclick="switchImg('images/golden/2.png',this)">
-          <img src="images/golden/2.png" alt="Golden Oil view 3">
-        </div>
         <div class="pd-thumb" onclick="switchImg('images/golden/3.png',this)">
-          <img src="images/golden/3.png" alt="Golden Oil view 4">
+          <img src="images/golden/3.png" alt="Golden Oil view 3">
+        </div>
+        <div class="pd-thumb" onclick="switchImg('images/golden/5.png',this)">
+          <img src="images/golden/5.png" alt="Golden Oil view 4">
         </div>
       </div>
     </div>
@@ -275,17 +274,13 @@
         Our signature Golden Hair Oil is a luxurious cold-pressed blend of the finest natural oils |  mustard, coconut, sesame and almond |  enriched with herbal extracts. It deeply nourishes from root to tip, adds brilliant shine, promotes faster hair growth and significantly reduces hair fall.
       </p>
 
-      <!-- Qty + Add to Cart -->
+      <!-- Qty -->
       <div class="pd-actions">
         <div class="qty-wrap">
           <button onclick="pdQtyChange(-1)">-</button>
           <span id="pdQty">1</span>
           <button onclick="pdQtyChange(1)">+</button>
         </div>
-        <button class="pd-add-btn" id="pdAddBtn" onclick="pdAddToCart()">
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-          <span data-i18n="pd.addCart">Add to Cart</span>
-        </button>
       </div>
 
       <button class="pd-cod-btn" onclick="pdCODBuy()">
@@ -427,7 +422,7 @@
           <div class="product-price"><span>Rs</span>1,500</div>
           <div class="product-btn-group">
             <a href="black-rose-oil" class="btn-details">View Details</a>
-            <button class="btn-cart" data-name="Black Rose Hair Oil" data-price="1500" data-img="images/black-rose/5.png">Add to Cart</button>
+            <button class="btn-cart" onclick="openCodModal('Black Rose Hair Oil',1500)">Buy with COD</button>
           </div>
         </div>
       </div>
@@ -445,7 +440,7 @@
           <div class="product-price"><span>Rs</span>1,000</div>
           <div class="product-btn-group">
             <a href="herbal-shampoo" class="btn-details">View Details</a>
-            <button class="btn-cart" data-name="Herbal Hair Shampoo" data-price="1000" data-img="images/shampoo/5.png">Add to Cart</button>
+            <button class="btn-cart" onclick="openCodModal('Herbal Shampoo',1000)">Buy with COD</button>
           </div>
         </div>
       </div>
