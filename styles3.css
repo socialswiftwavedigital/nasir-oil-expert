@@ -873,6 +873,9 @@ h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; line-h
   border: 2px solid transparent;
   text-decoration: none;
   white-space: nowrap;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: center;
 }
 .btn-cod:hover {
   background: #333;
