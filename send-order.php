@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/config.php';
+
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: https://nasiroilexpert.com');
 header('Access-Control-Allow-Methods: POST, OPTIONS');
@@ -17,6 +19,46 @@ if (!$data || empty($data['name']) || empty($data['phone'])) {
 }
 
 function clean($v) { return htmlspecialchars(strip_tags(trim($v ?? '')), ENT_QUOTES, 'UTF-8'); }
+
+function sendCAPIEvent($event_id, $product, $value, $phone, $client_ip, $client_ua) {
+    $token = META_ACCESS_TOKEN;
+    if (empty($token)) return; // Skip until token is configured
+
+    $phone_clean = preg_replace('/[^0-9]/', '', $phone);
+    if (substr($phone_clean, 0, 1) === '0') $phone_clean = '92' . substr($phone_clean, 1);
+
+    $payload = json_encode([
+        'data' => [[
+            'event_name'       => 'Purchase',
+            'event_time'       => time(),
+            'event_id'         => $event_id,
+            'action_source'    => 'website',
+            'event_source_url' => 'https://nasiroilexpert.com',
+            'user_data' => [
+                'ph'         => [hash('sha256', $phone_clean)],
+                'client_ip_address' => $client_ip,
+                'client_user_agent' => $client_ua,
+            ],
+            'custom_data' => [
+                'value'        => (float)$value,
+                'currency'     => 'PKR',
+                'content_name' => $product,
+                'content_type' => 'product',
+                'num_items'    => 1,
+            ],
+        ]],
+    ]);
+
+    $url = 'https://graph.facebook.com/v19.0/' . META_PIXEL_ID . '/events?access_token=' . urlencode($token);
+    $ch  = curl_init($url);
+    curl_setopt($ch, CURLOPT_POST,          true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS,    $payload);
+    curl_setopt($ch, CURLOPT_HTTPHEADER,    ['Content-Type: application/json']);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+    curl_setopt($ch, CURLOPT_TIMEOUT,       5);
+    curl_exec($ch);
+    curl_close($ch);
+}
 
 $name    = clean($data['name']);
 $phone   = clean($data['phone']);
@@ -51,4 +93,19 @@ $headers = implode("\r\n", [
 ]);
 
 $sent = mail($to, $subject, $msg, $headers);
+
+// Fire CAPI Purchase event (server-side, for deduplication with browser Pixel)
+if ($purpose === 'order') {
+    $event_id  = clean($data['event_id'] ?? '');
+    $value     = (float)($data['value']    ?? 0);
+    $product   = clean($data['product']   ?? '');
+    $client_ip = $_SERVER['HTTP_X_FORWARDED_FOR']
+                 ? explode(',', $_SERVER['HTTP_X_FORWARDED_FOR'])[0]
+                 : ($_SERVER['REMOTE_ADDR'] ?? '');
+    $client_ua = $_SERVER['HTTP_USER_AGENT'] ?? '';
+    if ($event_id && $value > 0) {
+        sendCAPIEvent($event_id, $product, $value, $phone, trim($client_ip), $client_ua);
+    }
+}
+
 echo json_encode(['ok' => (bool)$sent]);

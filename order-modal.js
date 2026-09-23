@@ -169,6 +169,9 @@ function codSubmit() {
     document.getElementById('codSuccessSub').textContent = ur ? subUr : subEn;
   }
 
+  // Unique event_id for browser+CAPI deduplication
+  var eventId = 'ord_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
+
   function _firePixelPurchase() {
     if (typeof fbq === 'function') {
       fbq('track', 'Purchase', {
@@ -178,7 +181,7 @@ function codSubmit() {
         content_ids: [prod.toLowerCase().replace(/\s+/g, '-')],
         content_type: 'product',
         num_items: 1
-      });
+      }, { eventID: eventId });
     }
   }
 
@@ -198,10 +201,14 @@ function codSubmit() {
       body: JSON.stringify({
         name: name, phone: phone, purpose: 'order',
         city: city, address: addr, note: note,
-        body: emailBody
+        body: emailBody,
+        event_id: eventId,
+        value: total,
+        product: prod
       })
     })
-    .catch(function () {})
+    .then(function(r) { return r.json(); })
+    .catch(function() { return { ok: false }; })
     .finally(function () {
       _firePixelPurchase();
       _showSuccess(
