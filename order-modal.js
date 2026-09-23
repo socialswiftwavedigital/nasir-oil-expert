@@ -188,7 +188,14 @@ function codSubmit() {
   if (_waOnly) {
     var waUrl = 'https://wa.me/923211112280?text=' + encodeURIComponent(lines.join('\n'));
     window.open(waUrl, '_blank');
-    _firePixelPurchase();
+    // WhatsApp click = Contact event (not Purchase)
+    if (typeof fbq === 'function') {
+      fbq('track', 'Contact', {
+        content_name: prod,
+        value: price,
+        currency: 'PKR'
+      });
+    }
     _showSuccess(
       'WhatsApp Opened!', 'واٹس ایپ کھل گیا!',
       'Your order details were sent on WhatsApp.', 'آپ کا آرڈر واٹس ایپ پر بھیجا گیا۔'
@@ -210,6 +217,7 @@ function codSubmit() {
     .then(function(r) { return r.json(); })
     .catch(function() { return { ok: false }; })
     .finally(function () {
+      // Purchase fires only when success screen (thank you) appears
       _firePixelPurchase();
       _showSuccess(
         'Order Received!', 'آرڈر موصول ہوا!',
