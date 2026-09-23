@@ -193,6 +193,15 @@ function addToCart(name, price, img) {
   saveCart(cart);
   updateCartBadge();
   showToast(name + ' added to your cart!');
+  if (typeof fbq === 'function') {
+    fbq('track', 'AddToCart', {
+      value: price,
+      currency: 'PKR',
+      content_name: name,
+      content_ids: [name.toLowerCase().replace(/\s+/g, '-')],
+      content_type: 'product'
+    });
+  }
 }
 
 /* Wire up all .btn-cart buttons */
@@ -391,6 +400,20 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCheckoutSummary();
   initPaymentToggle();
   initPlaceOrder();
+
+  /* Meta Pixel: InitiateCheckout on cart/checkout pages */
+  if (typeof fbq === 'function') {
+    const path = window.location.pathname;
+    if (path.includes('cart') || path.includes('checkout')) {
+      const cart = getCart();
+      const total = cartTotal(cart);
+      fbq('track', 'InitiateCheckout', {
+        value: total,
+        currency: 'PKR',
+        num_items: cartCount(cart)
+      });
+    }
+  }
 });
 
 /* ===== CUSTOM VIDEO PLAYER ===== */

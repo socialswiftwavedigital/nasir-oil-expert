@@ -169,9 +169,23 @@ function codSubmit() {
     document.getElementById('codSuccessSub').textContent = ur ? subUr : subEn;
   }
 
+  function _firePixelPurchase() {
+    if (typeof fbq === 'function') {
+      fbq('track', 'Purchase', {
+        value: total,
+        currency: 'PKR',
+        content_name: prod,
+        content_ids: [prod.toLowerCase().replace(/\s+/g, '-')],
+        content_type: 'product',
+        num_items: 1
+      });
+    }
+  }
+
   if (_waOnly) {
     var waUrl = 'https://wa.me/923211112280?text=' + encodeURIComponent(lines.join('\n'));
     window.open(waUrl, '_blank');
+    _firePixelPurchase();
     _showSuccess(
       'WhatsApp Opened!', 'واٹس ایپ کھل گیا!',
       'Your order details were sent on WhatsApp.', 'آپ کا آرڈر واٹس ایپ پر بھیجا گیا۔'
@@ -189,6 +203,7 @@ function codSubmit() {
     })
     .catch(function () {})
     .finally(function () {
+      _firePixelPurchase();
       _showSuccess(
         'Order Received!', 'آرڈر موصول ہوا!',
         'Your COD order was received. We will contact you shortly.', 'آپ کا COD آرڈر موصول ہوا۔ ہم جلد رابطہ کریں گے۔'
