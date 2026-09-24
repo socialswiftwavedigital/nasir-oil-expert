@@ -211,7 +211,8 @@ function codSubmit() {
         body: emailBody,
         event_id: eventId,
         value: total,
-        product: prod
+        product: prod,
+        source_page: window.location.pathname
       })
     })
     .then(function(r) { return r.json(); })

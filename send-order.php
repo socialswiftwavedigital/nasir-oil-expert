@@ -60,13 +60,14 @@ function sendCAPIEvent($event_id, $product, $value, $phone, $client_ip, $client_
     curl_close($ch);
 }
 
-$name    = clean($data['name']);
-$phone   = clean($data['phone']);
-$purpose = clean($data['purpose'] ?? 'order');
-$city    = clean($data['city'] ?? '');
-$address = clean($data['address'] ?? '');
-$note    = clean($data['note'] ?? '');
-$body    = $data['body'] ?? '';
+$name       = clean($data['name']);
+$phone      = clean($data['phone']);
+$purpose    = clean($data['purpose'] ?? 'order');
+$city       = clean($data['city'] ?? '');
+$address    = clean($data['address'] ?? '');
+$note       = clean($data['note'] ?? '');
+$body       = $data['body'] ?? '';
+$source_page = clean($data['source_page'] ?? '');
 
 $labels  = ['order'=>'New Order','inquiry'=>'Inquiry','complaint'=>'Complaint','return'=>'Return/Refund'];
 $label   = $labels[$purpose] ?? 'Message';
@@ -107,9 +108,10 @@ if ($purpose === 'order') {
         'city'    => $city,
         'address' => $address,
         'product' => $prodName ?: $body,
-        'price'   => $price > 0 ? $price : '',
-        'source'  => 'COD',
-        'status'  => 'pending',
+        'price'       => $price > 0 ? $price : '',
+        'source'      => 'COD',
+        'source_page' => $source_page,
+        'status'      => 'pending',
     ];
     $jsonFile = __DIR__ . '/orders-data.json';
     $existing = [];
