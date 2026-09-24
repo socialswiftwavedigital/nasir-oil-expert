@@ -27,6 +27,27 @@ if (!($_SESSION['noe_client'] ?? false)) { showClientLogin(); exit; }
 /* ── Helpers ─────────────────────────────────────────────── */
 function clean($v) { return htmlspecialchars(trim($v ?? ''), ENT_QUOTES, 'UTF-8'); }
 
+/* ── POST Actions ────────────────────────────────────────── */
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['client_action'])) {
+    $db_post = getDB();
+    $id = clean($_POST['id'] ?? '');
+    if ($_POST['client_action'] === 'update_status' && $id) {
+        $st = clean($_POST['status'] ?? 'pending');
+        if (in_array($st, ['pending','done','cancelled'])) {
+            $db_post->prepare("UPDATE orders SET status=? WHERE id=?")->execute([$st, $id]);
+        }
+    }
+    if ($_POST['client_action'] === 'update_tracking' && $id) {
+        $trk = clean($_POST['tracking'] ?? '');
+        $row = $db_post->prepare("SELECT timeline FROM orders WHERE id=?");
+        $row->execute([$id]);
+        $tl = json_decode($row->fetchColumn() ?: '[]', true) ?: [];
+        $tl[] = ['status'=>'tracking','time'=>date('d M Y, h:i A'),'note'=>'Tracking: '.$trk];
+        $db_post->prepare("UPDATE orders SET tracking=?, timeline=? WHERE id=?")->execute([$trk, json_encode($tl), $id]);
+    }
+    header('Location: client-panel.php#orders-section'); exit;
+}
+
 /* ── Data ────────────────────────────────────────────────── */
 $db     = getDB();
 $orders = dbOrders($db);
@@ -265,7 +286,7 @@ tr:hover td{background:#fafbfd;}
 
 <div class="main">
 
-<div class="info-note">ℹ️ <span>Ye <strong>read-only view</strong> hai. Orders manage karne ya settings change karne ke liye admin se rabta karein. Data automatically update hota hai jab naye orders aate hain.</span></div>
+<div class="info-note">✅ <span>Orders ka <strong>status</strong> update kar sakte hain aur <strong>tracking number</strong> add kar sakte hain. Baaki settings ke liye admin se rabta karein.</span></div>
 
 <!-- Section 1: Orders Summary -->
 <div class="section-hd">
@@ -439,9 +460,9 @@ tr:hover td{background:#fafbfd;}
 </div>
 
 <!-- Section 5: Full Orders Table -->
-<div class="section-hd" style="margin-top:28px;">
-  <h2>📋 All Orders — Complete List</h2>
-  <p>Tamam orders ka record — sirf dekhne ke liye</p>
+<div class="section-hd" style="margin-top:28px;" id="orders-section">
+  <h2>📋 All Orders — Manage</h2>
+  <p>Status update karein aur tracking number add karein</p>
 </div>
 <div class="section-divider"></div>
 <div class="card">
@@ -451,9 +472,18 @@ tr:hover td{background:#fafbfd;}
       <p>Total <?= count($orders) ?> orders recorded</p>
     </div>
   </div>
+  <style>
+  .cl-select{padding:5px 8px;border:1.5px solid #dde3ed;border-radius:8px;font-family:'Poppins',sans-serif;font-size:.72rem;background:#fff;color:#2c3e50;cursor:pointer;}
+  .cl-select:focus{outline:none;border-color:#3498db;}
+  .trk-form{display:flex;gap:6px;align-items:center;}
+  .trk-input{padding:5px 9px;border:1.5px solid #dde3ed;border-radius:8px;font-family:'Poppins',sans-serif;font-size:.72rem;width:130px;color:#2c3e50;}
+  .trk-input:focus{outline:none;border-color:#3498db;}
+  .trk-btn{padding:5px 10px;background:#1a2535;color:#fff;border:none;border-radius:8px;font-family:'Poppins',sans-serif;font-size:.7rem;cursor:pointer;white-space:nowrap;}
+  .trk-btn:hover{background:#3498db;}
+  </style>
   <div class="table-wrap">
   <table>
-    <thead><tr><th>#</th><th>Date</th><th>Customer</th><th>Phone</th><th>City</th><th>Product</th><th>Price</th><th>Status</th></tr></thead>
+    <thead><tr><th>#</th><th>Date</th><th>Customer</th><th>Phone</th><th>City</th><th>Product</th><th>Price</th><th>Status</th><th>Tracking</th></tr></thead>
     <tbody>
     <?php foreach ($orders as $i => $o): ?>
     <tr>
@@ -464,10 +494,28 @@ tr:hover td{background:#fafbfd;}
       <td style="font-size:.75rem;white-space:nowrap;">📍 <?= clean($o['city']??'—') ?></td>
       <td style="font-weight:600;"><?= clean($o['product']??'') ?></td>
       <td><strong style="color:#B8860B;">Rs <?= number_format((float)($o['price']??0)) ?></strong></td>
-      <td><span class="badge badge-<?= $o['status']??'pending' ?>"><?= $o['status']??'pending' ?></span></td>
+      <td>
+        <form method="post" action="client-panel.php#orders-section">
+          <input type="hidden" name="client_action" value="update_status">
+          <input type="hidden" name="id" value="<?= clean($o['id']??'') ?>">
+          <select name="status" class="cl-select" onchange="this.form.submit()">
+            <option value="pending"  <?= ($o['status']??'pending')==='pending'  ? 'selected':'' ?>>Pending</option>
+            <option value="done"     <?= ($o['status']??'')==='done'            ? 'selected':'' ?>>Done</option>
+            <option value="cancelled"<?= ($o['status']??'')==='cancelled'       ? 'selected':'' ?>>Cancelled</option>
+          </select>
+        </form>
+      </td>
+      <td>
+        <form method="post" action="client-panel.php#orders-section" class="trk-form">
+          <input type="hidden" name="client_action" value="update_tracking">
+          <input type="hidden" name="id" value="<?= clean($o['id']??'') ?>">
+          <input type="text" name="tracking" class="trk-input" value="<?= clean($o['tracking']??'') ?>" placeholder="TRK-12345">
+          <button type="submit" class="trk-btn">Save</button>
+        </form>
+      </td>
     </tr>
     <?php endforeach; ?>
-    <?php if (empty($orders)): ?><tr><td colspan="8" style="text-align:center;color:#ccc;padding:30px;font-size:.82rem;">Abhi tak koi orders nahi aaye.</td></tr><?php endif; ?>
+    <?php if (empty($orders)): ?><tr><td colspan="9" style="text-align:center;color:#ccc;padding:30px;font-size:.82rem;">Abhi tak koi orders nahi aaye.</td></tr><?php endif; ?>
     </tbody>
   </table>
   </div>
