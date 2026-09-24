@@ -430,15 +430,35 @@ tr:hover td{background:#fafffe;}
 .alert-warning{background:#fff9e6;color:#7a5c00;border:1px solid #f5d76e;}
 
 /* ── Responsive ── */
+.mob-topbar{display:none;}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:199;}
+
 @media(max-width:768px){
-  .sidebar{width:58px;}
-  .sidebar-brand img{width:34px;height:34px;}
-  .sidebar-brand-text,.nav-link span:not(.ic),.nav-section,.sidebar-footer a:last-child,.badge-pill{display:none;}
-  .sidebar-brand{justify-content:center;padding:16px 0;}
-  .nav-link{justify-content:center;padding:14px;border-left:none;}
-  .nav-link.active{border-left:none;}
-  .main{padding:14px;}
+  body{flex-direction:column;}
+  .sidebar{
+    position:fixed;top:0;left:0;width:240px;height:100vh;z-index:200;
+    transform:translateX(-100%);transition:transform .25s ease;
+  }
+  .sidebar.open{transform:translateX(0);}
+  .sidebar-overlay.open{display:block;}
+  .mob-topbar{
+    display:flex;align-items:center;justify-content:space-between;
+    background:#1B4332;color:#fff;padding:0 16px;height:52px;
+    position:sticky;top:0;z-index:100;flex-shrink:0;
+  }
+  .mob-topbar-left{display:flex;align-items:center;gap:10px;}
+  .mob-topbar-left img{width:30px;height:30px;object-fit:contain;border-radius:8px;}
+  .mob-topbar-left span{font-size:.82rem;font-weight:700;color:#fff;}
+  .mob-menu-btn{background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer;padding:4px 6px;line-height:1;}
+  .main{padding:14px 12px;width:100%;}
   .two-col{grid-template-columns:1fr;}
+  .page-title{font-size:1.4rem;}
+  .stat-grid{grid-template-columns:1fr 1fr;gap:10px;}
+  .stat-num{font-size:1.7rem;}
+  .card{padding:16px;}
+  td,th{padding:8px 10px;font-size:.72rem;}
+  .btn{padding:7px 12px;font-size:.68rem;}
+  .page-header{margin-bottom:14px;}
 }
 
 select.status-sel{padding:5px 9px;border:1px solid #ddd;border-radius:6px;font-size:.73rem;font-family:'Poppins',sans-serif;outline:none;}
@@ -446,6 +466,17 @@ select.status-sel:focus{border-color:#1B4332;}
 </style>
 </head>
 <body>
+
+<!-- Mobile Topbar -->
+<div class="mob-topbar">
+  <div class="mob-topbar-left">
+    <button class="mob-menu-btn" onclick="document.querySelector('.sidebar').classList.toggle('open');document.querySelector('.sidebar-overlay').classList.toggle('open')">☰</button>
+    <img src="images/logo.png" alt="Logo">
+    <span>Admin Panel</span>
+  </div>
+  <a href="?logout=1" style="color:rgba(255,255,255,.6);font-size:.72rem;text-decoration:none;">Logout</a>
+</div>
+<div class="sidebar-overlay" onclick="document.querySelector('.sidebar').classList.remove('open');this.classList.remove('open')"></div>
 
 <!-- Sidebar -->
 <div class="sidebar">
