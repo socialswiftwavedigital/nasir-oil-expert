@@ -52,16 +52,28 @@ foreach ($orders as $o) {
 }
 $stats['customers'] = count($phones);
 
-// Revenue chart last 14 days
-$chartDays = []; $chartRev = [];
-for ($i = 13; $i >= 0; $i--) { $chartDays[] = date('j M', strtotime("-$i days")); $chartRev[] = 0; }
-foreach ($orders as $o) {
-    if ($o['date'] ?? '') {
-        $d = date('j M', strtotime($o['date']));
-        $idx = array_search($d, $chartDays);
-        if ($idx !== false) $chartRev[$idx] += (float)($o['price'] ?? 0);
+// Revenue chart data for multiple periods
+function buildChartData($orders, $days) {
+    $labels = []; $data = [];
+    for ($i = $days - 1; $i >= 0; $i--) {
+        $labels[] = $days <= 1 ? date('h A', strtotime("-$i hours")) : date('j M', strtotime("-$i days"));
+        $data[]   = 0;
     }
+    foreach ($orders as $o) {
+        if (!($o['date'] ?? '')) continue;
+        $key = $days <= 1 ? date('h A', strtotime($o['date'])) : date('j M', strtotime($o['date']));
+        $idx = array_search($key, $labels);
+        if ($idx !== false) $data[$idx] += (float)($o['price'] ?? 0);
+    }
+    return ['labels' => $labels, 'data' => $data];
 }
+$chart7  = buildChartData($orders, 7);
+$chart14 = buildChartData($orders, 14);
+$chart30 = buildChartData($orders, 30);
+// today: filter only today's orders
+$todayOrders = array_filter($orders, fn($o) => str_starts_with($o['date'] ?? '', date('d M Y')));
+$chartToday  = buildChartData(array_values($todayOrders), 1);
+$chartDays = $chart14['labels']; $chartRev = $chart14['data']; // default
 
 // Meta stats
 function fetchMeta($token, $pid) {
@@ -300,10 +312,19 @@ tr:hover td{background:#fafbfd;}
 <div class="card">
   <div class="card-hd">
     <div class="card-hd-left">
-      <h3>Daily Revenue — Last 14 Days</h3>
-      <p>Har din kitna revenue generate hua</p>
+      <h3>Revenue Chart</h3>
+      <p>Period select karein neeche se</p>
     </div>
-    <div class="card-hd-right">Total: <strong>Rs <?= number_format(array_sum($chartRev)) ?></strong></div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+      <button onclick="switchPeriod('today')" id="btn-today" class="rev-btn">Today</button>
+      <button onclick="switchPeriod('7')"     id="btn-7"     class="rev-btn">7 Days</button>
+      <button onclick="switchPeriod('14')"    id="btn-14"    class="rev-btn rev-btn-active">14 Days</button>
+      <button onclick="switchPeriod('30')"    id="btn-30"    class="rev-btn">30 Days</button>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;">
+    <div style="font-size:.72rem;color:#aaa;">Total: <strong id="chartTotal" style="color:#1a2535;">Rs <?= number_format(array_sum($chart14['data'])) ?></strong></div>
+    <div style="font-size:.72rem;color:#aaa;">Period: <strong id="chartPeriodLabel" style="color:#1a2535;">Last 14 Days</strong></div>
   </div>
   <canvas id="revChart" height="70"></canvas>
 </div>
@@ -456,29 +477,53 @@ tr:hover td{background:#fafbfd;}
 
 </div><!-- /main -->
 
+<style>
+.rev-btn{padding:6px 14px;border-radius:20px;border:1.5px solid #dde3ec;background:#fff;color:#888;font-family:'Poppins',sans-serif;font-size:.68rem;font-weight:600;cursor:pointer;transition:.15s;}
+.rev-btn:hover{border-color:#1a2535;color:#1a2535;}
+.rev-btn-active{background:#1a2535;color:#fff;border-color:#1a2535;}
+</style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
-new Chart(document.getElementById('revChart'), {
+var _periods = {
+  'today': { labels: <?= json_encode($chartToday['labels']) ?>, data: <?= json_encode($chartToday['data']) ?>, label: 'Today' },
+  '7':     { labels: <?= json_encode($chart7['labels'])     ?>, data: <?= json_encode($chart7['data'])     ?>, label: 'Last 7 Days' },
+  '14':    { labels: <?= json_encode($chart14['labels'])    ?>, data: <?= json_encode($chart14['data'])    ?>, label: 'Last 14 Days' },
+  '30':    { labels: <?= json_encode($chart30['labels'])    ?>, data: <?= json_encode($chart30['data'])    ?>, label: 'Last 30 Days' }
+};
+
+var _chart = new Chart(document.getElementById('revChart'), {
   type: 'bar',
   data: {
-    labels: <?= json_encode($chartDays) ?>,
+    labels: _periods['14'].labels,
     datasets: [{
-      data: <?= json_encode($chartRev) ?>,
-      backgroundColor: 'rgba(44,62,80,.12)',
-      borderColor: '#2c3e50',
+      data: _periods['14'].data,
+      backgroundColor: 'rgba(26,37,53,.1)',
+      borderColor: '#1a2535',
       borderWidth: 2,
-      borderRadius: 5,
-      hoverBackgroundColor: 'rgba(44,62,80,.25)'
+      borderRadius: 6,
+      hoverBackgroundColor: 'rgba(26,37,53,.25)'
     }]
   },
   options: {
     responsive: true, maintainAspectRatio: true,
     plugins: { legend: { display: false } },
     scales: {
-      y: { beginAtZero: true, grid: { color: '#f0f0f0' }, ticks: { font: { family: 'Poppins', size: 10 }, callback: v => 'Rs ' + v.toLocaleString() } },
+      y: { beginAtZero: true, grid: { color: '#f4f6f9' }, ticks: { font: { family: 'Poppins', size: 10 }, callback: v => 'Rs ' + v.toLocaleString() } },
       x: { grid: { display: false }, ticks: { font: { family: 'Poppins', size: 10 } } }
     }
   }
 });
+
+function switchPeriod(p) {
+  var d = _periods[p];
+  _chart.data.labels = d.labels;
+  _chart.data.datasets[0].data = d.data;
+  _chart.update();
+  var total = d.data.reduce(function(a,b){return a+b;}, 0);
+  document.getElementById('chartTotal').textContent = 'Rs ' + total.toLocaleString('en-PK');
+  document.getElementById('chartPeriodLabel').textContent = d.label;
+  document.querySelectorAll('.rev-btn').forEach(function(b){ b.classList.remove('rev-btn-active'); });
+  document.getElementById('btn-' + p).classList.add('rev-btn-active');
+}
 </script>
 </body></html>

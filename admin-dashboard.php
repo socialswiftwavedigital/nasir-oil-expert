@@ -237,21 +237,29 @@ $customers = getCustomers($orders);
 $abandoned = readJson(__DIR__ . '/abandoned-forms.json');
 $newAbandoned = count(array_filter($abandoned, fn($a) => ($a['status']??'new') === 'new'));
 
-// Revenue chart: last 14 days
-$chartDays = []; $chartRev = [];
-for ($i = 13; $i >= 0; $i--) {
-    $chartDays[] = date('j M', strtotime("-$i days"));
-    $chartRev[]  = 0;
-}
-foreach ($orders as $o) {
-    if ($o['date'] ?? '') {
-        $d = date('j M', strtotime($o['date']));
-        $idx = array_search($d, $chartDays);
-        if ($idx !== false) $chartRev[$idx] += (float)($o['price'] ?? 0);
+// Revenue chart data for multiple periods
+function buildChartData($orders, $days) {
+    $labels = []; $data = [];
+    for ($i = $days - 1; $i >= 0; $i--) {
+        $labels[] = date('j M', strtotime("-$i days"));
+        $data[]   = 0;
     }
+    foreach ($orders as $o) {
+        if (!($o['date'] ?? '')) continue;
+        $key = date('j M', strtotime($o['date']));
+        $idx = array_search($key, $labels);
+        if ($idx !== false) $data[$idx] += (float)($o['price'] ?? 0);
+    }
+    return ['labels' => $labels, 'data' => $data];
 }
-$chartDaysJson = json_encode($chartDays);
-$chartRevJson  = json_encode($chartRev);
+$todayStr    = date('d M Y');
+$todayOrders = array_values(array_filter($orders, fn($o) => str_starts_with($o['date'] ?? '', $todayStr)));
+$chartToday  = ['labels' => ['Today'], 'data' => [array_sum(array_column($todayOrders, 'price'))]];
+$chart7      = buildChartData($orders, 7);
+$chart14     = buildChartData($orders, 14);
+$chart30     = buildChartData($orders, 30);
+$chartDaysJson = json_encode($chart14['labels']);
+$chartRevJson  = json_encode($chart14['data']);
 
 /* ── Filters ─────────────────────────────────────────────────── */
 $filtered = $orders;
@@ -561,22 +569,41 @@ select.status-sel:focus{border-color:#1B4332;}
 </div>
 
 <div class="card" style="margin-bottom:20px;">
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
-    <div class="section-title" style="margin:0;">Revenue — Last 14 Days</div>
-    <span style="font-size:.72rem;color:#aaa;">Rs <?= number_format(array_sum($chartRev)) ?> total</span>
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
+    <div>
+      <div class="section-title" style="margin:0;">Revenue Chart</div>
+      <div style="font-size:.7rem;color:#aaa;margin-top:2px;">Total: <strong id="adRevTotal" style="color:#1B4332;">Rs <?= number_format(array_sum($chart14['data'])) ?></strong> &nbsp;·&nbsp; <span id="adRevPeriod">Last 14 Days</span></div>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+      <button onclick="adSwitchPeriod('today')" id="adbtn-today" class="rev-filter-btn">Today</button>
+      <button onclick="adSwitchPeriod('7')"     id="adbtn-7"     class="rev-filter-btn">7 Days</button>
+      <button onclick="adSwitchPeriod('14')"    id="adbtn-14"    class="rev-filter-btn rev-filter-active">14 Days</button>
+      <button onclick="adSwitchPeriod('30')"    id="adbtn-30"    class="rev-filter-btn">30 Days</button>
+    </div>
   </div>
   <canvas id="revenueChart" height="80"></canvas>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+.rev-filter-btn{padding:5px 13px;border-radius:20px;border:1.5px solid #d0ddd5;background:#fff;color:#888;font-family:'Poppins',sans-serif;font-size:.67rem;font-weight:600;cursor:pointer;transition:.15s;}
+.rev-filter-btn:hover{border-color:#1B4332;color:#1B4332;}
+.rev-filter-active{background:#1B4332;color:#fff !important;border-color:#1B4332;}
+</style>
 <script>
-new Chart(document.getElementById('revenueChart'), {
+var _adPeriods = {
+  'today': { labels: <?= json_encode($chartToday['labels']) ?>, data: <?= json_encode($chartToday['data']) ?>, label: 'Today' },
+  '7':     { labels: <?= json_encode($chart7['labels'])     ?>, data: <?= json_encode($chart7['data'])     ?>, label: 'Last 7 Days' },
+  '14':    { labels: <?= json_encode($chart14['labels'])    ?>, data: <?= json_encode($chart14['data'])    ?>, label: 'Last 14 Days' },
+  '30':    { labels: <?= json_encode($chart30['labels'])    ?>, data: <?= json_encode($chart30['data'])    ?>, label: 'Last 30 Days' }
+};
+var _adChart = new Chart(document.getElementById('revenueChart'), {
   type: 'bar',
   data: {
-    labels: <?= $chartDaysJson ?>,
+    labels: _adPeriods['14'].labels,
     datasets: [{
       label: 'Revenue (Rs)',
-      data: <?= $chartRevJson ?>,
+      data: _adPeriods['14'].data,
       backgroundColor: 'rgba(27,67,50,.15)',
       borderColor: '#1B4332',
       borderWidth: 2,
@@ -593,6 +620,17 @@ new Chart(document.getElementById('revenueChart'), {
     }
   }
 });
+function adSwitchPeriod(p) {
+  var d = _adPeriods[p];
+  _adChart.data.labels = d.labels;
+  _adChart.data.datasets[0].data = d.data;
+  _adChart.update();
+  var total = d.data.reduce(function(a,b){return a+b;},0);
+  document.getElementById('adRevTotal').textContent = 'Rs ' + total.toLocaleString('en-PK');
+  document.getElementById('adRevPeriod').textContent = d.label;
+  document.querySelectorAll('.rev-filter-btn').forEach(function(b){ b.classList.remove('rev-filter-active'); });
+  document.getElementById('adbtn-' + p).classList.add('rev-filter-active');
+}
 </script>
 
 <div class="card">
