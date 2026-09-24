@@ -1,11 +1,60 @@
 ﻿<?php
 require_once __DIR__ . '/config.php';
 
-/* ── Auth ─────────────────────────────────────────────────────── */
+/* ── Session + Security ───────────────────────────────────────── */
 session_start();
-if (($_POST['pass'] ?? '') === ADMIN_PASS) $_SESSION['noe_admin'] = true;
+
+// Session timeout: 30 minutes idle = auto logout
+define('SESSION_TIMEOUT', 1800);
+if (isset($_SESSION['noe_admin'])) {
+    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) > SESSION_TIMEOUT) {
+        session_destroy();
+        header('Location: admin-dashboard.php?timeout=1');
+        exit;
+    }
+    $_SESSION['last_activity'] = time();
+}
+
+// Login rate limiting (5 attempts → 10 min block)
+$_ATTEMPTS_FILE = __DIR__ . '/.login_attempts.json';
+function getAttempts($file) {
+    if (!file_exists($file)) return [];
+    $d = json_decode(file_get_contents($file), true) ?: [];
+    // purge expired
+    foreach ($d as $ip => $v) { if (time() - $v['t'] > 600) unset($d[$ip]); }
+    return $d;
+}
+function saveAttempts($file, $d) { file_put_contents($file, json_encode($d)); }
+$_CLIENT_IP = $_SERVER['HTTP_X_FORWARDED_FOR'] ? explode(',', $_SERVER['HTTP_X_FORWARDED_FOR'])[0] : ($_SERVER['REMOTE_ADDR'] ?? '');
+$_CLIENT_IP = trim($_CLIENT_IP);
+$_ATTEMPTS  = getAttempts($_ATTEMPTS_FILE);
+$_BLOCKED   = isset($_ATTEMPTS[$_CLIENT_IP]) && $_ATTEMPTS[$_CLIENT_IP]['c'] >= 5
+              ? max(0, 600 - (time() - $_ATTEMPTS[$_CLIENT_IP]['t'])) : 0;
+$_LOGIN_ERR = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pass'])) {
+    if ($_BLOCKED > 0) {
+        $_LOGIN_ERR = "Too many attempts. Try again in " . ceil($_BLOCKED/60) . " min.";
+    } elseif ($_POST['pass'] === ADMIN_PASS) {
+        unset($_ATTEMPTS[$_CLIENT_IP]);
+        saveAttempts($_ATTEMPTS_FILE, $_ATTEMPTS);
+        $_SESSION['noe_admin'] = true;
+        $_SESSION['last_activity'] = time();
+        header('Location: admin-dashboard.php'); exit;
+    } else {
+        if (!isset($_ATTEMPTS[$_CLIENT_IP]) || time() - $_ATTEMPTS[$_CLIENT_IP]['t'] > 600) {
+            $_ATTEMPTS[$_CLIENT_IP] = ['c' => 1, 't' => time()];
+        } else {
+            $_ATTEMPTS[$_CLIENT_IP]['c']++;
+        }
+        saveAttempts($_ATTEMPTS_FILE, $_ATTEMPTS);
+        $left = 5 - $_ATTEMPTS[$_CLIENT_IP]['c'];
+        $_LOGIN_ERR = $left > 0 ? "Wrong password. $left attempt" . ($left>1?'s':'') . " left." : "Blocked for 10 minutes.";
+    }
+}
+
 if (($_GET['logout'] ?? '') === '1') { session_destroy(); header('Location: admin-dashboard.php'); exit; }
-if (!($_SESSION['noe_admin'] ?? false)) { showLogin(); exit; }
+if (!($_SESSION['noe_admin'] ?? false)) { showLogin($_LOGIN_ERR, $_BLOCKED); exit; }
 
 /* ── Helpers ──────────────────────────────────────────────────── */
 function readJson($f) {
@@ -57,6 +106,14 @@ if ($_POST['action'] ?? '' === 'update_note') {
     $id   = $_POST['id'] ?? '';
     $note = clean($_POST['note'] ?? '');
     foreach ($orders as &$o) { if ($o['id'] === $id) { $o['admin_note'] = $note; break; } }
+    unset($o);
+    writeJson(__DIR__ . '/orders-data.json', $orders);
+    header('Location: admin-dashboard.php?p=orders'); exit;
+}
+if ($_POST['action'] ?? '' === 'bulk_status') {
+    $ids = $_POST['ids'] ?? [];
+    $st  = $_POST['bulk_st'] ?? 'pending';
+    foreach ($orders as &$o) { if (in_array($o['id'], $ids)) $o['status'] = $st; }
     unset($o);
     writeJson(__DIR__ . '/orders-data.json', $orders);
     header('Location: admin-dashboard.php?p=orders'); exit;
@@ -154,6 +211,22 @@ $stats     = orderStats($orders);
 $prodSales = productSales($orders);
 $customers = getCustomers($orders);
 
+// Revenue chart: last 14 days
+$chartDays = []; $chartRev = [];
+for ($i = 13; $i >= 0; $i--) {
+    $chartDays[] = date('j M', strtotime("-$i days"));
+    $chartRev[]  = 0;
+}
+foreach ($orders as $o) {
+    if ($o['date'] ?? '') {
+        $d = date('j M', strtotime($o['date']));
+        $idx = array_search($d, $chartDays);
+        if ($idx !== false) $chartRev[$idx] += (float)($o['price'] ?? 0);
+    }
+}
+$chartDaysJson = json_encode($chartDays);
+$chartRevJson  = json_encode($chartRev);
+
 /* ── Filters ─────────────────────────────────────────────────── */
 $filtered = $orders;
 $q        = trim($_GET['q'] ?? '');
@@ -169,7 +242,7 @@ if ($fProd   !== 'all') $filtered = array_filter($filtered, fn($o) => str_contai
 $filtered = array_values($filtered);
 
 /* ═══════════════════ LOGIN PAGE ════════════════════════════ */
-function showLogin() { ?>
+function showLogin($err = '', $blocked = 0) { ?>
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Nasir Oil Expert — Admin</title>
@@ -188,15 +261,20 @@ input:focus{border-color:#1B4332;box-shadow:0 0 0 3px rgba(27,67,50,.08);}
 button{width:100%;padding:14px;background:#1B4332;color:#fff;border:none;border-radius:12px;font-family:'Poppins',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;letter-spacing:.04em;transition:.2s;}
 button:hover{background:#2D6A4F;transform:translateY(-1px);box-shadow:0 6px 20px rgba(27,67,50,.3);}
 .hint{font-size:.68rem;color:#ccc;margin-top:16px;}
+.err{background:#fdecea;color:#c0392b;border:1px solid #f5c6cb;border-radius:8px;padding:10px 14px;font-size:.78rem;font-weight:500;margin-bottom:14px;text-align:left;}
+.blocked-bar{background:#fff3cd;color:#856404;border-radius:8px;padding:10px 14px;font-size:.78rem;font-weight:500;margin-bottom:14px;}
+button:disabled{opacity:.6;cursor:not-allowed;transform:none !important;box-shadow:none !important;}
 </style></head><body>
 <div class="card">
   <div class="logo-wrap"><img src="images/logo.png" alt="Nasir Oil Expert"></div>
   <h1>Nasir Oil Expert</h1>
   <p>Admin Dashboard — Secure Access</p>
   <div class="divider"></div>
+  <?php if ($err): ?><div class="err">⚠️ <?= htmlspecialchars($err) ?></div><?php endif; ?>
+  <?php if (isset($_GET['timeout'])): ?><div class="err">⏱️ Session expired. Please login again.</div><?php endif; ?>
   <form method="post" action="admin-dashboard.php">
-    <input type="password" name="pass" placeholder="Enter admin password" autofocus>
-    <button type="submit">Login →</button>
+    <input type="password" name="pass" placeholder="Enter admin password" autofocus <?= $blocked>0?'disabled':'' ?>>
+    <button type="submit" <?= $blocked>0?'disabled':'' ?>><?= $blocked>0 ? "Blocked ($blocked sec)" : 'Login →' ?></button>
   </form>
   <div class="hint">nasiroilexpert.com</div>
 </div></body></html>
@@ -452,6 +530,41 @@ select.status-sel:focus{border-color:#1B4332;}
   </div>
 </div>
 
+<div class="card" style="margin-bottom:20px;">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+    <div class="section-title" style="margin:0;">Revenue — Last 14 Days</div>
+    <span style="font-size:.72rem;color:#aaa;">Rs <?= number_format(array_sum($chartRev)) ?> total</span>
+  </div>
+  <canvas id="revenueChart" height="80"></canvas>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+new Chart(document.getElementById('revenueChart'), {
+  type: 'bar',
+  data: {
+    labels: <?= $chartDaysJson ?>,
+    datasets: [{
+      label: 'Revenue (Rs)',
+      data: <?= $chartRevJson ?>,
+      backgroundColor: 'rgba(27,67,50,.15)',
+      borderColor: '#1B4332',
+      borderWidth: 2,
+      borderRadius: 6,
+      hoverBackgroundColor: 'rgba(27,67,50,.3)'
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: true,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { beginAtZero: true, grid: { color: '#f0f0f0' }, ticks: { font: { family: 'Poppins', size: 10 }, callback: v => 'Rs ' + v.toLocaleString() } },
+      x: { grid: { display: false }, ticks: { font: { family: 'Poppins', size: 10 } } }
+    }
+  }
+});
+</script>
+
 <div class="card">
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
     <div class="section-title" style="margin:0;">Recent Orders</div>
@@ -511,22 +624,48 @@ select.status-sel:focus{border-color:#1B4332;}
 </form>
 </div>
 
+<!-- Bulk Update Bar -->
+<div id="bulkBar" style="display:none;background:#1B4332;color:#fff;padding:12px 20px;border-radius:12px;margin-bottom:12px;display:none;align-items:center;gap:12px;flex-wrap:wrap;">
+  <span id="bulkCount" style="font-size:.8rem;font-weight:600;">0 selected</span>
+  <form method="post" action="admin-dashboard.php?p=orders" id="bulkForm" style="display:flex;gap:8px;align-items:center;margin:0;">
+    <input type="hidden" name="action" value="bulk_status">
+    <div id="bulkIdsContainer"></div>
+    <select name="bulk_st" style="padding:6px 10px;border-radius:6px;font-family:'Poppins',sans-serif;font-size:.75rem;border:none;outline:none;">
+      <option value="done">✅ Mark Done</option>
+      <option value="pending">⏳ Mark Pending</option>
+      <option value="cancelled">❌ Mark Cancelled</option>
+    </select>
+    <button type="submit" class="btn btn-sm" style="background:#74c69d;color:#1B4332;font-weight:700;">Apply</button>
+  </form>
+  <button onclick="clearSelection()" style="background:transparent;border:1px solid rgba(255,255,255,.4);color:#fff;padding:5px 12px;border-radius:6px;font-size:.72rem;cursor:pointer;font-family:'Poppins',sans-serif;">Clear</button>
+</div>
+
 <div class="card">
 <div class="table-wrap">
 <table>
-  <thead><tr><th>#</th><th>Order ID</th><th>Date</th><th>Name</th><th>Phone</th><th>City</th><th>Address</th><th>Product</th><th>Price</th><th>Page</th><th>Status</th><th>Note</th><th>Action</th></tr></thead>
+  <thead><tr>
+    <th><input type="checkbox" id="selectAll" onchange="toggleAll(this)" style="cursor:pointer;"></th>
+    <th>Order ID</th><th>Date</th><th>Name</th><th>Phone</th><th>City</th><th>Address</th><th>Product</th><th>Price</th><th>Page</th><th>Status</th><th>Note</th><th>WhatsApp</th>
+  </tr></thead>
   <tbody>
-  <?php foreach ($filtered as $i => $o): ?>
+  <?php foreach ($filtered as $i => $o):
+    $wa = waNumber($o['phone']??'');
+    $name = clean($o['name']??''); $prod = clean($o['product']??'');
+    $price = (float)($o['price']??0); $total = $price + 250;
+    $waTpl1 = $wa ? 'https://wa.me/'.$wa.'?text='.urlencode("Assalam o Alaikum $name! ✅ Aapka order *$prod* confirm ho gaya hai.\nTotal: Rs ".number_format($total)." (COD)\nHum jald dispatch karenge. Shukriya! 🌿 Nasir Oil Expert") : '';
+    $waTpl2 = $wa ? 'https://wa.me/'.$wa.'?text='.urlencode("Assalam o Alaikum $name! 🚚 Aapka order *$prod* dispatch ho gaya hai.\n2-3 din mein deliver ho jayega. Insha'Allah!\n— Nasir Oil Expert") : '';
+    $waTpl3 = $wa ? 'https://wa.me/'.$wa.'?text='.urlencode("Assalam o Alaikum $name! ✅ Aapka order *$prod* deliver ho gaya.\nUmmeed hai pasand aaya hoga. Feedback zaroor dein! 🌿\n— Nasir Oil Expert") : '';
+  ?>
   <tr>
-    <td style="color:#ccc;"><?= $i+1 ?></td>
+    <td><input type="checkbox" class="order-chk" value="<?= clean($o['id']??'') ?>" onchange="updateBulk()" style="cursor:pointer;"></td>
     <td><strong style="font-size:.73rem;"><?= clean($o['id']??'') ?></strong></td>
     <td style="font-size:.68rem;color:#aaa;white-space:nowrap;"><?= clean($o['date']??'') ?></td>
-    <td><strong><?= clean($o['name']??'') ?></strong></td>
+    <td><strong><?= $name ?></strong></td>
     <td style="color:#1B4332;font-size:.78rem;white-space:nowrap;">📞 <?= clean($o['phone']??'') ?></td>
     <td style="font-size:.78rem;">📍 <?= clean($o['city']??'—') ?></td>
     <td style="font-size:.72rem;color:#888;max-width:130px;"><?= clean($o['address']??'—') ?></td>
-    <td style="font-size:.8rem;font-weight:600;"><?= clean($o['product']??'') ?></td>
-    <td><strong>Rs <?= number_format((float)($o['price']??0)) ?></strong></td>
+    <td style="font-size:.8rem;font-weight:600;"><?= $prod ?></td>
+    <td><strong>Rs <?= number_format($price) ?></strong></td>
     <td style="font-size:.68rem;color:#888;white-space:nowrap;"><?= pageLabel($o['source_page']??'') ?></td>
     <td>
       <form method="post" style="display:inline;">
@@ -540,7 +679,7 @@ select.status-sel:focus{border-color:#1B4332;}
       </form>
     </td>
     <td>
-      <form method="post" style="display:flex;gap:4px;min-width:140px;">
+      <form method="post" style="display:flex;gap:4px;min-width:130px;">
         <input type="hidden" name="action" value="update_note">
         <input type="hidden" name="id" value="<?= clean($o['id']??'') ?>">
         <input type="text" name="note" value="<?= clean($o['admin_note']??'') ?>" placeholder="Note..." style="flex:1;min-width:0;padding:5px 8px;border:1px solid #e4e4e4;border-radius:6px;font-size:.72rem;font-family:'Poppins',sans-serif;outline:none;">
@@ -548,9 +687,12 @@ select.status-sel:focus{border-color:#1B4332;}
       </form>
     </td>
     <td>
-      <?php $wa = waNumber($o['phone']??''); ?>
       <?php if ($wa): ?>
-      <a href="https://wa.me/<?= $wa ?>" target="_blank" class="btn-wa">📲 WA</a>
+      <div style="display:flex;flex-direction:column;gap:4px;min-width:110px;">
+        <a href="<?= $waTpl1 ?>" target="_blank" class="btn-wa" style="font-size:.65rem;">✅ Confirm</a>
+        <a href="<?= $waTpl2 ?>" target="_blank" class="btn-wa" style="font-size:.65rem;background:#128C7E;">🚚 Dispatch</a>
+        <a href="<?= $waTpl3 ?>" target="_blank" class="btn-wa" style="font-size:.65rem;background:#075E54;">📦 Delivered</a>
+      </div>
       <?php endif; ?>
     </td>
   </tr>
@@ -778,5 +920,34 @@ $evIcons  = ['Purchase'=>'💳','ViewContent'=>'👁','AddToCart'=>'🛒','Initi
 <?php endif; ?>
 
 </div><!-- /main -->
+<script>
+function updateBulk() {
+  var chks = document.querySelectorAll('.order-chk:checked');
+  var bar  = document.getElementById('bulkBar');
+  var cnt  = document.getElementById('bulkCount');
+  var cont = document.getElementById('bulkIdsContainer');
+  if (!bar) return;
+  if (chks.length > 0) {
+    bar.style.display = 'flex';
+    cnt.textContent = chks.length + ' selected';
+    cont.innerHTML = '';
+    chks.forEach(function(c) {
+      var inp = document.createElement('input');
+      inp.type = 'hidden'; inp.name = 'ids[]'; inp.value = c.value;
+      cont.appendChild(inp);
+    });
+  } else {
+    bar.style.display = 'none';
+  }
+}
+function toggleAll(el) {
+  document.querySelectorAll('.order-chk').forEach(function(c){ c.checked = el.checked; });
+  updateBulk();
+}
+function clearSelection() {
+  document.querySelectorAll('.order-chk, #selectAll').forEach(function(c){ c.checked = false; });
+  updateBulk();
+}
+</script>
 </body></html>
 
