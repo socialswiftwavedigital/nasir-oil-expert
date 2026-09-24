@@ -94,6 +94,32 @@ $headers = implode("\r\n", [
 
 $sent = mail($to, $subject, $msg, $headers);
 
+// Save COD order to orders-data.json for admin panel
+if ($purpose === 'order') {
+    $orderId  = date('ymd') . '-' . strtoupper(substr(md5(uniqid()), 0, 5));
+    $prodName = clean($data['product'] ?? '');
+    $price    = (float)($data['value'] ?? 0);
+    $order    = [
+        'id'      => $orderId,
+        'date'    => date('d M Y, h:i A'),
+        'name'    => $name,
+        'phone'   => $phone,
+        'city'    => $city,
+        'address' => $address,
+        'product' => $prodName ?: $body,
+        'price'   => $price > 0 ? $price : '',
+        'source'  => 'COD',
+        'status'  => 'pending',
+    ];
+    $jsonFile = __DIR__ . '/orders-data.json';
+    $existing = [];
+    if (file_exists($jsonFile)) {
+        $existing = json_decode(file_get_contents($jsonFile), true) ?: [];
+    }
+    array_unshift($existing, $order);
+    file_put_contents($jsonFile, json_encode($existing, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+}
+
 // Fire CAPI Purchase event (server-side, for deduplication with browser Pixel)
 if ($purpose === 'order') {
     $event_id  = clean($data['event_id'] ?? '');
