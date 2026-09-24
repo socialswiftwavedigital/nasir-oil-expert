@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/db.php';
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: https://nasiroilexpert.com');
@@ -20,52 +21,31 @@ if (!$data || empty($data['name']) || empty($data['phone'])) {
 
 function clean($v) { return htmlspecialchars(strip_tags(trim($v ?? '')), ENT_QUOTES, 'UTF-8'); }
 
-function readJsonFile($f) {
-    if (!file_exists($f)) return [];
-    return json_decode(file_get_contents($f), true) ?: [];
-}
-function writeJsonFile($f, $d) {
-    file_put_contents($f, json_encode($d, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-}
-
-/* ── Stock decrement ───────────────────────────────────────────── */
-function decrementStock($prodName) {
-    $stockFile = __DIR__ . '/stock.json';
-    $stock = readJsonFile($stockFile);
-    $matched = false;
-    foreach ($stock as $key => &$p) {
-        // match by product name (case-insensitive partial match)
-        if (stripos($prodName, $p['name']) !== false || stripos($p['name'], $prodName) !== false) {
-            if ($p['stock'] > 0) $p['stock']--;
-            $matched = true;
-            // Low stock email alert
-            if ($p['stock'] <= 10) {
-                $alertSubj = '[LOW STOCK ⚠️] ' . $p['name'] . ' — ' . $p['stock'] . ' units left';
-                $alertMsg  = "Stock Alert — Nasir Oil Expert\n\n"
-                           . "Product : " . $p['name'] . "\n"
-                           . "SKU     : " . $p['sku'] . "\n"
-                           . "Stock   : " . $p['stock'] . " units remaining\n\n"
-                           . "Please refill soon.\nnasiroilexpert.com/admin-dashboard.php";
-                mail('info@nasiroilexpert.com', $alertSubj, $alertMsg,
-                     'From: Nasir Oil Expert <info@nasiroilexpert.com>');
+/* ── Stock decrement (MySQL) ───────────────────────────────────── */
+function decrementStock($prodName, $db) {
+    $rows = $db->query("SELECT slug, name, qty, sku FROM stock")->fetchAll();
+    foreach ($rows as $r) {
+        if (stripos($prodName, $r['name']) !== false || stripos($r['name'], $prodName) !== false) {
+            if ($r['qty'] > 0) {
+                $db->prepare("UPDATE stock SET qty = qty - 1 WHERE slug = ?")->execute([$r['slug']]);
+                $newQty = $r['qty'] - 1;
+                if ($newQty <= 10) {
+                    $subj = '[LOW STOCK ⚠️] ' . $r['name'] . ' — ' . $newQty . ' units left';
+                    $msg  = "Stock Alert — Nasir Oil Expert\n\nProduct: " . $r['name']
+                          . "\nSKU: " . $r['sku'] . "\nStock: $newQty units remaining\n\nRefill soon.";
+                    mail('info@nasiroilexpert.com', $subj, $msg, 'From: Nasir Oil Expert <info@nasiroilexpert.com>');
+                }
             }
             break;
         }
     }
-    unset($p);
-    if ($matched) writeJsonFile($stockFile, $stock);
 }
 
-/* ── Duplicate detection ───────────────────────────────────────── */
-function isDuplicate($phone, $existing) {
-    $tenMinAgo = time() - 600;
-    foreach ($existing as $o) {
-        if (($o['phone'] ?? '') === $phone) {
-            $oTime = strtotime($o['date'] ?? '');
-            if ($oTime && $oTime >= $tenMinAgo) return true;
-        }
-    }
-    return false;
+/* ── Duplicate detection (MySQL) ──────────────────────────────── */
+function isDuplicate($phone, $db) {
+    $stmt = $db->prepare("SELECT COUNT(*) FROM orders WHERE phone = ? AND created_at >= DATE_SUB(NOW(), INTERVAL 10 MINUTE)");
+    $stmt->execute([$phone]);
+    return $stmt->fetchColumn() > 0;
 }
 
 /* ── CAPI ──────────────────────────────────────────────────────── */
@@ -136,38 +116,22 @@ $headers = implode("\r\n", [
 
 $sent = mail($to, $subject, $msg, $headers);
 
-/* ── Save COD order ────────────────────────────────────────────── */
+/* ── Save COD order (MySQL) ────────────────────────────────────── */
 if ($purpose === 'order') {
+    $db       = getDB();
     $orderId  = date('ymd') . '-' . strtoupper(substr(md5(uniqid()), 0, 5));
     $prodName = clean($data['product'] ?? '');
     $price    = (float)($data['value'] ?? 0);
+    $duplicate = isDuplicate($phone, $db) ? 1 : 0;
+    $timeline  = json_encode([['status'=>'pending','time'=>date('d M Y, h:i A'),'note'=>'Order received']]);
 
-    $jsonFile = __DIR__ . '/orders-data.json';
-    $existing = file_exists($jsonFile) ? json_decode(file_get_contents($jsonFile), true) ?: [] : [];
+    $db->prepare("INSERT INTO orders
+        (id,created_at,name,phone,city,address,product,price,source_page,status,duplicate,timeline)
+        VALUES (?,NOW(),?,?,?,?,?,?,?,'pending',?,?)")
+       ->execute([$orderId, $name, $phone, $city, $address, $prodName ?: $body,
+                  $price > 0 ? $price : 0, $source_page, $duplicate, $timeline]);
 
-    $duplicate = isDuplicate($phone, $existing);
-
-    $order = [
-        'id'          => $orderId,
-        'date'        => date('d M Y, h:i A'),
-        'name'        => $name,
-        'phone'       => $phone,
-        'city'        => $city,
-        'address'     => $address,
-        'product'     => $prodName ?: $body,
-        'price'       => $price > 0 ? $price : '',
-        'source'      => 'COD',
-        'source_page' => $source_page,
-        'status'      => 'pending',
-        'duplicate'   => $duplicate,
-        'timeline'    => [['status'=>'pending','time'=>date('d M Y, h:i A'),'note'=>'Order received']],
-    ];
-
-    array_unshift($existing, $order);
-    writeJsonFile($jsonFile, $existing);
-
-    // Auto decrement stock
-    if ($prodName) decrementStock($prodName);
+    if ($prodName) decrementStock($prodName, $db);
 }
 
 /* ── CAPI ──────────────────────────────────────────────────────── */

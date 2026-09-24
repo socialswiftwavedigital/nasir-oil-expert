@@ -1,5 +1,6 @@
 ﻿<?php
 require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/db.php';
 
 /* ── Session + Security ───────────────────────────────────────── */
 session_start();
@@ -57,13 +58,6 @@ if (($_GET['logout'] ?? '') === '1') { session_destroy(); header('Location: admi
 if (!($_SESSION['noe_admin'] ?? false)) { showLogin($_LOGIN_ERR, $_BLOCKED); exit; }
 
 /* ── Helpers ──────────────────────────────────────────────────── */
-function readJson($f) {
-    if (!file_exists($f)) return [];
-    return json_decode(file_get_contents($f), true) ?: [];
-}
-function writeJson($f, $d) {
-    file_put_contents($f, json_encode($d, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-}
 function clean($v) { return htmlspecialchars(trim($v ?? ''), ENT_QUOTES, 'UTF-8'); }
 function waNumber($phone) {
     $n = preg_replace('/[^0-9]/', '', $phone);
@@ -89,76 +83,68 @@ function pageLabel($path) {
 }
 
 /* ── Data ─────────────────────────────────────────────────────── */
-$orders = readJson(__DIR__ . '/orders-data.json');
-$stock  = readJson(__DIR__ . '/stock.json');
+$db     = getDB();
 $page   = $_GET['p'] ?? 'dashboard';
 
 /* ── POST Actions ─────────────────────────────────────────────── */
 if ($_POST['action'] ?? '' === 'update_status') {
-    $id = $_POST['id'] ?? '';
-    $st = $_POST['status'] ?? 'pending';
-    foreach ($orders as &$o) { if ($o['id'] === $id) { $o['status'] = $st; break; } }
-    unset($o);
-    writeJson(__DIR__ . '/orders-data.json', $orders);
+    $id = clean($_POST['id'] ?? '');
+    $st = clean($_POST['status'] ?? 'pending');
+    $db->prepare("UPDATE orders SET status=? WHERE id=?")->execute([$st, $id]);
     header('Location: admin-dashboard.php?p=orders'); exit;
 }
 if ($_POST['action'] ?? '' === 'update_note') {
-    $id   = $_POST['id'] ?? '';
+    $id   = clean($_POST['id'] ?? '');
     $note = clean($_POST['note'] ?? '');
-    foreach ($orders as &$o) { if ($o['id'] === $id) { $o['admin_note'] = $note; break; } }
-    unset($o);
-    writeJson(__DIR__ . '/orders-data.json', $orders);
+    $db->prepare("UPDATE orders SET admin_note=? WHERE id=?")->execute([$note, $id]);
     header('Location: admin-dashboard.php?p=orders'); exit;
 }
 if ($_POST['action'] ?? '' === 'update_tracking') {
-    $id  = $_POST['id'] ?? '';
+    $id  = clean($_POST['id'] ?? '');
     $trk = clean($_POST['tracking'] ?? '');
-    foreach ($orders as &$o) {
-        if ($o['id'] === $id) {
-            $o['tracking'] = $trk;
-            $o['timeline'][] = ['status'=>'tracking','time'=>date('d M Y, h:i A'),'note'=>'Tracking: '.$trk];
-            break;
-        }
-    }
-    unset($o);
-    writeJson(__DIR__ . '/orders-data.json', $orders);
+    $row = $db->prepare("SELECT timeline FROM orders WHERE id=?");
+    $row->execute([$id]);
+    $existing = $row->fetchColumn();
+    $tl = json_decode($existing ?: '[]', true) ?: [];
+    $tl[] = ['status'=>'tracking','time'=>date('d M Y, h:i A'),'note'=>'Tracking: '.$trk];
+    $db->prepare("UPDATE orders SET tracking=?, timeline=? WHERE id=?")->execute([$trk, json_encode($tl), $id]);
     header('Location: admin-dashboard.php?p=orders'); exit;
 }
 if ($_POST['action'] ?? '' === 'update_abandoned_status') {
-    $id = $_POST['id'] ?? '';
-    $st = $_POST['status'] ?? 'new';
-    $file = __DIR__ . '/abandoned-forms.json';
-    $list = readJson($file);
-    foreach ($list as &$a) { if (($a['id']??'') === $id) { $a['status'] = $st; break; } }
-    unset($a);
-    writeJson($file, $list);
+    $id = clean($_POST['id'] ?? '');
+    $st = clean($_POST['status'] ?? 'new');
+    $db->prepare("UPDATE abandoned_forms SET status=? WHERE id=?")->execute([$st, $id]);
     header('Location: admin-dashboard.php?p=abandoned'); exit;
 }
 if ($_POST['action'] ?? '' === 'bulk_status') {
-    $ids = $_POST['ids'] ?? [];
-    $st  = $_POST['bulk_st'] ?? 'pending';
-    foreach ($orders as &$o) { if (in_array($o['id'], $ids)) $o['status'] = $st; }
-    unset($o);
-    writeJson(__DIR__ . '/orders-data.json', $orders);
+    $ids = array_map('trim', (array)($_POST['ids'] ?? []));
+    $st  = clean($_POST['bulk_st'] ?? 'pending');
+    if ($ids) {
+        $placeholders = implode(',', array_fill(0, count($ids), '?'));
+        $params = array_merge([$st], $ids);
+        $db->prepare("UPDATE orders SET status=? WHERE id IN ($placeholders)")->execute($params);
+    }
     header('Location: admin-dashboard.php?p=orders'); exit;
 }
 if ($_POST['action'] ?? '' === 'update_stock') {
-    foreach ($stock as $k => &$p) {
-        if (isset($_POST["stock_$k"])) $p['stock'] = (int)$_POST["stock_$k"];
-        if (isset($_POST["price_$k"])) $p['price'] = (int)$_POST["price_$k"];
+    $stmt = $db->prepare("UPDATE stock SET qty=?, price=? WHERE slug=?");
+    $slugs = $db->query("SELECT slug FROM stock")->fetchAll(PDO::FETCH_COLUMN);
+    foreach ($slugs as $k) {
+        $qty   = isset($_POST["stock_$k"]) ? (int)$_POST["stock_$k"] : null;
+        $price = isset($_POST["price_$k"])  ? (int)$_POST["price_$k"]  : null;
+        if ($qty !== null && $price !== null) $stmt->execute([$qty, $price, $k]);
     }
-    unset($p);
-    writeJson(__DIR__ . '/stock.json', $stock);
     header('Location: admin-dashboard.php?p=stock'); exit;
 }
 
 /* ── CSV Export ───────────────────────────────────────────────── */
 if (($_GET['export'] ?? '') === 'csv') {
+    $allOrders = dbOrders($db);
     header('Content-Type: text/csv; charset=utf-8');
     header('Content-Disposition: attachment; filename="nasir-orders-' . date('Y-m-d') . '.csv"');
     echo "\xEF\xBB\xBF";
     echo "Order ID,Date,Name,Phone,City,Address,Product,Price,Status,Source Page,Note\n";
-    foreach ($orders as $o) {
+    foreach ($allOrders as $o) {
         echo '"' . implode('","', [
             $o['id'] ?? '', $o['date'] ?? '', $o['name'] ?? '', $o['phone'] ?? '',
             $o['city'] ?? '', $o['address'] ?? '', $o['product'] ?? '',
@@ -231,10 +217,17 @@ function fetchMetaStats($token, $pixel_id) {
     return $results;
 }
 
+$orders    = dbOrders($db);
+$stock     = dbStock($db);
 $stats     = orderStats($orders);
 $prodSales = productSales($orders);
 $customers = getCustomers($orders);
-$abandoned = readJson(__DIR__ . '/abandoned-forms.json');
+$abandoned = $db->query("SELECT * FROM abandoned_forms ORDER BY created_at DESC")->fetchAll();
+// add formatted date field for display
+foreach ($abandoned as &$a) {
+    if (!isset($a['date'])) $a['date'] = date('d M Y, h:i A', strtotime($a['created_at'] ?? 'now'));
+}
+unset($a);
 $newAbandoned = count(array_filter($abandoned, fn($a) => ($a['status']??'new') === 'new'));
 
 // Revenue chart data for multiple periods

@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/db.php';
 
 // Client password — add to config.php: define('CLIENT_PASS', 'your-client-pass');
 $clientPass = defined('CLIENT_PASS') ? CLIENT_PASS : 'nasir-client-2024';
@@ -24,15 +25,12 @@ if (($_GET['logout'] ?? '') === '1') { session_destroy(); header('Location: clie
 if (!($_SESSION['noe_client'] ?? false)) { showClientLogin(); exit; }
 
 /* ── Helpers ─────────────────────────────────────────────── */
-function readJson($f) {
-    if (!file_exists($f)) return [];
-    return json_decode(file_get_contents($f), true) ?: [];
-}
 function clean($v) { return htmlspecialchars(trim($v ?? ''), ENT_QUOTES, 'UTF-8'); }
 
 /* ── Data ────────────────────────────────────────────────── */
-$orders = readJson(__DIR__ . '/orders-data.json');
-$stock  = readJson(__DIR__ . '/stock.json');
+$db     = getDB();
+$orders = dbOrders($db);
+$stock  = dbStock($db);
 
 // Stats
 $today = date('d M Y');

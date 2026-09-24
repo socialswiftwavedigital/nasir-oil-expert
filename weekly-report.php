@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/db.php';
 
 // Auth: admin password via GET or session
 session_start();
@@ -7,24 +8,15 @@ if (!($_SESSION['noe_admin'] ?? false) && ($_GET['key'] ?? '') !== ADMIN_PASS) {
     http_response_code(403); die('Unauthorized');
 }
 
-function readJson($f) {
-    if (!file_exists($f)) return [];
-    return json_decode(file_get_contents($f), true) ?: [];
-}
-
-$orders = readJson(__DIR__ . '/orders-data.json');
-$stock  = readJson(__DIR__ . '/stock.json');
+$db    = getDB();
+$stock = dbStock($db);
 
 // Date range: last 7 days
 $from    = strtotime('-7 days');
 $fromStr = date('d M Y', $from);
 $toStr   = date('d M Y');
 
-$weekly = array_filter($orders, function($o) use ($from) {
-    $t = strtotime($o['date'] ?? '');
-    return $t && $t >= $from;
-});
-$weekly = array_values($weekly);
+$weekly = dbOrders($db, 'created_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)');
 
 // Stats
 $revenue   = array_sum(array_column($weekly, 'price'));
