@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 require_once __DIR__ . '/config.php';
 
 /* ── Auth ─────────────────────────────────────────────────────── */
@@ -173,19 +173,19 @@ function showLogin() { ?>
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Nasir Oil Expert — Admin</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Montserrat',sans-serif;background:linear-gradient(135deg,#1B4332 0%,#2D6A4F 50%,#1a3a2a 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;}
+body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#1B4332 0%,#2D6A4F 50%,#1a3a2a 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;}
 .card{background:#fff;border-radius:24px;padding:48px 44px;width:min(400px,94vw);box-shadow:0 32px 80px rgba(0,0,0,.3);text-align:center;}
 .logo-wrap{margin-bottom:20px;}
 .logo-wrap img{width:74px;height:74px;object-fit:contain;border-radius:14px;}
-h1{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:#1B4332;margin-bottom:4px;}
+h1{font-family:'Poppins',sans-serif;font-size:1.8rem;font-weight:700;color:#1B4332;margin-bottom:4px;}
 p{color:#999;font-size:.78rem;margin-bottom:28px;font-weight:500;}
 .divider{height:1px;background:#f0f0f0;margin:0 0 22px;}
-input{width:100%;padding:13px 16px;border:1.5px solid #e8e8e8;border-radius:12px;font-family:'Montserrat',sans-serif;font-size:.85rem;margin-bottom:14px;outline:none;transition:.2s;color:#333;}
+input{width:100%;padding:13px 16px;border:1.5px solid #e8e8e8;border-radius:12px;font-family:'Poppins',sans-serif;font-size:.85rem;margin-bottom:14px;outline:none;transition:.2s;color:#333;}
 input:focus{border-color:#1B4332;box-shadow:0 0 0 3px rgba(27,67,50,.08);}
-button{width:100%;padding:14px;background:#1B4332;color:#fff;border:none;border-radius:12px;font-family:'Montserrat',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;letter-spacing:.04em;transition:.2s;}
+button{width:100%;padding:14px;background:#1B4332;color:#fff;border:none;border-radius:12px;font-family:'Poppins',sans-serif;font-size:.85rem;font-weight:700;cursor:pointer;letter-spacing:.04em;transition:.2s;}
 button:hover{background:#2D6A4F;transform:translateY(-1px);box-shadow:0 6px 20px rgba(27,67,50,.3);}
 .hint{font-size:.68rem;color:#ccc;margin-top:16px;}
 </style></head><body>
@@ -218,16 +218,16 @@ $nav = [
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Admin — Nasir Oil Expert</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Montserrat',sans-serif;background:#eef2ef;color:#1a1a1a;display:flex;min-height:100vh;}
+body{font-family:'Poppins',sans-serif;background:#eef2ef;color:#1a1a1a;display:flex;min-height:100vh;}
 
 /* ── Sidebar ── */
 .sidebar{width:230px;background:#1B4332;color:#fff;display:flex;flex-direction:column;min-height:100vh;flex-shrink:0;position:sticky;top:0;height:100vh;overflow:hidden;}
 .sidebar-brand{padding:22px 20px 18px;border-bottom:1px solid rgba(255,255,255,.1);display:flex;align-items:center;gap:12px;}
 .sidebar-brand img{width:42px;height:42px;object-fit:contain;border-radius:10px;flex-shrink:0;}
-.sidebar-brand-text h2{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:700;line-height:1.2;color:#fff;}
+.sidebar-brand-text h2{font-family:'Poppins',sans-serif;font-size:1.05rem;font-weight:700;line-height:1.2;color:#fff;}
 .sidebar-brand-text p{font-size:.6rem;color:#74c69d;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-top:2px;}
 .nav-section{padding:14px 0 6px 20px;font-size:.58rem;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:.12em;text-transform:uppercase;}
 .nav-link{display:flex;align-items:center;gap:10px;padding:11px 20px;font-size:.78rem;font-weight:600;color:rgba(255,255,255,.7);text-decoration:none;transition:.15s;border-left:3px solid transparent;}
@@ -242,21 +242,21 @@ body{font-family:'Montserrat',sans-serif;background:#eef2ef;color:#1a1a1a;displa
 /* ── Main ── */
 .main{flex:1;min-width:0;padding:28px 30px;}
 .page-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:22px;gap:12px;flex-wrap:wrap;}
-.page-title{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;color:#1B4332;line-height:1.1;}
+.page-title{font-family:'Poppins',sans-serif;font-size:1.9rem;font-weight:700;color:#1B4332;line-height:1.1;}
 .page-sub{font-size:.72rem;color:#999;margin-top:3px;font-weight:500;}
-.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:700;cursor:pointer;border:none;text-decoration:none;transition:.15s;letter-spacing:.02em;}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:8px;font-family:'Poppins',sans-serif;font-size:.72rem;font-weight:700;cursor:pointer;border:none;text-decoration:none;transition:.15s;letter-spacing:.02em;}
 .btn-primary{background:#1B4332;color:#fff;} .btn-primary:hover{background:#2D6A4F;}
 .btn-outline{background:#fff;color:#1B4332;border:1.5px solid #1B4332;} .btn-outline:hover{background:#1B4332;color:#fff;}
 .btn-sm{padding:6px 13px;font-size:.68rem;}
 .btn-danger{background:#e74c3c;color:#fff;border:none;} .btn-danger:hover{background:#c0392b;}
-.btn-wa{background:#25D366;color:#fff;border:none;padding:5px 12px;font-size:.68rem;border-radius:6px;font-family:'Montserrat',sans-serif;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:4px;}
+.btn-wa{background:#25D366;color:#fff;border:none;padding:5px 12px;font-size:.68rem;border-radius:6px;font-family:'Poppins',sans-serif;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:4px;}
 
 /* ── Cards ── */
 .card{background:#fff;border-radius:16px;box-shadow:0 1px 4px rgba(0,0,0,.05),0 4px 16px rgba(0,0,0,.04);padding:22px 24px;}
 .stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:14px;margin-bottom:22px;}
 .stat-card{background:#fff;border-radius:16px;box-shadow:0 1px 4px rgba(0,0,0,.05),0 4px 16px rgba(0,0,0,.04);padding:20px 22px;border-top:3px solid var(--c,#1B4332);position:relative;overflow:hidden;}
 .stat-card::before{content:'';position:absolute;right:-10px;top:-10px;width:60px;height:60px;background:var(--c,#1B4332);opacity:.05;border-radius:50%;}
-.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:var(--c,#1B4332);line-height:1;}
+.stat-num{font-family:'Poppins',sans-serif;font-size:2.2rem;font-weight:700;color:var(--c,#1B4332);line-height:1;}
 .stat-label{font-size:.65rem;color:#999;text-transform:uppercase;letter-spacing:.08em;margin-top:5px;font-weight:600;}
 .stat-sub{font-size:.7rem;color:#bbb;margin-top:3px;}
 
@@ -278,17 +278,17 @@ tr:hover td{background:#fafffe;}
 
 /* ── Filters ── */
 .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;align-items:center;}
-.filter-bar input,.filter-bar select{padding:8px 12px;border:1.5px solid #e4e4e4;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.78rem;outline:none;background:#fff;color:#333;}
+.filter-bar input,.filter-bar select{padding:8px 12px;border:1.5px solid #e4e4e4;border-radius:8px;font-family:'Poppins',sans-serif;font-size:.78rem;outline:none;background:#fff;color:#333;}
 .filter-bar input:focus,.filter-bar select:focus{border-color:#1B4332;}
 
 /* ── Stock ── */
 .stock-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;}
 .stock-card{background:#fff;border-radius:16px;box-shadow:0 1px 4px rgba(0,0,0,.05);padding:22px;}
-.stock-prod-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;color:#1B4332;margin-bottom:2px;}
+.stock-prod-name{font-family:'Poppins',sans-serif;font-size:1.1rem;font-weight:700;color:#1B4332;margin-bottom:2px;}
 .stock-sku{font-size:.65rem;color:#aaa;margin-bottom:14px;font-weight:500;}
-.stock-num{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:700;color:#1B4332;line-height:1;}
+.stock-num{font-family:'Poppins',sans-serif;font-size:2.8rem;font-weight:700;color:#1B4332;line-height:1;}
 .stock-card label{display:block;font-size:.63rem;font-weight:700;text-transform:uppercase;color:#888;margin-bottom:5px;letter-spacing:.06em;}
-.stock-card input[type=number]{width:100%;padding:9px 12px;border:1.5px solid #e4e4e4;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:600;outline:none;margin-bottom:10px;color:#1B4332;}
+.stock-card input[type=number]{width:100%;padding:9px 12px;border:1.5px solid #e4e4e4;border-radius:8px;font-family:'Poppins',sans-serif;font-size:.88rem;font-weight:600;outline:none;margin-bottom:10px;color:#1B4332;}
 .stock-card input:focus{border-color:#1B4332;}
 .prog-bar{height:5px;background:#e8f0ea;border-radius:4px;overflow:hidden;margin:8px 0 14px;}
 .prog-fill{height:100%;border-radius:4px;background:var(--c,#1B4332);transition:.3s;}
@@ -298,16 +298,16 @@ tr:hover td{background:#fafffe;}
 .meta-ev-card{background:#fff;border-radius:14px;box-shadow:0 1px 4px rgba(0,0,0,.05);padding:20px;text-align:center;}
 .meta-ev-icon{font-size:1.6rem;margin-bottom:8px;}
 .meta-ev-label{font-size:.63rem;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px;}
-.meta-ev-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;}
+.meta-ev-num{font-family:'Poppins',sans-serif;font-size:2.2rem;font-weight:700;}
 
 /* ── Customer cards ── */
 .cust-card{background:#fff;border:1px solid #eaf2ec;border-radius:16px;margin-bottom:14px;overflow:hidden;}
 .cust-header{display:flex;align-items:center;gap:14px;padding:18px 20px;border-bottom:1px solid #f0f7f2;}
-.cust-avatar{width:48px;height:48px;background:#1B4332;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;flex-shrink:0;}
+.cust-avatar{width:48px;height:48px;background:#1B4332;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-size:1.4rem;font-weight:700;flex-shrink:0;}
 .cust-name{font-weight:700;font-size:.95rem;color:#1B4332;}
 .cust-meta{font-size:.73rem;color:#888;margin-top:2px;}
 .cust-right{margin-left:auto;text-align:right;flex-shrink:0;}
-.cust-total{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:#B8860B;}
+.cust-total{font-family:'Poppins',sans-serif;font-size:1.5rem;font-weight:700;color:#B8860B;}
 .cust-total-label{font-size:.63rem;color:#aaa;text-transform:uppercase;letter-spacing:.06em;}
 .cust-orders-table{padding:0 20px 16px;}
 .cust-orders-table table{margin-top:12px;}
@@ -334,7 +334,7 @@ tr:hover td{background:#fafffe;}
   .two-col{grid-template-columns:1fr;}
 }
 
-select.status-sel{padding:5px 9px;border:1px solid #ddd;border-radius:6px;font-size:.73rem;font-family:'Montserrat',sans-serif;outline:none;}
+select.status-sel{padding:5px 9px;border:1px solid #ddd;border-radius:6px;font-size:.73rem;font-family:'Poppins',sans-serif;outline:none;}
 select.status-sel:focus{border-color:#1B4332;}
 </style>
 </head>
@@ -543,7 +543,7 @@ select.status-sel:focus{border-color:#1B4332;}
       <form method="post" style="display:flex;gap:4px;min-width:140px;">
         <input type="hidden" name="action" value="update_note">
         <input type="hidden" name="id" value="<?= clean($o['id']??'') ?>">
-        <input type="text" name="note" value="<?= clean($o['admin_note']??'') ?>" placeholder="Note..." style="flex:1;min-width:0;padding:5px 8px;border:1px solid #e4e4e4;border-radius:6px;font-size:.72rem;font-family:'Montserrat',sans-serif;outline:none;">
+        <input type="text" name="note" value="<?= clean($o['admin_note']??'') ?>" placeholder="Note..." style="flex:1;min-width:0;padding:5px 8px;border:1px solid #e4e4e4;border-radius:6px;font-size:.72rem;font-family:'Poppins',sans-serif;outline:none;">
         <button type="submit" class="btn btn-primary btn-sm">✓</button>
       </form>
     </td>
@@ -722,7 +722,7 @@ $evIcons  = ['Purchase'=>'💳','ViewContent'=>'👁','AddToCart'=>'🛒','Initi
         <div style="font-size:.82rem;font-weight:600;"><?= $evIcons[$ev]??'' ?> <?= $label ?></div>
         <div style="font-size:.68rem;color:#aaa;"><?= $rate ?>% conversion rate</div>
       </div>
-      <div style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:700;color:#1B4332;"><?= number_format($count) ?></div>
+      <div style="font-family:'Poppins',sans-serif;font-size:1.7rem;font-weight:700;color:#1B4332;"><?= number_format($count) ?></div>
     </div>
     <?php endforeach; ?>
   </div>
@@ -779,3 +779,4 @@ $evIcons  = ['Purchase'=>'💳','ViewContent'=>'👁','AddToCart'=>'🛒','Initi
 
 </div><!-- /main -->
 </body></html>
+
