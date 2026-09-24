@@ -39,7 +39,3 @@ ErrorDocument 404 /404.html
     Order Allow,Deny
     Deny from all
 </Files>
-<Files "clear-orders-temp.php">
-    Order Allow,Deny
-    Deny from all
-</Files>
