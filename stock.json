@@ -1,0 +1,6 @@
+{
+  "golden-oil":     { "name": "Golden Hair Oil",     "price": 1500, "stock": 50, "sku": "NOE-GO-01" },
+  "black-rose-oil": { "name": "Black Rose Hair Oil",  "price": 1500, "stock": 30, "sku": "NOE-BR-02" },
+  "herbal-shampoo": { "name": "Herbal Shampoo",       "price": 1000, "stock": 45, "sku": "NOE-HS-03" },
+  "bundle-kit":     { "name": "3-in-1 Complete Kit",  "price": 3250, "stock": 20, "sku": "NOE-BK-04" }
+}
