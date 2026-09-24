@@ -1,4 +1,5 @@
 .vercel
 config.php
 orders-data.json
+abandoned-forms.json
 .login_attempts.json

@@ -110,6 +110,30 @@ if ($_POST['action'] ?? '' === 'update_note') {
     writeJson(__DIR__ . '/orders-data.json', $orders);
     header('Location: admin-dashboard.php?p=orders'); exit;
 }
+if ($_POST['action'] ?? '' === 'update_tracking') {
+    $id  = $_POST['id'] ?? '';
+    $trk = clean($_POST['tracking'] ?? '');
+    foreach ($orders as &$o) {
+        if ($o['id'] === $id) {
+            $o['tracking'] = $trk;
+            $o['timeline'][] = ['status'=>'tracking','time'=>date('d M Y, h:i A'),'note'=>'Tracking: '.$trk];
+            break;
+        }
+    }
+    unset($o);
+    writeJson(__DIR__ . '/orders-data.json', $orders);
+    header('Location: admin-dashboard.php?p=orders'); exit;
+}
+if ($_POST['action'] ?? '' === 'update_abandoned_status') {
+    $id = $_POST['id'] ?? '';
+    $st = $_POST['status'] ?? 'new';
+    $file = __DIR__ . '/abandoned-forms.json';
+    $list = readJson($file);
+    foreach ($list as &$a) { if (($a['id']??'') === $id) { $a['status'] = $st; break; } }
+    unset($a);
+    writeJson($file, $list);
+    header('Location: admin-dashboard.php?p=abandoned'); exit;
+}
 if ($_POST['action'] ?? '' === 'bulk_status') {
     $ids = $_POST['ids'] ?? [];
     $st  = $_POST['bulk_st'] ?? 'pending';
@@ -210,6 +234,8 @@ function fetchMetaStats($token, $pixel_id) {
 $stats     = orderStats($orders);
 $prodSales = productSales($orders);
 $customers = getCustomers($orders);
+$abandoned = readJson(__DIR__ . '/abandoned-forms.json');
+$newAbandoned = count(array_filter($abandoned, fn($a) => ($a['status']??'new') === 'new'));
 
 // Revenue chart: last 14 days
 $chartDays = []; $chartRev = [];
@@ -285,6 +311,8 @@ $nav = [
     'dashboard' => ['icon'=>'📊','label'=>'Dashboard'],
     'orders'    => ['icon'=>'📦','label'=>'Orders'],
     'customers' => ['icon'=>'👥','label'=>'Customers'],
+    'abandoned' => ['icon'=>'🔔','label'=>'Abandoned'],
+    'cities'    => ['icon'=>'📍','label'=>'Cities'],
     'stock'     => ['icon'=>'🏪','label'=>'Stock'],
     'meta'      => ['icon'=>'📈','label'=>'Meta Ads'],
     'settings'  => ['icon'=>'⚙️','label'=>'Settings'],
@@ -434,6 +462,8 @@ select.status-sel:focus{border-color:#1B4332;}
     <span><?= $item['label'] ?></span>
     <?php if ($key==='orders' && ($stats['pending']??0) > 0): ?>
       <span class="badge-pill"><?= $stats['pending'] ?></span>
+    <?php elseif ($key==='abandoned' && $newAbandoned > 0): ?>
+      <span class="badge-pill"><?= $newAbandoned ?></span>
     <?php endif; ?>
   </a>
   <?php endforeach; ?>
@@ -645,7 +675,7 @@ new Chart(document.getElementById('revenueChart'), {
 <table>
   <thead><tr>
     <th><input type="checkbox" id="selectAll" onchange="toggleAll(this)" style="cursor:pointer;"></th>
-    <th>Order ID</th><th>Date</th><th>Name</th><th>Phone</th><th>City</th><th>Address</th><th>Product</th><th>Price</th><th>Page</th><th>Status</th><th>Note</th><th>WhatsApp</th>
+    <th>Order ID</th><th>Date</th><th>Name</th><th>Phone</th><th>City</th><th>Address</th><th>Product</th><th>Price</th><th>Page</th><th>Tracking</th><th>Status</th><th>Note</th><th>WhatsApp</th>
   </tr></thead>
   <tbody>
   <?php foreach ($filtered as $i => $o):
@@ -658,7 +688,10 @@ new Chart(document.getElementById('revenueChart'), {
   ?>
   <tr>
     <td><input type="checkbox" class="order-chk" value="<?= clean($o['id']??'') ?>" onchange="updateBulk()" style="cursor:pointer;"></td>
-    <td><strong style="font-size:.73rem;"><?= clean($o['id']??'') ?></strong></td>
+    <td>
+      <strong style="font-size:.73rem;"><?= clean($o['id']??'') ?></strong>
+      <?php if (!empty($o['duplicate'])): ?><br><span class="badge" style="background:#fff3cd;color:#856404;font-size:.58rem;">⚠️ DUPLICATE</span><?php endif; ?>
+    </td>
     <td style="font-size:.68rem;color:#aaa;white-space:nowrap;"><?= clean($o['date']??'') ?></td>
     <td><strong><?= $name ?></strong></td>
     <td style="color:#1B4332;font-size:.78rem;white-space:nowrap;">📞 <?= clean($o['phone']??'') ?></td>
@@ -667,6 +700,18 @@ new Chart(document.getElementById('revenueChart'), {
     <td style="font-size:.8rem;font-weight:600;"><?= $prod ?></td>
     <td><strong>Rs <?= number_format($price) ?></strong></td>
     <td style="font-size:.68rem;color:#888;white-space:nowrap;"><?= pageLabel($o['source_page']??'') ?></td>
+    <td>
+      <form method="post" style="display:flex;gap:4px;min-width:130px;">
+        <input type="hidden" name="action" value="update_tracking">
+        <input type="hidden" name="id" value="<?= clean($o['id']??'') ?>">
+        <input type="text" name="tracking" value="<?= clean($o['tracking']??'') ?>" placeholder="TRK#..." style="flex:1;min-width:0;padding:5px 8px;border:1px solid #e4e4e4;border-radius:6px;font-size:.72rem;font-family:'Poppins',sans-serif;outline:none;">
+        <button type="submit" class="btn btn-primary btn-sm" title="Save tracking">✓</button>
+      </form>
+      <?php if (!empty($o['tracking']) && $wa): ?>
+        <?php $trkMsg = urlencode("Assalam o Alaikum $name! 🚚 Aapka order track karein:\nTracking: ".$o['tracking']."\n— Nasir Oil Expert"); ?>
+        <a href="https://wa.me/<?= $wa ?>?text=<?= $trkMsg ?>" target="_blank" class="btn-wa" style="font-size:.65rem;margin-top:4px;display:inline-flex;">📲 Send</a>
+      <?php endif; ?>
+    </td>
     <td>
       <form method="post" style="display:inline;">
         <input type="hidden" name="action" value="update_status">
@@ -697,7 +742,7 @@ new Chart(document.getElementById('revenueChart'), {
     </td>
   </tr>
   <?php endforeach; ?>
-  <?php if (empty($filtered)): ?><tr><td colspan="13" style="text-align:center;color:#ccc;padding:40px;">No orders found.</td></tr><?php endif; ?>
+  <?php if (empty($filtered)): ?><tr><td colspan="14" style="text-align:center;color:#ccc;padding:40px;">No orders found.</td></tr><?php endif; ?>
   </tbody>
 </table>
 </div>
@@ -767,6 +812,139 @@ new Chart(document.getElementById('revenueChart'), {
   </div>
 </div>
 <?php endforeach; endif; ?>
+
+<?php /* ══════ ABANDONED FORMS ══════ */ elseif ($page === 'abandoned'): ?>
+<div class="page-header">
+  <div>
+    <div class="page-title">Abandoned Forms</div>
+    <div class="page-sub"><?= count($abandoned) ?> captured · <?= $newAbandoned ?> new</div>
+  </div>
+</div>
+
+<?php if (empty($abandoned)): ?>
+<div class="card"><p style="text-align:center;color:#ccc;padding:40px;">No abandoned forms yet. Forms with partial data after 30s inactivity will appear here.</p></div>
+<?php else: ?>
+<div class="card">
+<div class="table-wrap">
+<table>
+  <thead><tr>
+    <th>ID</th><th>Date</th><th>Name</th><th>Phone</th><th>Product</th><th>Page</th><th>Status</th><th>Action</th>
+  </tr></thead>
+  <tbody>
+  <?php foreach ($abandoned as $a):
+    $wa = waNumber($a['phone']??'');
+    $aName = clean($a['name']??'');
+    $aProd = clean($a['product']??'');
+    $waMsgAban = $wa ? 'https://wa.me/'.$wa.'?text='.urlencode("Assalam o Alaikum $aName! 👋 Aap Nasir Oil Expert sy ".($aProd?:"hair oil")." order karna chahte they?\nAaj special offer hai — abhi order karein:\nnasiroilexpert.com\n— Nasir Oil Expert") : '';
+    $stColor = ['new'=>'#e74c3c','contacted'=>'#e67e22','converted'=>'#27ae60','ignore'=>'#aaa'];
+  ?>
+  <tr style="<?= ($a['status']??'new')==='new' ? 'background:#fffdf0;' : '' ?>">
+    <td><strong style="font-size:.73rem;"><?= clean($a['id']??'') ?></strong></td>
+    <td style="font-size:.68rem;color:#aaa;white-space:nowrap;"><?= clean($a['date']??'') ?></td>
+    <td><strong><?= $aName ?: '<span style="color:#ccc;">—</span>' ?></strong></td>
+    <td style="color:#1B4332;font-size:.78rem;white-space:nowrap;"><?php if ($a['phone']??''): ?>📞 <?= clean($a['phone']) ?><?php else: ?><span style="color:#ccc;">—</span><?php endif; ?></td>
+    <td style="font-size:.8rem;"><?= $aProd ?: '<span style="color:#ccc;">Unknown</span>' ?></td>
+    <td style="font-size:.68rem;color:#888;"><?= pageLabel($a['page']??'') ?></td>
+    <td>
+      <span class="badge" style="background:<?= $stColor[$a['status']??'new']??'#aaa' ?>20;color:<?= $stColor[$a['status']??'new']??'#aaa' ?>;border:1px solid <?= $stColor[$a['status']??'new']??'#aaa' ?>40;">
+        <?= ucfirst($a['status']??'new') ?>
+      </span>
+    </td>
+    <td>
+      <div style="display:flex;flex-direction:column;gap:4px;">
+        <form method="post" style="display:flex;gap:4px;">
+          <input type="hidden" name="action" value="update_abandoned_status">
+          <input type="hidden" name="id" value="<?= clean($a['id']??'') ?>">
+          <select name="status" class="status-sel" onchange="this.form.submit()" style="font-size:.68rem;">
+            <option value="new"       <?= ($a['status']??'new')==='new'?'selected':'' ?>>🔴 New</option>
+            <option value="contacted" <?= ($a['status']??'')==='contacted'?'selected':'' ?>>🟠 Contacted</option>
+            <option value="converted" <?= ($a['status']??'')==='converted'?'selected':'' ?>>🟢 Converted</option>
+            <option value="ignore"    <?= ($a['status']??'')==='ignore'?'selected':'' ?>>⚫ Ignore</option>
+          </select>
+        </form>
+        <?php if ($waMsgAban): ?>
+        <a href="<?= $waMsgAban ?>" target="_blank" class="btn-wa" style="font-size:.65rem;">📲 Follow Up</a>
+        <?php endif; ?>
+      </div>
+    </td>
+  </tr>
+  <?php endforeach; ?>
+  </tbody>
+</table>
+</div>
+</div>
+<?php endif; ?>
+
+<?php /* ══════ CITIES ══════ */ elseif ($page === 'cities'):
+  $cityMap = [];
+  foreach ($orders as $o) {
+    $c = trim($o['city'] ?? '');
+    if (!$c) { $c = 'Unknown'; }
+    if (!isset($cityMap[$c])) $cityMap[$c] = ['orders'=>0,'revenue'=>0,'pending'=>0,'done'=>0,'cancelled'=>0,'products'=>[]];
+    $cityMap[$c]['orders']++;
+    $cityMap[$c]['revenue'] += (float)($o['price'] ?? 0);
+    $st = $o['status'] ?? 'pending';
+    $cityMap[$c][$st] = ($cityMap[$c][$st] ?? 0) + 1;
+    $prod = $o['product'] ?? '';
+    if ($prod) $cityMap[$c]['products'][$prod] = ($cityMap[$c]['products'][$prod] ?? 0) + 1;
+  }
+  uasort($cityMap, fn($a,$b) => $b['orders'] - $a['orders']);
+  $totalCityOrders = array_sum(array_column($cityMap, 'orders'));
+?>
+<div class="page-header">
+  <div>
+    <div class="page-title">City Report</div>
+    <div class="page-sub"><?= count($cityMap) ?> cities · <?= $totalCityOrders ?> total orders</div>
+  </div>
+</div>
+
+<?php if (empty($cityMap)): ?>
+<div class="card"><p style="text-align:center;color:#ccc;padding:40px;">No city data yet.</p></div>
+<?php else: ?>
+
+<div class="stat-grid" style="margin-bottom:18px;">
+<?php $topCities = array_slice($cityMap, 0, 4, true); foreach ($topCities as $cityName => $cd): ?>
+<div class="stat-card" style="--c:#1B4332">
+  <div class="stat-num" style="font-size:1.6rem;"><?= $cd['orders'] ?></div>
+  <div class="stat-label">📍 <?= clean($cityName) ?></div>
+  <div class="stat-sub">Rs <?= number_format($cd['revenue']) ?></div>
+</div>
+<?php endforeach; ?>
+</div>
+
+<div class="card">
+<div class="table-wrap">
+<table>
+  <thead><tr>
+    <th>City</th><th>Orders</th><th>Revenue</th><th>Pending</th><th>Done</th><th>Cancelled</th><th>Top Product</th><th>Share %</th>
+  </tr></thead>
+  <tbody>
+  <?php foreach ($cityMap as $cityName => $cd):
+    arsort($cd['products']);
+    $topProd = array_key_first($cd['products']) ?? '—';
+    $share = $totalCityOrders > 0 ? round($cd['orders']/$totalCityOrders*100) : 0;
+  ?>
+  <tr>
+    <td><strong>📍 <?= clean($cityName) ?></strong></td>
+    <td><strong><?= $cd['orders'] ?></strong></td>
+    <td><strong style="color:#B8860B;">Rs <?= number_format($cd['revenue']) ?></strong></td>
+    <td><span class="badge badge-pending"><?= $cd['pending'] ?></span></td>
+    <td><span class="badge badge-done"><?= $cd['done'] ?></span></td>
+    <td><span class="badge badge-cancelled"><?= $cd['cancelled'] ?></span></td>
+    <td style="font-size:.75rem;"><?= clean($topProd) ?></td>
+    <td>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div class="prog-bar" style="flex:1;margin:0;"><div class="prog-fill" style="width:<?= $share ?>%;--c:#1B4332;"></div></div>
+        <span style="font-size:.72rem;color:#888;min-width:28px;"><?= $share ?>%</span>
+      </div>
+    </td>
+  </tr>
+  <?php endforeach; ?>
+  </tbody>
+</table>
+</div>
+</div>
+<?php endif; ?>
 
 <?php /* ══════ STOCK ══════ */ elseif ($page === 'stock'): ?>
 <div class="page-header">
