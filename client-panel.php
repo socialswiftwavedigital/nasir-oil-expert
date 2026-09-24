@@ -119,47 +119,76 @@ button:hover{background:#3498db;}
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Client View — Nasir Oil Expert</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Business Dashboard — Nasir Oil Expert</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Poppins',sans-serif;background:#eef2ef;color:#1a1a1a;min-height:100vh;}
+body{font-family:'Poppins',sans-serif;background:#f0f4f8;color:#1a1a1a;min-height:100vh;}
 
-/* Top nav */
-.topnav{background:#2c3e50;color:#fff;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100;}
-.topnav-brand{display:flex;align-items:center;gap:10px;}
-.topnav-brand img{width:32px;height:32px;object-fit:contain;border-radius:8px;}
-.topnav-brand span{font-size:.88rem;font-weight:700;}
-.topnav-badge{background:#e74c3c;color:#fff;font-size:.62rem;font-weight:700;padding:2px 8px;border-radius:20px;margin-left:8px;}
+/* ── Top nav ── */
+.topnav{background:#1a2535;color:#fff;padding:0 28px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.2);}
+.topnav-brand{display:flex;align-items:center;gap:12px;}
+.topnav-brand img{width:36px;height:36px;object-fit:contain;border-radius:10px;border:2px solid rgba(255,255,255,.15);}
+.topnav-brand-text{display:flex;flex-direction:column;}
+.topnav-brand-text strong{font-size:.9rem;font-weight:700;line-height:1.2;}
+.topnav-brand-text span{font-size:.6rem;color:rgba(255,255,255,.45);font-weight:500;letter-spacing:.05em;text-transform:uppercase;}
 .topnav-right{display:flex;align-items:center;gap:14px;font-size:.75rem;}
-.topnav-right a{color:rgba(255,255,255,.6);text-decoration:none;} .topnav-right a:hover{color:#fff;}
-.readonly-badge{background:rgba(52,152,219,.25);color:#74b9ff;border:1px solid rgba(52,152,219,.3);padding:3px 10px;border-radius:20px;font-size:.65rem;font-weight:700;}
+.topnav-right a{color:rgba(255,255,255,.5);text-decoration:none;font-weight:500;transition:.15s;} .topnav-right a:hover{color:#fff;}
+.readonly-badge{background:rgba(52,152,219,.2);color:#74b9ff;border:1px solid rgba(52,152,219,.35);padding:4px 12px;border-radius:20px;font-size:.63rem;font-weight:700;letter-spacing:.05em;}
+.nav-time{color:rgba(255,255,255,.45);font-size:.73rem;}
 
-.main{padding:24px;}
+/* ── Hero banner ── */
+.hero{background:linear-gradient(135deg,#1a2535 0%,#2c3e50 60%,#1a3a52 100%);color:#fff;padding:28px 30px 24px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;right:-40px;top:-40px;width:220px;height:220px;background:rgba(52,152,219,.1);border-radius:50%;}
+.hero::after{content:'';position:absolute;right:60px;bottom:-60px;width:140px;height:140px;background:rgba(52,152,219,.07);border-radius:50%;}
+.hero-inner{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.hero-left h1{font-size:1.55rem;font-weight:800;line-height:1.2;margin-bottom:6px;}
+.hero-left h1 span{color:#74b9ff;}
+.hero-left p{font-size:.78rem;color:rgba(255,255,255,.55);max-width:420px;line-height:1.6;}
+.hero-chips{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+.hero-chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);padding:5px 14px;border-radius:20px;font-size:.65rem;font-weight:600;display:flex;align-items:center;gap:5px;}
+.hero-right{text-align:right;flex-shrink:0;}
+.hero-date{font-size:.72rem;color:rgba(255,255,255,.4);margin-bottom:4px;}
+.hero-pending{display:inline-flex;align-items:center;gap:6px;background:rgba(231,76,60,.2);border:1px solid rgba(231,76,60,.35);color:#ff9a8b;padding:7px 16px;border-radius:10px;font-size:.78rem;font-weight:700;}
 
-/* Stat cards */
-.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;margin-bottom:22px;}
-.stat-card{background:#fff;border-radius:14px;box-shadow:0 1px 4px rgba(0,0,0,.05);padding:18px 20px;border-top:3px solid var(--c,#2c3e50);}
-.stat-num{font-size:2rem;font-weight:700;color:var(--c,#2c3e50);line-height:1;}
-.stat-label{font-size:.62rem;color:#999;text-transform:uppercase;letter-spacing:.08em;margin-top:5px;font-weight:600;}
+/* ── Main content ── */
+.main{padding:24px 28px;max-width:1400px;}
+
+/* ── Section header ── */
+.section-hd{margin-bottom:16px;margin-top:28px;}
+.section-hd:first-of-type{margin-top:0;}
+.section-hd h2{font-size:1rem;font-weight:700;color:#1a2535;margin-bottom:3px;}
+.section-hd p{font-size:.72rem;color:#999;}
+.section-divider{height:1px;background:linear-gradient(to right,#dde3ec,transparent);margin-bottom:16px;}
+
+/* ── Stat cards ── */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px;margin-bottom:8px;}
+.stat-card{background:#fff;border-radius:16px;box-shadow:0 1px 3px rgba(0,0,0,.06),0 4px 14px rgba(0,0,0,.04);padding:20px 22px;border-top:3px solid var(--c,#2c3e50);position:relative;overflow:hidden;}
+.stat-card::after{content:'';position:absolute;right:-8px;top:-8px;width:52px;height:52px;background:var(--c,#2c3e50);opacity:.05;border-radius:50%;}
+.stat-num{font-size:2rem;font-weight:800;color:var(--c,#2c3e50);line-height:1;}
+.stat-label{font-size:.63rem;color:#aaa;text-transform:uppercase;letter-spacing:.08em;margin-top:5px;font-weight:600;}
 .stat-sub{font-size:.68rem;color:#bbb;margin-top:3px;}
 
-/* Cards */
-.card{background:#fff;border-radius:14px;box-shadow:0 1px 4px rgba(0,0,0,.05);padding:20px 22px;margin-bottom:16px;}
-.section-title{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#999;margin:0 0 14px;}
+/* ── Cards ── */
+.card{background:#fff;border-radius:16px;box-shadow:0 1px 3px rgba(0,0,0,.06),0 4px 14px rgba(0,0,0,.04);padding:22px 24px;margin-bottom:16px;}
+.card-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px;}
+.card-hd-left h3{font-size:.9rem;font-weight:700;color:#1a2535;}
+.card-hd-left p{font-size:.7rem;color:#aaa;margin-top:2px;}
+.card-hd-right{font-size:.73rem;color:#aaa;}
 
-/* Two col */
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
+/* ── Two col ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:0;}
+@media(max-width:768px){.two-col{grid-template-columns:1fr;}.main{padding:14px 16px;}.hero{padding:20px 16px;}.topnav{padding:0 16px;}}
 
-/* Table */
+/* ── Table ── */
 .table-wrap{overflow-x:auto;}
 table{width:100%;border-collapse:collapse;}
-th{background:#f4f8f5;color:#2c3e50;padding:9px 12px;font-size:.62rem;text-transform:uppercase;letter-spacing:.07em;text-align:left;font-weight:700;border-bottom:2px solid #e2ede5;white-space:nowrap;}
-td{padding:10px 12px;font-size:.79rem;border-bottom:1px solid #f5f5f5;vertical-align:middle;}
+th{background:#f6f8fb;color:#2c3e50;padding:10px 14px;font-size:.62rem;text-transform:uppercase;letter-spacing:.07em;text-align:left;font-weight:700;border-bottom:2px solid #e8ecf1;white-space:nowrap;}
+td{padding:11px 14px;font-size:.79rem;border-bottom:1px solid #f4f6f9;vertical-align:middle;}
 tr:last-child td{border-bottom:none;}
-tr:hover td{background:#fafffe;}
+tr:hover td{background:#fafbfd;}
 
-/* Badge */
+/* ── Badges ── */
 .badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.6rem;font-weight:700;text-transform:uppercase;}
 .badge-pending{background:#fff3cd;color:#856404;}
 .badge-done{background:#d4edda;color:#155724;}
@@ -167,58 +196,93 @@ tr:hover td{background:#fafffe;}
 .badge-ok-stock{background:#e8f5e9;color:#2e7d32;}
 .badge-low{background:#ffe0e0;color:#c0392b;}
 
-/* Meta cards */
-.meta-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:16px;}
-.meta-card{background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.05);padding:16px;text-align:center;}
-.meta-icon{font-size:1.4rem;margin-bottom:6px;}
-.meta-label{font-size:.6rem;font-weight:700;color:#aaa;text-transform:uppercase;margin-bottom:4px;}
-.meta-num{font-size:1.8rem;font-weight:700;}
+/* ── Meta cards ── */
+.meta-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;}
+.meta-card{background:#f6f8fb;border:1px solid #eaecf2;border-radius:14px;padding:18px 16px;text-align:center;}
+.meta-icon{font-size:1.6rem;margin-bottom:8px;}
+.meta-label{font-size:.62rem;font-weight:700;color:#aaa;text-transform:uppercase;margin-bottom:6px;letter-spacing:.06em;}
+.meta-num{font-size:2rem;font-weight:800;}
 
-/* Prog bar */
-.prog-bar{height:5px;background:#e8f0ea;border-radius:4px;overflow:hidden;margin:6px 0;}
+/* ── Progress bar ── */
+.prog-bar{height:6px;background:#edf0f5;border-radius:4px;overflow:hidden;margin:6px 0;}
 .prog-fill{height:100%;border-radius:4px;background:var(--c,#2c3e50);}
 
-@media(max-width:768px){.two-col{grid-template-columns:1fr;}.main{padding:14px;}}
+/* ── Info note ── */
+.info-note{background:#eef4ff;border:1px solid #c7daf5;border-radius:10px;padding:12px 16px;font-size:.75rem;color:#2c5282;margin-bottom:20px;display:flex;align-items:center;gap:8px;line-height:1.5;}
 </style>
 </head>
 <body>
 
+<!-- Top Navigation -->
 <div class="topnav">
   <div class="topnav-brand">
-    <img src="images/logo.png" alt="Logo">
-    <span>Nasir Oil Expert</span>
-    <span class="topnav-badge"><?= $stats['pending'] ?> pending</span>
+    <img src="images/logo.png" alt="Nasir Oil Expert">
+    <div class="topnav-brand-text">
+      <strong>Nasir Oil Expert</strong>
+      <span>Business Dashboard</span>
+    </div>
   </div>
   <div class="topnav-right">
-    <span class="readonly-badge">READ ONLY</span>
-    <span><?= date('d M, h:i A') ?></span>
-    <a href="?logout=1">Logout</a>
+    <span class="readonly-badge">👁 READ ONLY</span>
+    <span class="nav-time"><?= date('d M Y, h:i A') ?></span>
+    <a href="?logout=1">Logout →</a>
+  </div>
+</div>
+
+<!-- Hero Banner -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <h1>Business Performance <span>Dashboard</span></h1>
+      <p>Ye dashboard aapko Nasir Oil Expert ka complete business overview deta hai — orders, revenue, Meta ads traffic, aur stock levels sab ek jagah.</p>
+      <div class="hero-chips">
+        <span class="hero-chip">📦 Orders Overview</span>
+        <span class="hero-chip">💰 Revenue Tracking</span>
+        <span class="hero-chip">📈 Meta Ads Traffic</span>
+        <span class="hero-chip">🏪 Stock Levels</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-date"><?= date('l, d F Y') ?></div>
+      <?php if ($stats['pending'] > 0): ?>
+      <div class="hero-pending">🔴 <?= $stats['pending'] ?> Order<?= $stats['pending']>1?'s':'' ?> Pending</div>
+      <?php else: ?>
+      <div class="hero-pending" style="background:rgba(39,174,96,.15);border-color:rgba(39,174,96,.3);color:#6fcf97;">✅ Sab Orders Clear</div>
+      <?php endif; ?>
+    </div>
   </div>
 </div>
 
 <div class="main">
 
-<!-- Stat Cards -->
+<div class="info-note">ℹ️ <span>Ye <strong>read-only view</strong> hai. Orders manage karne ya settings change karne ke liye admin se rabta karein. Data automatically update hota hai jab naye orders aate hain.</span></div>
+
+<!-- Section 1: Orders Summary -->
+<div class="section-hd">
+  <h2>📦 Orders Summary</h2>
+  <p>Total orders, status breakdown, aur aaj ke orders</p>
+</div>
+<div class="section-divider"></div>
 <div class="stat-grid">
-  <div class="stat-card" style="--c:#2c3e50">
+  <div class="stat-card" style="--c:#1a2535">
     <div class="stat-num"><?= $stats['total'] ?></div>
     <div class="stat-label">Total Orders</div>
-    <div class="stat-sub">+<?= $stats['today'] ?> today</div>
+    <div class="stat-sub">+<?= $stats['today'] ?> aaj</div>
   </div>
   <div class="stat-card" style="--c:#e67e22">
     <div class="stat-num"><?= $stats['pending'] ?></div>
     <div class="stat-label">Pending</div>
-    <div class="stat-sub">Processing needed</div>
+    <div class="stat-sub">Process baki hai</div>
   </div>
   <div class="stat-card" style="--c:#27ae60">
     <div class="stat-num"><?= $stats['done'] ?></div>
     <div class="stat-label">Delivered</div>
-    <div class="stat-sub">Completed</div>
+    <div class="stat-sub">Successfully complete</div>
   </div>
   <div class="stat-card" style="--c:#B8860B">
-    <div class="stat-num" style="font-size:1.4rem;">Rs <?= number_format($stats['revenue']) ?></div>
+    <div class="stat-num" style="font-size:1.3rem;">Rs <?= number_format($stats['revenue']) ?></div>
     <div class="stat-label">Total Revenue</div>
-    <div class="stat-sub">Rs <?= number_format($stats['week_rev']) ?> this week</div>
+    <div class="stat-sub">Rs <?= number_format($stats['week_rev']) ?> is hafte</div>
   </div>
   <div class="stat-card" style="--c:#8e44ad">
     <div class="stat-num"><?= $stats['customers'] ?></div>
@@ -227,101 +291,164 @@ tr:hover td{background:#fafffe;}
   </div>
 </div>
 
-<!-- Revenue Chart -->
+<!-- Section 2: Revenue Chart -->
+<div class="section-hd" style="margin-top:28px;">
+  <h2>💰 Revenue Chart</h2>
+  <p>Pichle 14 din ki daily revenue — trend dekhein</p>
+</div>
+<div class="section-divider"></div>
 <div class="card">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
-    <div class="section-title" style="margin:0;">Revenue — Last 14 Days</div>
-    <span style="font-size:.7rem;color:#aaa;">Rs <?= number_format(array_sum($chartRev)) ?> total</span>
+  <div class="card-hd">
+    <div class="card-hd-left">
+      <h3>Daily Revenue — Last 14 Days</h3>
+      <p>Har din kitna revenue generate hua</p>
+    </div>
+    <div class="card-hd-right">Total: <strong>Rs <?= number_format(array_sum($chartRev)) ?></strong></div>
   </div>
-  <canvas id="revChart" height="75"></canvas>
+  <canvas id="revChart" height="70"></canvas>
 </div>
 
-<!-- Meta Traffic -->
-<?php if ($metaStats): ?>
-<div class="card">
-  <div class="section-title">Meta Pixel Traffic — Last 30 Days</div>
-  <div class="meta-grid">
-    <?php
-    $evI = ['Purchase'=>['💳','#B8860B'],'ViewContent'=>['👁','#2c3e50'],'AddToCart'=>['🛒','#27ae60'],'Contact'=>['📲','#25D366']];
-    foreach ($metaStats as $ev => $cnt): if (!isset($evI[$ev])) continue; ?>
-    <div class="meta-card">
-      <div class="meta-icon"><?= $evI[$ev][0] ?></div>
-      <div class="meta-label"><?= $ev ?></div>
-      <div class="meta-num" style="color:<?= $evI[$ev][1] ?>;"><?= number_format($cnt) ?></div>
-    </div>
-    <?php endforeach; ?>
-  </div>
-  <?php
+<!-- Section 3: Meta Ads -->
+<div class="section-hd" style="margin-top:28px;">
+  <h2>📈 Meta Ads Performance</h2>
+  <p>Facebook/Instagram pixel data — pichle 30 din ki audience activity</p>
+</div>
+<div class="section-divider"></div>
+<?php if ($metaStats):
+  $evI = ['Purchase'=>['💳','#B8860B','Purchases'],'ViewContent'=>['👁','#1a2535','Product Views'],'AddToCart'=>['🛒','#27ae60','Add to Cart'],'Contact'=>['📲','#25D366','Contacts']];
   $vc = $metaStats['ViewContent'] ?? 0;
   $ac = $metaStats['AddToCart']   ?? 0;
   $pu = $metaStats['Purchase']    ?? 0;
   $cvr = $vc > 0 ? round($pu/$vc*100,1) : 0;
-  ?>
-  <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:4px;">
-    <div style="font-size:.78rem;color:#555;">Conversion Rate: <strong style="color:#B8860B;"><?= $cvr ?>%</strong> (views → purchases)</div>
-    <div style="font-size:.78rem;color:#555;">Cart Rate: <strong style="color:#27ae60;"><?= $vc > 0 ? round($ac/$vc*100,1) : 0 ?>%</strong></div>
+?>
+<div class="card">
+  <div class="card-hd">
+    <div class="card-hd-left">
+      <h3>Pixel Events Breakdown</h3>
+      <p>Kitne log aaye, dekha, cart mein daala aur kharida</p>
+    </div>
+    <div class="card-hd-right" style="text-align:right;">
+      Conversion: <strong style="color:#B8860B;"><?= $cvr ?>%</strong> &nbsp;|&nbsp;
+      Cart Rate: <strong style="color:#27ae60;"><?= $vc > 0 ? round($ac/$vc*100,1) : 0 ?>%</strong>
+    </div>
   </div>
+  <div class="meta-grid">
+    <?php foreach ($evI as $ev => [$icon,$color,$label]): $cnt = $metaStats[$ev] ?? 0; ?>
+    <div class="meta-card">
+      <div class="meta-icon"><?= $icon ?></div>
+      <div class="meta-label"><?= $label ?></div>
+      <div class="meta-num" style="color:<?= $color ?>;"><?= number_format($cnt) ?></div>
+    </div>
+    <?php endforeach; ?>
+  </div>
+  <?php if ($vc > 0): ?>
+  <div style="margin-top:16px;padding-top:16px;border-top:1px solid #f0f2f5;">
+    <div style="font-size:.72rem;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;">Conversion Funnel</div>
+    <?php $funnel = ['ViewContent'=>['Product Views',$vc],'AddToCart'=>['Add to Cart',$ac],'Purchase'=>['Purchases',$pu]]; $prev=null;
+    foreach ($funnel as [$flbl,$fval]):
+      $fpct = $vc > 0 ? round($fval/$vc*100) : 0; ?>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+      <div style="font-size:.78rem;font-weight:600;min-width:110px;color:#555;"><?= $flbl ?></div>
+      <div class="prog-bar" style="flex:1;margin:0;"><div class="prog-fill" style="width:<?= $fpct ?>%;--c:#1a2535;"></div></div>
+      <div style="font-size:.78rem;color:#888;min-width:60px;text-align:right;"><?= number_format($fval) ?> (<?= $fpct ?>%)</div>
+    </div>
+    <?php endforeach; ?>
+  </div>
+  <?php endif; ?>
+</div>
+<?php else: ?>
+<div class="card" style="text-align:center;padding:32px;">
+  <div style="font-size:2rem;margin-bottom:10px;">📡</div>
+  <div style="font-size:.85rem;color:#aaa;">Meta Pixel data load nahi hua. Admin se check karwayein.</div>
 </div>
 <?php endif; ?>
 
-<!-- Two col: recent orders + stock -->
+<!-- Section 4: Recent Orders + Stock -->
+<div class="section-hd" style="margin-top:28px;">
+  <h2>📦 Orders &amp; 🏪 Inventory</h2>
+  <p>Latest orders aur har product ka stock level</p>
+</div>
+<div class="section-divider"></div>
 <div class="two-col">
-  <div class="card">
-    <div class="section-title">Recent Orders</div>
-    <?php foreach (array_slice($orders, 0, 6) as $o): ?>
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid #f5f5f5;">
-      <div>
-        <div style="font-size:.8rem;font-weight:600;"><?= clean($o['name']??'') ?></div>
-        <div style="font-size:.7rem;color:#888;"><?= clean($o['product']??'') ?> · <?= clean($o['city']??'') ?></div>
+  <div class="card" style="margin-bottom:0;">
+    <div class="card-hd">
+      <div class="card-hd-left">
+        <h3>Recent Orders</h3>
+        <p>Last <?= min(6, count($orders)) ?> orders</p>
       </div>
-      <div style="text-align:right;">
-        <div style="font-size:.82rem;font-weight:700;color:#B8860B;">Rs <?= number_format((float)($o['price']??0)) ?></div>
+    </div>
+    <?php foreach (array_slice($orders, 0, 6) as $o): ?>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f4f6f9;">
+      <div>
+        <div style="font-size:.82rem;font-weight:600;color:#1a2535;"><?= clean($o['name']??'') ?></div>
+        <div style="font-size:.7rem;color:#999;margin-top:2px;"><?= clean($o['product']??'') ?> &nbsp;·&nbsp; 📍<?= clean($o['city']??'') ?></div>
+      </div>
+      <div style="text-align:right;flex-shrink:0;margin-left:10px;">
+        <div style="font-size:.85rem;font-weight:700;color:#B8860B;">Rs <?= number_format((float)($o['price']??0)) ?></div>
         <span class="badge badge-<?= $o['status']??'pending' ?>"><?= $o['status']??'pending' ?></span>
       </div>
     </div>
     <?php endforeach; ?>
-    <?php if (empty($orders)): ?><p style="color:#ccc;text-align:center;padding:20px;font-size:.8rem;">No orders yet.</p><?php endif; ?>
+    <?php if (empty($orders)): ?><p style="color:#ccc;text-align:center;padding:24px;font-size:.8rem;">Koi orders nahi hain abhi.</p><?php endif; ?>
   </div>
 
-  <div class="card">
-    <div class="section-title">Stock Levels</div>
+  <div class="card" style="margin-bottom:0;">
+    <div class="card-hd">
+      <div class="card-hd-left">
+        <h3>Stock Levels</h3>
+        <p>4 products ka current inventory</p>
+      </div>
+    </div>
     <?php foreach ($stock as $k => $p):
       $s = (int)$p['stock']; $low = $s <= 10;
       $pct = min(100, $s);
       $color = $low ? '#e74c3c' : ($s <= 25 ? '#e67e22' : '#27ae60');
     ?>
-    <div style="margin-bottom:14px;">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;">
-        <span style="font-size:.8rem;font-weight:600;"><?= clean($p['name']) ?></span>
-        <span class="badge <?= $low?'badge-low':'badge-ok-stock' ?>"><?= $s ?><?= $low?' ⚠️':'' ?></span>
+    <div style="margin-bottom:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+        <div>
+          <div style="font-size:.82rem;font-weight:600;color:#1a2535;"><?= clean($p['name']) ?></div>
+          <div style="font-size:.65rem;color:#aaa;">Rs <?= number_format($p['price']) ?> &nbsp;·&nbsp; <?= $p['sku'] ?></div>
+        </div>
+        <span class="badge <?= $low?'badge-low':'badge-ok-stock' ?>"><?= $s ?> units<?= $low?' ⚠️':'' ?></span>
       </div>
       <div class="prog-bar"><div class="prog-fill" style="width:<?= $pct ?>%;--c:<?= $color ?>;"></div></div>
-      <div style="font-size:.65rem;color:#aaa;">Rs <?= number_format($p['price']) ?> · SKU: <?= $p['sku'] ?></div>
     </div>
     <?php endforeach; ?>
+    <?php if (empty($stock)): ?><p style="color:#ccc;text-align:center;padding:24px;font-size:.8rem;">Stock data nahi mila.</p><?php endif; ?>
   </div>
 </div>
 
-<!-- Full Orders Table -->
+<!-- Section 5: Full Orders Table -->
+<div class="section-hd" style="margin-top:28px;">
+  <h2>📋 All Orders — Complete List</h2>
+  <p>Tamam orders ka record — sirf dekhne ke liye</p>
+</div>
+<div class="section-divider"></div>
 <div class="card">
-  <div class="section-title">All Orders — View Only</div>
+  <div class="card-hd">
+    <div class="card-hd-left">
+      <h3>Complete Orders History</h3>
+      <p>Total <?= count($orders) ?> orders recorded</p>
+    </div>
+  </div>
   <div class="table-wrap">
   <table>
     <thead><tr><th>#</th><th>Date</th><th>Customer</th><th>Phone</th><th>City</th><th>Product</th><th>Price</th><th>Status</th></tr></thead>
     <tbody>
     <?php foreach ($orders as $i => $o): ?>
     <tr>
-      <td style="color:#ccc;"><?= $i+1 ?></td>
+      <td style="color:#ccc;font-size:.72rem;"><?= $i+1 ?></td>
       <td style="font-size:.7rem;color:#aaa;white-space:nowrap;"><?= clean($o['date']??'') ?></td>
       <td><strong><?= clean($o['name']??'') ?></strong></td>
-      <td style="font-size:.75rem;color:#555;">📞 <?= clean($o['phone']??'') ?></td>
-      <td style="font-size:.75rem;">📍 <?= clean($o['city']??'—') ?></td>
+      <td style="font-size:.75rem;color:#555;white-space:nowrap;">📞 <?= clean($o['phone']??'') ?></td>
+      <td style="font-size:.75rem;white-space:nowrap;">📍 <?= clean($o['city']??'—') ?></td>
       <td style="font-weight:600;"><?= clean($o['product']??'') ?></td>
-      <td><strong>Rs <?= number_format((float)($o['price']??0)) ?></strong></td>
+      <td><strong style="color:#B8860B;">Rs <?= number_format((float)($o['price']??0)) ?></strong></td>
       <td><span class="badge badge-<?= $o['status']??'pending' ?>"><?= $o['status']??'pending' ?></span></td>
     </tr>
     <?php endforeach; ?>
-    <?php if (empty($orders)): ?><tr><td colspan="8" style="text-align:center;color:#ccc;padding:30px;">No orders yet.</td></tr><?php endif; ?>
+    <?php if (empty($orders)): ?><tr><td colspan="8" style="text-align:center;color:#ccc;padding:30px;font-size:.82rem;">Abhi tak koi orders nahi aaye.</td></tr><?php endif; ?>
     </tbody>
   </table>
   </div>
