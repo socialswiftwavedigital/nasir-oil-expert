@@ -97,17 +97,31 @@ $chartDays = $chart14['labels']; $chartRev = $chart14['data']; // default
 // Meta stats
 function fetchMeta($token, $pid) {
     if (!$token) return null;
-    $events = ['Purchase','ViewContent','AddToCart','Contact'];
-    $r = []; $s = strtotime('-30 days'); $e = time();
-    foreach ($events as $ev) {
-        $url = "https://graph.facebook.com/v19.0/{$pid}/stats?aggregation=event_source&event={$ev}&start_time={$s}&end_time={$e}&access_token=" . urlencode($token);
-        $ch = curl_init($url); curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-        $res = curl_exec($ch); curl_close($ch);
-        $d = json_decode($res, true); $cnt = 0;
-        if (isset($d['data'])) foreach ($d['data'] as $row) $cnt += (int)($row['count'] ?? 0);
-        $r[$ev] = $cnt;
+    $ad_account = 'act_1059183479834210';
+    $fields = 'impressions,clicks,spend,reach,cpm,cpc,ctr,actions';
+    $url = "https://graph.facebook.com/v21.0/{$ad_account}/insights?fields=" . urlencode($fields)
+         . "&date_preset=last_30d&access_token=" . urlencode($token);
+    $ch = curl_init($url);
+    curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER=>true, CURLOPT_TIMEOUT=>8]);
+    $res = curl_exec($ch); curl_close($ch);
+    $ins = json_decode($res, true);
+    $row = $ins['data'][0] ?? [];
+    $purchases = 0; $add_to_cart = 0;
+    foreach (($row['actions'] ?? []) as $a) {
+        if ($a['action_type'] === 'purchase')    $purchases   += (int)$a['value'];
+        if ($a['action_type'] === 'add_to_cart') $add_to_cart += (int)$a['value'];
     }
-    return $r;
+    return [
+        'spend'       => (float)($row['spend']       ?? 0),
+        'impressions' => (int)  ($row['impressions'] ?? 0),
+        'clicks'      => (int)  ($row['clicks']      ?? 0),
+        'reach'       => (int)  ($row['reach']       ?? 0),
+        'ctr'         => (float)($row['ctr']         ?? 0),
+        'cpc'         => (float)($row['cpc']         ?? 0),
+        'Purchase'    => $purchases,
+        'AddToCart'   => $add_to_cart,
+        'ViewContent' => (int)($row['impressions']   ?? 0),
+    ];
 }
 $metaStats = fetchMeta(META_ACCESS_TOKEN, META_PIXEL_ID);
 
@@ -373,55 +387,55 @@ tr:hover td{background:#fafbfd;}
 <!-- Section 3: Meta Ads -->
 <div class="section-hd" style="margin-top:28px;">
   <h2>📈 Meta Ads Performance</h2>
-  <p>Facebook/Instagram pixel data — pichle 30 din ki audience activity</p>
+  <p>Facebook/Instagram ads — pichle 30 din ka real data</p>
 </div>
 <div class="section-divider"></div>
 <?php if ($metaStats):
-  $evI = ['Purchase'=>['💳','#B8860B','Purchases'],'ViewContent'=>['👁','#1a2535','Product Views'],'AddToCart'=>['🛒','#27ae60','Add to Cart'],'Contact'=>['📲','#25D366','Contacts']];
-  $vc = $metaStats['ViewContent'] ?? 0;
-  $ac = $metaStats['AddToCart']   ?? 0;
-  $pu = $metaStats['Purchase']    ?? 0;
-  $cvr = $vc > 0 ? round($pu/$vc*100,1) : 0;
+  $pu = $metaStats['Purchase'] ?? 0;
+  $ac = $metaStats['AddToCart'] ?? 0;
+  $sp = $metaStats['spend'] ?? 0;
 ?>
+<!-- KPI row -->
+<div class="meta-grid" style="margin-bottom:14px;">
+  <?php
+  $kpis = [
+    ['💰','Ad Spend','Rs '.number_format($sp),'#B8860B'],
+    ['👥','Reach',number_format($metaStats['reach']??0),'#1a2535'],
+    ['👁','Impressions',number_format($metaStats['impressions']??0),'#8e44ad'],
+    ['🖱','Clicks',number_format($metaStats['clicks']??0),'#27ae60'],
+  ];
+  foreach ($kpis as [$ic,$lb,$val,$col]): ?>
+  <div class="meta-card">
+    <div class="meta-icon"><?= $ic ?></div>
+    <div class="meta-label"><?= $lb ?></div>
+    <div class="meta-num" style="color:<?= $col ?>;"><?= $val ?></div>
+  </div>
+  <?php endforeach; ?>
+</div>
 <div class="card">
   <div class="card-hd">
-    <div class="card-hd-left">
-      <h3>Pixel Events Breakdown</h3>
-      <p>Kitne log aaye, dekha, cart mein daala aur kharida</p>
-    </div>
-    <div class="card-hd-right" style="text-align:right;">
-      Conversion: <strong style="color:#B8860B;"><?= $cvr ?>%</strong> &nbsp;|&nbsp;
-      Cart Rate: <strong style="color:#27ae60;"><?= $vc > 0 ? round($ac/$vc*100,1) : 0 ?>%</strong>
+    <div class="card-hd-left"><h3>Conversion Results</h3><p>Last 30 days</p></div>
+    <div class="card-hd-right" style="font-size:.8rem;">
+      CTR: <strong style="color:#27ae60;"><?= number_format($metaStats['ctr']??0,2) ?>%</strong>
+      &nbsp;|&nbsp; CPC: <strong style="color:#e67e22;">Rs <?= number_format($metaStats['cpc']??0,1) ?></strong>
     </div>
   </div>
-  <div class="meta-grid">
-    <?php foreach ($evI as $ev => [$icon,$color,$label]): $cnt = $metaStats[$ev] ?? 0; ?>
-    <div class="meta-card">
-      <div class="meta-icon"><?= $icon ?></div>
-      <div class="meta-label"><?= $label ?></div>
-      <div class="meta-num" style="color:<?= $color ?>;"><?= number_format($cnt) ?></div>
-    </div>
-    <?php endforeach; ?>
+  <?php foreach ([['💳','Purchases',$pu,'#B8860B'],['🛒','Add to Cart',$ac,'#27ae60']] as [$ic,$lb,$v,$c]): ?>
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f0f2f5;">
+    <span style="font-size:.82rem;font-weight:600;"><?= $ic ?> <?= $lb ?></span>
+    <span style="font-size:1.3rem;font-weight:700;color:<?= $c ?>;"><?= number_format($v) ?></span>
   </div>
-  <?php if ($vc > 0): ?>
-  <div style="margin-top:16px;padding-top:16px;border-top:1px solid #f0f2f5;">
-    <div style="font-size:.72rem;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;">Conversion Funnel</div>
-    <?php $funnel = ['ViewContent'=>['Product Views',$vc],'AddToCart'=>['Add to Cart',$ac],'Purchase'=>['Purchases',$pu]]; $prev=null;
-    foreach ($funnel as [$flbl,$fval]):
-      $fpct = $vc > 0 ? round($fval/$vc*100) : 0; ?>
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-      <div style="font-size:.78rem;font-weight:600;min-width:110px;color:#555;"><?= $flbl ?></div>
-      <div class="prog-bar" style="flex:1;margin:0;"><div class="prog-fill" style="width:<?= $fpct ?>%;--c:#1a2535;"></div></div>
-      <div style="font-size:.78rem;color:#888;min-width:60px;text-align:right;"><?= number_format($fval) ?> (<?= $fpct ?>%)</div>
-    </div>
-    <?php endforeach; ?>
+  <?php endforeach; ?>
+  <?php if ($sp > 0 && $pu > 0): ?>
+  <div style="margin-top:10px;padding:10px;background:#f4f8f5;border-radius:8px;font-size:.78rem;">
+    💡 Cost per Purchase: <strong>Rs <?= number_format($sp / $pu, 0) ?></strong>
   </div>
   <?php endif; ?>
 </div>
 <?php else: ?>
 <div class="card" style="text-align:center;padding:32px;">
   <div style="font-size:2rem;margin-bottom:10px;">📡</div>
-  <div style="font-size:.85rem;color:#aaa;">Meta Pixel data load nahi hua. Admin se check karwayein.</div>
+  <div style="font-size:.85rem;color:#aaa;">Meta Ads data load nahi hua. Admin se check karwayein.</div>
 </div>
 <?php endif; ?>
 
