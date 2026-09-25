@@ -45,6 +45,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['client_action'])) {
         $tl[] = ['status'=>'tracking','time'=>date('d M Y, h:i A'),'note'=>'Tracking: '.$trk];
         $db_post->prepare("UPDATE orders SET tracking=?, timeline=? WHERE id=?")->execute([$trk, json_encode($tl), $id]);
     }
+    if ($_POST['client_action'] === 'update_note' && $id) {
+        $note = clean($_POST['note'] ?? '');
+        $db_post->prepare("UPDATE orders SET admin_note=? WHERE id=?")->execute([$note, $id]);
+    }
+    if ($_POST['client_action'] === 'delete_order' && $id) {
+        $db_post->prepare("DELETE FROM orders WHERE id=?")->execute([$id]);
+    }
     header('Location: client-panel.php#orders-section'); exit;
 }
 
@@ -519,7 +526,7 @@ tr:hover td{background:#fafbfd;}
   </style>
   <div class="table-wrap">
   <table>
-    <thead><tr><th>#</th><th>Date</th><th>Customer</th><th>Phone</th><th>City</th><th>Product</th><th>Price</th><th>Status</th><th>Tracking</th></tr></thead>
+    <thead><tr><th>#</th><th>Date</th><th>Customer</th><th>Phone</th><th>City</th><th>Product</th><th>Price</th><th>Status</th><th>Tracking</th><th>Note</th><th>WA</th><th>Del</th></tr></thead>
     <tbody>
     <?php foreach ($orders as $i => $o): ?>
     <tr>
@@ -547,6 +554,31 @@ tr:hover td{background:#fafbfd;}
           <input type="hidden" name="id" value="<?= clean($o['id']??'') ?>">
           <input type="text" name="tracking" class="trk-input" value="<?= clean($o['tracking']??'') ?>" placeholder="TRK-12345">
           <button type="submit" class="trk-btn">Save</button>
+        </form>
+      </td>
+      <td>
+        <form method="post" action="client-panel.php#orders-section" class="trk-form">
+          <input type="hidden" name="client_action" value="update_note">
+          <input type="hidden" name="id" value="<?= clean($o['id']??'') ?>">
+          <input type="text" name="note" class="trk-input" value="<?= clean($o['admin_note']??'') ?>" placeholder="Note...">
+          <button type="submit" class="trk-btn">✓</button>
+        </form>
+      </td>
+      <td>
+        <?php
+          $wa_ph = preg_replace('/[^0-9]/', '', $o['phone']??'');
+          if (strlen($wa_ph) === 11 && substr($wa_ph,0,1)==='0') $wa_ph = '92'.substr($wa_ph,1);
+          $wa_msg = urlencode("Assalam o Alaikum! Aapka order receive ho gaya. Jald deliver kiya jaega. — Nasir Oil Expert");
+        ?>
+        <?php if ($wa_ph): ?>
+        <a href="https://wa.me/<?= $wa_ph ?>?text=<?= $wa_msg ?>" target="_blank" style="display:inline-flex;align-items:center;gap:4px;background:#25D366;color:#fff;padding:5px 9px;border-radius:8px;font-size:.68rem;font-weight:600;text-decoration:none;white-space:nowrap;">📲 WA</a>
+        <?php endif; ?>
+      </td>
+      <td>
+        <form method="post" action="client-panel.php#orders-section" onsubmit="return confirm('Order delete karna chahte ho?');">
+          <input type="hidden" name="client_action" value="delete_order">
+          <input type="hidden" name="id" value="<?= clean($o['id']??'') ?>">
+          <button type="submit" style="background:#fee2e2;color:#dc2626;border:1px solid #fca5a5;border-radius:8px;padding:5px 9px;font-size:.7rem;cursor:pointer;font-family:'Poppins',sans-serif;">🗑</button>
         </form>
       </td>
     </tr>
