@@ -126,6 +126,11 @@ if ($_POST['action'] ?? '' === 'bulk_status') {
     }
     header('Location: admin-dashboard.php?p=orders'); exit;
 }
+if ($_POST['action'] ?? '' === 'delete_order') {
+    $id = clean($_POST['id'] ?? '');
+    if ($id) $db->prepare("DELETE FROM orders WHERE id=?")->execute([$id]);
+    header('Location: admin-dashboard.php?p=orders'); exit;
+}
 if ($_POST['action'] ?? '' === 'update_stock') {
     $stmt = $db->prepare("UPDATE stock SET qty=?, price=? WHERE slug=?");
     $slugs = $db->query("SELECT slug FROM stock")->fetchAll(PDO::FETCH_COLUMN);
@@ -197,41 +202,45 @@ function getCustomers($orders) {
     return $c;
 }
 function fetchMetaStats($token, $pixel_id) {
-    if (!$token) return null;
+    if (!$token) return ['_error' => 'Token not set in config.php'];
     $ad_account = 'act_1059183479834210';
 
-    // Ads Insights API — spend, reach, impressions, clicks, CTR, CPC, CPM
     $fields = 'impressions,clicks,spend,reach,cpm,cpc,ctr,actions';
     $url = "https://graph.facebook.com/v21.0/{$ad_account}/insights?fields=" . urlencode($fields)
          . "&date_preset=last_30d&access_token=" . urlencode($token);
     $ch = curl_init($url);
-    curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER=>true, CURLOPT_TIMEOUT=>8]);
-    $res  = curl_exec($ch); curl_close($ch);
-    $ins  = json_decode($res, true);
-    $row  = $ins['data'][0] ?? [];
+    curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER=>true, CURLOPT_TIMEOUT=>10]);
+    $res  = curl_exec($ch);
+    $curl_err = curl_error($ch);
+    curl_close($ch);
 
-    // Extract purchase/other action counts
+    if ($curl_err) return ['_error' => 'cURL error: '.$curl_err];
+    $ins = json_decode($res, true);
+    if (isset($ins['error'])) return ['_error' => $ins['error']['message'] ?? 'Meta API error'];
+
+    $row = $ins['data'][0] ?? [];
+
     $purchases = 0; $add_to_cart = 0; $initiate = 0; $contacts = 0;
     foreach (($row['actions'] ?? []) as $a) {
-        if ($a['action_type'] === 'purchase')              $purchases  += (int)$a['value'];
-        if ($a['action_type'] === 'add_to_cart')           $add_to_cart+= (int)$a['value'];
-        if ($a['action_type'] === 'initiate_checkout')     $initiate   += (int)$a['value'];
-        if (str_contains($a['action_type'],'contact'))     $contacts   += (int)$a['value'];
+        if ($a['action_type'] === 'purchase')          $purchases   += (int)$a['value'];
+        if ($a['action_type'] === 'add_to_cart')       $add_to_cart += (int)$a['value'];
+        if ($a['action_type'] === 'initiate_checkout') $initiate    += (int)$a['value'];
+        if (str_contains($a['action_type'],'contact')) $contacts    += (int)$a['value'];
     }
 
     return [
-        'spend'       => (float)($row['spend']       ?? 0),
-        'impressions' => (int)  ($row['impressions'] ?? 0),
-        'clicks'      => (int)  ($row['clicks']      ?? 0),
-        'reach'       => (int)  ($row['reach']       ?? 0),
-        'cpm'         => (float)($row['cpm']         ?? 0),
-        'cpc'         => (float)($row['cpc']         ?? 0),
-        'ctr'         => (float)($row['ctr']         ?? 0),
+        'spend'             => (float)($row['spend']       ?? 0),
+        'impressions'       => (int)  ($row['impressions'] ?? 0),
+        'clicks'            => (int)  ($row['clicks']      ?? 0),
+        'reach'             => (int)  ($row['reach']       ?? 0),
+        'cpm'               => (float)($row['cpm']         ?? 0),
+        'cpc'               => (float)($row['cpc']         ?? 0),
+        'ctr'               => (float)($row['ctr']         ?? 0),
         'Purchase'          => $purchases,
         'AddToCart'         => $add_to_cart,
         'InitiateCheckout'  => $initiate,
         'Contact'           => $contacts,
-        'ViewContent'       => (int)($row['impressions'] ?? 0), // fallback
+        'ViewContent'       => (int)($row['impressions']   ?? 0),
     ];
 }
 
@@ -755,7 +764,7 @@ function adSwitchPeriod(p) {
 <table>
   <thead><tr>
     <th><input type="checkbox" id="selectAll" onchange="toggleAll(this)" style="cursor:pointer;"></th>
-    <th>Order ID</th><th>Date</th><th>Name</th><th>Phone</th><th>City</th><th>Address</th><th>Product</th><th>Price</th><th>Page</th><th>Tracking</th><th>Status</th><th>Note</th><th>WhatsApp</th>
+    <th>Order ID</th><th>Date</th><th>Name</th><th>Phone</th><th>City</th><th>Address</th><th>Product</th><th>Price</th><th>Page</th><th>Tracking</th><th>Status</th><th>Note</th><th>WhatsApp</th><th>Del</th>
   </tr></thead>
   <tbody>
   <?php foreach ($filtered as $i => $o):
@@ -819,6 +828,13 @@ function adSwitchPeriod(p) {
         <a href="<?= $waTpl3 ?>" target="_blank" class="btn-wa" style="font-size:.65rem;background:#075E54;">📦 Delivered</a>
       </div>
       <?php endif; ?>
+    </td>
+    <td>
+      <form method="post" onsubmit="return confirm('Order delete karna chahte ho? Ye wapas nahi hoga.');">
+        <input type="hidden" name="action" value="delete_order">
+        <input type="hidden" name="id" value="<?= clean($o['id']??'') ?>">
+        <button type="submit" style="background:#fee2e2;color:#dc2626;border:1px solid #fca5a5;border-radius:6px;padding:5px 10px;font-size:.72rem;cursor:pointer;font-family:'Poppins',sans-serif;">🗑 Delete</button>
+      </form>
     </td>
   </tr>
   <?php endforeach; ?>
@@ -1081,7 +1097,12 @@ if (!empty($lowStock)):
 $metaStats = fetchMetaStats(META_ACCESS_TOKEN, META_PIXEL_ID);
 ?>
 
-<?php if ($metaStats): ?>
+<?php if ($metaStats && isset($metaStats['_error'])): ?>
+<div style="background:#fff3cd;border:1px solid #ffc107;border-radius:10px;padding:16px 20px;margin-bottom:18px;color:#856404;font-size:.85rem;">
+  <strong>Meta Ads API Error:</strong> <?= htmlspecialchars($metaStats['_error']) ?><br>
+  <small>Fix: Meta Business Manager &gt; Settings &gt; System Users &gt; token ko <strong>ads_read</strong> permission de kar config.php mein update karo.</small>
+</div>
+<?php elseif ($metaStats): ?>
 
 <!-- Ad Performance KPIs -->
 <div class="stat-grid" style="margin-bottom:18px;">
