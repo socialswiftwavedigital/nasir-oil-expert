@@ -87,19 +87,19 @@ $db     = getDB();
 $page   = $_GET['p'] ?? 'dashboard';
 
 /* ── POST Actions ─────────────────────────────────────────────── */
-if ($_POST['action'] ?? '' === 'update_status') {
+if (($_POST['action'] ?? '') === 'update_status') {
     $id = clean($_POST['id'] ?? '');
     $st = clean($_POST['status'] ?? 'pending');
     $db->prepare("UPDATE orders SET status=? WHERE id=?")->execute([$st, $id]);
     header('Location: admin-dashboard.php?p=orders'); exit;
 }
-if ($_POST['action'] ?? '' === 'update_note') {
+if (($_POST['action'] ?? '') === 'update_note') {
     $id   = clean($_POST['id'] ?? '');
     $note = clean($_POST['note'] ?? '');
     $db->prepare("UPDATE orders SET admin_note=? WHERE id=?")->execute([$note, $id]);
     header('Location: admin-dashboard.php?p=orders'); exit;
 }
-if ($_POST['action'] ?? '' === 'update_tracking') {
+if (($_POST['action'] ?? '') === 'update_tracking') {
     $id  = clean($_POST['id'] ?? '');
     $trk = clean($_POST['tracking'] ?? '');
     $row = $db->prepare("SELECT timeline FROM orders WHERE id=?");
@@ -110,13 +110,13 @@ if ($_POST['action'] ?? '' === 'update_tracking') {
     $db->prepare("UPDATE orders SET tracking=?, timeline=? WHERE id=?")->execute([$trk, json_encode($tl), $id]);
     header('Location: admin-dashboard.php?p=orders'); exit;
 }
-if ($_POST['action'] ?? '' === 'update_abandoned_status') {
+if (($_POST['action'] ?? '') === 'update_abandoned_status') {
     $id = clean($_POST['id'] ?? '');
     $st = clean($_POST['status'] ?? 'new');
     $db->prepare("UPDATE abandoned_forms SET status=? WHERE id=?")->execute([$st, $id]);
     header('Location: admin-dashboard.php?p=abandoned'); exit;
 }
-if ($_POST['action'] ?? '' === 'bulk_status') {
+if (($_POST['action'] ?? '') === 'bulk_status') {
     $ids = array_map('trim', (array)($_POST['ids'] ?? []));
     $st  = clean($_POST['bulk_st'] ?? 'pending');
     if ($ids) {
@@ -126,12 +126,12 @@ if ($_POST['action'] ?? '' === 'bulk_status') {
     }
     header('Location: admin-dashboard.php?p=orders'); exit;
 }
-if ($_POST['action'] ?? '' === 'delete_order') {
+if (($_POST['action'] ?? '') === 'delete_order') {
     $id = clean($_POST['id'] ?? '');
     if ($id) $db->prepare("DELETE FROM orders WHERE id=?")->execute([$id]);
     header('Location: admin-dashboard.php?p=orders'); exit;
 }
-if ($_POST['action'] ?? '' === 'update_stock') {
+if (($_POST['action'] ?? '') === 'update_stock') {
     $stmt = $db->prepare("UPDATE stock SET qty=?, price=? WHERE slug=?");
     $slugs = $db->query("SELECT slug FROM stock")->fetchAll(PDO::FETCH_COLUMN);
     foreach ($slugs as $k) {
