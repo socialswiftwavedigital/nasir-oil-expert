@@ -26,14 +26,6 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=1622312982781463&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-N2RWM9N4GE"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-N2RWM9N4GE');
-</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hair Care Blog | Nasir Oil Expert</title>
@@ -56,7 +48,7 @@ src="https://www.facebook.com/tr?id=1622312982781463&ev=PageView&noscript=1"
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles3.css?v=4" />
-  <link rel="stylesheet" href="/blog.css?v=1" />
+  <link rel="stylesheet" href="/blog.css?v=2" />
 </head>
 <body>
 
@@ -117,8 +109,15 @@ src="https://www.facebook.com/tr?id=1622312982781463&ev=PageView&noscript=1"
 <!-- BLOG LIST -->
 <section class="blog-list-section">
   <p class="section-subtitle blog-list-intro">Practical hair care guides for Pakistani hair and weather. Natural oils, routines, and honest advice.</p>
+  <div class="blog-filters" role="tablist" aria-label="Blog categories">
+    <button class="blog-filter active" data-filter="all">All Posts</button>
+    <button class="blog-filter" data-filter="hair-growth">Hair Growth</button>
+    <button class="blog-filter" data-filter="hair-fall">Hair Fall</button>
+    <button class="blog-filter" data-filter="hair-care-routine">Hair Care Routine</button>
+    <button class="blog-filter" data-filter="product-guides">Product Guides</button>
+  </div>
   <div class="blog-grid">
-    <a class="blog-card" href="/blog/best-hair-oil-for-hair-growth-in-pakistan">
+    <a class="blog-card" href="/blog/best-hair-oil-for-hair-growth-in-pakistan" data-category="hair-growth hair-care-routine">
       <div class="blog-card-img"><img src="/images/golden/golden-oil-hero.png" alt="Best Hair Oil for Hair Growth in Pakistan: A Practical 2026 Guide" loading="lazy" /></div>
       <div class="blog-card-body">
         <span class="blog-card-tag">Hair Growth</span>
@@ -129,7 +128,19 @@ src="https://www.facebook.com/tr?id=1622312982781463&ev=PageView&noscript=1"
       </div>
     </a>
   </div>
+  <p class="blog-empty" hidden>No posts in this category yet. New guides are coming soon.</p>
 </section>
+<script>
+(function(){
+  var btns=document.querySelectorAll('.blog-filter'), cards=document.querySelectorAll('.blog-card'), empty=document.querySelector('.blog-empty');
+  btns.forEach(function(b){ b.addEventListener('click',function(){
+    btns.forEach(function(x){x.classList.remove('active');}); b.classList.add('active');
+    var f=b.getAttribute('data-filter'), shown=0;
+    cards.forEach(function(c){ var ok=f==='all'||(' '+c.getAttribute('data-category')+' ').indexOf(' '+f+' ')>-1; c.style.display=ok?'':'none'; if(ok)shown++; });
+    empty.hidden=shown>0;
+  }); });
+})();
+</script>
 
 <!-- FOOTER -->
 <footer>

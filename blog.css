@@ -94,3 +94,10 @@
   .quick-answer, .takeaways-box { padding-left:20px; padding-right:20px; }
   .blog-cta-box { padding:32px 20px; }
 }
+
+/* ---- Category filters ---- */
+.blog-filters { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; max-width:1200px; margin:0 auto 40px; }
+.blog-filter { font-family:'Montserrat',sans-serif; font-size:0.74rem; font-weight:600; letter-spacing:0.06em; padding:10px 20px; border-radius:30px; border:1px solid rgba(0,0,0,0.12); background:#fff; color:var(--text-light); cursor:pointer; transition:all 0.3s ease; }
+.blog-filter:hover { border-color:var(--gold); color:var(--gold-dark); }
+.blog-filter.active { background:var(--green-deep); border-color:var(--green-deep); color:#fff; }
+.blog-empty { text-align:center; font-family:'Montserrat',sans-serif; font-size:0.85rem; color:var(--text-light); margin-top:24px; }
