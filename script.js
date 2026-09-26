@@ -367,7 +367,28 @@ function initPlaceOrder() {
     const total   = cartTotal(cart);
     const delivery = total >= 5000 ? 0 : 250;
     const name    = form.querySelector('[name="fullName"]').value;
-    const phone   = form.querySelector('[name="phone"]').value;
+    const phone   = form.querySelector('[name="phone"]').value.trim();
+
+    const cleanPhone = phone.replace(/[\s\-\.]/g, '');
+    const phoneValid = /^(\+92|92|0)3[0-9]{9}$/.test(cleanPhone);
+    if (!phoneValid) {
+      const phoneInput = form.querySelector('[name="phone"]');
+      phoneInput.style.borderColor = '#e53e3e';
+      phoneInput.focus();
+      let err = form.querySelector('.phone-error');
+      if (!err) {
+        err = document.createElement('p');
+        err.className = 'phone-error';
+        err.style.cssText = 'color:#e53e3e;font-size:0.78rem;margin:4px 0 0;';
+        phoneInput.parentNode.insertBefore(err, phoneInput.nextSibling);
+      }
+      err.textContent = 'Sahih Pakistani number dalein: 03XXXXXXXXX ya +92XXXXXXXXXX (11 digits)';
+      phoneInput.addEventListener('input', () => {
+        phoneInput.style.borderColor = '';
+        if (err) err.textContent = '';
+      }, { once: true });
+      return;
+    }
     const city    = form.querySelector('[name="city"]').value;
     const address = form.querySelector('[name="address"]').value;
     const method  = payMethod.value;

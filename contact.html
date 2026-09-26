@@ -659,6 +659,15 @@ src="https://www.facebook.com/tr?id=1622312982781463&ev=PageView&noscript=1"
       return;
     }
 
+    var cleanPhone = phone.replace(/[\s\-\.]/g, '');
+    if (!/^(\+92|92|0)3[0-9]{9}$/.test(cleanPhone)) {
+      var phoneInput = f.querySelector('[name="ctPhone"]');
+      phoneInput.style.borderColor = '#e53e3e';
+      phoneInput.focus();
+      alert('Sahih Pakistani number dalein:\n03XXXXXXXXX ya +923XXXXXXXXX (11 digits)\n\nصحیح پاکستانی نمبر درج کریں');
+      return;
+    }
+
     var purposeMap = {
       order:     '🛒 نئی آرڈر | New Order',
       inquiry:   '❓ Inquiry | استفسار',
