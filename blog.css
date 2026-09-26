@@ -1,0 +1,96 @@
+/* ============ Nasir Oil Expert — Blog ============ */
+.blog-meta { font-family:'Montserrat',sans-serif; font-size:0.78rem; color:rgba(255,255,255,0.75); letter-spacing:0.04em; margin-bottom:14px; }
+.blog-hero h1 { max-width:900px; margin-left:auto; margin-right:auto; }
+
+/* ---- Listing ---- */
+.blog-list-section { padding:80px 60px 100px; background:var(--bg-light); }
+.blog-list-intro { text-align:center; margin:0 auto 48px; }
+.blog-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:28px; max-width:1200px; margin:0 auto; }
+.blog-card { display:flex; flex-direction:column; background:var(--white); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-sm); border:1px solid rgba(0,0,0,0.05); text-decoration:none; color:inherit; transition:all 0.4s ease; }
+.blog-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-md); }
+.blog-card-img { background:var(--cream); height:230px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.blog-card-img img { width:100%; height:100%; object-fit:contain; padding:16px; box-sizing:border-box; transition:transform 0.5s ease; }
+.blog-card:hover .blog-card-img img { transform:scale(1.05); }
+.blog-card-body { padding:26px 26px 28px; display:flex; flex-direction:column; flex:1; }
+.blog-card-tag { align-self:flex-start; font-family:'Montserrat',sans-serif; font-size:0.62rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--green-mid); background:rgba(34,168,85,0.1); padding:5px 12px; border-radius:20px; margin-bottom:14px; }
+.blog-card h2 { font-size:1.45rem; line-height:1.25; color:var(--text-dark); margin-bottom:12px; }
+.blog-card p { font-family:'Montserrat',sans-serif; font-size:0.8rem; line-height:1.8; color:var(--text-light); margin-bottom:16px; flex:1; }
+.blog-card-meta { font-family:'Montserrat',sans-serif; font-size:0.7rem; color:#777; margin-bottom:14px; }
+.blog-card-link { font-family:'Montserrat',sans-serif; font-size:0.78rem; font-weight:600; color:var(--gold-dark); }
+
+/* ---- Article layout ---- */
+.blog-layout { display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:48px; max-width:1180px; margin:0 auto; padding:64px 40px 90px; align-items:start; }
+.blog-article { min-width:0; font-family:'Montserrat',sans-serif; color:var(--text-light); font-size:0.95rem; line-height:1.9; }
+.blog-cover { width:100%; height:auto; max-height:420px; object-fit:contain; background:var(--cream); border-radius:var(--radius); padding:24px; box-sizing:border-box; margin-bottom:36px; }
+.blog-article h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(1.6rem,3vw,2.1rem); color:var(--text-dark); line-height:1.25; margin:48px 0 16px; scroll-margin-top:100px; }
+.blog-article h3 { font-family:'Cormorant Garamond',serif; font-size:1.35rem; color:var(--green-deep); margin:30px 0 10px; }
+.blog-article p { margin:0 0 18px; }
+.blog-article a { color:var(--green-mid); font-weight:600; text-decoration:underline; text-decoration-color:rgba(26,115,64,0.35); text-underline-offset:3px; }
+.blog-article a:hover { color:var(--gold-dark); }
+.blog-article strong { color:var(--text-dark); }
+.blog-article ul, .blog-article ol { margin:0 0 22px; padding-left:22px; }
+.blog-article li { margin-bottom:8px; }
+.blog-article ol.steps { list-style:none; padding:0; counter-reset:step; }
+.blog-article ol.steps li { counter-increment:step; position:relative; padding:14px 16px 14px 60px; background:var(--cream); border-radius:var(--radius-sm); margin-bottom:10px; }
+.blog-article ol.steps li::before { content:counter(step); position:absolute; left:14px; top:13px; width:32px; height:32px; border-radius:50%; background:var(--green-mid); color:#fff; font-weight:700; font-size:0.85rem; display:flex; align-items:center; justify-content:center; }
+
+.quick-answer { background:linear-gradient(135deg,var(--green-deep),var(--green-mid)); color:#fff; border-radius:var(--radius); padding:26px 30px; margin-bottom:12px; border-left:5px solid var(--gold); }
+.quick-answer h2 { color:var(--gold-light); font-size:1.3rem; margin:0 0 8px; font-family:'Montserrat',sans-serif; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; }
+.quick-answer p { margin:0; color:rgba(255,255,255,0.95); }
+
+.takeaways-box { background:var(--cream); border:1px solid var(--gold-light); border-radius:var(--radius); padding:8px 30px 14px; margin:44px 0 10px; }
+.takeaways-box h2 { margin-top:22px; }
+.blog-article ul.takeaways { list-style:none; padding:0; }
+.blog-article ul.takeaways li { position:relative; padding-left:30px; }
+.blog-article ul.takeaways li::before { content:'\2713'; position:absolute; left:0; top:0; color:var(--green-mid); font-weight:700; }
+
+.table-wrap { overflow-x:auto; margin:0 0 26px; border-radius:var(--radius-sm); box-shadow:var(--shadow-sm); }
+.blog-article table { width:100%; border-collapse:collapse; font-size:0.85rem; background:#fff; }
+.blog-article th { background:var(--green-deep); color:#fff; text-align:left; padding:12px 16px; font-weight:600; }
+.blog-article td { padding:11px 16px; border-bottom:1px solid #eee; vertical-align:top; }
+.blog-article tr:nth-child(even) td { background:var(--bg-light); }
+
+.faq-item { background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:var(--radius-sm); margin-bottom:10px; overflow:hidden; }
+.faq-item summary { cursor:pointer; list-style:none; padding:16px 48px 16px 20px; font-weight:600; color:var(--text-dark); position:relative; font-size:0.92rem; }
+.faq-item summary::-webkit-details-marker { display:none; }
+.faq-item summary::after { content:'+'; position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:1.3rem; color:var(--gold-dark); }
+.faq-item[open] summary::after { content:'\2212'; }
+.faq-item[open] summary { color:var(--green-mid); }
+.faq-item p { padding:0 20px 18px; margin:0; font-size:0.88rem; }
+
+.blog-cta-box { margin-top:48px; background:var(--green-deep); border-radius:var(--radius); padding:40px 32px; text-align:center; }
+.blog-cta-box h3 { color:#fff; font-size:1.7rem; margin:0 0 8px; }
+.blog-cta-box p { color:rgba(255,255,255,0.8); margin-bottom:22px; }
+.blog-cta-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+.blog-article .blog-cta-btns a { text-decoration:none; color:inherit; }
+.blog-article .blog-cta-btns .btn-primary { display:inline-flex; }
+
+/* ---- Sidebar ---- */
+.blog-sidebar { position:sticky; top:100px; display:flex; flex-direction:column; gap:20px; }
+.sidebar-card { background:#fff; border-radius:var(--radius); box-shadow:var(--shadow-sm); border:1px solid rgba(0,0,0,0.05); padding:22px; font-family:'Montserrat',sans-serif; }
+.sidebar-card h4 { font-size:1.1rem; color:var(--text-dark); margin-bottom:10px; }
+.sidebar-card.toc ol { padding-left:18px; margin:0; font-size:0.76rem; line-height:1.6; }
+.sidebar-card.toc li { margin-bottom:6px; }
+.sidebar-card.toc a { color:var(--text-light); text-decoration:none; }
+.sidebar-card.toc a:hover { color:var(--green-mid); }
+.sidebar-card.product { text-align:center; }
+.sidebar-card.product img { width:100%; height:150px; object-fit:contain; background:var(--cream); border-radius:var(--radius-sm); margin-bottom:12px; }
+.sidebar-card.product p { font-size:0.74rem; color:var(--text-light); line-height:1.6; margin-bottom:8px; }
+.sidebar-card .price { font-weight:700; color:var(--gold-dark); margin-bottom:12px; }
+.sidebar-card .price small { display:block; font-weight:500; color:var(--green-mid); font-size:0.7rem; }
+.sidebar-card .btn-primary { display:inline-flex; justify-content:center; width:100%; box-sizing:border-box; }
+
+@media (max-width:1024px) {
+  .blog-layout { grid-template-columns:1fr; padding:48px 24px 72px; }
+  .blog-sidebar { position:static; }
+  .sidebar-card.toc { display:none; }
+}
+@media (max-width:768px) {
+  .blog-list-section { padding:56px 16px 72px; }
+  .blog-grid { grid-template-columns:1fr; }
+  .blog-layout { padding:36px 16px 60px; gap:32px; }
+  .blog-article { font-size:0.9rem; }
+  .blog-article th, .blog-article td { padding:10px 12px; }
+  .quick-answer, .takeaways-box { padding-left:20px; padding-right:20px; }
+  .blog-cta-box { padding:32px 20px; }
+}
