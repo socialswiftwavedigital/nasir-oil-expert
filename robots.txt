@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: /cart
+Disallow: /checkout
+Disallow: /admin-dashboard.php
+Disallow: /admin-orders.php
+Disallow: /client-panel.php
+Disallow: /config.sample.php
+Disallow: /db.php
+Disallow: /send-order.php
+Disallow: /save-abandoned.php
+Disallow: /weekly-report.php
+
+Sitemap: https://nasiroilexpert.com/sitemap.xml
